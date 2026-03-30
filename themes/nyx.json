@@ -1,0 +1,9 @@
+{
+  "$schema": "vscode://schemas/color-theme",
+  "name": "Nyx",
+  "type": "dark",
+  "semanticHighlighting": true,
+  "colors": {},
+  "tokenColors": [],
+  "semanticTokenColors": {}
+}

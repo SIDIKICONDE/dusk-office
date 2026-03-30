@@ -1,0 +1,85 @@
+{
+  "name": "theme",
+  "displayName": "Nyx",
+  "description": "Pack de thèmes sombres Nyx : bioluminescence cyan et rose, hiérarchie d’interface, coloration sémantique LSP et neuf variantes (Abîme, Nébuleuse, Récif…).",
+  "version": "0.5.0",
+  "publisher": "nyx",
+  "icon": "images/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SIDIKICONDE/Nyx.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Themes"],
+  "keywords": [
+    "theme",
+    "dark",
+    "cyan",
+    "nyx",
+    "contrast",
+    "semantic highlighting",
+    "color-theme"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Nyx",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx.json"
+      },
+      {
+        "label": "Nyx Abîme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-abime.json"
+      },
+      {
+        "label": "Nyx Aube",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-aube.json"
+      },
+      {
+        "label": "Nyx Baie",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-baie.json"
+      },
+      {
+        "label": "Nyx Brume",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-brume.json"
+      },
+      {
+        "label": "Nyx Cendre",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-cendre.json"
+      },
+      {
+        "label": "Nyx Minuit",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-minuit.json"
+      },
+      {
+        "label": "Nyx Nébuleuse",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-nebuleuse.json"
+      },
+      {
+        "label": "Nyx Récif",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-recif.json"
+      }
+    ]
+  },
+  "scripts": {
+    "sync": "node scripts/sync-from-workspace.mjs",
+    "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
+    "package": "vsce package --no-dependencies",
+    "install-vsix": "node scripts/install-vsix.mjs",
+    "upgrade": "npm run package && node scripts/install-vsix.mjs"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.2"
+  }
+}

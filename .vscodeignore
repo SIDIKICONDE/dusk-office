@@ -1,0 +1,13 @@
+# Minimal (poids du VSIX)
+node_modules/**
+scripts/**
+package-lock.json
+.vscode/**
+
+# Extras utiles
+.vscode-test/**
+**/*.map
+**/tsconfig.json
+**/.eslintrc*
+.gitignore
+*.vsix
