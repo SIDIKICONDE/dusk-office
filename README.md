@@ -1,45 +1,65 @@
 # Nyx
 
-**Pack de thèmes sombres** pour **Visual Studio Code** et **Cursor** : cyan électrique, rose néon, hiérarchie d’interface et **coloration sémantique** (LSP) + TextMate.
+Treize thèmes pour **VS Code** et **Cursor** : sombres bioluminescents et **Ivoire sombre** (bruns chauds), clairs (**Clair**, **Ivoire** `#F6EEDE`), **contraste élevé** ; sémantique LSP, TextMate et workbench harmonisé.
 
-| | |
-|---|---|
-| **Publisher** | [Nyx](https://marketplace.visualstudio.com/publishers/nyx) |
-| **Identifiant** | `nyx.theme` |
-| **Catégorie** | Themes |
-| **Licence** | [MIT](./LICENSE) |
-| **Dépôt** | [github.com/SIDIKICONDE/Nyx](https://github.com/SIDIKICONDE/Nyx) |
+**Éditeur :** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Identifiant :** `deki.theme` · **Marketplace :** [Nyx](https://marketplace.visualstudio.com/items?itemName=deki.theme)
 
 ---
 
-## Installation (Marketplace)
+## Installation
 
-**Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`) → rechercher **Nyx** → **Install**.
+1. Ouvrir la vue **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
+2. Rechercher **Nyx** et cliquer sur **Install**.
 
-**[Installer depuis le Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=nyx.theme)**
+Si l’extension n’est pas disponible sur le Marketplace, installer le fichier **`.vsix`** via **Extensions → Install from VSIX…**.
 
-*(Si le lien est inactif, l’extension n’est pas encore publiée : voir [VSIX](#installation-manuelle-vsix).)*
-
-### Choisir un thème
-
-**Préférences** → **Thème de couleur** → **Nyx**, **Nyx Abîme**, **Nyx Aube**, etc.
-
-**Recommandé** :
-
-```json
-{
-  "editor.semanticHighlighting.enabled": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": "active"
-}
-```
+**Environnement :** VS Code ou Cursor **≥ 1.85**.
 
 ---
 
-## Contenu
+## Utilisation
 
-- **9 thèmes** : **Nyx** (base) + **8 variantes** (UI + syntaxe adaptée par variante).
-- Variantes basées sur `"include"` du JSON de base pour faciliter la maintenance.
+**Changer de thème :** **Préférences → Thème de couleur** (ou **Color Theme**), puis choisir une entrée **Nyx** (ex. *Nyx Abîme*, *Nyx Ivoire sombre*, *Nyx Ivoire*, *Nyx Contraste élevé*).
+
+Par défaut, l’extension définit plusieurs réglages via **`configurationDefaults`** (modifiables dans vos réglages utilisateur ou workspace, qui priment toujours) :
+
+| Domaine | Réglages (aperçu) |
+|--------|-------------------|
+| Thème | `workbench.colorTheme` → **Nyx Minuit** |
+| Minimap | activée, curseur / slider **always** |
+| Éditeur | coloration sémantique, brackets colorés, guides actifs (vertical + horizontal), indentation active, ligne courante, surlignage des sélections, édition liée, **sticky scroll** |
+| Explorateur | repères d’indentation dans l’arbre, badges et couleurs de décorations |
+
+Tout surcharger dans `settings.json` si vous préférez d’autres valeurs.
+
+### Accessibilité
+
+- **Nyx Contraste élevé** — thème `hc-black` : contrastes renforcés, bordures et focus plus visibles.
+- **Nyx Clair** — thème clair (`vs`), dérivé d’Abîme.
+- **Nyx Ivoire** — clair chaud, fond **#F6EEDE** ; `npm run build:ivoire` après **Nyx Clair**.
+- **Nyx Ivoire sombre** — sombre chaud (texte crème, fond espresso) ; `npm run build:ivoire-sombre` après **Nyx Cendre**.
+
+---
+
+## Variantes
+
+| Thème | Description |
+|--------|-------------|
+| **Nyx** | Référence sombre — bioluminescence cyan / rose. |
+| **Nyx Abîme** | Bleu nuit, accents cyan. |
+| **Nyx Aube** | Sombres plus ouverts ; syntaxe marquée. |
+| **Nyx Baie** | Vert lagune, chrome menthe. |
+| **Nyx Brume** | Gris-bleu ardoise ; syntaxe marquée. |
+| **Nyx Cendre** | Gris neutre, esprit console. |
+| **Nyx Minuit** | Très sombre, adapté aux écrans OLED. |
+| **Nyx Nébuleuse** | Violet / mauve. |
+| **Nyx Récif** | Cyan vif, bordures néon. |
+| **Nyx Clair** | Interface claire (froid / neutre). |
+| **Nyx Ivoire** | Clair chaud — base **#F6EEDE**, accents cuivre / ambre. |
+| **Nyx Ivoire sombre** | Sombre chaud, complément d’**Ivoire** ; syntaxe alignée sur **Cendre**. |
+| **Nyx Contraste élevé** | Mode contraste élevé. |
+
+Les sombres classiques et la base **Nyx** s’appuient sur `include` ; **Clair** / **Ivoire** partagent la syntaxe **Clair** ; **Ivoire sombre** celle de **Cendre**, avec des palettes UI chaudes.
 
 ---
 
@@ -51,68 +71,23 @@
 
 ---
 
-## Variantes
+## Versions
 
-| Thème | Description |
-|--------|-------------|
-| **Nyx** | Référence — bioluminescent cyan / rose. |
-| **Nyx Abîme** | Bleu nuit profond, accents cyan. |
-| **Nyx Aube** | Fonds plus clairs ; syntaxe renforcée. |
-| **Nyx Baie** | Vert lagune, chrome menthe. |
-| **Nyx Brume** | Gris-bleu slate ; syntaxe renforcée. |
-| **Nyx Cendre** | Gris neutre, style console. |
-| **Nyx Minuit** | Très sombre, type OLED. |
-| **Nyx Nébuleuse** | Violet / mauve. |
-| **Nyx Récif** | Cyan vif, bordures néon. |
+Les changements détaillés sont consignés dans [CHANGELOG.md](./CHANGELOG.md).
 
 ---
 
-## Prérequis
+## Maintenance du dépôt
 
-- **VS Code** ≥ **1.85** (`engines.vscode`).
+Réservé à l’équipe qui publie l’extension. Procédures et ordre des scripts : [MAINTENANCE.md](./MAINTENANCE.md).
 
----
+| Action | Commande |
+|--------|----------|
+| Valider les fichiers de thème | `npm run validate` ou `make validate` |
+| Régénérer **Nyx Clair** puis **Nyx Ivoire** | `npm run build:light` puis `npm run build:ivoire` |
+| Régénérer **Nyx Ivoire sombre** | après **Cendre** à jour : `npm run build:ivoire-sombre` |
+| Construire le VSIX | `npm run package` ou `make package` |
 
-## Installation manuelle (VSIX)
+Intégration continue : validation sur les pull requests ; sur les tags `v*`, génération du VSIX (publication Marketplace possible si le secret `VSCE_PAT` est configuré sur le dépôt).
 
-```bash
-git clone https://github.com/SIDIKICONDE/Nyx.git
-cd Nyx
-npm install
-npm run package
-```
-
-**Extensions** → **Install from VSIX…** → fichier **`theme-*.vsix`**.
-
-Dans le clone : `make reinstall` (Makefile local).
-
-Si tu développes encore **dans le monorepo Nythy** (`extensions/nyx-theme`), depuis la racine Nythy :
-
-```bash
-make nyx-theme-reinstall
-# alias : make volt-noir-reinstall
-```
-
----
-
-## Développement
-
-- Ouvrir ce dossier dans l’éditeur, lancer **Extension : Nyx** (F5).
-- `npm run sync` — régénère `themes/nyx.json` depuis `.vscode/settings.json` (racine du dépôt Nyx **ou** racine du monorepo Nythy si le dossier y est encore présent).
-- `npm run variants:syntax` — régénère la syntaxe des variantes (`scripts/syntax-variant-palettes.mjs`).
-
-**Publication** :
-
-```bash
-npx @vscode/vsce login nyx
-npx @vscode/vsce publish --no-dependencies
-```
-
-Icône : `images/icon.png` (min. **128×128** px).
-
----
-
-## Licence
-
-MIT — [LICENSE](./LICENSE).  
-Copyright (c) Nyx
+Publication manuelle Marketplace : `npx @vscode/vsce login deki` puis `npx @vscode/vsce publish --no-dependencies`.

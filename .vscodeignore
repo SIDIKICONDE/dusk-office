@@ -3,6 +3,9 @@ node_modules/**
 scripts/**
 package-lock.json
 .vscode/**
+.github/**
+Makefile
+MAINTENANCE.md
 
 # Extras utiles
 .vscode-test/**

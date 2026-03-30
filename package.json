@@ -1,11 +1,17 @@
 {
   "name": "theme",
   "displayName": "Nyx",
-  "description": "Pack de thèmes sombres Nyx : bioluminescence cyan et rose, hiérarchie d’interface, coloration sémantique LSP et neuf variantes (Abîme, Nébuleuse, Récif…).",
-  "version": "0.5.0",
-  "publisher": "nyx",
+  "description": "13 thèmes Nyx pour VS Code et Cursor : sombres (dont Ivoire sombre), clairs (Ivoire #F6EEDE), contraste élevé. Sémantique LSP et TextMate.",
+  "version": "0.5.9",
+  "publisher": "deki",
   "icon": "images/icon.png",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=deki.theme",
+  "galleryBanner": {
+    "color": "#031c28",
+    "theme": "dark"
+  },
+  "qna": "marketplace",
   "repository": {
     "type": "git",
     "url": "https://github.com/SIDIKICONDE/Nyx.git"
@@ -20,6 +26,8 @@
     "cyan",
     "nyx",
     "contrast",
+    "high contrast",
+    "light",
     "semantic highlighting",
     "color-theme"
   ],
@@ -69,12 +77,57 @@
         "label": "Nyx Récif",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-recif.json"
+      },
+      {
+        "label": "Nyx Contraste élevé",
+        "uiTheme": "hc-black",
+        "path": "./themes/nyx-hc.json"
+      },
+      {
+        "label": "Nyx Clair",
+        "uiTheme": "vs",
+        "path": "./themes/nyx-light.json"
+      },
+      {
+        "label": "Nyx Ivoire",
+        "uiTheme": "vs",
+        "path": "./themes/nyx-ivoire.json"
+      },
+      {
+        "label": "Nyx Ivoire sombre",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-ivoire-sombre.json"
       }
-    ]
+    ],
+    "configurationDefaults": {
+      "workbench.colorTheme": "Nyx Minuit",
+      "editor.minimap.enabled": true,
+      "editor.minimap.showSlider": "always",
+      "editor.semanticHighlighting.enabled": true,
+      "editor.bracketPairColorization.enabled": true,
+      "editor.guides.bracketPairs": "active",
+      "editor.guides.bracketPairsHorizontal": "active",
+      "editor.guides.highlightActiveIndentation": true,
+      "editor.stickyScroll.enabled": true,
+      "editor.renderLineHighlight": "line",
+      "editor.selectionHighlight": true,
+      "editor.linkedEditing": true,
+      "workbench.tree.renderIndentGuides": "always",
+      "explorer.decorations.badges": true,
+      "explorer.decorations.colors": true
+    }
   },
   "scripts": {
     "sync": "node scripts/sync-from-workspace.mjs",
+    "variants:ui": "node scripts/merge-extended-ui-colors.mjs",
+    "soften:borders": "node scripts/soften-chrome-borders.mjs",
+    "boost:borders": "node scripts/boost-border-contrast.mjs",
+    "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
+    "validate": "node scripts/validate-themes.mjs",
+    "build:light": "node scripts/build-nyx-light.mjs",
+    "build:ivoire": "node scripts/build-nyx-ivoire.mjs",
+    "build:ivoire-sombre": "node scripts/build-nyx-ivoire-sombre.mjs",
     "package": "vsce package --no-dependencies",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs"
