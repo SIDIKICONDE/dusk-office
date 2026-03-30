@@ -1,51 +1,53 @@
-# Journal des versions — Nyx
+# Changelog — Nyx
 
-Toutes les dates sont en UTC. Comparez avec `package.json` → `version`.
+User-facing changes (themes, default settings, Marketplace listing).
 
-## [0.5.9] — 2026-03-30
+## 0.6.1 — 31 March 2026
 
-### Ajouté
+- **Fixed**: README screenshots in the packaged extension — images use **relative** `images/…` paths in the VSIX (no rewrite to remote URLs), so all four screenshots display in the Extensions view after install.
+- **Changed**: README includes four Marketplace screenshots with stable English filenames.
 
-- **Nyx Ivoire sombre** (`themes/nyx-ivoire-sombre.json`, `vs-dark`) : thème sombre chaud (fond **#1f1c18**, texte crème) ; généré par `scripts/build-nyx-ivoire-sombre.mjs` à partir de **Nyx Cendre**.
+## 0.6.0 — 30 March 2026
 
-## [0.5.8] — 2026-03-30
+- **Breaking change**: theme **display names** and the `name` field in theme JSON are now **English** (e.g. **Nyx Midnight** instead of *Nyx Minuit*). If your `settings.json` still uses the old French `workbench.colorTheme` value, VS Code will fall back until you pick the theme again or set the new name (default preset uses **Nyx Midnight**).
+- **Changed**: README and Marketplace copy aligned with English names.
 
-### Ajouté
+## 0.5.11 — 30 March 2026
 
-- **Nyx Ivoire** (`themes/nyx-ivoire.json`, `vs`) : thème clair chaud centré sur **#F6EEDE** ; généré par `scripts/build-nyx-ivoire.mjs` à partir de **Nyx Clair**.
+- **Fixed**: screenshot images on the Marketplace listing.
+- **Changed**: README tightened for install and daily use (no developer-only section).
 
-## [0.5.7] — 2026-03-30
+## 0.5.10 — 30 March 2026
 
-### Modifié
+- **Changed**: product docs state **proprietary** distribution only (no public repository field in the manifest).
 
-- **`configurationDefaults`** enrichi : sémantique, brackets & guides, sticky scroll, surlignage ligne / sélections, édition liée, minimap (slider), explorateur (indentations, badges, couleurs). Toujours **Nyx Minuit** comme thème par défaut.
+## 0.5.9 — 30 March 2026
 
-## [0.5.6] — 2026-03-30
+- **Added**: **Nyx Dark Ivory** theme — warm dark UI, cream text, deep background.
 
-### Ajouté
+## 0.5.8 — 30 March 2026
 
-- `contributes.configurationDefaults` : `editor.minimap.enabled` à `true`, `workbench.colorTheme` à **Nyx Minuit** (surcharge possible dans les réglages utilisateur / workspace).
+- **Added**: **Nyx Ivory** theme — warm light UI, **#F6EEDE** paper base, copper and amber accents.
 
-## [0.5.5] — 2026-03-30
+## 0.5.7 — 30 March 2026
 
-### Ajouté
+- **Changed**: richer suggested defaults (semantic highlighting, brackets, guides, sticky scroll, highlights, minimap, explorer). Default color theme: **Nyx Midnight**.
 
-- **Nyx Contraste élevé** (`themes/nyx-hc.json`, `uiTheme` hc-black) : bordures et focus renforcés pour l’accessibilité.
-- **Nyx Clair** (`themes/nyx-light.json`, `uiTheme` vs) : variante claire générée depuis Abîme (`scripts/build-nyx-light.mjs`).
-- `CHANGELOG.md`, `MAINTENANCE.md`, `scripts/validate-themes.mjs`, `npm run validate`.
-- CI GitHub Actions : validation sur chaque push / PR ; construction du VSIX sur tag `v*`.
-- Métadonnées Marketplace : `galleryBanner`, `qna`.
+## 0.5.6 — 30 March 2026
 
-### Notes internes
+- **Added**: minimap enabled and **Nyx Midnight** as default suggestion (overridable in settings).
 
-- Après une grosse évolution d’**Abîme**, régénérer le clair : `npm run build:light`.
+## 0.5.5 — 30 March 2026
 
-## [0.5.4] — 2026-03-30
+- **Added**: **Nyx High Contrast** for clearer borders and focus.
+- **Added**: **Nyx Light** (light UI).
+- **Added**: Marketplace banner and Q&A.
 
-- Bordures : script `boost:borders`, renforcement du contraste sur les variantes sombres.
-- **Nyx Minuit** : bordures plus lisibles sur fond quasi noir (`#2e7d8f`), palette `border` du merge mise à jour.
-- Version package / lockfile alignés.
+## 0.5.4 — 30 March 2026
 
-## [0.5.3] et antérieur
+- **Changed**: slightly stronger borders on dark variants.
+- **Changed**: **Nyx Midnight** — borders easier to see on very dark backgrounds.
 
-- Voir l’historique git du dépôt pour le détail des changements antérieurs à ce fichier.
+## Earlier than 0.5.4
+
+- Prior history maintained by **DEKI**; install the latest release for the full theme list.

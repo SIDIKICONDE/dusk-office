@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Contraste élevé",
+  "name": "Nyx High Contrast",
   "include": "./nyx-abime.json",
   "colors": {
     "contrastBorder": "#ffffff",

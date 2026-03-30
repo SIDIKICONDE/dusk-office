@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Nébuleuse",
+  "name": "Nyx Nebula",
   "include": "./nyx.json",
   "colors": {
     "descriptionForeground": "#f3e8ffaa",

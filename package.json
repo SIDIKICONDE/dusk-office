@@ -1,8 +1,8 @@
 {
   "name": "theme",
   "displayName": "Nyx",
-  "description": "13 thèmes Nyx pour VS Code et Cursor : sombres (dont Ivoire sombre), clairs (Ivoire #F6EEDE), contraste élevé. Sémantique LSP et TextMate.",
-  "version": "0.5.9",
+  "description": "13 Nyx themes for VS Code and Cursor: dark bioluminescent, warm Ivory pair, light themes, high contrast. Semantic LSP and TextMate.",
+  "version": "0.6.1",
   "publisher": "deki",
   "icon": "images/icon.png",
   "license": "UNLICENSED",
@@ -12,10 +12,7 @@
     "theme": "dark"
   },
   "qna": "marketplace",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SIDIKICONDE/Nyx.git"
-  },
+  "private": true,
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -39,68 +36,68 @@
         "path": "./themes/nyx.json"
       },
       {
-        "label": "Nyx Abîme",
+        "label": "Nyx Abyss",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-abime.json"
       },
       {
-        "label": "Nyx Aube",
+        "label": "Nyx Dawn",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-aube.json"
       },
       {
-        "label": "Nyx Baie",
+        "label": "Nyx Bay",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-baie.json"
       },
       {
-        "label": "Nyx Brume",
+        "label": "Nyx Mist",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-brume.json"
       },
       {
-        "label": "Nyx Cendre",
+        "label": "Nyx Ash",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-cendre.json"
       },
       {
-        "label": "Nyx Minuit",
+        "label": "Nyx Midnight",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-minuit.json"
       },
       {
-        "label": "Nyx Nébuleuse",
+        "label": "Nyx Nebula",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-nebuleuse.json"
       },
       {
-        "label": "Nyx Récif",
+        "label": "Nyx Reef",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-recif.json"
       },
       {
-        "label": "Nyx Contraste élevé",
+        "label": "Nyx High Contrast",
         "uiTheme": "hc-black",
         "path": "./themes/nyx-hc.json"
       },
       {
-        "label": "Nyx Clair",
+        "label": "Nyx Light",
         "uiTheme": "vs",
         "path": "./themes/nyx-light.json"
       },
       {
-        "label": "Nyx Ivoire",
+        "label": "Nyx Ivory",
         "uiTheme": "vs",
         "path": "./themes/nyx-ivoire.json"
       },
       {
-        "label": "Nyx Ivoire sombre",
+        "label": "Nyx Dark Ivory",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-ivoire-sombre.json"
       }
     ],
     "configurationDefaults": {
-      "workbench.colorTheme": "Nyx Minuit",
+      "workbench.colorTheme": "Nyx Midnight",
       "editor.minimap.enabled": true,
       "editor.minimap.showSlider": "always",
       "editor.semanticHighlighting.enabled": true,
@@ -128,7 +125,7 @@
     "build:light": "node scripts/build-nyx-light.mjs",
     "build:ivoire": "node scripts/build-nyx-ivoire.mjs",
     "build:ivoire-sombre": "node scripts/build-nyx-ivoire-sombre.mjs",
-    "package": "vsce package --no-dependencies",
+    "package": "vsce package --no-dependencies --allow-missing-repository --no-rewrite-relative-links",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs"
   },

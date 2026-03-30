@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Génère themes/nyx-ivoire.json à partir de nyx-light.json.
- * Base « papier » #F6EEDE (Coolors), surfaces et bordures chaudes, accents cuivre / ambre.
+ * Writes themes/nyx-ivoire.json from nyx-light.json.
+ * Warm paper base #F6EEDE, cream surfaces, copper / amber accents.
  */
 import fs from "fs";
 import path from "path";
@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-/** Remap #RRGGBB (minuscules) — neutres & bleus d’UI → tons crème / terre */
+/** Remap #RRGGBB — UI neutrals & blues → cream / earth tones */
 const RGB_MAP = {
   ffffff: "f6eede",
   f8fafc: "f6eede",
@@ -80,7 +80,7 @@ function main() {
 
   const out = {
     $schema: "vscode://schemas/color-theme",
-    name: "Nyx Ivoire",
+    name: "Nyx Ivory",
     type: "light",
     include: "./nyx.json",
     colors,

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Régénère themes/nyx.json à partir de `.vscode/settings.json` à la racine du dépôt.
+ * Régénère themes/nyx.json à partir de `.vscode/settings.json` à la racine du projet.
  *
  * Cherche la racine dans cet ordre :
  *   1) Monorepo Nythy : …/Nythy/.vscode/settings.json (3 niveaux au-dessus de scripts/)
@@ -33,7 +33,7 @@ if (
   repoRoot = standaloneRoot;
 } else {
   console.error(
-    "Aucun .vscode/settings.json trouvé à la racine du dépôt Nyx ou du monorepo Nythy."
+    "Aucun .vscode/settings.json trouvé à la racine du projet Nyx ou du monorepo Nythy."
   );
   process.exit(1);
 }

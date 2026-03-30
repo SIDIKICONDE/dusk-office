@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Génère themes/nyx-light.json à partir de nyx-abime.json (palette sombre → claire).
- * À relancer après refonte majeure d’Abîme.
+ * Writes themes/nyx-light.json from nyx-abime.json (dark palette → light).
+ * Re-run after major changes to Nyx Abyss.
  */
 import fs from "fs";
 import path from "path";
@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-/** Bases #RRGGBB (minuscules) très sombres → surfaces claires */
+/** Very dark #RRGGBB bases → light surfaces */
 const DARK_BG_TO_LIGHT = {
   "000000": "#e2e8f0",
   "02060c": "#e8edf4",
@@ -87,7 +87,7 @@ function main() {
 
   const out = {
     $schema: "vscode://schemas/color-theme",
-    name: "Nyx Clair",
+    name: "Nyx Light",
     type: "light",
     include: "./nyx.json",
     colors,

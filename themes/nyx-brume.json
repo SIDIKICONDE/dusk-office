@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Brume",
+  "name": "Nyx Mist",
   "include": "./nyx.json",
   "colors": {
     "descriptionForeground": "#f4f9fcaa",

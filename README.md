@@ -1,93 +1,63 @@
 # Nyx
 
-Treize thèmes pour **VS Code** et **Cursor** : sombres bioluminescents et **Ivoire sombre** (bruns chauds), clairs (**Clair**, **Ivoire** `#F6EEDE`), **contraste élevé** ; sémantique LSP, TextMate et workbench harmonisé.
+Thirteen color themes for **Visual Studio Code** and **Cursor**: bioluminescent dark variants, light themes (**Light**, **Ivory**), warm **Dark Ivory**, and a **high-contrast** mode. Semantic highlighting plus a cohesive workbench (side bars, panels, terminal, minimap).
 
-**Éditeur :** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Identifiant :** `deki.theme` · **Marketplace :** [Nyx](https://marketplace.visualstudio.com/items?itemName=deki.theme)
+**Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Marketplace:** [Nyx](https://marketplace.visualstudio.com/items?itemName=deki.theme)
 
 ---
 
 ## Installation
 
-1. Ouvrir la vue **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Rechercher **Nyx** et cliquer sur **Install**.
+1. Open **Extensions** (`Ctrl+Shift+X` or `Cmd+Shift+X`).
+2. Search for **Nyx**, then click **Install**.
 
-Si l’extension n’est pas disponible sur le Marketplace, installer le fichier **`.vsix`** via **Extensions → Install from VSIX…**.
+To install from a **.vsix** file: **Extensions → Install from VSIX…**.
 
-**Environnement :** VS Code ou Cursor **≥ 1.85**.
-
----
-
-## Utilisation
-
-**Changer de thème :** **Préférences → Thème de couleur** (ou **Color Theme**), puis choisir une entrée **Nyx** (ex. *Nyx Abîme*, *Nyx Ivoire sombre*, *Nyx Ivoire*, *Nyx Contraste élevé*).
-
-Par défaut, l’extension définit plusieurs réglages via **`configurationDefaults`** (modifiables dans vos réglages utilisateur ou workspace, qui priment toujours) :
-
-| Domaine | Réglages (aperçu) |
-|--------|-------------------|
-| Thème | `workbench.colorTheme` → **Nyx Minuit** |
-| Minimap | activée, curseur / slider **always** |
-| Éditeur | coloration sémantique, brackets colorés, guides actifs (vertical + horizontal), indentation active, ligne courante, surlignage des sélections, édition liée, **sticky scroll** |
-| Explorateur | repères d’indentation dans l’arbre, badges et couleurs de décorations |
-
-Tout surcharger dans `settings.json` si vous préférez d’autres valeurs.
-
-### Accessibilité
-
-- **Nyx Contraste élevé** — thème `hc-black` : contrastes renforcés, bordures et focus plus visibles.
-- **Nyx Clair** — thème clair (`vs`), dérivé d’Abîme.
-- **Nyx Ivoire** — clair chaud, fond **#F6EEDE** ; `npm run build:ivoire` après **Nyx Clair**.
-- **Nyx Ivoire sombre** — sombre chaud (texte crème, fond espresso) ; `npm run build:ivoire-sombre` après **Nyx Cendre**.
+**Requirements:** VS Code or Cursor **1.85** or newer.
 
 ---
 
-## Variantes
+## Usage
 
-| Thème | Description |
-|--------|-------------|
-| **Nyx** | Référence sombre — bioluminescence cyan / rose. |
-| **Nyx Abîme** | Bleu nuit, accents cyan. |
-| **Nyx Aube** | Sombres plus ouverts ; syntaxe marquée. |
-| **Nyx Baie** | Vert lagune, chrome menthe. |
-| **Nyx Brume** | Gris-bleu ardoise ; syntaxe marquée. |
-| **Nyx Cendre** | Gris neutre, esprit console. |
-| **Nyx Minuit** | Très sombre, adapté aux écrans OLED. |
-| **Nyx Nébuleuse** | Violet / mauve. |
-| **Nyx Récif** | Cyan vif, bordures néon. |
-| **Nyx Clair** | Interface claire (froid / neutre). |
-| **Nyx Ivoire** | Clair chaud — base **#F6EEDE**, accents cuivre / ambre. |
-| **Nyx Ivoire sombre** | Sombre chaud, complément d’**Ivoire** ; syntaxe alignée sur **Cendre**. |
-| **Nyx Contraste élevé** | Mode contraste élevé. |
+**Switch theme:** **Preferences** → **Color Theme**, then pick any **Nyx** variant.
 
-Les sombres classiques et la base **Nyx** s’appuient sur `include` ; **Clair** / **Ivoire** partagent la syntaxe **Clair** ; **Ivoire sombre** celle de **Cendre**, avec des palettes UI chaudes.
+The extension ships sensible defaults (**Nyx Midnight**, minimap on, semantic highlighting, bracket guides, and more). Change anything in your editor **Settings**; your choices override these defaults.
+
+### Accessibility
+
+- **Nyx High Contrast** — stronger contrast, clear borders and focus.
+- **Nyx Light** — clean light UI for daytime use.
+- **Nyx Ivory** — warm light theme, base **#F6EEDE**, copper and amber accents.
+- **Nyx Dark Ivory** — warm dark theme, cream text on a deep background.
 
 ---
 
-## Captures d’écran
+## Included themes
 
-![Éditeur — coloration sémantique](images/screenshot-editor-dart.jpg)
-
-![Fenêtre complète](images/screenshot-full-window.jpg)
+| Name | Mood |
+|------|------|
+| **Nyx** | Base dark — cyan and pink, bioluminescent look. |
+| **Nyx Abyss** | Deep blue night, cyan accents. |
+| **Nyx Dawn** | Slightly lifted darks, bold syntax. |
+| **Nyx Bay** | Lagoon green, mint chrome. |
+| **Nyx Mist** | Slate blue-gray, bold syntax. |
+| **Nyx Ash** | Neutral gray, console feel. |
+| **Nyx Midnight** | Very dark, OLED-friendly. |
+| **Nyx Nebula** | Purple and mauve. |
+| **Nyx Reef** | Bright cyan, neon borders. |
+| **Nyx Light** | Cool / neutral light UI. |
+| **Nyx Ivory** | Warm light — **#F6EEDE** base. |
+| **Nyx Dark Ivory** | Warm dark companion to **Ivory**. |
+| **Nyx High Contrast** | System high-contrast mode. |
 
 ---
 
-## Versions
+## Screenshots
 
-Les changements détaillés sont consignés dans [CHANGELOG.md](./CHANGELOG.md).
+![Editor — semantic highlighting](images/screenshot-editor-dart.png)
 
----
+![Full window](images/screenshot-full-window.png)
 
-## Maintenance du dépôt
+![Editor — focused layout](images/screenshot-editor-focused.png)
 
-Réservé à l’équipe qui publie l’extension. Procédures et ordre des scripts : [MAINTENANCE.md](./MAINTENANCE.md).
-
-| Action | Commande |
-|--------|----------|
-| Valider les fichiers de thème | `npm run validate` ou `make validate` |
-| Régénérer **Nyx Clair** puis **Nyx Ivoire** | `npm run build:light` puis `npm run build:ivoire` |
-| Régénérer **Nyx Ivoire sombre** | après **Cendre** à jour : `npm run build:ivoire-sombre` |
-| Construire le VSIX | `npm run package` ou `make package` |
-
-Intégration continue : validation sur les pull requests ; sur les tags `v*`, génération du VSIX (publication Marketplace possible si le secret `VSCE_PAT` est configuré sur le dépôt).
-
-Publication manuelle Marketplace : `npx @vscode/vsce login deki` puis `npx @vscode/vsce publish --no-dependencies`.
+![Workbench overview](images/screenshot-workbench-overview.png)

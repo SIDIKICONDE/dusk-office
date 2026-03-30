@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Clair",
+  "name": "Nyx Light",
   "type": "light",
   "include": "./nyx.json",
   "colors": {

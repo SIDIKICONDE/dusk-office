@@ -1,38 +1,39 @@
-# Maintenance — pack Nyx
+# Maintenance — Nyx pack
 
-Guide interne pour régénérer les thèmes sans casser la chaîne de publication.
+Internal guide to regenerate themes without breaking the release pipeline.
 
-## Ordre des scripts (variantes sombres)
+## Script order (dark variants)
 
-1. **`npm run variants:ui`** — fusionne les couleurs workbench étendues (`merge-extended-ui-colors.mjs`) dans `nyx-*.json` (sauf `nyx.json`, `nyx-hc.json`, `nyx-light.json`).
-2. **`npm run variants:syntax`** — met à jour `tokenColors` / `semanticTokenColors` des variantes listées dans le script.
-3. **`npm run boost:borders`** *(optionnel)* — augmente l’alpha des clés « bordure ». **Ne pas** enchaîner avec `soften:borders` sur les mêmes fichiers sans repartir d’une base git propre.
-4. **`npm run dim:borders`** *(optionnel)* — baisse la luminosité perçue des bordures (alpha −22, RGB ×0,88). S’applique aux variantes sombres + **Nyx Clair** ; pas à `nyx-hc.json`.
+1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into `nyx-*.json` (except `nyx.json`, `nyx-hc.json`, `nyx-light.json`).
+2. **`npm run variants:syntax`** — updates `tokenColors` / `semanticTokenColors` for variants listed in the script.
+3. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.
+4. **`npm run dim:borders`** *(optional)* — lowers perceived border brightness (alpha −22, RGB ×0.88). Applies to dark variants + **Nyx Light**; not `nyx-hc.json`.
 
-**À ne pas faire :** `soften:borders` puis `boost:borders` deux fois de suite sans reset — l’alpha s’accumule.
+**Avoid:** `soften:borders` then `boost:borders` twice in a row without reset — alpha stacks.
 
-## Thèmes hors pipeline sombre
+## Themes outside the dark pipeline
 
-| Fichier | Rôle |
-|--------|------|
-| `themes/nyx.json` | Base vide (schéma, type dark) ; référence des `include`. |
-| `themes/nyx-hc.json` | `include` Abîme + surcharges contraste élevé — ajuster à la main si besoin. |
-| `themes/nyx-light.json` | Généré par **`npm run build:light`** depuis Abîme. |
-| `themes/nyx-ivoire.json` | Généré par **`npm run build:ivoire`** depuis **Nyx Clair** (base papier **#F6EEDE**). |
-| `themes/nyx-ivoire-sombre.json` | Généré par **`npm run build:ivoire-sombre`** depuis **Nyx Cendre** (palette sombre chaude, complément **Ivoire**). |
+| File | Role |
+|------|------|
+| `themes/nyx.json` | Empty base (schema, dark type); `include` anchor. |
+| `themes/nyx-hc.json` | `include` Abyss + high-contrast overrides — tweak by hand if needed. |
+| `themes/nyx-light.json` | Built by **`npm run build:light`** from Abyss. |
+| `themes/nyx-ivoire.json` | Built by **`npm run build:ivoire`** from **Nyx Light** (paper base **#F6EEDE**). |
+| `themes/nyx-ivoire-sombre.json` | Built by **`npm run build:ivoire-sombre`** from **Nyx Ash** (warm dark palette, pairs with Ivory). |
 
-## Qualité avant commit / release
+## Pre-release checks
 
 ```bash
 npm run validate
 ```
 
-Valide le JSON, les chaînes `include` et la liste `contributes.themes` dans `package.json`.
+Validates JSON, `include` paths, and `contributes.themes` in `package.json`.
 
-## Publication Marketplace
+## Marketplace publishing
 
-- **CI** : sur un tag `v0.5.5` (exemple), le workflow **Release** produit un artefact VSIX.
-- **Publication manuelle** (compte éditeur) :
+- **VSIX / `vsce`**: `npm run package` uses `--allow-missing-repository` and **`--no-rewrite-relative-links`** so README images stay as `images/…` (not rewritten to `raw.githubusercontent.com/…`, which breaks if that tree is missing or private). PNGs ship inside the VSIX and display in the Extensions view and on the Marketplace. To force remote URLs instead, drop `--no-rewrite-relative-links` and pass `--baseImagesUrl` / `--baseContentUrl`.
+- **CI**: on tag `v0.6.1` (example), the **Release** workflow produces a VSIX artifact.
+- **Manual publish** (publisher account):
 
   ```bash
   npx @vscode/vsce login deki
@@ -40,14 +41,14 @@ Valide le JSON, les chaînes `include` et la liste `contributes.themes` dans `pa
   npx @vscode/vsce publish --no-dependencies
   ```
 
-- Pour publier **automatiquement** depuis GitHub Actions, ajouter un secret dépôt `VSCE_PAT` (Personal Access Token Azure / VS Marketplace) : le job « Publish » du workflow release l’utilise s’il est défini.
+- For **automated publish** from internal CI, set secret `VSCE_PAT` (Microsoft Marketplace token); the release workflow uses it when defined.
 
-## Réglages par défaut (`configurationDefaults`)
+## Default settings (`configurationDefaults`)
 
-Déclarés dans `package.json` → `contributes.configurationDefaults` : thème **Nyx Minuit**, minimap, sémantique, guides de brackets, sticky scroll, surlignages, explorateur, etc. Voir le fichier pour la liste à jour. Les **paramètres utilisateur / workspace** écrasent ces valeurs.
+Declared in `package.json` → `contributes.configurationDefaults`: **Nyx Midnight**, minimap, semantic highlighting, bracket guides, sticky scroll, highlights, explorer, etc. See the file for the current list. **User / workspace** settings override these.
 
-Pour une autre variante Nyx par défaut dans un preset équipe, définir par exemple `"workbench.colorTheme": "Nyx Abîme"` dans le `settings.json` du workspace.
+For another Nyx variant as team default, set e.g. `"workbench.colorTheme": "Nyx Abyss"` in the workspace `settings.json`.
 
-## Journal des versions
+## Version history
 
-Voir [CHANGELOG.md](./CHANGELOG.md).
+See [CHANGELOG.md](./CHANGELOG.md).

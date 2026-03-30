@@ -1,5 +1,5 @@
-# Nyx — pack de thèmes VS Code / Cursor (dépôt autonome)
-# Usage : make help | make reinstall
+# Nyx — VS Code / Cursor theme pack (standalone project)
+# Usage: make help | make reinstall
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NPM  := npm
@@ -13,18 +13,18 @@ EDITOR ?= cursor
 help:
 	@echo "Nyx — $(ROOT)"
 	@echo ""
-	@echo "  make install          installer les dépendances npm (vsce, etc.)"
-	@echo "  make validate         valider JSON + manifeste des thèmes (npm run validate)"
-	@echo "  make sync             themes/nyx.json <- .vscode/settings.json (racine du dépôt)"
-	@echo "  make variants-ui      fusionner les couleurs workbench étendues (scripts/merge-extended-ui-colors.mjs)"
-	@echo "  make variants-syntax  régénérer tokenColors / sémantique des variantes"
-	@echo "  make package          construire $(PKG)-*.vsix (alias : vsix, build)"
-	@echo "  make install-vsix     installer le dernier .vsix (EDITOR=$(EDITOR))"
-	@echo "  make reinstall        package + install-vsix (alias : upgrade)"
-	@echo "  make full             variants-ui + variants-syntax + package + install-vsix (alias : all)"
-	@echo "  make clean-old-vsix   supprimer les $(PKG)-*.vsix sauf le plus récent"
+	@echo "  make install          npm dependencies (vsce, etc.)"
+	@echo "  make validate         validate theme JSON + manifest (npm run validate)"
+	@echo "  make sync             themes/nyx.json <- .vscode/settings.json (repo root)"
+	@echo "  make variants-ui      merge extended workbench colors (scripts/merge-extended-ui-colors.mjs)"
+	@echo "  make variants-syntax  regenerate variant tokenColors / semantic tokens"
+	@echo "  make package          build $(PKG)-*.vsix (aliases: vsix, build)"
+	@echo "  make install-vsix     install latest .vsix (EDITOR=$(EDITOR))"
+	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
+	@echo "  make full             variants-ui + variants-syntax + package + install-vsix (aliases: all)"
+	@echo "  make clean-old-vsix   remove $(PKG)-*.vsix except the newest"
 	@echo ""
-	@echo "  Exemple : make reinstall EDITOR=code"
+	@echo "  Example: make reinstall EDITOR=code"
 
 install:
 	cd "$(ROOT)" && $(NPM) install
@@ -52,10 +52,10 @@ reinstall upgrade:
 
 full all: variants-ui variants-syntax package install-vsix
 
-# Absorbe la typo « make full make » (2ᵉ cible sans effet, évite l’erreur « No rule to make target make »).
+# Absorbs typo `make full make` (2nd target is a no-op; avoids "No rule to make target make").
 make:
 	@:
 
 clean-old-vsix:
 	@cd "$(ROOT)" && ls -t $(PKG)-*.vsix 2>/dev/null | tail -n +2 | while IFS= read -r f; do rm -f "$$f"; done || true
-	@echo "[OK] Anciens VSIX supprimés (le plus récent est conservé)."
+	@echo "[OK] Old VSIX files removed (newest kept)."

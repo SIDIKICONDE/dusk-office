@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Génère themes/nyx-ivoire-sombre.json à partir de nyx-cendre.json.
- * Même esprit que Nyx Ivoire (#F6EEDE) mais en sombre : fonds bruns profonds, texte crème, accents cuivre.
+ * Writes themes/nyx-ivoire-sombre.json from nyx-cendre.json.
+ * Same spirit as Nyx Ivory (#F6EEDE) but dark: deep warm browns, cream text, copper accents.
  */
 import fs from "fs";
 import path from "path";
@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-/** Remap #RRGGBB (minuscules) — gris froids → chauds ; bleus UI → cuivre / ambre */
+/** Remap #RRGGBB — cool grays → warm; UI blues → copper / amber */
 const RGB_MAP = {
   "000000": "100d0c",
   "0a0a0a": "14110f",
@@ -72,7 +72,7 @@ function main() {
     colors[k] = typeof v === "string" ? mapColor(v) : v;
   }
 
-  /** Fonds éditeur un peu plus profonds (espresso / ivoire sombre) */
+  /** Deeper editor surfaces (espresso / dark ivory) */
   const deep = {
     "editor.background": "#1f1c18",
     "editorCursor.background": "#1f1c18",
@@ -82,7 +82,7 @@ function main() {
 
   const out = {
     $schema: "vscode://schemas/color-theme",
-    name: "Nyx Ivoire sombre",
+    name: "Nyx Dark Ivory",
     include: "./nyx.json",
     colors,
     tokenColors: src.tokenColors,
@@ -91,7 +91,7 @@ function main() {
 
   const dest = path.join(root, "themes/nyx-ivoire-sombre.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");
-  console.log("OK", dest, Object.keys(colors).length, "couleurs");
+  console.log("OK", dest, Object.keys(colors).length, "colors");
 }
 
 main();
