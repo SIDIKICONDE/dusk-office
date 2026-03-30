@@ -2,6 +2,18 @@
 
 User-facing changes (themes, default settings, Marketplace listing).
 
+## 0.6.4 — 31 March 2026
+
+- **Changed**: extension **`displayName`** to **Nyx by DEKI** — the short name **Nyx** was already taken on the Marketplace for another extension’s display title.
+
+## 0.6.3 — 31 March 2026
+
+- **Changed**: package `name` to **`nyx-color-themes`** (Marketplace id **`deki.nyx-color-themes`**) because **`deki.nyx`** was also already registered.
+
+## 0.6.2 — 31 March 2026
+
+- **Changed**: extension package `name` from `theme` to **`nyx`** so the Marketplace identifier is **`deki.nyx`** (`deki.theme` was already registered by another listing).
+
 ## 0.6.1 — 31 March 2026
 
 - **Fixed**: README screenshots in the packaged extension — images use **relative** `images/…` paths in the VSIX (no rewrite to remote URLs), so all four screenshots display in the Extensions view after install.

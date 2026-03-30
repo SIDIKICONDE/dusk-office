@@ -31,17 +31,33 @@ Validates JSON, `include` paths, and `contributes.themes` in `package.json`.
 
 ## Marketplace publishing
 
-- **VSIX / `vsce`**: `npm run package` uses `--allow-missing-repository` and **`--no-rewrite-relative-links`** so README images stay as `images/…` (not rewritten to `raw.githubusercontent.com/…`, which breaks if that tree is missing or private). PNGs ship inside the VSIX and display in the Extensions view and on the Marketplace. To force remote URLs instead, drop `--no-rewrite-relative-links` and pass `--baseImagesUrl` / `--baseContentUrl`.
-- **CI**: on tag `v0.6.1` (example), the **Release** workflow produces a VSIX artifact.
-- **Manual publish** (publisher account):
+- **README screenshots**: the Extensions **Details** webview only keeps `img` sources with **`https:`** (relative `images/…` links are dropped by the markdown sanitizer). The README therefore uses **full `raw.githubusercontent.com/…` URLs**. Those files must exist on the **`main`** branch (commit + push `images/*.png`). If the GitHub repo is **private**, anonymous `raw` URLs return 404 for other machines — use a **public** repo for the theme sources, or host the PNGs on another HTTPS URL and update the README. `package.json` includes **`repository`** so `vsce` can validate links; `npm run package` is plain `vsce package --no-dependencies`.
+- **GitHub Actions** (push these files to GitHub or workflows do nothing remotely)
+  - **CI** (`.github/workflows/ci.yml`): push / PR to `main` or `master`, or **Run workflow** manually — `npm ci`, `validate`, **`package`**. Minimal `contents: read` permission.
+  - **Release** (`.github/workflows/release.yml`): push a tag **`v*`** only.
+    1. **`github-release` job**: `npm run release-check` — **fails** if `package.json` version ≠ tag (e.g. tag `v0.7.0` requires `"version": "0.7.0"`). Then `validate`, `package`, workflow **artifact** named `vsix-<version>`, **GitHub Release** with `.vsix` + generated notes (`softprops/action-gh-release`).
+    2. **`marketplace` job**: runs **only if** secret **`VSCE_PAT`** is non-empty; second checkout + `package` + `vsce publish`. If the secret is missing, the job is **skipped** (Release still succeeds).
+  - **Dependabot** (`.github/dependabot.yml`): weekly PRs for **npm** and **GitHub Actions** dependencies.
+  - **One-time setup**: **Settings → Secrets and variables → Actions** → secret **`VSCE_PAT`** — [Azure DevOps PAT](https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate) with scope **Marketplace → Manage** (custom scope) for publisher `deki`.
+  - **Local check before tagging**: `GITHUB_REF=refs/tags/v0.6.4 npm run release-check` (use the same version as in `package.json`).
+
+  **Release commands** (bump `version` in `package.json` + `package-lock.json` + `CHANGELOG.md` first):
+
+  ```bash
+  git add package.json package-lock.json CHANGELOG.md
+  git commit -m "Release 0.6.5"
+  git push origin main
+  git tag v0.6.5
+  git push origin v0.6.5
+  ```
+
+- **Manual publish** (without Actions):
 
   ```bash
   npx @vscode/vsce login deki
   npm run package
   npx @vscode/vsce publish --no-dependencies
   ```
-
-- For **automated publish** from internal CI, set secret `VSCE_PAT` (Microsoft Marketplace token); the release workflow uses it when defined.
 
 ## Default settings (`configurationDefaults`)
 

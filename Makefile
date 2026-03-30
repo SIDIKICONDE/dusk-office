@@ -3,7 +3,7 @@
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NPM  := npm
-PKG  := theme
+PKG  := nyx-color-themes
 EDITOR ?= cursor
 
 .DEFAULT_GOAL := help

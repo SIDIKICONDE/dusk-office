@@ -5,6 +5,10 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
@@ -22,3 +26,6 @@ jobs:
 
       - name: Validate theme JSON and manifest
         run: npm run validate
+
+      - name: Verify VSIX package builds
+        run: npm run package

@@ -1,12 +1,16 @@
 {
-  "name": "theme",
-  "displayName": "Nyx",
+  "name": "nyx-color-themes",
+  "displayName": "Nyx by DEKI",
   "description": "13 Nyx themes for VS Code and Cursor: dark bioluminescent, warm Ivory pair, light themes, high contrast. Semantic LSP and TextMate.",
-  "version": "0.6.1",
+  "version": "0.6.4",
   "publisher": "deki",
   "icon": "images/icon.png",
   "license": "UNLICENSED",
-  "homepage": "https://marketplace.visualstudio.com/items?itemName=deki.theme",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=deki.nyx-color-themes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SIDIKICONDE/Nyx.git"
+  },
   "galleryBanner": {
     "color": "#031c28",
     "theme": "dark"
@@ -122,10 +126,11 @@
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
     "validate": "node scripts/validate-themes.mjs",
+    "release-check": "node scripts/verify-release-version.mjs",
     "build:light": "node scripts/build-nyx-light.mjs",
     "build:ivoire": "node scripts/build-nyx-ivoire.mjs",
     "build:ivoire-sombre": "node scripts/build-nyx-ivoire-sombre.mjs",
-    "package": "vsce package --no-dependencies --allow-missing-repository --no-rewrite-relative-links",
+    "package": "vsce package --no-dependencies",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs"
   },

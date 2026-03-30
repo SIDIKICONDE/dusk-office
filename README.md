@@ -1,15 +1,15 @@
-# Nyx
+# Nyx by DEKI
 
 Thirteen color themes for **Visual Studio Code** and **Cursor**: bioluminescent dark variants, light themes (**Light**, **Ivory**), warm **Dark Ivory**, and a **high-contrast** mode. Semantic highlighting plus a cohesive workbench (side bars, panels, terminal, minimap).
 
-**Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Marketplace:** [Nyx](https://marketplace.visualstudio.com/items?itemName=deki.theme)
+**Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Marketplace:** [Nyx by DEKI](https://marketplace.visualstudio.com/items?itemName=deki.nyx-color-themes)
 
 ---
 
 ## Installation
 
 1. Open **Extensions** (`Ctrl+Shift+X` or `Cmd+Shift+X`).
-2. Search for **Nyx**, then click **Install**.
+2. Search for **Nyx by DEKI** (or **deki nyx**), then click **Install**.
 
 To install from a **.vsix** file: **Extensions → Install from VSIX…**.
 
@@ -54,10 +54,11 @@ The extension ships sensible defaults (**Nyx Midnight**, minimap on, semantic hi
 
 ## Screenshots
 
-![Editor — semantic highlighting](images/screenshot-editor-dart.png)
+<!-- VS Code / Cursor Extension tab: images must use https (relative paths do not load). URLs below expect these files on `main` (push after changing screenshots). -->
+![Editor — semantic highlighting](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-editor-dart.png)
 
-![Full window](images/screenshot-full-window.png)
+![Full window](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-full-window.png)
 
-![Editor — focused layout](images/screenshot-editor-focused.png)
+![Editor — focused layout](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-editor-focused.png)
 
-![Workbench overview](images/screenshot-workbench-overview.png)
+![Workbench overview](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-workbench-overview.png)

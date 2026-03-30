@@ -1,3 +1,19 @@
+# Full release pipeline (tag v* only):
+#   1) Verify package.json version == tag
+#   2) Build VSIX, GitHub Release + asset
+#   3) Publish to VS Marketplace when VSCE_PAT is set
+#
+# Prérequis une fois sur GitHub :
+#   Settings → Secrets and variables → Actions → New repository secret
+#   Name: VSCE_PAT
+#   Value: PAT Azure DevOps, scope "Custom defined" → Marketplace → Manage
+#   Doc: https://learn.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate
+#
+# Release locale :
+#   Éditer version dans package.json + CHANGELOG, puis :
+#     git add -A && git commit -m "Release 0.7.0" && git push origin main
+#     git tag v0.7.0 && git push origin v0.7.0
+
 name: Release
 
 on:
@@ -5,36 +21,106 @@ on:
     tags:
       - "v*"
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  vsix:
+  github-release:
+    name: Build VSIX and GitHub Release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify tag matches package.json version
+        id: version
+        env:
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          npm run release-check
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm run validate
+      - name: Validate themes and manifest
+        run: npm run validate
 
-      - run: npm run package
+      - name: Package VSIX
+        run: npm run package
 
-      - uses: actions/upload-artifact@v4
+      - name: List VSIX
+        run: ls -la ./*.vsix
+
+      - name: Upload VSIX as workflow artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: vsix
+          name: vsix-${{ steps.version.outputs.version }}
           path: "*.vsix"
+          if-no-files-found: error
 
-      - name: Publish to Visual Studio Marketplace
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.vsix"
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Job summary
+        run: |
+          {
+            echo "### Release ${{ steps.version.outputs.version }}"
+            echo "- GitHub Release created with **.vsix** attached."
+            echo "- Next job **marketplace** runs only if repository secret \`VSCE_PAT\` is set."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  marketplace:
+    name: Publish to Visual Studio Marketplace
+    needs: github-release
+    if: ${{ secrets.VSCE_PAT != '' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Package VSIX (same ref as tag)
+        run: npm run package
+
+      - name: Publish with vsce
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx --yes @vscode/vsce@^3.2.2 publish --no-dependencies -p "$VSCE_PAT"
+
+      - name: Job summary
         run: |
-          if [ -z "$VSCE_PAT" ]; then
-            echo "VSCE_PAT non défini — VSIX uniquement en artefact."
-            exit 0
-          fi
-          npx --yes @vscode/vsce@^3.2.2 publish --no-dependencies -p "$VSCE_PAT"
+          {
+            echo "### Marketplace"
+            echo "- **vsce publish** completed for version **${{ needs.github-release.outputs.version }}**."
+          } >> "$GITHUB_STEP_SUMMARY"
