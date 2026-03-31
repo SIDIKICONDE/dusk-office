@@ -8,7 +8,7 @@ EDITOR ?= cursor
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install validate sync variants-ui variants-syntax package vsix build install-vsix reinstall upgrade full clean-old-vsix all make
+.PHONY: help install validate sync variants-ui variants-syntax package vsix build install-vsix reinstall upgrade full clean-old-vsix push-main-auto push-main-safe pa ps rel rpi all make
 
 help:
 	@echo "Dusk Office — $(ROOT)"
@@ -23,6 +23,10 @@ help:
 	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
 	@echo "  make full             rebuild, package, and install (aliases: all)"
 	@echo "  make clean-old-vsix   keep only the newest $(PKG)-*.vsix"
+	@echo "  make push-main-auto   auto commit + push to origin/main"
+	@echo "  make push-main-safe   review status then confirm commit + push"
+	@echo "  make pa / ps          short aliases for push-main-auto / push-main-safe"
+	@echo "  make rel / rpi        short aliases for release / release patch install"
 	@echo ""
 	@echo "  Example: make reinstall EDITOR=code"
 
@@ -59,3 +63,19 @@ make:
 clean-old-vsix:
 	@cd "$(ROOT)" && ls -t $(PKG)-*.vsix 2>/dev/null | tail -n +2 | while IFS= read -r f; do rm -f "$$f"; done || true
 	@echo "[OK] Old VSIX files removed (newest kept)."
+
+push-main-auto:
+	cd "$(ROOT)" && $(NPM) run push:main:auto
+
+push-main-safe:
+	cd "$(ROOT)" && $(NPM) run push:main:safe
+
+pa: push-main-auto
+
+ps: push-main-safe
+
+rel:
+	cd "$(ROOT)" && $(NPM) run rel
+
+rpi:
+	cd "$(ROOT)" && $(NPM) run rpi
