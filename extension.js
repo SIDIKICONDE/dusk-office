@@ -22,6 +22,12 @@ const THEME_VARIANTS = [
 const PRODUCT_ICON_THEME_ID = "dusk-office-icons";
 const PREVIOUS_THEME_KEY = "duskOffice.previousTheme";
 const FAVORITE_THEME_KEY = "duskOffice.favoriteTheme";
+const WORKSPACE_THEME_KEY = "duskOffice.workspaceTheme";
+const STATUS_BAR_PRIORITY = 100;
+
+function getExtensionConfig() {
+  return vscode.workspace.getConfiguration("duskOffice");
+}
 
 function getWorkbenchConfig() {
   return vscode.workspace.getConfiguration("workbench");
@@ -39,7 +45,58 @@ function isDuskTheme(theme) {
   return typeof theme === "string" && THEME_VARIANTS.includes(theme);
 }
 
-async function applyTheme(theme, context) {
+function cleanPickedLabel(label) {
+  return label.replace(/^\$\(check\)\s+/, "");
+}
+
+function getAutoSwitchConfig() {
+  const config = getExtensionConfig();
+  return {
+    enabled: config.get("autoSwitch.enabled", false),
+    darkTheme: config.get("autoSwitch.darkTheme", "Dusk Office Midnight"),
+    lightTheme: config.get("autoSwitch.lightTheme", "Dusk Office Light"),
+    darkHour: config.get("autoSwitch.darkHour", 18),
+    lightHour: config.get("autoSwitch.lightHour", 7),
+  };
+}
+
+function getAutoSwitchTheme(now = new Date()) {
+  const autoSwitch = getAutoSwitchConfig();
+  if (!autoSwitch.enabled) return null;
+  if (!isDuskTheme(autoSwitch.darkTheme) || !isDuskTheme(autoSwitch.lightTheme)) {
+    return null;
+  }
+  const hour = now.getHours();
+  const useDark =
+    autoSwitch.lightHour <= autoSwitch.darkHour
+      ? hour >= autoSwitch.darkHour || hour < autoSwitch.lightHour
+      : hour >= autoSwitch.darkHour && hour < autoSwitch.lightHour;
+  return useDark ? autoSwitch.darkTheme : autoSwitch.lightTheme;
+}
+
+function getWorkspaceThemeMemoryEnabled() {
+  return getExtensionConfig().get("rememberWorkspaceTheme", true);
+}
+
+function getApplyFavoriteOnStartupEnabled() {
+  return getExtensionConfig().get("applyFavoriteOnStartup", false);
+}
+
+function getStatusBarEnabled() {
+  return getExtensionConfig().get("statusBar.enabled", true);
+}
+
+function getThemeShortLabel(theme) {
+  return typeof theme === "string" ? theme.replace(/^Dusk Office\s*/, "") || "Dusk" : "Theme";
+}
+
+async function saveWorkspaceTheme(theme, context) {
+  if (!context || !getWorkspaceThemeMemoryEnabled()) return;
+  if (!vscode.workspace.workspaceFolders?.length) return;
+  await context.workspaceState.update(WORKSPACE_THEME_KEY, theme);
+}
+
+async function applyTheme(theme, context, source = "manual") {
   if (!isDuskTheme(theme)) return false;
   const config = getWorkbenchConfig();
   const current = getCurrentTheme();
@@ -47,6 +104,9 @@ async function applyTheme(theme, context) {
     await context.globalState.update(PREVIOUS_THEME_KEY, current);
   }
   await config.update("colorTheme", theme, vscode.ConfigurationTarget.Global);
+  if (source !== "startup") {
+    await saveWorkspaceTheme(theme, context);
+  }
   return true;
 }
 
@@ -64,8 +124,9 @@ async function setThemeVariant(context) {
     },
   );
   if (!picked) return;
-  await applyTheme(picked.label.replace(/^\$\(check\)\s+/, ""), context);
-  void vscode.window.showInformationMessage(`Theme: ${picked.label}.`);
+  const theme = cleanPickedLabel(picked.label);
+  await applyTheme(theme, context);
+  void vscode.window.showInformationMessage(`Theme: ${theme}.`);
 }
 
 async function switchToPreviousTheme(context) {
@@ -95,7 +156,7 @@ async function setFavoriteTheme(context) {
     },
   );
   if (!picked) return;
-  const theme = picked.label.replace(/^\$\(check\)\s+/, "");
+  const theme = cleanPickedLabel(picked.label);
   await context.globalState.update(FAVORITE_THEME_KEY, theme);
   void vscode.window.showInformationMessage(`Favorite: ${theme}.`);
 }
@@ -131,11 +192,49 @@ async function openDuskOfficeSettings() {
   );
 }
 
+async function applyFavoriteOnStartup(context) {
+  if (!getApplyFavoriteOnStartupEnabled()) return false;
+  const favorite = context.globalState.get(FAVORITE_THEME_KEY);
+  if (!isDuskTheme(favorite) || favorite === getCurrentTheme()) return false;
+  return applyTheme(favorite, context, "startup");
+}
+
+async function restoreWorkspaceTheme(context) {
+  if (!getWorkspaceThemeMemoryEnabled()) return false;
+  const theme = context.workspaceState.get(WORKSPACE_THEME_KEY);
+  if (!isDuskTheme(theme) || theme === getCurrentTheme()) return false;
+  return applyTheme(theme, context, "startup");
+}
+
+async function runAutoSwitch(context, showMessage = false) {
+  const theme = getAutoSwitchTheme();
+  if (!isDuskTheme(theme)) return false;
+  if (theme === getCurrentTheme()) return false;
+  await applyTheme(theme, context, "auto");
+  if (showMessage) {
+    void vscode.window.showInformationMessage(`Auto switch: ${theme}.`);
+  }
+  return true;
+}
+
+async function toggleAutoSwitch(context) {
+  const config = getExtensionConfig();
+  const enabled = !getAutoSwitchConfig().enabled;
+  await config.update("autoSwitch.enabled", enabled, vscode.ConfigurationTarget.Global);
+  if (enabled) {
+    await runAutoSwitch(context, true);
+  } else {
+    void vscode.window.showInformationMessage("Auto switch: off.");
+  }
+}
+
 async function openControlCenter(context) {
   const currentTheme = getCurrentTheme();
   const iconsEnabled = areDuskIconsEnabled();
   const previousTheme = context.globalState.get(PREVIOUS_THEME_KEY);
   const favoriteTheme = context.globalState.get(FAVORITE_THEME_KEY);
+  const rememberedTheme = context.workspaceState.get(WORKSPACE_THEME_KEY);
+  const autoSwitch = getAutoSwitchConfig();
   const picked = await vscode.window.showQuickPick(
     [
       {
@@ -169,6 +268,20 @@ async function openControlCenter(context) {
         action: () => setFavoriteTheme(context),
       },
       {
+        label: autoSwitch.enabled ? "$(clock) Auto Switch On" : "$(clock) Auto Switch Off",
+        description: autoSwitch.enabled
+          ? `${autoSwitch.lightTheme} / ${autoSwitch.darkTheme}`
+          : "Use light and dark schedule",
+        detail: "Toggle auto switch",
+        action: () => toggleAutoSwitch(context),
+      },
+      {
+        label: "$(folder-library) Workspace Theme",
+        description: isDuskTheme(rememberedTheme) ? `Saved: ${rememberedTheme}` : "No saved theme",
+        detail: getWorkspaceThemeMemoryEnabled() ? "Memory on" : "Memory off",
+        action: null,
+      },
+      {
         label: iconsEnabled ? "$(eye-closed) Disable Icons" : "$(eye) Enable Icons",
         description: iconsEnabled ? "Current: Dusk icons" : "Current: default icons",
         detail: "Toggle icons",
@@ -191,16 +304,66 @@ async function openControlCenter(context) {
   await picked.action();
 }
 
-function activate(context) {
+function createStatusBarItem(context) {
+  const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, STATUS_BAR_PRIORITY);
+  item.command = "duskOffice.openControlCenter";
+  item.name = "Dusk Office";
+
+  const update = () => {
+    if (!getStatusBarEnabled()) {
+      item.hide();
+      return;
+    }
+    const currentTheme = getCurrentTheme();
+    const iconsEnabled = areDuskIconsEnabled();
+    item.text = `$(symbol-color) ${getThemeShortLabel(currentTheme)}`;
+    item.tooltip = iconsEnabled ? "Dusk Office: theme and icons" : "Dusk Office: theme";
+    item.show();
+  };
+
+  update();
+
+  context.subscriptions.push(
+    item,
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (
+        event.affectsConfiguration("workbench.colorTheme") ||
+        event.affectsConfiguration("workbench.productIconTheme") ||
+        event.affectsConfiguration("duskOffice.statusBar.enabled")
+      ) {
+        update();
+      }
+    }),
+  );
+}
+
+function startAutoSwitchTimer(context) {
+  const timer = setInterval(() => {
+    void runAutoSwitch(context);
+  }, 60 * 1000);
+  return new vscode.Disposable(() => clearInterval(timer));
+}
+
+async function initializeStartupBehavior(context) {
+  if (await runAutoSwitch(context)) return;
+  if (await restoreWorkspaceTheme(context)) return;
+  await applyFavoriteOnStartup(context);
+}
+
+async function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => setThemeVariant(context)),
     vscode.commands.registerCommand("duskOffice.switchToPreviousTheme", () => switchToPreviousTheme(context)),
     vscode.commands.registerCommand("duskOffice.setFavoriteTheme", () => setFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.switchToFavoriteTheme", () => switchToFavoriteTheme(context)),
+    vscode.commands.registerCommand("duskOffice.toggleAutoSwitch", () => toggleAutoSwitch(context)),
     vscode.commands.registerCommand("duskOffice.toggleProductIcons", toggleProductIcons),
     vscode.commands.registerCommand("duskOffice.openSettings", openDuskOfficeSettings),
+    startAutoSwitchTimer(context),
   );
+  createStatusBarItem(context);
+  await initializeStartupBehavior(context);
 }
 
 function deactivate() {}

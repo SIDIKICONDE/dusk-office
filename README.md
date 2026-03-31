@@ -16,6 +16,11 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 - Dark themes for daily work
 - Cohesive editor and workbench styling
 - Optional product icon theme
+- Control Center for quick theme actions
+- Auto switch by hour
+- Favorite theme on startup
+- Per-workspace theme memory
+- Status bar switcher
 - Semantic highlighting and TextMate token styling
 - Variants for dark, light, warm, and high-contrast setups
 - Good editor defaults
@@ -72,8 +77,32 @@ Open the Command Palette and run `Dusk Office: Control Center` to:
 - switch theme variants
 - go back to the previous theme
 - save and restore a favorite theme
+- toggle auto switch
+- check the saved workspace theme
 - enable or disable `Dusk Office Icons`
 - open settings
+
+### Extra Theme Tools
+
+`Dusk Office` also includes:
+
+- auto switch between light and dark variants by hour
+- optional favorite theme restore on startup
+- workspace theme memory for different projects
+- a status bar button that opens the Control Center
+
+### Settings
+
+Available extension settings:
+
+- `duskOffice.applyFavoriteOnStartup`
+- `duskOffice.rememberWorkspaceTheme`
+- `duskOffice.statusBar.enabled`
+- `duskOffice.autoSwitch.enabled`
+- `duskOffice.autoSwitch.lightTheme`
+- `duskOffice.autoSwitch.darkTheme`
+- `duskOffice.autoSwitch.lightHour`
+- `duskOffice.autoSwitch.darkHour`
 
 To enable the optional icon set:
 

@@ -143,6 +143,91 @@
       "explorer.decorations.badges": true,
       "explorer.decorations.colors": true
     },
+    "configuration": {
+      "title": "Dusk Office",
+      "properties": {
+        "duskOffice.applyFavoriteOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply the favorite theme on startup."
+        },
+        "duskOffice.rememberWorkspaceTheme": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remember the last Dusk Office theme for each workspace."
+        },
+        "duskOffice.statusBar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Dusk Office status bar button."
+        },
+        "duskOffice.autoSwitch.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Switch between light and dark Dusk Office themes by hour."
+        },
+        "duskOffice.autoSwitch.lightTheme": {
+          "type": "string",
+          "default": "Dusk Office Light",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate"
+          ],
+          "description": "Theme used during light hours."
+        },
+        "duskOffice.autoSwitch.darkTheme": {
+          "type": "string",
+          "default": "Dusk Office Midnight",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate"
+          ],
+          "description": "Theme used during dark hours."
+        },
+        "duskOffice.autoSwitch.lightHour": {
+          "type": "integer",
+          "default": 7,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to start the light theme."
+        },
+        "duskOffice.autoSwitch.darkHour": {
+          "type": "integer",
+          "default": 18,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to start the dark theme."
+        }
+      }
+    },
     "commands": [
       {
         "command": "duskOffice.openControlCenter",
@@ -172,6 +257,11 @@
       {
         "command": "duskOffice.toggleProductIcons",
         "title": "Dusk Office: Toggle Icons",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleAutoSwitch",
+        "title": "Dusk Office: Toggle Auto Switch",
         "category": "Dusk Office"
       },
       {
