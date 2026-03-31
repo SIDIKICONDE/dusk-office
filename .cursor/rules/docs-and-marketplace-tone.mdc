@@ -28,4 +28,6 @@ alwaysApply: false
 - Command titles should stay short under the `Dusk Office:` prefix.
 - `QuickPick` items should use short `label`, `description`, and `detail` text.
 - Notifications should be short status messages.
+- Feature copy should describe concrete outcomes like auto switch, startup restore, workspace memory, and status bar access.
+- Settings lists should prefer raw setting ids like `duskOffice.autoSwitch.enabled`.
 - Do not expand docs just to sound polished.
