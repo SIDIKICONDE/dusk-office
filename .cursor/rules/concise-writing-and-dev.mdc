@@ -23,8 +23,12 @@ alwaysApply: true
 ## Development Rules
 
 - Keep `extension.js` lightweight and dependency-free unless a clear need appears.
+- Prefer small helper functions over large stateful runtime blocks in `extension.js`.
 - Do not add a TypeScript build step unless the command surface grows enough to justify it.
 - Preserve the current command style in `package.json`: short titles under the `Dusk Office:` prefix.
 - Preserve concise QuickPick copy in `extension.js`: short `label`, `description`, `detail`, and `showInformationMessage(...)`.
+- Keep status bar text short. Prefer the current theme name without extra wording.
+- Keep setting names grouped under `duskOffice.*` and descriptions short.
+- Startup behavior should stay predictable: auto switch first, then workspace memory, then favorite startup restore.
 - Prefer minimal, focused edits over broad rewrites.
 - Do not modify generated or binary artifacts unless required by the task.

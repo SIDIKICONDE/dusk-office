@@ -4,6 +4,10 @@ User-facing changes only.
 
 ## 0.7.13 — 31 March 2026
 
+- **Changed**: version bump.
+
+## 0.7.13 — 31 March 2026
+
 - **Added**: auto switch by hour with configurable light and dark Dusk Office variants.
 - **Added**: startup favorite restore, per-workspace theme memory, and a status bar button for the Control Center.
 
