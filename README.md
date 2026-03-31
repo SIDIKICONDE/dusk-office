@@ -68,6 +68,7 @@ The extension also ships with editor-friendly defaults such as semantic highligh
 
 - **Dusk Office Midnight** for a very dark, focused setup
 - **Dusk Office Abyss** for vivid blue-cyan contrast
+- **Dusk Office Finance** for a professional dark workspace with restrained accents
 - **Dusk Office Ivory** for a warm light reading experience
 - **Dusk Office High Contrast** for stronger visual separation
 
@@ -106,6 +107,14 @@ make reinstall EDITOR=code
 ```
 
 ## Screenshots
+
+These images use public `https` URLs so they can render in the VS Code and Cursor Marketplace.
+
+If GitHub does not show them immediately, open the local files from the repository:
+[`editor dart`](images/screenshot-editor-dart.png) ·
+[`full window`](images/screenshot-full-window.png) ·
+[`focused editor`](images/screenshot-editor-focused.png) ·
+[`workbench overview`](images/screenshot-workbench-overview.png)
 
 <!-- VS Code / Cursor Extension tab: images must use https (relative paths do not load). URLs below expect these files on `main`. -->
 ![Editor semantic highlighting](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-editor-dart.png)
