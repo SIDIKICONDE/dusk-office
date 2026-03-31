@@ -1,8 +1,8 @@
 {
   "name": "nyx-color-themes",
   "displayName": "Nyx by DEKI",
-  "description": "13 Nyx themes for VS Code and Cursor: dark bioluminescent, warm Ivory pair, light themes, high contrast. Semantic LSP and TextMate.",
-  "version": "0.6.4",
+  "description": "16 Nyx themes for VS Code and Cursor: dark bioluminescent, warm Ivory pair, Dracula-inspired, Finance/Corporate professional, light themes, high contrast. Semantic LSP and TextMate.",
+  "version": "0.6.9",
   "publisher": "deki",
   "icon": "images/icon.png",
   "license": "UNLICENSED",
@@ -98,10 +98,24 @@
         "label": "Nyx Dark Ivory",
         "uiTheme": "vs-dark",
         "path": "./themes/nyx-ivoire-sombre.json"
+      },
+      {
+        "label": "Nyx Nocturne",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-nocturne.json"
+      },
+      {
+        "label": "Nyx Finance",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-finance.json"
+      },
+      {
+        "label": "Nyx Corporate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nyx-corporate.json"
       }
     ],
     "configurationDefaults": {
-      "workbench.colorTheme": "Nyx Midnight",
       "editor.minimap.enabled": true,
       "editor.minimap.showSlider": "always",
       "editor.semanticHighlighting.enabled": true,
@@ -114,6 +128,7 @@
       "editor.selectionHighlight": true,
       "editor.linkedEditing": true,
       "workbench.tree.renderIndentGuides": "always",
+      "workbench.tree.indent": 14,
       "explorer.decorations.badges": true,
       "explorer.decorations.colors": true
     }
@@ -130,7 +145,7 @@
     "build:light": "node scripts/build-nyx-light.mjs",
     "build:ivoire": "node scripts/build-nyx-ivoire.mjs",
     "build:ivoire-sombre": "node scripts/build-nyx-ivoire-sombre.mjs",
-    "package": "vsce package --no-dependencies",
+    "package": "npx --no-install @vscode/vsce package --no-dependencies",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs"
   },

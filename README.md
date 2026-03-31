@@ -8,12 +8,22 @@ Thirteen color themes for **Visual Studio Code** and **Cursor**: bioluminescent 
 
 ## Installation
 
-1. Open **Extensions** (`Ctrl+Shift+X` or `Cmd+Shift+X`).
-2. Search for **Nyx by DEKI** (or **deki nyx**), then click **Install**.
+**Windows and macOS** use the same steps in the editor.
 
-To install from a **.vsix** file: **Extensions → Install from VSIX…**.
+1. Open **Extensions** — **Windows:** `Ctrl+Shift+X` · **macOS:** `Cmd+Shift+X`.
+2. Search for **Nyx by DEKI**, **deki.nyx-color-themes**, or **deki nyx**, then click **Install**.
+
+To install from a **.vsix** file: **Extensions → … → Install from VSIX…**.
 
 **Requirements:** VS Code or Cursor **1.85** or newer.
+
+### Build the VSIX locally (Windows & macOS)
+
+1. Install [Node.js](https://nodejs.org/) (LTS).
+2. In the repo folder: `npm install` then `npm run package` — this creates `nyx-color-themes-*.vsix`.
+3. Install it: use **Install from VSIX…** above, or run `npm run install-vsix` (needs `cursor` / `code` on your **PATH**, or a default install path — macOS and Windows are both supported by the script).
+
+If you have **make** (macOS/Linux, or Windows with make installed): `make reinstall` packages and installs the latest VSIX into Cursor by default (`make reinstall EDITOR=code` for VS Code).
 
 ---
 

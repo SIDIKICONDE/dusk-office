@@ -30,31 +30,46 @@ function findLatestVsix(dir) {
     })[0].m;
 }
 
+/** PATH lookup: `which` (Unix) / `where.exe` (Windows). */
+function firstOnPath(cmd) {
+  const win = process.platform === "win32";
+  const bin = win ? "where.exe" : "which";
+  const r = spawnSync(bin, [cmd], { encoding: "utf8", shell: false });
+  if (r.status !== 0 || !r.stdout?.trim()) return null;
+  const line = r.stdout.split(/\r?\n/).find((l) => l.trim().length > 0);
+  return line?.trim() ?? null;
+}
+
 function resolveCli(preferred) {
-  const darwin = process.platform === "darwin";
-  const cursorApp =
-    darwin &&
-    "/Applications/Cursor.app/Contents/Resources/app/bin/cursor";
-  const codeApp =
-    darwin &&
-    "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code";
+  const { platform } = process;
+  const local = process.env.LOCALAPPDATA || "";
 
-  const order =
-    preferred === "code"
-      ? [codeApp, "code"].filter(Boolean)
-      : preferred === "cursor"
-        ? [cursorApp, "cursor"].filter(Boolean)
-        : [cursorApp, "cursor", codeApp, "code"].filter(Boolean);
+  const fixedCursor =
+    platform === "darwin"
+      ? "/Applications/Cursor.app/Contents/Resources/app/bin/cursor"
+      : platform === "win32"
+        ? join(local, "Programs", "cursor", "resources", "app", "bin", "cursor.cmd")
+        : null;
 
-  for (const c of order) {
-    if (typeof c === "string" && c.startsWith("/")) {
-      if (existsSync(c)) return c;
-      continue;
-    }
-    const r = spawnSync("which", [c], { encoding: "utf8" });
-    if (r.status === 0 && r.stdout.trim()) return c;
-  }
-  return null;
+  const fixedCode =
+    platform === "darwin"
+      ? "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+      : platform === "win32"
+        ? join(local, "Programs", "Microsoft VS Code", "bin", "code.cmd")
+        : null;
+
+  const chainCursor = () =>
+    fixedCursor && existsSync(fixedCursor)
+      ? fixedCursor
+      : firstOnPath("cursor");
+
+  const chainCode = () =>
+    fixedCode && existsSync(fixedCode) ? fixedCode : firstOnPath("code");
+
+  if (preferred === "code") return chainCode() ?? null;
+  if (preferred === "cursor") return chainCursor() ?? null;
+
+  return chainCursor() ?? chainCode() ?? null;
 }
 
 const vsix = findLatestVsix(root);
@@ -78,8 +93,10 @@ if (!cli) {
 console.log("Installation :", vsix);
 console.log("CLI :", cli);
 
+const shell =
+  process.platform === "win32" && /\.(cmd|bat)$/i.test(cli);
 const r = spawnSync(cli, ["--install-extension", vsix], {
   stdio: "inherit",
-  shell: false,
+  shell,
 });
 process.exit(r.status ?? 1);
