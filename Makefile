@@ -1,4 +1,4 @@
-# Dusk Office — VS Code / Cursor theme pack (standalone project)
+# Dusk Office theme pack
 # Usage: make help | make reinstall
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
@@ -13,16 +13,16 @@ EDITOR ?= cursor
 help:
 	@echo "Dusk Office — $(ROOT)"
 	@echo ""
-	@echo "  make install          npm dependencies (vsce, etc.)"
-	@echo "  make validate         validate theme JSON + manifest (npm run validate)"
-	@echo "  make sync             themes/dusk.json <- .vscode/settings.json (repo root)"
-	@echo "  make variants-ui      merge extended workbench colors (scripts/merge-extended-ui-colors.mjs)"
-	@echo "  make variants-syntax  regenerate variant tokenColors / semantic tokens"
+	@echo "  make install          install npm dependencies"
+	@echo "  make validate         validate themes and manifest"
+	@echo "  make sync             sync themes/dusk.json from .vscode/settings.json"
+	@echo "  make variants-ui      merge extended workbench colors"
+	@echo "  make variants-syntax  rebuild token and semantic colors"
 	@echo "  make package          build $(PKG)-*.vsix (aliases: vsix, build)"
 	@echo "  make install-vsix     install latest .vsix (EDITOR=$(EDITOR))"
 	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
-	@echo "  make full             variants-ui + variants-syntax + package + install-vsix (aliases: all)"
-	@echo "  make clean-old-vsix   remove $(PKG)-*.vsix except the newest"
+	@echo "  make full             rebuild, package, and install (aliases: all)"
+	@echo "  make clean-old-vsix   keep only the newest $(PKG)-*.vsix"
 	@echo ""
 	@echo "  Example: make reinstall EDITOR=code"
 
@@ -52,7 +52,7 @@ reinstall upgrade:
 
 full all: variants-ui variants-syntax package install-vsix
 
-# Absorbs typo `make full make` (2nd target is a no-op; avoids "No rule to make target make").
+# Allows `make full make` without failing.
 make:
 	@:
 

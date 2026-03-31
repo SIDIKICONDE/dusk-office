@@ -1,0 +1,31 @@
+---
+description: Keep docs and Marketplace copy short, plain, and consistent
+globs: {README.md,CHANGELOG.md,MAINTENANCE.md,package.json,extension.js,.vscodeignore,Makefile}
+alwaysApply: false
+---
+
+# Docs And Marketplace Tone
+
+- Write short, plain, factual text.
+- Avoid hype, filler, slogans, and repeated ideas.
+- Prefer one short sentence over two long ones.
+- Keep headings, bullets, labels, and descriptions compact.
+- Keep README feature lists brief and scannable.
+- Keep changelog entries to outcome-first one-liners when possible.
+- Keep Marketplace copy descriptive, not promotional.
+
+## Preferred Style
+
+- Prefer: `Dark themes for VS Code and Cursor.`
+- Avoid: `Dark themes designed to make coding more comfortable and visually elegant.`
+- Prefer: `Optional product icon theme.`
+- Avoid: `Optional matching product icon theme for a more unified visual experience.`
+- Prefer: `Open settings`
+- Avoid: `Open settings filtered to the extension`
+
+## Project Conventions
+
+- Command titles should stay short under the `Dusk Office:` prefix.
+- `QuickPick` items should use short `label`, `description`, and `detail` text.
+- Notifications should be short status messages.
+- Do not expand docs just to sound polished.

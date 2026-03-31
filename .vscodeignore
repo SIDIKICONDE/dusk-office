@@ -1,4 +1,4 @@
-# Minimal (poids du VSIX)
+# Keep VSIX small
 node_modules/**
 scripts/**
 package-lock.json
@@ -7,7 +7,7 @@ package-lock.json
 Makefile
 MAINTENANCE.md
 
-# Extras utiles
+# Extra exclusions
 .vscode-test/**
 **/*.map
 **/tsconfig.json

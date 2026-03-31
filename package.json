@@ -1,10 +1,11 @@
 {
   "name": "dusk-office",
   "displayName": "Dusk Office",
-  "description": "Dark themes for VS Code. Building tools that make coding more comfortable and visually elegant.",
-  "version": "0.7.8",
+  "description": "Dark themes for VS Code and Cursor.",
+  "version": "0.7.12",
   "publisher": "dekidev",
   "icon": "images/icon.png",
+  "main": "./extension.js",
   "license": "UNLICENSED",
   "homepage": "https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office",
   "repository": {
@@ -141,7 +142,44 @@
       "workbench.tree.indent": 14,
       "explorer.decorations.badges": true,
       "explorer.decorations.colors": true
-    }
+    },
+    "commands": [
+      {
+        "command": "duskOffice.openControlCenter",
+        "title": "Dusk Office: Control Center",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchThemeVariant",
+        "title": "Dusk Office: Choose Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchToPreviousTheme",
+        "title": "Dusk Office: Previous Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.setFavoriteTheme",
+        "title": "Dusk Office: Set Favorite",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchToFavoriteTheme",
+        "title": "Dusk Office: Favorite Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleProductIcons",
+        "title": "Dusk Office: Toggle Icons",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.openSettings",
+        "title": "Dusk Office: Settings",
+        "category": "Dusk Office"
+      }
+    ]
   },
   "scripts": {
     "sync": "node scripts/sync-from-workspace.mjs",

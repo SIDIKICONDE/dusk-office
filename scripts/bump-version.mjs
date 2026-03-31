@@ -62,7 +62,7 @@ const normalized = changelog.replace(/\r\n/g, "\n");
 const newSection =
   `## ${nextVersion} — ${today}\n\n- **Changed**: version bump.\n\n`;
 const anchorRegex =
-  /(User-facing changes \(themes, default settings, Marketplace listing\)\.\n\n)/;
+  /(# Changelog — Dusk Office\n\n(?:.*\n)?\n)/;
 if (!anchorRegex.test(normalized)) {
   throw new Error("Ancre changelog introuvable.");
 }

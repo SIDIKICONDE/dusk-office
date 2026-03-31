@@ -1,18 +1,35 @@
 # Changelog — Dusk Office
 
-User-facing changes (themes, default settings, Marketplace listing).
+User-facing changes only.
+
+## 0.7.12 — 31 March 2026
+
+- **Changed**: version bump.
+
+## 0.7.11 — 31 March 2026
+
+- **Added**: **Control Center** with quick actions for themes, icons, and settings.
+- **Added**: commands for previous and favorite themes.
+
+## 0.7.10 — 31 March 2026
+
+- **Changed**: Control Center quick pick now shows current theme and icon-theme status for faster decisions.
+
+## 0.7.9 — 31 March 2026
+
+- **Added**: lightweight extension runtime (`extension.js`) and command-palette integration for Dusk Office actions.
 
 ## 0.7.8 — 31 March 2026
 
-- **Changed**: version bump.
+- **Changed**: local release workflow now supports one-command bump / package / install helpers.
 
 ## 0.7.7 — 31 March 2026
 
-- **Changed**: version bump.
+- **Changed**: release packaging now removes outdated `.vsix` files automatically and keeps only the current artifact.
 
 ## 0.7.6 — 31 March 2026
 
-- **Changed**: version bump.
+- **Changed**: release and build scripts were consolidated (`make:full`, `make:release`, install helpers) for faster local iteration.
 
 ## 0.7.5 — 31 March 2026
 

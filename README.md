@@ -1,24 +1,24 @@
 # Dusk Office
 
-Dark themes for **Visual Studio Code** and **Cursor**, designed to make coding more comfortable and visually elegant.
+Dark themes for **Visual Studio Code** and **Cursor**.
 
 **Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/dekidev)  
 **Marketplace:** [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 
 ## Overview
 
-`Dusk Office` is a theme pack built around clean contrast, readable syntax, a polished workbench, plus an optional matching product icon theme.
+`Dusk Office` is a theme pack with clean contrast, readable syntax, and an optional icon theme.
 
-It includes deep dark variants, softer dark alternatives, bright accent palettes, and warm light themes for daytime use. The goal is simple: make long coding sessions easier on the eyes without losing visual clarity.
+It includes dark, light, warm, and high-contrast variants for daily use.
 
 ## Highlights
 
-- Carefully balanced dark themes for daily development
+- Dark themes for daily work
 - Cohesive editor and workbench styling
-- Optional product icon theme for a more unified UI
+- Optional product icon theme
 - Semantic highlighting and TextMate token styling
-- Variants for dark, light, warm, and high-contrast preferences
-- Good defaults for minimap, guides, sticky scroll, and editor clarity
+- Variants for dark, light, warm, and high-contrast setups
+- Good editor defaults
 
 ## Included Themes
 
@@ -63,14 +63,24 @@ To enable a theme:
 1. Open **Preferences: Color Theme**
 2. Select any `Dusk Office` variant
 
-The extension also ships with editor-friendly defaults such as semantic highlighting, minimap visibility, bracket guides, and sticky scroll. Your user or workspace settings can always override them.
+The extension also ships with editor-friendly defaults such as semantic highlighting, minimap, guides, and sticky scroll. User and workspace settings can override them.
+
+### Control Center
+
+Open the Command Palette and run `Dusk Office: Control Center` to:
+
+- switch theme variants
+- go back to the previous theme
+- save and restore a favorite theme
+- enable or disable `Dusk Office Icons`
+- open settings
 
 To enable the optional icon set:
 
 1. Open **Preferences: Product Icon Theme**
 2. Select `Dusk Office Icons`
 
-The icon theme lightly restyles core product icons for Search, Source Control, Debug, Terminal, notebooks, notifications, and common workbench views while staying close to the native VS Code shape language.
+The icon theme lightly restyles core product icons while staying close to native VS Code shapes.
 
 ## Recommended Variants
 
@@ -91,15 +101,22 @@ The icon theme lightly restyles core product icons for Search, Source Control, D
 
 ```bash
 npm install
-npm run package
+npm run make:release:no-bump
 ```
 
-This creates a file like `dusk-office-0.6.9.vsix`.
+This creates a file like `dusk-office-0.7.11.vsix` and keeps only the current VSIX in the project root.
 
 ### Install Locally
 
 ```bash
 npm run install-vsix
+```
+
+Common local workflows:
+
+```bash
+npm run make:full
+npm run release:patch:install
 ```
 
 If `make` is available, you can also use:
