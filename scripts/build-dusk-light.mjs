@@ -77,8 +77,72 @@ function mapHex(s, key) {
   return s;
 }
 
+/** UI + syntax contrast (muted text, scrollbars, focus) after abyss→light mapping */
+const LIGHT_UI_CONTRAST_COLORS = {
+  descriptionForeground: "#334155dd",
+  "icon.foreground": "#334155eb",
+  "widget.border": "#4d5a6b73",
+  "editor.foldPlaceholderForeground": "#64748b99",
+  "editorGhostText.foreground": "#94a3b878",
+  "editorWhitespace.foreground": "#94a3b838",
+  "editorInlayHint.foreground": "#64748bd9",
+  "inlineChatInput.placeholderForeground": "#64748b8c",
+  "breadcrumb.foreground": "#475569de",
+  "tab.inactiveForeground": "#475569b8",
+  "statusBar.foreground": "#1e293bee",
+  "input.placeholderForeground": "#64748b8c",
+  "activityBar.inactiveForeground": "#64748b",
+  "tree.inactiveIndentGuidesStroke": "#64748b7a",
+  "editor.lineHighlightBackground": "#e8edf3",
+  "editor.lineHighlightBorder": "#cbd5e199",
+  "sideBarSectionHeader.foreground": "#334155",
+  "scrollbarSlider.background": "#94a3b88f",
+  "scrollbarSlider.hoverBackground": "#64748bbb",
+  focusBorder: "#0ea5e9b3",
+  /** abyss palette omits this; without it, included dusk.json leaves sidebar text too light */
+  "sideBar.foreground": "#1e293b",
+};
+
+/** @param {unknown} out */
+function applyLightContrast(out) {
+  Object.assign(out.colors, LIGHT_UI_CONTRAST_COLORS);
+  const sem = out.semanticTokenColors;
+  if (sem && typeof sem === "object") {
+    if (sem.comment && typeof sem.comment === "object")
+      sem.comment.foreground = "#475569";
+    if (typeof sem.variable === "string") sem.variable = "#1e293b";
+  }
+  const tokens = out.tokenColors;
+  if (!Array.isArray(tokens)) return;
+  for (const block of tokens) {
+    const scopes = block.scope;
+    const sc = Array.isArray(scopes) ? scopes.join(" ") : scopes;
+    if (typeof sc === "string" && sc.includes("comment")) {
+      if (block.settings && typeof block.settings === "object")
+        block.settings.foreground = "#475569";
+    }
+  }
+}
+
+/** Preserves curated light syntax; UI colors still come from abyss mapping. */
+function readExistingLightSyntax() {
+  try {
+    const p = path.join(root, "themes/dusk-light.json");
+    const prev = JSON.parse(fs.readFileSync(p, "utf8"));
+    if (Array.isArray(prev.tokenColors) && prev.tokenColors.length && prev.semanticTokenColors)
+      return {
+        tokenColors: structuredClone(prev.tokenColors),
+        semanticTokenColors: structuredClone(prev.semanticTokenColors),
+      };
+  } catch {
+    /* first run or invalid file */
+  }
+  return null;
+}
+
 function main() {
   const abime = JSON.parse(fs.readFileSync(path.join(root, "themes/dusk-abime.json"), "utf8"));
+  const existingSyntax = readExistingLightSyntax();
   /** @type {Record<string, string>} */
   const colors = {};
   for (const [k, v] of Object.entries(abime.colors || {})) {
@@ -91,9 +155,11 @@ function main() {
     type: "light",
     include: "./dusk.json",
     colors,
-    tokenColors: abime.tokenColors,
-    semanticTokenColors: abime.semanticTokenColors,
+    tokenColors: existingSyntax?.tokenColors ?? structuredClone(abime.tokenColors),
+    semanticTokenColors: existingSyntax?.semanticTokenColors ?? structuredClone(abime.semanticTokenColors),
   };
+
+  applyLightContrast(out);
 
   const dest = path.join(root, "themes/dusk-light.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");

@@ -2,6 +2,22 @@
 
 User-facing changes (themes, default settings, Marketplace listing).
 
+## 0.7.8 — 31 March 2026
+
+- **Changed**: version bump.
+
+## 0.7.7 — 31 March 2026
+
+- **Changed**: version bump.
+
+## 0.7.6 — 31 March 2026
+
+- **Changed**: version bump.
+
+## 0.7.5 — 31 March 2026
+
+- **Improved**: **Dusk Office Light** and **Dusk Office Ivory** — stronger UI contrast (secondary text, scrollbars, focus, sidebar text) and clearer syntax highlighting; ivory syntax derived from light with warm paper–friendly colors. Build scripts preserve curated light tokens and apply ivory syntax mapping.
+
 ## 0.6.4 — 31 March 2026
 
 - **Changed**: extension **`displayName`** to **Dusk Office by DEKI**.

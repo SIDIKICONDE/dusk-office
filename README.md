@@ -7,7 +7,7 @@ Dark themes for **Visual Studio Code** and **Cursor**, designed to make coding m
 
 ## Overview
 
-`Dusk Office` is a theme pack built around clean contrast, readable syntax, and a polished workbench.
+`Dusk Office` is a theme pack built around clean contrast, readable syntax, a polished workbench, plus an optional matching product icon theme.
 
 It includes deep dark variants, softer dark alternatives, bright accent palettes, and warm light themes for daytime use. The goal is simple: make long coding sessions easier on the eyes without losing visual clarity.
 
@@ -15,6 +15,7 @@ It includes deep dark variants, softer dark alternatives, bright accent palettes
 
 - Carefully balanced dark themes for daily development
 - Cohesive editor and workbench styling
+- Optional product icon theme for a more unified UI
 - Semantic highlighting and TextMate token styling
 - Variants for dark, light, warm, and high-contrast preferences
 - Good defaults for minimap, guides, sticky scroll, and editor clarity
@@ -64,6 +65,13 @@ To enable a theme:
 
 The extension also ships with editor-friendly defaults such as semantic highlighting, minimap visibility, bracket guides, and sticky scroll. Your user or workspace settings can always override them.
 
+To enable the optional icon set:
+
+1. Open **Preferences: Product Icon Theme**
+2. Select `Dusk Office Icons`
+
+The icon theme lightly restyles core product icons for Search, Source Control, Debug, Terminal, notebooks, notifications, and common workbench views while staying close to the native VS Code shape language.
+
 ## Recommended Variants
 
 - **Dusk Office Midnight** for a very dark, focused setup
@@ -111,14 +119,11 @@ make reinstall EDITOR=code
 These images use public `https` URLs so they can render in the VS Code and Cursor Marketplace.
 
 If GitHub does not show them immediately, open the local files from the repository:
-[`editor dart`](images/screenshot-editor-dart.png) ·
 [`full window`](images/screenshot-full-window.png) ·
 [`focused editor`](images/screenshot-editor-focused.png) ·
 [`workbench overview`](images/screenshot-workbench-overview.png)
 
 <!-- VS Code / Cursor Extension tab: images must use https (relative paths do not load). URLs below expect these files on `main`. -->
-![Editor semantic highlighting](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-editor-dart.png)
-
 ![Full window](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-full-window.png)
 
 ![Focused editor layout](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-editor-focused.png)

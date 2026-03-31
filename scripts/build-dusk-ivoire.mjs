@@ -22,9 +22,6 @@ const RGB_MAP = {
   cbd5e1: "d4c9b8",
   cfe8f0: "ddd0c4",
   e5e5e5: "e0d6c8",
-  "0f172a": "2c2620",
-  "334155": "4a4238",
-  "475569": "514838",
   "64748b": "6b5d4a",
   "94a3b8": "8b7d6a",
   "6b7280": "7a6c5c",
@@ -57,6 +54,10 @@ const RGB_MAP = {
   c25767: "b85a5e",
   "0a0a0a": "2c2620",
   "1e1e1e": "2a2420",
+  "0f172a": "2a2420",
+  "1e293b": "2a2420",
+  "334155": "3d352c",
+  "475569": "453d34",
 };
 
 /** @param {string} str */
@@ -69,6 +70,95 @@ function mapColor(str) {
   const next = RGB_MAP[rgb];
   if (next) return `#${next}${a}`;
   return str;
+}
+
+/**
+ * Light syntax hex → Ivoire (warm paper): stronger separation on cream #f6eede.
+ * Applied to tokenColors + semanticTokenColors only.
+ */
+const SYNTAX_LIGHT_TO_IVOIRE = {
+  "475569": "3d4f58",
+  "166534": "2d6b48",
+  "14532d": "24603e",
+  "5b21b6": "5c2d8a",
+  "9f1853": "8b1748",
+  "1d4ed8": "2a5f9e",
+  "1e40af": "254680",
+  "0f766e": "1f8776",
+  "b45309": "92400e",
+  "6d28d9": "6440a0",
+  "c2410c": "a63c0c",
+  "334155": "3d352c",
+  "9a3412": "85330f",
+  "1e293b": "2a2420",
+  "be185d": "9d1748",
+  "a16207": "7a5206",
+};
+
+/** @param {string} c */
+function mapSyntaxHexToIvory(c) {
+  if (typeof c !== "string" || !c.startsWith("#")) return c;
+  const m = c.match(/^#([0-9a-f]{6})([0-9a-f]{2})?$/i);
+  if (!m) return c;
+  const rep = SYNTAX_LIGHT_TO_IVOIRE[m[1].toLowerCase()];
+  return rep ? `#${rep}${m[2] || ""}` : c;
+}
+
+/** @param {unknown} sem */
+function remapSemanticToIvory(sem) {
+  if (!sem || typeof sem !== "object") return;
+  for (const [key, val] of Object.entries(sem)) {
+    if (typeof val === "string") sem[key] = mapSyntaxHexToIvory(val);
+    else if (val && typeof val === "object" && typeof val.foreground === "string")
+      val.foreground = mapSyntaxHexToIvory(val.foreground);
+  }
+}
+
+/** @param {unknown} tokens */
+function remapTokenColorsToIvory(tokens) {
+  if (!Array.isArray(tokens)) return;
+  for (const block of tokens) {
+    const fg = block.settings?.foreground;
+    if (typeof fg === "string") block.settings.foreground = mapSyntaxHexToIvory(fg);
+  }
+}
+
+/** Warm UI contrast: focus, scrollbars, line highlight, muted text on cream */
+const IVOIRE_UI_CONTRAST = {
+  descriptionForeground: "#3d352ccc",
+  "icon.foreground": "#3d352ceb",
+  "widget.border": "#8a7a6a6e",
+  focusBorder: "#7d5a42a6",
+  "editorLineNumber.foreground": "#7a6c5e",
+  "editorLineNumber.activeForeground": "#5c4532",
+  "editor.foldPlaceholderForeground": "#5c504598",
+  "editorGhostText.foreground": "#8a7d6f7a",
+  "editorWhitespace.foreground": "#9a8b7840",
+  "editorInlayHint.foreground": "#52483dd9",
+  "inlineChatInput.placeholderForeground": "#5c50458c",
+  "input.placeholderForeground": "#5c50458c",
+  "breadcrumb.foreground": "#453d34de",
+  "tab.inactiveForeground": "#4a4036b8",
+  "statusBar.foreground": "#2a2420ee",
+  "activityBar.inactiveForeground": "#6b5f50",
+  "editor.lineHighlightBackground": "#c9bbaa33",
+  "editor.lineHighlightBorder": "#8a6d5259",
+  "sideBarTitle.foreground": "#b45309",
+  "sideBarSectionHeader.foreground": "#3d362e",
+  "panelTitle.activeForeground": "#a84418",
+  "scrollbarSlider.background": "#7d6a5652",
+  "scrollbarSlider.hoverBackground": "#5c4d407a",
+  "sideBar.foreground": "#2a2420",
+};
+
+/** @param {unknown} out */
+function applyIvoireContrast(out) {
+  Object.assign(out.colors, IVOIRE_UI_CONTRAST);
+  remapSemanticToIvory(out.semanticTokenColors);
+  remapTokenColorsToIvory(out.tokenColors);
+  const sem = out.semanticTokenColors;
+  if (sem && typeof sem === "object" && typeof sem.variable === "string")
+    sem.variable = "#3d3830";
 }
 
 function main() {
@@ -84,9 +174,11 @@ function main() {
     type: "light",
     include: "./dusk.json",
     colors,
-    tokenColors: light.tokenColors,
-    semanticTokenColors: light.semanticTokenColors,
+    tokenColors: structuredClone(light.tokenColors),
+    semanticTokenColors: structuredClone(light.semanticTokenColors),
   };
+
+  applyIvoireContrast(out);
 
   const dest = path.join(root, "themes/dusk-ivoire.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");

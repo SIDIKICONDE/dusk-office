@@ -1,0 +1,90 @@
+{
+  "$schema": "vscode://schemas/product-icon-theme",
+  "fonts": [
+    {
+      "id": "dusk-office-codicon",
+      "src": [
+        {
+          "path": "./dusk-office-codicon.ttf",
+          "format": "truetype"
+        }
+      ],
+      "weight": "normal",
+      "style": "normal"
+    }
+  ],
+  "iconDefinitions": {
+    "account": {
+      "fontCharacter": "\\eb99",
+      "fontId": "dusk-office-codicon"
+    },
+    "bell": {
+      "fontCharacter": "\\eaa2",
+      "fontId": "dusk-office-codicon"
+    },
+    "book": {
+      "fontCharacter": "\\eaa4",
+      "fontId": "dusk-office-codicon"
+    },
+    "home": {
+      "fontCharacter": "\\eb06",
+      "fontId": "dusk-office-codicon"
+    },
+    "history": {
+      "fontCharacter": "\\ea82",
+      "fontId": "dusk-office-codicon"
+    },
+    "settings-gear": {
+      "fontCharacter": "\\eb51",
+      "fontId": "dusk-office-codicon"
+    },
+    "search": {
+      "fontCharacter": "\\ec0d",
+      "fontId": "dusk-office-codicon"
+    },
+    "source-control": {
+      "fontCharacter": "\\ec6f",
+      "fontId": "dusk-office-codicon"
+    },
+    "debug": {
+      "fontCharacter": "\\eaaf",
+      "fontId": "dusk-office-codicon"
+    },
+    "debug-alt": {
+      "fontCharacter": "\\ea79",
+      "fontId": "dusk-office-codicon"
+    },
+    "extensions": {
+      "fontCharacter": "\\eb29",
+      "fontId": "dusk-office-codicon"
+    },
+    "files": {
+      "fontCharacter": "\\ebdf",
+      "fontId": "dusk-office-codicon"
+    },
+    "notebook": {
+      "fontCharacter": "\\ebaf",
+      "fontId": "dusk-office-codicon"
+    },
+    "symbol-method": {
+      "fontCharacter": "\\ea8c",
+      "fontId": "dusk-office-codicon"
+    },
+    "remote": {
+      "fontCharacter": "\\eaad",
+      "fontId": "dusk-office-codicon"
+    },
+    "workspace-trusted": {
+      "fontCharacter": "\\eaac",
+      "fontId": "dusk-office-codicon"
+    },
+    "tools": {
+      "fontCharacter": "\\ec19",
+      "fontId": "dusk-office-codicon"
+    },
+    "terminal": {
+      "fontCharacter": "\\eba2",
+      "fontId": "dusk-office-codicon"
+    }
+  }
+}

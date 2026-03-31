@@ -11,6 +11,45 @@ const root = path.join(__dirname, "..");
 const themesDir = path.join(root, "themes");
 const pkgPath = path.join(root, "package.json");
 
+const REQUIRED_COLOR_KEYS = [
+  "editor.background",
+  "editor.foreground",
+  "focusBorder",
+  "activityBar.background",
+  "sideBar.background",
+  "statusBar.background",
+  "titleBar.activeBackground",
+  "list.activeSelectionBackground",
+  "list.activeSelectionForeground",
+  "editor.selectionBackground",
+  "editorCursor.foreground",
+  "editorLineNumber.activeForeground",
+  "editorSuggestWidget.border",
+  "editorHoverWidget.border",
+  "terminal.background",
+  "terminal.foreground",
+  "diffEditor.border",
+  "notebook.cellBorderColor",
+];
+
+const REQUIRED_TOKEN_SCOPES = [
+  "comment",
+  "keyword",
+  "string",
+  "constant.numeric",
+  "entity.name.function",
+  "entity.name.type",
+];
+
+const REQUIRED_SEMANTIC_KEYS = [
+  "variable",
+  "function",
+  "keyword",
+  "string",
+  "number",
+  "type",
+];
+
 /** @param {string} file */
 function readThemeJson(file) {
   const raw = fs.readFileSync(file, "utf8");
@@ -52,6 +91,38 @@ function validateThemeFile(file, chain = new Set()) {
 
   if (theme.colors != null && typeof theme.colors !== "object") {
     throw new Error(`${rel}: "colors" must be an object`);
+  }
+
+  const colors = theme.colors ?? {};
+  const missingColorKeys = REQUIRED_COLOR_KEYS.filter((key) => !(key in colors));
+  if (missingColorKeys.length > 0 && !theme.include) {
+    throw new Error(`${rel}: missing required color keys: ${missingColorKeys.join(", ")}`);
+  }
+
+  if (theme.tokenColors != null && !Array.isArray(theme.tokenColors)) {
+    throw new Error(`${rel}: "tokenColors" must be an array`);
+  }
+  if (theme.semanticTokenColors != null && typeof theme.semanticTokenColors !== "object") {
+    throw new Error(`${rel}: "semanticTokenColors" must be an object`);
+  }
+
+  if (!theme.include) {
+    const tokenScopes = new Set();
+    for (const rule of theme.tokenColors ?? []) {
+      const scope = rule?.scope;
+      if (typeof scope === "string") tokenScopes.add(scope);
+      if (Array.isArray(scope)) scope.forEach((s) => tokenScopes.add(s));
+    }
+    const missingScopes = REQUIRED_TOKEN_SCOPES.filter((scope) => !tokenScopes.has(scope));
+    if (missingScopes.length > 0) {
+      throw new Error(`${rel}: missing required token scopes: ${missingScopes.join(", ")}`);
+    }
+
+    const semantic = theme.semanticTokenColors ?? {};
+    const missingSemanticKeys = REQUIRED_SEMANTIC_KEYS.filter((key) => !(key in semantic));
+    if (missingSemanticKeys.length > 0) {
+      throw new Error(`${rel}: missing required semantic token keys: ${missingSemanticKeys.join(", ")}`);
+    }
   }
 }
 

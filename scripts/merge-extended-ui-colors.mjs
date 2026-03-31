@@ -57,6 +57,7 @@ function buildExtended(p) {
   return {
     "descriptionForeground": A(fg, "aa"),
     "icon.foreground": A(fg, "cc"),
+    "focusBorder": A(accentHi, "55"),
     "widget.border": A(border, "44"),
     "widget.shadow": "#00000066",
     "selection.background": A(accent, "44"),
@@ -64,6 +65,8 @@ function buildExtended(p) {
 
     "editor.foreground": fg,
     "editorCursor.foreground": accentHi,
+    "editorLineNumber.foreground": A(fg, "55"),
+    "editorLineNumber.activeForeground": accentHi,
     "editor.selectionBackground": A(accent, "44"),
     "editor.selectionHighlightBackground": A(accentHi, "22"),
     "editor.selectionHighlightBorder": A(accentHi, "2a"),
@@ -83,6 +86,10 @@ function buildExtended(p) {
 
     "editor.hoverHighlightBackground": A(accentHi, "18"),
     "editorLink.activeForeground": accentHi,
+    "editorError.foreground": error,
+    "editorWarning.foreground": warning,
+    "editorInfo.foreground": info,
+    "editorHint.foreground": accentHi,
     "editor.foldBackground": A(accent, "12"),
     "editor.foldPlaceholderForeground": A(fg, "77"),
     "editor.linkedEditingBackground": A(purple, "33"),
@@ -168,7 +175,7 @@ function buildExtended(p) {
     "diffEditor.removedTextBorder": A(removed, "2a"),
     "diffEditor.insertedLineBackground": A(inserted, "18"),
     "diffEditor.removedLineBackground": A(removed, "18"),
-        "diffEditor.move.border": A(purple, "44"),
+    "diffEditor.move.border": A(purple, "44"),
     "diffEditor.moveActive.border": A(accentHi, "55"),
 
     "merge.currentHeaderBackground": A(info, "33"),
@@ -214,6 +221,7 @@ function buildExtended(p) {
     "tree.indentGuidesStroke": A(border, "44"),
     "tree.inactiveIndentGuidesStroke": A(border, "2a"),
 
+    "list.activeSelectionBackground": A(accent, "33"),
     "list.activeSelectionForeground": fg,
     "list.inactiveSelectionBackground": A(accent, "18"),
     "list.inactiveSelectionForeground": fg,
@@ -343,6 +351,9 @@ function buildExtended(p) {
     "debugExceptionWidget.background": A(error, "22"),
     "debugExceptionWidget.border": A(error, "55"),
 
+    "problemsErrorIcon.foreground": error,
+    "problemsWarningIcon.foreground": warning,
+    "problemsInfoIcon.foreground": info,
     "profiles.sashBorder": A(border, "44"),
   };
 }
@@ -493,12 +504,88 @@ const PALETTES = {
     pink: "#f0abfc",
     amber: "#fcd34d",
   },
+  "dusk-nocturne": {
+    fg: "#f8f8f2",
+    accent: "#bd93f9",
+    accentHi: "#8be9fd",
+    accentSoft: "#6272a4",
+    widget: "#282a36",
+    panel: "#1e1f29",
+    border: "#6272a4",
+    error: "#ff5555",
+    warning: "#ffb86c",
+    info: "#8be9fd",
+    success: "#50fa7b",
+    inserted: "#50fa7b",
+    removed: "#ff5555",
+    purple: "#bd93f9",
+    pink: "#ff79c6",
+    amber: "#ffb86c",
+  },
+  "dusk-finance": {
+    fg: "#e8e6e3",
+    accent: "#2a5d8a",
+    accentHi: "#c9a227",
+    accentSoft: "#2a3f5f",
+    widget: "#0f1a2a",
+    panel: "#0a1219",
+    border: "#2a3f5f",
+    error: "#b8343a",
+    warning: "#c9a227",
+    info: "#4a90a4",
+    success: "#7ec9a8",
+    inserted: "#7ec9a8",
+    removed: "#b8343a",
+    purple: "#8b9dc3",
+    pink: "#8b7355",
+    amber: "#c9a227",
+  },
+  "dusk-corporate": {
+    fg: "#c5c8c6",
+    accent: "#5f8a8a",
+    accentHi: "#8a6f4a",
+    accentSoft: "#3d424d",
+    widget: "#1d1f21",
+    panel: "#181a1c",
+    border: "#3d424d",
+    error: "#a55a5a",
+    warning: "#8a6f4a",
+    info: "#6a7c8a",
+    success: "#8ec9c9",
+    inserted: "#8ec9c9",
+    removed: "#a55a5a",
+    purple: "#6a7c8a",
+    pink: "#7c6a5a",
+    amber: "#8a6f4a",
+  },
+  "dusk-ivoire-sombre": {
+    fg: "#eee2d4",
+    accent: "#a89888",
+    accentHi: "#c9b8a4",
+    accentSoft: "#6b5e54",
+    widget: "#2e2822",
+    panel: "#242019",
+    border: "#5c5249",
+    error: "#f87171",
+    warning: "#fbbf24",
+    info: "#d4a574",
+    success: "#4ade80",
+    inserted: "#22c55e",
+    removed: "#ef4444",
+    purple: "#c4a8e8",
+    pink: "#f472b6",
+    amber: "#fbbf24",
+  },
 };
 
 function main() {
   const files = fs
     .readdirSync(themesDir)
-    .filter((f) => /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
+    .filter((f) =>
+      /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse|nocturne|finance|corporate|ivoire-sombre)\.json$/.test(
+        f
+      )
+    );
 
   for (const file of files) {
     const id = file.replace(/\.json$/, "");
