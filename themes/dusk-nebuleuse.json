@@ -1,7 +1,7 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Nebula",
-  "include": "./nyx.json",
+  "name": "Dusk Office Nebula",
+  "include": "./dusk.json",
   "colors": {
     "descriptionForeground": "#f3e8ffaa",
     "icon.foreground": "#f3e8ffcc",

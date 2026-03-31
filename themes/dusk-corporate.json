@@ -1,7 +1,7 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Corporate",
-  "include": "./nyx.json",
+  "name": "Dusk Office Corporate",
+  "include": "./dusk.json",
   "colors": {
     "descriptionForeground": "#c5c8c6aa",
     "icon.foreground": "#8a8d8fcc",
@@ -34,7 +34,7 @@
     "editorBracketHighlight.foreground1": "#c5c8c6",
     "editorBracketHighlight.foreground2": "#5f8a8a",
     "editorBracketHighlight.foreground3": "#8a6f4a",
-    "editorBracketHighlight.foreground4": "#4a7c7c",
+    "editorBracketHighlight.foreground4": "#8ec9c9",
     "editorBracketHighlight.foreground5": "#6a7c8a",
     "editorBracketHighlight.foreground6": "#7c6a5a",
     "editorBracketHighlight.unexpectedBracket.foreground": "#a55a5a",
@@ -75,15 +75,15 @@
     "editorOverviewRuler.selectionHighlightForeground": "#6a7c8aaa",
     "editorOverviewRuler.wordHighlightForeground": "#5f8a8aaa",
     "editorOverviewRuler.wordHighlightStrongForeground": "#8a6f4aaa",
-    "editorOverviewRuler.wordHighlightTextForeground": "#4a7c7caa",
+    "editorOverviewRuler.wordHighlightTextForeground": "#8ec9c9aa",
     "editorOverviewRuler.modifiedForeground": "#8a6f4add",
-    "editorOverviewRuler.addedForeground": "#4a7c7cdd",
+    "editorOverviewRuler.addedForeground": "#8ec9c9dd",
     "editorOverviewRuler.deletedForeground": "#a55a5add",
     "editorOverviewRuler.errorForeground": "#a55a5aee",
     "editorOverviewRuler.warningForeground": "#8a6f4aee",
     "editorOverviewRuler.infoForeground": "#6a7c8aee",
     "editorOverviewRuler.bracketMatchForeground": "#c5c8c6cc",
-    "editorOverviewRuler.inlineChatInserted": "#4a7c7caa",
+    "editorOverviewRuler.inlineChatInserted": "#8ec9c9aa",
     "editorOverviewRuler.inlineChatRemoved": "#a55a5aaa",
     "editorOverviewRuler.currentContentForeground": "#8a6f4acc",
     "editorOverviewRuler.incomingContentForeground": "#6a7c8acc",
@@ -94,7 +94,7 @@
     "minimap.errorHighlight": "#a55a5acc",
     "minimap.warningHighlight": "#8a6f4acc",
     "minimap.infoHighlight": "#6a7c8acc",
-    "minimap.chatEditHighlight": "#4a7c7c99",
+    "minimap.chatEditHighlight": "#8ec9c899",
     "minimap.foregroundOpacity": "#c5c8c688",
     "diffEditor.border": "#3d424d4b",
     "diffEditor.insertedTextBackground": "#4a7c7c22",
@@ -130,7 +130,7 @@
     "inlineEdit.gutterIndicator.secondaryForeground": "#8a6f4a",
     "inlineEdit.gutterIndicator.secondaryBorder": "#8a6f4a3d",
     "inlineEdit.gutterIndicator.successfulBackground": "#4a7c7c33",
-    "inlineEdit.gutterIndicator.successfulForeground": "#4a7c7c",
+    "inlineEdit.gutterIndicator.successfulForeground": "#8ec9c9",
     "inlineEdit.gutterIndicator.successfulBorder": "#4a7c7c4b",
     "inlineEdit.originalBackground": "#a55a5a12",
     "inlineEdit.modifiedBackground": "#4a7c7c12",
@@ -186,7 +186,7 @@
     "terminal.foreground": "#c5c8c6",
     "terminal.ansiBlack": "#1d1f21",
     "terminal.ansiRed": "#a55a5a",
-    "terminal.ansiGreen": "#4a7c7c",
+    "terminal.ansiGreen": "#6ebcbc",
     "terminal.ansiYellow": "#8a6f4a",
     "terminal.ansiBlue": "#5f8a8a",
     "terminal.ansiMagenta": "#7c6a5a",
@@ -194,7 +194,7 @@
     "terminal.ansiWhite": "#c5c8c6",
     "terminal.ansiBrightBlack": "#3d424d",
     "terminal.ansiBrightRed": "#c07070",
-    "terminal.ansiBrightGreen": "#5a9a9a",
+    "terminal.ansiBrightGreen": "#9dd8d8",
     "terminal.ansiBrightYellow": "#a08a5a",
     "terminal.ansiBrightBlue": "#7aa0a0",
     "terminal.ansiBrightMagenta": "#9a8a7a",
@@ -358,19 +358,19 @@
     {
       "scope": "string",
       "settings": {
-        "foreground": "#4a7c7c"
+        "foreground": "#8ec9c9"
       }
     },
     {
       "scope": "string.quoted.single",
       "settings": {
-        "foreground": "#5a9a9a"
+        "foreground": "#9dd8d8"
       }
     },
     {
       "scope": "string.quoted.double",
       "settings": {
-        "foreground": "#4a7c7c"
+        "foreground": "#8ec9c9"
       }
     },
     {
@@ -461,7 +461,7 @@
     {
       "scope": "constant.character",
       "settings": {
-        "foreground": "#4a7c7c"
+        "foreground": "#8ec9c9"
       }
     },
     {
@@ -538,8 +538,8 @@
     "keyword": "#5f8a8a",
     "operator": "#7c6a5a",
     "number": "#8a6f4a",
-    "string": "#4a7c7c",
-    "regexp": "#5a9a9a",
+    "string": "#8ec9c9",
+    "regexp": "#a8e0e0",
     "lifetime": {
       "foreground": "#7c6a5a",
       "italic": true

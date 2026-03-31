@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Régénère themes/nyx.json à partir de `.vscode/settings.json` à la racine du projet.
+ * Régénère themes/dusk.json à partir de `.vscode/settings.json` à la racine du projet.
  *
  * Cherche la racine dans cet ordre :
  *   1) Monorepo Nythy : …/Nythy/.vscode/settings.json (3 niveaux au-dessus de scripts/)
- *   2) Repo autonome Nyx : …/Nyx/.vscode/settings.json (1 niveau au-dessus de scripts/)
+ *   2) Repo autonome Dusk Office : …/Dusk-Office/.vscode/settings.json (1 niveau au-dessus de scripts/)
  *
  * Usage :
  *   node scripts/sync-from-workspace.mjs
@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const standaloneRoot = path.resolve(__dirname, "..");
 const monorepoRoot = path.resolve(__dirname, "..", "..", "..");
 const nythyLayout = fs.existsSync(
-  path.join(monorepoRoot, "extensions", "nyx-theme", "package.json")
+  path.join(monorepoRoot, "extensions", "dusk-theme", "package.json")
 );
 
 let repoRoot;
@@ -33,13 +33,13 @@ if (
   repoRoot = standaloneRoot;
 } else {
   console.error(
-    "Aucun .vscode/settings.json trouvé à la racine du projet Nyx ou du monorepo Nythy."
+    "Aucun .vscode/settings.json trouve a la racine du projet Dusk Office ou du monorepo Nythy."
   );
   process.exit(1);
 }
 
 const settingsPath = path.join(repoRoot, ".vscode", "settings.json");
-const themePath = path.join(__dirname, "..", "themes", "nyx.json");
+const themePath = path.join(__dirname, "..", "themes", "dusk.json");
 
 const raw = fs.readFileSync(settingsPath, "utf8");
 let s = raw.replace(/\/\/[^\n]*/g, "");
@@ -72,7 +72,7 @@ for (const [k, v] of Object.entries(semRules)) {
 
 const theme = {
   $schema: "vscode://schemas/color-theme",
-  name: "Nyx",
+  name: "Dusk Office",
   type: "dark",
   semanticHighlighting: true,
   colors,

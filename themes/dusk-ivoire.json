@@ -1,8 +1,8 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Ivory",
+  "name": "Dusk Office Ivory",
   "type": "light",
-  "include": "./nyx.json",
+  "include": "./dusk.json",
   "colors": {
     "descriptionForeground": "#4a4238aa",
     "icon.foreground": "#4a4238cc",

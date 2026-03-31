@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Writes themes/nyx-ivoire-sombre.json from nyx-cendre.json.
- * Same spirit as Nyx Ivory (#F6EEDE) but dark: deep warm browns, cream text, copper accents.
+ * Writes themes/dusk-ivoire-sombre.json from dusk-cendre.json.
+ * Same spirit as Dusk Office Ivory (#F6EEDE) but dark: deep warm browns, cream text, copper accents.
  */
 import fs from "fs";
 import path from "path";
@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-/** Remap #RRGGBB — cool grays → warm; UI blues → copper / amber */
+/** Remap #RRGGBB - cool grays -> warm; UI blues -> copper / amber */
 const RGB_MAP = {
   "000000": "100d0c",
   "0a0a0a": "14110f",
@@ -66,7 +66,7 @@ function mapColor(str) {
 }
 
 function main() {
-  const src = JSON.parse(fs.readFileSync(path.join(root, "themes/nyx-cendre.json"), "utf8"));
+  const src = JSON.parse(fs.readFileSync(path.join(root, "themes/dusk-cendre.json"), "utf8"));
   const colors = {};
   for (const [k, v] of Object.entries(src.colors || {})) {
     colors[k] = typeof v === "string" ? mapColor(v) : v;
@@ -82,14 +82,14 @@ function main() {
 
   const out = {
     $schema: "vscode://schemas/color-theme",
-    name: "Nyx Dark Ivory",
-    include: "./nyx.json",
+    name: "Dusk Office Dark Ivory",
+    include: "./dusk.json",
     colors,
     tokenColors: src.tokenColors,
     semanticTokenColors: src.semanticTokenColors,
   };
 
-  const dest = path.join(root, "themes/nyx-ivoire-sombre.json");
+  const dest = path.join(root, "themes/dusk-ivoire-sombre.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");
   console.log("OK", dest, Object.keys(colors).length, "colors");
 }

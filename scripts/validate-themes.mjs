@@ -75,9 +75,9 @@ function main() {
 
   for (const f of fs.readdirSync(themesDir)) {
     if (!f.endsWith(".json")) continue;
-    if (!/^nyx.*\.json$/i.test(f)) continue;
+    if (!/^dusk.*\.json$/i.test(f)) continue;
     const key = path.join("themes", f).replace(/\\/g, "/");
-    if (!seen.has(key) && f !== "nyx.json") {
+    if (!seen.has(key) && f !== "dusk.json") {
       console.warn("WARN theme not listed in package.json:", key);
     }
   }

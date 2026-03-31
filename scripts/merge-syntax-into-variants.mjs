@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Fusionne semanticTokenColors + tokenColors dans chaque themes/nyx-<slug>.json
- * (à lancer depuis extensions/nyx-theme)
+ * Fusionne semanticTokenColors + tokenColors dans chaque themes/dusk-<slug>.json
+ * (a lancer depuis extensions/dusk-theme)
  */
 import fs from "fs";
 import path from "path";
@@ -23,7 +23,7 @@ const slugs = [
 ];
 
 for (const slug of slugs) {
-  const file = path.join(themesDir, `nyx-${slug}.json`);
+  const file = path.join(themesDir, `dusk-${slug}.json`);
   const j = JSON.parse(fs.readFileSync(file, "utf8"));
   const { semanticTokenColors, tokenColors } = syntaxBlocksFor(slug);
   j.semanticTokenColors = semanticTokenColors;

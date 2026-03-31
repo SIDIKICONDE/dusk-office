@@ -1,6 +1,6 @@
 /**
- * Palettes syntaxe (sémantique + TextMate de fin de chaîne) par variante Nyx.
- * Génère les clés à fusionner dans chaque fichier themes/nyx-*.json
+ * Palettes syntaxe (sémantique + TextMate de fin de chaîne) par variante Dusk Office.
+ * Génère les clés à fusionner dans chaque fichier themes/dusk-*.json
  */
 export const palettes = {
   abime: {

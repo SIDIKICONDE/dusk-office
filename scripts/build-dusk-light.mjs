@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Writes themes/nyx-light.json from nyx-abime.json (dark palette → light).
- * Re-run after major changes to Nyx Abyss.
+ * Writes themes/dusk-light.json from dusk-abime.json (dark palette -> light).
+ * Re-run after major changes to Dusk Office Abyss.
  */
 import fs from "fs";
 import path from "path";
@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 
-/** Very dark #RRGGBB bases → light surfaces */
+/** Very dark #RRGGBB bases -> light surfaces */
 const DARK_BG_TO_LIGHT = {
   "000000": "#e2e8f0",
   "02060c": "#e8edf4",
@@ -27,7 +27,7 @@ const DARK_BG_TO_LIGHT = {
   "2d5a78": "#64748b",
 };
 
-/** Texte / icônes clairs illisibles sur fond blanc (#RRGGBB ou #RRGGBBAA) */
+/** Texte / icones clairs illisibles sur fond blanc (#RRGGBB ou #RRGGBBAA) */
 const LIGHT_FG_TO_DARK = {
   cfe8f0: "#0f172a",
   cfe8f0aa: "#334155aa",
@@ -78,7 +78,7 @@ function mapHex(s, key) {
 }
 
 function main() {
-  const abime = JSON.parse(fs.readFileSync(path.join(root, "themes/nyx-abime.json"), "utf8"));
+  const abime = JSON.parse(fs.readFileSync(path.join(root, "themes/dusk-abime.json"), "utf8"));
   /** @type {Record<string, string>} */
   const colors = {};
   for (const [k, v] of Object.entries(abime.colors || {})) {
@@ -87,15 +87,15 @@ function main() {
 
   const out = {
     $schema: "vscode://schemas/color-theme",
-    name: "Nyx Light",
+    name: "Dusk Office Light",
     type: "light",
-    include: "./nyx.json",
+    include: "./dusk.json",
     colors,
     tokenColors: abime.tokenColors,
     semanticTokenColors: abime.semanticTokenColors,
   };
 
-  const dest = path.join(root, "themes/nyx-light.json");
+  const dest = path.join(root, "themes/dusk-light.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");
   console.log("OK", dest, Object.keys(colors).length, "couleurs");
 }

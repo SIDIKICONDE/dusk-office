@@ -38,7 +38,7 @@ function boostAlpha(hex) {
 function main() {
   const files = fs
     .readdirSync(themesDir)
-    .filter((f) => /^nyx-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
+    .filter((f) => /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
 
   for (const file of files) {
     const full = path.join(themesDir, file);

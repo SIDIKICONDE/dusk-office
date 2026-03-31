@@ -1,7 +1,7 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Reef",
-  "include": "./nyx.json",
+  "name": "Dusk Office Reef",
+  "include": "./dusk.json",
   "colors": {
     "descriptionForeground": "#cffafeaa",
     "icon.foreground": "#cffafecc",
@@ -291,7 +291,7 @@
     "activityBar.background": "#000c12",
     "activityBar.foreground": "#22d3ee",
     "activityBar.activeBorder": "#00bec559",
-    "activityBar.inactiveForeground": "#155e75",
+    "activityBar.inactiveForeground": "#5abdc4",
     "activityBar.border": "#048da559",
     "sideBar.background": "#011820",
     "sideBar.border": "#1aa4b84b",

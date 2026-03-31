@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Fusionne des clés workbench étendues dans themes/nyx-*.json.
+ * Fusionne des clés workbench étendues dans themes/dusk-*.json.
  * Les couleurs déjà présentes dans le thème gardent la priorité.
  */
 import fs from "fs";
@@ -349,7 +349,7 @@ function buildExtended(p) {
 
 /** @type {Record<string, Palette>} */
 const PALETTES = {
-  "nyx-minuit": {
+  "dusk-minuit": {
     fg: "#d1e0e8",
     accent: "#00bcd4",
     accentHi: "#00e5ff",
@@ -367,7 +367,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#fbbf24",
   },
-  "nyx-abime": {
+  "dusk-abime": {
     fg: "#cfe8f0",
     accent: "#40c8e8",
     accentHi: "#67e8f9",
@@ -385,7 +385,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#fbbf24",
   },
-  "nyx-recif": {
+  "dusk-recif": {
     fg: "#cffafe",
     accent: "#06b6d4",
     accentHi: "#00f5ff",
@@ -403,7 +403,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#facc15",
   },
-  "nyx-baie": {
+  "dusk-baie": {
     fg: "#ecfdf5",
     accent: "#22c55e",
     accentHi: "#4ade80",
@@ -421,7 +421,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#eab308",
   },
-  "nyx-aube": {
+  "dusk-aube": {
     fg: "#fafcff",
     accent: "#0ea5e9",
     accentHi: "#00e8ff",
@@ -439,7 +439,7 @@ const PALETTES = {
     pink: "#ec4899",
     amber: "#d97706",
   },
-  "nyx-brume": {
+  "dusk-brume": {
     fg: "#f4f9fc",
     accent: "#5a7a98",
     accentHi: "#5cefff",
@@ -457,7 +457,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#d97706",
   },
-  "nyx-cendre": {
+  "dusk-cendre": {
     fg: "#e5e7eb",
     accent: "#9ca3af",
     accentHi: "#d1d5db",
@@ -475,7 +475,7 @@ const PALETTES = {
     pink: "#f472b6",
     amber: "#fbbf24",
   },
-  "nyx-nebuleuse": {
+  "dusk-nebuleuse": {
     fg: "#f3e8ff",
     accent: "#a855f7",
     accentHi: "#e9d5ff",
@@ -498,7 +498,7 @@ const PALETTES = {
 function main() {
   const files = fs
     .readdirSync(themesDir)
-    .filter((f) => /^nyx-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
+    .filter((f) => /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
 
   for (const file of files) {
     const id = file.replace(/\.json$/, "");

@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx",
+  "name": "Dusk Office",
   "type": "dark",
   "semanticHighlighting": true,
   "colors": {
@@ -37,7 +37,7 @@
     {
       "scope": "string",
       "settings": {
-        "foreground": "#059669"
+        "foreground": "#34d399"
       }
     },
     {

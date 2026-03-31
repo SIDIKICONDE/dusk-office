@@ -1,7 +1,7 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Nyx Dawn",
-  "include": "./nyx.json",
+  "name": "Dusk Office Dawn",
+  "include": "./dusk.json",
   "colors": {
     "descriptionForeground": "#fff5f0aa",
     "icon.foreground": "#fff5f0cc",

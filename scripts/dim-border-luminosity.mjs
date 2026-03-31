@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Réduit la luminosité perçue des bordures : alpha plus bas + RGB légèrement assombri (#RRGGBBAA).
- * Ne pas appliquer à nyx-hc.json (contraste élevé volontaire).
+ * Ne pas appliquer à dusk-hc.json (contraste élevé volontaire).
  */
 import fs from "fs";
 import path from "path";
@@ -51,7 +51,7 @@ function main() {
   const files = fs
     .readdirSync(themesDir)
     .filter((f) =>
-      /^nyx-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse|light|ivoire|ivoire-sombre)\.json$/.test(f)
+      /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse|light|ivoire|ivoire-sombre)\.json$/.test(f)
     );
 
   for (const file of files) {

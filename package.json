@@ -1,15 +1,15 @@
 {
-  "name": "nyx-color-themes",
-  "displayName": "Nyx by DEKI",
-  "description": "16 Nyx themes for VS Code and Cursor: dark bioluminescent, warm Ivory pair, Dracula-inspired, Finance/Corporate professional, light themes, high contrast. Semantic LSP and TextMate.",
+  "name": "dusk-office",
+  "displayName": "Dusk-Office",
+  "description": "Dark themes for VS Code. Building tools that make coding more comfortable and visually elegant.",
   "version": "0.6.9",
-  "publisher": "deki",
+  "publisher": "dekidev",
   "icon": "images/icon.png",
   "license": "UNLICENSED",
-  "homepage": "https://marketplace.visualstudio.com/items?itemName=deki.nyx-color-themes",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SIDIKICONDE/Nyx.git"
+    "url": "https://github.com/SIDIKICONDE/dusk-office.git"
   },
   "galleryBanner": {
     "color": "#031c28",
@@ -25,7 +25,7 @@
     "theme",
     "dark",
     "cyan",
-    "nyx",
+    "dusk-office",
     "contrast",
     "high contrast",
     "light",
@@ -35,84 +35,84 @@
   "contributes": {
     "themes": [
       {
-        "label": "Nyx",
+        "label": "Dusk-Office",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx.json"
+        "path": "./themes/dusk.json"
       },
       {
-        "label": "Nyx Abyss",
+        "label": "Dusk-Office Abyss",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-abime.json"
+        "path": "./themes/dusk-abime.json"
       },
       {
-        "label": "Nyx Dawn",
+        "label": "Dusk-Office Dawn",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-aube.json"
+        "path": "./themes/dusk-aube.json"
       },
       {
-        "label": "Nyx Bay",
+        "label": "Dusk-Office Bay",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-baie.json"
+        "path": "./themes/dusk-baie.json"
       },
       {
-        "label": "Nyx Mist",
+        "label": "Dusk-Office Mist",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-brume.json"
+        "path": "./themes/dusk-brume.json"
       },
       {
-        "label": "Nyx Ash",
+        "label": "Dusk-Office Ash",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-cendre.json"
+        "path": "./themes/dusk-cendre.json"
       },
       {
-        "label": "Nyx Midnight",
+        "label": "Dusk-Office Midnight",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-minuit.json"
+        "path": "./themes/dusk-minuit.json"
       },
       {
-        "label": "Nyx Nebula",
+        "label": "Dusk-Office Nebula",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-nebuleuse.json"
+        "path": "./themes/dusk-nebuleuse.json"
       },
       {
-        "label": "Nyx Reef",
+        "label": "Dusk-Office Reef",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-recif.json"
+        "path": "./themes/dusk-recif.json"
       },
       {
-        "label": "Nyx High Contrast",
+        "label": "Dusk-Office High Contrast",
         "uiTheme": "hc-black",
-        "path": "./themes/nyx-hc.json"
+        "path": "./themes/dusk-hc.json"
       },
       {
-        "label": "Nyx Light",
+        "label": "Dusk-Office Light",
         "uiTheme": "vs",
-        "path": "./themes/nyx-light.json"
+        "path": "./themes/dusk-light.json"
       },
       {
-        "label": "Nyx Ivory",
+        "label": "Dusk-Office Ivory",
         "uiTheme": "vs",
-        "path": "./themes/nyx-ivoire.json"
+        "path": "./themes/dusk-ivoire.json"
       },
       {
-        "label": "Nyx Dark Ivory",
+        "label": "Dusk-Office Dark Ivory",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-ivoire-sombre.json"
+        "path": "./themes/dusk-ivoire-sombre.json"
       },
       {
-        "label": "Nyx Nocturne",
+        "label": "Dusk-Office Nocturne",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-nocturne.json"
+            "path": "./themes/dusk-nocturne.json"
       },
       {
-        "label": "Nyx Finance",
+        "label": "Dusk-Office Finance",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-finance.json"
+        "path": "./themes/dusk-finance.json"
       },
       {
-        "label": "Nyx Corporate",
+        "label": "Dusk-Office Corporate",
         "uiTheme": "vs-dark",
-        "path": "./themes/nyx-corporate.json"
+        "path": "./themes/dusk-corporate.json"
       }
     ],
     "configurationDefaults": {
@@ -142,9 +142,9 @@
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
     "validate": "node scripts/validate-themes.mjs",
     "release-check": "node scripts/verify-release-version.mjs",
-    "build:light": "node scripts/build-nyx-light.mjs",
-    "build:ivoire": "node scripts/build-nyx-ivoire.mjs",
-    "build:ivoire-sombre": "node scripts/build-nyx-ivoire-sombre.mjs",
+    "build:light": "node scripts/build-dusk-light.mjs",
+    "build:ivoire": "node scripts/build-dusk-ivoire.mjs",
+    "build:ivoire-sombre": "node scripts/build-dusk-ivoire-sombre.mjs",
     "package": "npx --no-install @vscode/vsce package --no-dependencies",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs"

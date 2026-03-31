@@ -1,74 +1,122 @@
-# Nyx by DEKI
+# Dusk Office
 
-Thirteen color themes for **Visual Studio Code** and **Cursor**: bioluminescent dark variants, light themes (**Light**, **Ivory**), warm **Dark Ivory**, and a **high-contrast** mode. Semantic highlighting plus a cohesive workbench (side bars, panels, terminal, minimap).
+Dark themes for **Visual Studio Code** and **Cursor**, designed to make coding more comfortable and visually elegant.
 
-**Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/deki) · **Marketplace:** [Nyx by DEKI](https://marketplace.visualstudio.com/items?itemName=deki.nyx-color-themes)
+**Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/dekidev)  
+**Marketplace:** [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 
----
+## Overview
+
+`Dusk Office` is a theme pack built around clean contrast, readable syntax, and a polished workbench.
+
+It includes deep dark variants, softer dark alternatives, bright accent palettes, and warm light themes for daytime use. The goal is simple: make long coding sessions easier on the eyes without losing visual clarity.
+
+## Highlights
+
+- Carefully balanced dark themes for daily development
+- Cohesive editor and workbench styling
+- Semantic highlighting and TextMate token styling
+- Variants for dark, light, warm, and high-contrast preferences
+- Good defaults for minimap, guides, sticky scroll, and editor clarity
+
+## Included Themes
+
+| Theme | Style |
+|------|------|
+| **Dusk Office** | Core dark theme with cyan and pink accents. |
+| **Dusk Office Abyss** | Deep blue night palette with vivid cyan highlights. |
+| **Dusk Office Dawn** | Brighter dark surfaces with bold syntax contrast. |
+| **Dusk Office Bay** | Lagoon-inspired green tones and fresh chrome. |
+| **Dusk Office Mist** | Slate blue-gray palette with balanced contrast. |
+| **Dusk Office Ash** | Neutral gray theme with a clean console feel. |
+| **Dusk Office Midnight** | Very dark variant, ideal for OLED-style setups. |
+| **Dusk Office Nebula** | Purple and mauve accents with a richer atmosphere. |
+| **Dusk Office Reef** | Bright cyan neon energy and stronger borders. |
+| **Dusk Office Nocturne** | Smooth dark variant for a calmer night workflow. |
+| **Dusk Office Finance** | Professional dark styling with restrained accents. |
+| **Dusk Office Corporate** | Clean business-oriented dark palette. |
+| **Dusk Office Light** | Cool, neutral light theme for daytime work. |
+| **Dusk Office Ivory** | Warm paper-like light theme with copper accents. |
+| **Dusk Office Dark Ivory** | Warm dark companion to Ivory with cream text. |
+| **Dusk Office High Contrast** | Stronger separation and clearer focus states. |
 
 ## Installation
 
-**Windows and macOS** use the same steps in the editor.
+### From the Marketplace
 
-1. Open **Extensions** — **Windows:** `Ctrl+Shift+X` · **macOS:** `Cmd+Shift+X`.
-2. Search for **Nyx by DEKI**, **deki.nyx-color-themes**, or **deki nyx**, then click **Install**.
+1. Open the Extensions panel.
+2. Search for `Dusk Office`, `dekidev.dusk-office`, or `dusk office`.
+3. Click **Install**.
 
-To install from a **.vsix** file: **Extensions → … → Install from VSIX…**.
+### From a VSIX
 
-**Requirements:** VS Code or Cursor **1.85** or newer.
-
-### Build the VSIX locally (Windows & macOS)
-
-1. Install [Node.js](https://nodejs.org/) (LTS).
-2. In the repo folder: `npm install` then `npm run package` — this creates `nyx-color-themes-*.vsix`.
-3. Install it: use **Install from VSIX…** above, or run `npm run install-vsix` (needs `cursor` / `code` on your **PATH**, or a default install path — macOS and Windows are both supported by the script).
-
-If you have **make** (macOS/Linux, or Windows with make installed): `make reinstall` packages and installs the latest VSIX into Cursor by default (`make reinstall EDITOR=code` for VS Code).
-
----
+1. Open **Extensions**.
+2. Open the `...` menu.
+3. Choose **Install from VSIX...**
+4. Select your generated `dusk-office-*.vsix` file.
 
 ## Usage
 
-**Switch theme:** **Preferences** → **Color Theme**, then pick any **Nyx** variant.
+To enable a theme:
 
-The extension ships sensible defaults (**Nyx Midnight**, minimap on, semantic highlighting, bracket guides, and more). Change anything in your editor **Settings**; your choices override these defaults.
+1. Open **Preferences: Color Theme**
+2. Select any `Dusk Office` variant
 
-### Accessibility
+The extension also ships with editor-friendly defaults such as semantic highlighting, minimap visibility, bracket guides, and sticky scroll. Your user or workspace settings can always override them.
 
-- **Nyx High Contrast** — stronger contrast, clear borders and focus.
-- **Nyx Light** — clean light UI for daytime use.
-- **Nyx Ivory** — warm light theme, base **#F6EEDE**, copper and amber accents.
-- **Nyx Dark Ivory** — warm dark theme, cream text on a deep background.
+## Recommended Variants
 
----
+- **Dusk Office Midnight** for a very dark, focused setup
+- **Dusk Office Abyss** for vivid blue-cyan contrast
+- **Dusk Office Ivory** for a warm light reading experience
+- **Dusk Office High Contrast** for stronger visual separation
 
-## Included themes
+## Local Development
 
-| Name | Mood |
-|------|------|
-| **Nyx** | Base dark — cyan and pink, bioluminescent look. |
-| **Nyx Abyss** | Deep blue night, cyan accents. |
-| **Nyx Dawn** | Slightly lifted darks, bold syntax. |
-| **Nyx Bay** | Lagoon green, mint chrome. |
-| **Nyx Mist** | Slate blue-gray, bold syntax. |
-| **Nyx Ash** | Neutral gray, console feel. |
-| **Nyx Midnight** | Very dark, OLED-friendly. |
-| **Nyx Nebula** | Purple and mauve. |
-| **Nyx Reef** | Bright cyan, neon borders. |
-| **Nyx Light** | Cool / neutral light UI. |
-| **Nyx Ivory** | Warm light — **#F6EEDE** base. |
-| **Nyx Dark Ivory** | Warm dark companion to **Ivory**. |
-| **Nyx High Contrast** | System high-contrast mode. |
+### Requirements
 
----
+- Node.js LTS
+- VS Code or Cursor `1.85+`
+
+### Build
+
+```bash
+npm install
+npm run package
+```
+
+This creates a file like `dusk-office-0.6.9.vsix`.
+
+### Install Locally
+
+```bash
+npm run install-vsix
+```
+
+If `make` is available, you can also use:
+
+```bash
+make reinstall
+```
+
+For VS Code instead of Cursor:
+
+```bash
+make reinstall EDITOR=code
+```
 
 ## Screenshots
 
-<!-- VS Code / Cursor Extension tab: images must use https (relative paths do not load). URLs below expect these files on `main` (push after changing screenshots). -->
-![Editor — semantic highlighting](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-editor-dart.png)
+<!-- VS Code / Cursor Extension tab: images must use https (relative paths do not load). URLs below expect these files on `main`. -->
+![Editor semantic highlighting](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-editor-dart.png)
 
-![Full window](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-full-window.png)
+![Full window](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-full-window.png)
 
-![Editor — focused layout](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-editor-focused.png)
+![Focused editor layout](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-editor-focused.png)
 
-![Workbench overview](https://raw.githubusercontent.com/SIDIKICONDE/Nyx/main/images/screenshot-workbench-overview.png)
+![Workbench overview](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/screenshot-workbench-overview.png)
+
+## Repository
+
+- GitHub: [SIDIKICONDE/dusk-office](https://github.com/SIDIKICONDE/dusk-office)
+- Marketplace: [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)

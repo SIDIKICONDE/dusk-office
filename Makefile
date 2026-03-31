@@ -1,9 +1,9 @@
-# Nyx — VS Code / Cursor theme pack (standalone project)
+# Dusk Office — VS Code / Cursor theme pack (standalone project)
 # Usage: make help | make reinstall
 
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NPM  := npm
-PKG  := nyx-color-themes
+PKG  := dusk-office
 EDITOR ?= cursor
 
 .DEFAULT_GOAL := help
@@ -11,11 +11,11 @@ EDITOR ?= cursor
 .PHONY: help install validate sync variants-ui variants-syntax package vsix build install-vsix reinstall upgrade full clean-old-vsix all make
 
 help:
-	@echo "Nyx — $(ROOT)"
+	@echo "Dusk Office — $(ROOT)"
 	@echo ""
 	@echo "  make install          npm dependencies (vsce, etc.)"
 	@echo "  make validate         validate theme JSON + manifest (npm run validate)"
-	@echo "  make sync             themes/nyx.json <- .vscode/settings.json (repo root)"
+	@echo "  make sync             themes/dusk.json <- .vscode/settings.json (repo root)"
 	@echo "  make variants-ui      merge extended workbench colors (scripts/merge-extended-ui-colors.mjs)"
 	@echo "  make variants-syntax  regenerate variant tokenColors / semantic tokens"
 	@echo "  make package          build $(PKG)-*.vsix (aliases: vsix, build)"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nyx Marketplace icon — visible Abyss blue fill, very dark edges, multicolor starburst."""
+"""Dusk Office Marketplace icon — visible Abyss blue fill, very dark edges, multicolor starburst."""
 
 try:
     from PIL import Image, ImageDraw, ImageFilter
@@ -34,7 +34,7 @@ STARBURST_HUB_R = 0.070
 # Final icon corner radius (smaller = motif reads larger)
 ICON_CORNER_RADIUS = 0.09
 
-# One color per ray — Nyx Abyss accents (brackets / semantic)
+# One color per ray — Dusk Office Abyss accents (brackets / semantic)
 RAY_COLORS = [
     (103, 232, 249),  # #67e8f9 cyan
     (56, 189, 248),   # #38bdf8 sky
@@ -205,7 +205,7 @@ def repo_root():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate the Nyx Marketplace icon (VS Code / Cursor)."
+        description="Generate the Dusk Office Marketplace icon (VS Code / Cursor)."
     )
     parser.add_argument(
         "--output",
@@ -239,7 +239,7 @@ def main():
     if not args.no_preview:
         preview_path = os.path.join(
             os.path.dirname(os.path.abspath(__file__)),
-            "nyx_icon_preview.png",
+            "dusk_office_icon_preview.png",
         )
         icon_hires.save(preview_path, "PNG")
         print(f"\nHD preview: {preview_path}")

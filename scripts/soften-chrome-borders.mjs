@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Réduit la visibilité des bordures / guides déjà présents dans themes/nyx-*.json
+ * Réduit la visibilité des bordures / guides déjà présents dans themes/dusk-*.json
  * (les clés que la fusion ne réécrit pas).
  */
 import fs from "fs";
@@ -41,7 +41,7 @@ function shouldSoften(k) {
 function main() {
   const files = fs
     .readdirSync(themesDir)
-    .filter((f) => /^nyx-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
+    .filter((f) => /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse)\.json$/.test(f));
 
   for (const file of files) {
     const full = path.join(themesDir, file);
