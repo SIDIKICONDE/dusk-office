@@ -82,7 +82,7 @@ Open the Command Palette and run `Dusk Office: Control Center` to:
 - save and restore a favorite theme
 - toggle auto switch
 - check the saved workspace theme
-- enable or disable `Dusk Office Icons`
+- toggle activity bar position
 - open settings
 
 ### Extra Theme Tools

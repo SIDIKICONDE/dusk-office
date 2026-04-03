@@ -327,7 +327,6 @@ function createStatusBarItem(context) {
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (
         event.affectsConfiguration("workbench.colorTheme") ||
-        event.affectsConfiguration("workbench.productIconTheme") ||
         event.affectsConfiguration("duskOffice.statusBar.enabled")
       ) {
         update();
