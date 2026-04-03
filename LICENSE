@@ -5,6 +5,11 @@ Copyright (c) 2026 DEKIDEV
 The Dusk Office theme pack (source files, JSON themes, images, documentation,
 and any other materials in this package) is proprietary and confidential.
 
+This extension recommends and installs **Material Icon Theme** by PKief
+as part of its extension pack. Material Icon Theme is a separate extension
+with its own license (MIT). For details, see:
+https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+
 No license is granted to copy, modify, merge, publish, distribute,
 sublicense, sell, reverse engineer, or create derivative works from
 this software, except as strictly necessary to install and use the

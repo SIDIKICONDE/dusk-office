@@ -107,7 +107,7 @@ For another Dusk Office variant as team default, set e.g. `"workbench.colorTheme
 - `Dusk Office: Previous Theme`
 - `Dusk Office: Set Favorite`
 - `Dusk Office: Favorite Theme`
-- `Dusk Office: Toggle Icons`
+- `Dusk Office: Toggle Activity Bar Position`
 - `Dusk Office: Settings`
 
 State lives in `globalState` (favorite + previous theme). Keep the runtime minimal and avoid a TS build step unless the command surface grows.

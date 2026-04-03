@@ -8,15 +8,17 @@ Dark themes for **Visual Studio Code** and **Cursor**.
 
 ## Overview
 
-`Dusk Office` is a theme pack with clean contrast, readable syntax, and an optional product icon theme.
+`Dusk Office` is a theme pack with clean contrast and readable syntax.
 
 It includes dark, light, warm, and high-contrast variants for daily use.
+
+**Note:** This extension installs **Material Icon Theme** for file/folder icons in the Explorer.
 
 ## Highlights
 
 - Dark themes for daily work
 - Cohesive editor and workbench styling
-- Optional product icon theme
+- **Material Icon Theme** included for file icons
 - Control Center for quick theme actions
 - Auto switch by hour
 - Favorite theme on startup
@@ -104,13 +106,6 @@ Available extension settings:
 - `duskOffice.autoSwitch.darkTheme`
 - `duskOffice.autoSwitch.lightHour`
 - `duskOffice.autoSwitch.darkHour`
-
-To enable the optional icon set:
-
-1. Open **Preferences: Product Icon Theme**
-2. Select `Dusk Office Icons`
-
-The icon theme lightly restyles core product icons while staying close to native VS Code shapes.
 
 For Explorer file/folder icons, this extension installs **Material Icon Theme** (as an extension pack).
 

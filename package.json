@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.29",
+  "version": "0.7.31",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -120,13 +120,6 @@
         "label": "Dusk Office Corporate",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-corporate.json"
-      }
-    ],
-    "productIconThemes": [
-      {
-        "id": "dusk-office-icons",
-        "label": "Dusk Office Icons",
-        "path": "./producticons/dusk-office-product-icon-theme.json"
       }
     ],
     "configurationDefaults": {
@@ -258,11 +251,6 @@
         "category": "Dusk Office"
       },
       {
-        "command": "duskOffice.toggleProductIcons",
-        "title": "Dusk Office: Toggle Icons",
-        "category": "Dusk Office"
-      },
-      {
         "command": "duskOffice.toggleActivityBarLocation",
         "title": "Dusk Office: Toggle Activity Bar Position",
         "category": "Dusk Office"
@@ -320,10 +308,6 @@
   },
   "devDependencies": {
     "@vscode/vsce": "^3.2.2",
-    "fantasticon": "^4.1.0",
     "typescript": "~5.7.3"
-  },
-  "dependencies": {
-    "@vscode/codicons": "^0.0.45"
   }
 }

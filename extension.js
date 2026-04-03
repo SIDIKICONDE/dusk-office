@@ -19,7 +19,6 @@ const THEME_VARIANTS = [
   "Dusk Office Corporate",
 ];
 
-const PRODUCT_ICON_THEME_ID = "dusk-office-icons";
 const PREVIOUS_THEME_KEY = "duskOffice.previousTheme";
 const FAVORITE_THEME_KEY = "duskOffice.favoriteTheme";
 const WORKSPACE_THEME_KEY = "duskOffice.workspaceTheme";
@@ -35,10 +34,6 @@ function getWorkbenchConfig() {
 
 function getCurrentTheme() {
   return getWorkbenchConfig().get("colorTheme");
-}
-
-function areDuskIconsEnabled() {
-  return getWorkbenchConfig().get("productIconTheme") === PRODUCT_ICON_THEME_ID;
 }
 
 function getActivityBarLocation() {
@@ -179,20 +174,6 @@ async function switchToFavoriteTheme(context) {
   void vscode.window.showInformationMessage(`Theme: ${favorite}.`);
 }
 
-async function toggleProductIcons() {
-  const config = getWorkbenchConfig();
-  const current = config.get("productIconTheme");
-  const enable = current !== PRODUCT_ICON_THEME_ID;
-  await config.update(
-    "productIconTheme",
-    enable ? PRODUCT_ICON_THEME_ID : null,
-    vscode.ConfigurationTarget.Global,
-  );
-  void vscode.window.showInformationMessage(
-    enable ? "Icons: enabled." : "Icons: default.",
-  );
-}
-
 async function toggleActivityBarLocation() {
   const config = getWorkbenchConfig();
   const current = getActivityBarLocation();
@@ -248,7 +229,6 @@ async function toggleAutoSwitch(context) {
 
 async function openControlCenter(context) {
   const currentTheme = getCurrentTheme();
-  const iconsEnabled = areDuskIconsEnabled();
   const activityBarLocation = getActivityBarLocation();
   const previousTheme = context.globalState.get(PREVIOUS_THEME_KEY);
   const favoriteTheme = context.globalState.get(FAVORITE_THEME_KEY);
@@ -258,8 +238,8 @@ async function openControlCenter(context) {
     [
       {
         label: `$(paintcan) Theme: ${currentTheme || "Unknown"}`,
-        description: iconsEnabled ? "Icons on" : "Default icons",
-        detail: "Status",
+        description: "Status",
+        detail: "Current theme",
         action: null,
       },
       {
@@ -299,12 +279,6 @@ async function openControlCenter(context) {
         description: isDuskTheme(rememberedTheme) ? `Saved: ${rememberedTheme}` : "No saved theme",
         detail: getWorkspaceThemeMemoryEnabled() ? "Memory on" : "Memory off",
         action: null,
-      },
-      {
-        label: iconsEnabled ? "$(eye-closed) Disable Icons" : "$(eye) Enable Icons",
-        description: iconsEnabled ? "Current: Dusk icons" : "Current: default icons",
-        detail: "Toggle UI icons",
-        action: toggleProductIcons,
       },
       {
         label: "$(layout) Activity Bar Position",
@@ -421,7 +395,6 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.setFavoriteTheme", () => setFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.switchToFavoriteTheme", () => switchToFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.toggleAutoSwitch", () => toggleAutoSwitch(context)),
-    vscode.commands.registerCommand("duskOffice.toggleProductIcons", toggleProductIcons),
     vscode.commands.registerCommand("duskOffice.toggleActivityBarLocation", toggleActivityBarLocation),
     vscode.commands.registerCommand("duskOffice.openSettings", openDuskOfficeSettings),
     createAutoSwitchManager(context),
