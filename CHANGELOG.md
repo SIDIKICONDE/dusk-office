@@ -2,6 +2,19 @@
 
 User-facing changes only.
 
+## 0.7.17 — 3 April 2026
+
+- **Changed**: stronger Git gutter (primary stripes) and diff editor tints (lines, unchanged hints, shadow).
+- **Docs**: optional secondary SCM gutter colors via user `workbench.colorCustomizations` (not in theme JSON — schema); visual checks in `MAINTENANCE.md`.
+
+## 0.7.16 — 1 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.15 — 1 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.14 — 31 March 2026
 
 - **Changed**: version bump.

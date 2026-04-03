@@ -3,7 +3,8 @@
 Dark themes for **Visual Studio Code** and **Cursor**.
 
 **Publisher:** [DEKI](https://marketplace.visualstudio.com/publishers/dekidev)  
-**Marketplace:** [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+**Marketplace:** [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)  
+**Open VSX:** [dekidev.dusk-office](https://open-vsx.org/extension/dekidev/dusk-office)
 
 ## Overview
 
@@ -111,6 +112,22 @@ To enable the optional icon set:
 
 The icon theme lightly restyles core product icons while staying close to native VS Code shapes.
 
+### Optional: secondary Git gutter (staged)
+
+The theme JSON schema does not allow `editorGutter.*SecondaryBackground` keys. To still color **staged** stripes differently from **unstaged**, add `workbench.colorCustomizations` for your active theme label, for example **Dusk Office**:
+
+```json
+"workbench.colorCustomizations": {
+  "[Dusk Office]": {
+    "editorGutter.modifiedSecondaryBackground": "#fbbf2499",
+    "editorGutter.addedSecondaryBackground": "#22c55e99",
+    "editorGutter.deletedSecondaryBackground": "#ef444499"
+  }
+}
+```
+
+Use matching accent hexes if you use another variant.
+
 ## Recommended Variants
 
 - **Dusk Office Midnight** for a very dark, focused setup
@@ -180,3 +197,4 @@ If GitHub does not show them immediately, open the local files from the reposito
 
 - GitHub: [SIDIKICONDE/dusk-office](https://github.com/SIDIKICONDE/dusk-office)
 - Marketplace: [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+- Open VSX: [dekidev.dusk-office](https://open-vsx.org/extension/dekidev/dusk-office)

@@ -67,6 +67,9 @@ function buildExtended(p) {
     "editorCursor.foreground": accentHi,
     "editorLineNumber.foreground": A(fg, "55"),
     "editorLineNumber.activeForeground": accentHi,
+    "editorGutter.modifiedBackground": A(warning, "cc"),
+    "editorGutter.addedBackground": A(inserted, "cc"),
+    "editorGutter.deletedBackground": A(removed, "cc"),
     "editor.selectionBackground": A(accent, "44"),
     "editor.selectionHighlightBackground": A(accentHi, "22"),
     "editor.selectionHighlightBorder": A(accentHi, "2a"),
@@ -169,12 +172,14 @@ function buildExtended(p) {
     "minimap.foregroundOpacity": "#ffffff88",
 
     "diffEditor.border": A(border, "44"),
-    "diffEditor.insertedTextBackground": A(inserted, "22"),
-    "diffEditor.insertedTextBorder": A(inserted, "2a"),
-    "diffEditor.removedTextBackground": A(removed, "22"),
-    "diffEditor.removedTextBorder": A(removed, "2a"),
-    "diffEditor.insertedLineBackground": A(inserted, "18"),
-    "diffEditor.removedLineBackground": A(removed, "18"),
+    "diffEditor.insertedTextBackground": A(inserted, "2a"),
+    "diffEditor.insertedTextBorder": A(inserted, "33"),
+    "diffEditor.removedTextBackground": A(removed, "2a"),
+    "diffEditor.removedTextBorder": A(removed, "33"),
+    "diffEditor.insertedLineBackground": A(inserted, "22"),
+    "diffEditor.removedLineBackground": A(removed, "22"),
+    "diffEditor.unchangedCodeBackground": A(panel, "2a"),
+    "diffEditor.unchangedRegionShadow": "#00000088",
     "diffEditor.move.border": A(purple, "44"),
     "diffEditor.moveActive.border": A(accentHi, "55"),
 
@@ -578,6 +583,21 @@ const PALETTES = {
   },
 };
 
+/** Retirer avant fusion pour que `buildExtended` réapplique les valeurs à jour. */
+const GIT_DIFF_GUTTER_REFRESH = new Set([
+  "editorGutter.modifiedBackground",
+  "editorGutter.addedBackground",
+  "editorGutter.deletedBackground",
+  "diffEditor.insertedTextBackground",
+  "diffEditor.insertedTextBorder",
+  "diffEditor.removedTextBackground",
+  "diffEditor.removedTextBorder",
+  "diffEditor.insertedLineBackground",
+  "diffEditor.removedLineBackground",
+  "diffEditor.unchangedCodeBackground",
+  "diffEditor.unchangedRegionShadow",
+]);
+
 function main() {
   const files = fs
     .readdirSync(themesDir)
@@ -597,6 +617,14 @@ function main() {
     const full = path.join(themesDir, file);
     const raw = fs.readFileSync(full, "utf8");
     const theme = JSON.parse(raw);
+    for (const k of GIT_DIFF_GUTTER_REFRESH) delete theme.colors[k];
+    for (const k of [
+      "editorGutter.modifiedSecondaryBackground",
+      "editorGutter.addedSecondaryBackground",
+      "editorGutter.deletedSecondaryBackground",
+    ]) {
+      delete theme.colors[k];
+    }
     const extended = buildExtended(palette);
     theme.colors = { ...extended, ...theme.colors };
     fs.writeFileSync(full, JSON.stringify(theme, null, 2) + "\n", "utf8");

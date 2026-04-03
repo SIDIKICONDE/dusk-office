@@ -29,7 +29,16 @@ npm run validate
 
 Checks JSON, `include` paths, and `contributes.themes` in `package.json`.
 
+## Visual checks (Git + diff)
+
+Before a release, spot-check in the editor:
+
+1. **Gutter**: open a tracked file, change lines — modified (amber) and added (green) bars should read clearly on the gutter.
+2. **Diff**: open a file diff from SCM — inserted / removed line backgrounds should be easy to see.
+
 ## Marketplace publishing
+
+Two registries: **Visual Studio Marketplace** (`vsce`) and **Open VSX** (`ovsx`). Publish both if you want VS Code and Cursor-style clients to see the same version.
 
 - **README screenshots**: the Extensions **Details** webview only keeps `img` sources with **`https:`** (relative `images/…` links are dropped by the markdown sanitizer). The README therefore uses **full `raw.githubusercontent.com/…` URLs**. Those files must exist on the **`main`** branch (commit + push `images/*.png`). If the GitHub repo is **private**, anonymous `raw` URLs return 404 for other machines — use a **public** repo for the theme sources, or host the PNGs on another HTTPS URL and update the README. `package.json` includes **`repository`** so `vsce` can validate links; `npm run package` is plain `vsce package --no-dependencies`.
 - **GitHub Actions** (push these files to GitHub or workflows do nothing remotely)
@@ -63,10 +72,25 @@ Checks JSON, `include` paths, and `contributes.themes` in `package.json`.
 - **Manual publish** (without Actions):
 
   ```bash
-  npx @vscode/vsce login deki
+  npx @vscode/vsce login dekidev
   npm run package
   npx @vscode/vsce publish --no-dependencies
   ```
+
+### Open VSX (Cursor and other Open VSX clients)
+
+- **One-time**: [Eclipse account](https://accounts.eclipse.org), **Publisher Agreement**, and a **namespace** on [open-vsx.org](https://open-vsx.org) (e.g. `dekidev`). Same extension id as in `package.json` (`name` / publisher).
+- **Token**: create a **personal access token** in your Open VSX profile — **not** `VSCE_PAT` (Azure DevOps).
+- **Publish** from the repo root after a successful `package` (or rely on `package.json` + `files` as `ovsx` does):
+
+  ```bash
+  npm run package
+  npx ovsx publish -p <OVSX_PAT>
+  ```
+
+  Or set **`OVSX_PAT`** in the environment and run `npx ovsx publish`. See [Publishing extensions](https://github.com/eclipse/openvsx/wiki/Publishing-Extensions).
+
+- **CI**: optional second job with secret **`OVSX_PAT`** mirroring the `marketplace` job; keep versions in sync with `vsce publish`.
 
 ## Default settings (`configurationDefaults`)
 
