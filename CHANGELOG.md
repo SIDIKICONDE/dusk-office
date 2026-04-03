@@ -2,71 +2,13 @@
 
 User-facing changes only.
 
-## 0.7.33 — 3 April 2026
+## 0.7.34 — 3 April 2026
 
-- **Changed**: version bump.
-
-## 0.7.32 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.31 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.30 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.29 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.28 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.27 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.26 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.25 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.24 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.23 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.22 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.21 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.20 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.19 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.18 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.17 — 3 April 2026
+- **Changed**: removed all custom icon themes (Product Icons and File Icons).
+- **Changed**: Material Icon Theme is now installed automatically as an extension pack for file/folder icons.
+- **Removed**: `Dusk Office: Toggle Icons` command.
+- **Removed**: fantasticon and @vscode/codicons dependencies.
+- **Docs**: updated README, LICENSE, and MAINTENANCE.md to reflect icon changes.
 
 - **Changed**: stronger Git gutter (primary stripes) and diff editor tints (lines, unchanged hints, shadow).
 - **Docs**: optional secondary SCM gutter colors via user `workbench.colorCustomizations` (not in theme JSON — schema); visual checks in `MAINTENANCE.md`.

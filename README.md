@@ -18,7 +18,6 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 
 - Dark themes for daily work
 - Cohesive editor and workbench styling
-- **Material Icon Theme** included for file icons
 - Control Center for quick theme actions
 - Auto switch by hour
 - Favorite theme on startup
@@ -75,7 +74,7 @@ The extension also ships with editor-friendly defaults such as semantic highligh
 
 ### Control Center
 
-Open the Command Palette and run `Dusk Office: Control Center` to:
+Open the Command Palette and run `Dusk Office: Control Center`, or use the status bar entry when enabled, to:
 
 - switch theme variants
 - go back to the previous theme
@@ -84,15 +83,6 @@ Open the Command Palette and run `Dusk Office: Control Center` to:
 - check the saved workspace theme
 - toggle activity bar position
 - open settings
-
-### Extra Theme Tools
-
-`Dusk Office` also includes:
-
-- auto switch between light and dark variants by hour
-- optional favorite theme restore on startup
-- workspace theme memory for different projects
-- a status bar button that opens the Control Center
 
 ### Settings
 
@@ -106,8 +96,6 @@ Available extension settings:
 - `duskOffice.autoSwitch.darkTheme`
 - `duskOffice.autoSwitch.lightHour`
 - `duskOffice.autoSwitch.darkHour`
-
-For Explorer file/folder icons, this extension installs **Material Icon Theme** (as an extension pack).
 
 ### Optional: secondary Git gutter (staged)
 
@@ -192,9 +180,7 @@ If GitHub does not show them immediately, open the local files from the reposito
 
 ## Repository
 
-- GitHub: [SIDIKICONDE/dusk-office](https://github.com/SIDIKICONDE/dusk-office)
-- Marketplace: [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
-- Open VSX: [dekidev.dusk-office](https://open-vsx.org/extension/dekidev/dusk-office)
+- Source: [SIDIKICONDE/dusk-office](https://github.com/SIDIKICONDE/dusk-office)
 
 ## Author
 
