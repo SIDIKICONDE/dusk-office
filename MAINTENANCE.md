@@ -69,13 +69,24 @@ Internal guide for theme rebuilds and releases.
 
 Run once after creating or modifying themes. Handles `include`-based themes (dusk-hc, dusk-ivoire, etc.) by only adding colors.
 
+## Dusk Office Light (`build-dusk-light.mjs`)
+
+**Dusk Office Light** is **generated**, not hand-edited in `theme-sources/`.
+
+1. **Source of truth for workbench colors** is **`themes/dusk-abime.json`** (Dusk Office Abyss) after **`npm run variants:ui`** and **`npm run variants:syntax`** — so Light tracks the same structure as the dark variant.
+2. **Mechanical remap** : every `colors` hex from Abyss is passed through `remapWorkbenchColor` — dark backgrounds → light surfaces (`DARK_BG_TO_LIGHT_SURFACE`), Abyss light foregrounds → slate (`ABYSS_LIGHT_FG_TO_SLATE`), near-black → `#f1f5f9`, etc.
+3. **`include: "./dusk.json"`** : keys not present in Light’s `colors` still come from the base Dusk theme JSON.
+4. **`LIGHT_UI_OVERRIDES`** : fixed block for contrast (sidebar text, title bar labels on white, tooltips, Markdown preview tokens, scrollbars, focus) that the pure remap does not fix.
+5. **Syntax** : if `themes/dusk-light.json` already exists with non-empty `tokenColors` + `semanticTokenColors`, those are **preserved** (curated light syntax); otherwise they are copied from Abyss.
+6. **Ivory** : `npm run build:ivoire` reads the output of step 5–6 and remaps to warm paper tones — edit Light first, then regen Ivory.
+
 ## Themes outside the dark pipeline
 
 | File | Role |
 |------|------|
 | `themes/dusk.json` | Empty base (schema, dark type); `include` anchor. |
 | `themes/dusk-hc.json` | **`theme-sources/dusk-hc.json`** → **`npm run build:hc`** copies to `themes/`. `include` Abyss + HC overrides: selection (`#264f78` + white text), **minimap** markers, **inline chat** / **inline edit**, **peek** view, **notebook** cell chrome, **editorOverviewRuler** inline-chat markers, **list** focus outline, **text** links. See README *High Contrast — contrast targets* for WCAG-oriented pairs. |
-| `themes/dusk-light.json` | Built by **`npm run build:light`** from Abyss. |
+| `themes/dusk-light.json` | Built by **`npm run build:light`** (`scripts/build-dusk-light.mjs`) — see **Dusk Office Light** below. |
 | `themes/dusk-ivoire.json` | Built by **`npm run build:ivoire`** from **Dusk Office Light** (paper base **#F6EEDE**). |
 | `themes/dusk-ivoire-sombre.json` | Built by **`npm run build:ivoire-sombre`** from **Dusk Office Ash** (warm dark palette, pairs with Ivory). |
 

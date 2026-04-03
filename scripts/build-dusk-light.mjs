@@ -1,7 +1,35 @@
 #!/usr/bin/env node
 /**
- * Writes themes/dusk-light.json from dusk-abime.json (dark palette -> light).
- * Re-run after major changes to Dusk Office Abyss.
+ * Dusk Office Light — génération de `themes/dusk-light.json`
+ *
+ * Principe
+ * --------
+ * Le thème clair n’est pas édité à la main couleur par couleur : il est **dérivé**
+ * de **Dusk Office Abyss** (`themes/dusk-abime.json`), lui-même produit par le
+ * pipeline sombre (`theme:sources` → sync → `variants:ui` → `variants:syntax`).
+ * Ainsi Light reste **aligné** sur la même grammaire de couleurs qu’Abyss, avec
+ * des surfaces et des textes adaptés au fond clair.
+ *
+ * Étapes
+ * ------
+ * 1. Charger Abyss (JSON complet : `colors`, `tokenColors`, `semanticTokenColors`).
+ * 2. Pour chaque entrée de `colors`, remapper les hex : fonds très sombres → gris /
+ *    blancs cassés ; teintes « texte clair Abyss » (#cfe8f0…) → texte ardoise ;
+ *    ombres noires → gris ; très faible luminance → fallback clair.
+ * 3. Construire le thème : `type: "light"`, `include: "./dusk.json"` (hérite des
+ *    clés non surchargées du socle Dusk), `colors` = résultat du remap.
+ * 4. Syntaxe : si `themes/dusk-light.json` existe déjà avec des `tokenColors` /
+ *    `semanticTokenColors` non vides, les **réutiliser** (affinages manuels ou
+ *    itérations précédentes) ; sinon copier celles d’Abyss.
+ * 5. Appliquer `LIGHT_UI_OVERRIDES` : contrastes UI (sidebar, tabs, titleBar,
+ *    tooltips, Markdown preview, etc.) qui ne sortent pas correctement du seul
+ *    remap mécanique.
+ * 6. Écrire `themes/dusk-light.json`.
+ *
+ * Quand lancer
+ * ------------
+ * `npm run build:light` — idéalement après `variants:ui` et `variants:syntax`
+ * (voir `make:full`). Ivory (`build-dusk-ivoire.mjs`) part ensuite de ce fichier.
  */
 import fs from "fs";
 import path from "path";
@@ -9,9 +37,11 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
+const ABYSS_PATH = path.join(root, "themes", "dusk-abime.json");
+const LIGHT_OUT_PATH = path.join(root, "themes", "dusk-light.json");
 
-/** Very dark #RRGGBB bases -> light surfaces */
-const DARK_BG_TO_LIGHT = {
+/** Fonds sombres typiques d’Abyss (#RRGGBB) → surfaces claires */
+const DARK_BG_TO_LIGHT_SURFACE = {
   "000000": "#e2e8f0",
   "02060c": "#e8edf4",
   "030810": "#f1f5f9",
@@ -27,8 +57,11 @@ const DARK_BG_TO_LIGHT = {
   "2d5a78": "#64748b",
 };
 
-/** Texte / icones clairs illisibles sur fond blanc (#RRGGBB ou #RRGGBBAA) */
-const LIGHT_FG_TO_DARK = {
+/**
+ * Texte / icônes clairs d’Abyss (#cfe8f0 + variantes alpha) → lisibles sur blanc.
+ * Clés = rgb(+aa) en minuscules, sans #.
+ */
+const ABYSS_LIGHT_FG_TO_SLATE = {
   cfe8f0: "#0f172a",
   cfe8f0aa: "#334155aa",
   cfe8f0cc: "#334155cc",
@@ -40,45 +73,48 @@ const LIGHT_FG_TO_DARK = {
   cfe8f012: "#33415512",
 };
 
-function luminance6(rgb) {
-  const r = parseInt(rgb.slice(0, 2), 16) / 255;
-  const g = parseInt(rgb.slice(2, 4), 16) / 255;
-  const b = parseInt(rgb.slice(4, 6), 16) / 255;
+function srgbLuminance(rgb6) {
+  const r = parseInt(rgb6.slice(0, 2), 16) / 255;
+  const g = parseInt(rgb6.slice(2, 4), 16) / 255;
+  const b = parseInt(rgb6.slice(4, 6), 16) / 255;
   const lin = (v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
-  const R = lin(r),
-    G = lin(g),
-    B = lin(b);
-  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 }
 
-/** @param {string} s */
-function mapHex(s, key) {
-  if (typeof s !== "string" || !s.startsWith("#")) return s;
-  const h = s.slice(1);
-  if (h.length !== 6 && h.length !== 8) return s;
+/**
+ * @param {string} value
+ * @param {string} colorKey clé `colors` (pour règles contextuelles, ex. shadow)
+ */
+function remapWorkbenchColor(value, colorKey) {
+  if (typeof value !== "string" || !value.startsWith("#")) return value;
+  const h = value.slice(1);
+  if (h.length !== 6 && h.length !== 8) return value;
   const rgb = h.slice(0, 6).toLowerCase();
-  const a = h.length === 8 ? h.slice(6).toLowerCase() : "";
-  const fullLower = (rgb + a).toLowerCase();
-  if (LIGHT_FG_TO_DARK[fullLower]) return LIGHT_FG_TO_DARK[fullLower];
+  const alpha = h.length === 8 ? h.slice(6).toLowerCase() : "";
+  const rgbWithAlpha = (rgb + alpha).toLowerCase();
 
-  if (key.includes("shadow") && rgb === "000000") return "#64748b" + (a || "44");
+  if (ABYSS_LIGHT_FG_TO_SLATE[rgbWithAlpha]) return ABYSS_LIGHT_FG_TO_SLATE[rgbWithAlpha];
 
-  const rep = DARK_BG_TO_LIGHT[rgb];
-  if (rep) {
-    const out = rep.slice(1);
-    return "#" + out + (a || "");
+  if (colorKey.includes("shadow") && rgb === "000000") return "#64748b" + (alpha || "44");
+
+  const surface = DARK_BG_TO_LIGHT_SURFACE[rgb];
+  if (surface) {
+    const body = surface.slice(1);
+    return "#" + body + (alpha || "");
   }
 
-  if (luminance6(rgb) < 0.08 && rgb !== "0a0a0a" && rgb !== "1e1e1e") {
-    const fallback = "#f1f5f9";
-    return "#" + fallback.slice(1) + (a || "");
+  if (srgbLuminance(rgb) < 0.08 && rgb !== "0a0a0a" && rgb !== "1e1e1e") {
+    return "#f1f5f9" + (alpha || "");
   }
 
-  return s;
+  return value;
 }
 
-/** UI + syntax contrast (muted text, scrollbars, focus) after abyss→light mapping */
-const LIGHT_UI_CONTRAST_COLORS = {
+/**
+ * Surcharges UI / Markdown preview / titleBar / tooltip après le remap global.
+ * Sans cela, `include` dusk.json laisserait certains textes ou bordures illisibles.
+ */
+const LIGHT_UI_OVERRIDES = {
   descriptionForeground: "#334155dd",
   "icon.foreground": "#334155eb",
   "widget.border": "#4d5a6b73",
@@ -99,10 +135,12 @@ const LIGHT_UI_CONTRAST_COLORS = {
   "scrollbarSlider.background": "#94a3b88f",
   "scrollbarSlider.hoverBackground": "#64748bbb",
   focusBorder: "#0ea5e9b3",
-  /** abyss palette omits this; without it, included dusk.json leaves sidebar text too light */
   "sideBar.foreground": "#1e293b",
-
-  // Markdown preview (cohérent avec surfaces claires)
+  "titleBar.activeForeground": "#0f172a",
+  "titleBar.inactiveForeground": "#64748b",
+  "tooltip.background": "#f8fafcee",
+  "tooltip.foreground": "#0f172a",
+  "tooltip.border": "#cbd5e1",
   "textLink.foreground": "#0284c7",
   "textLink.activeForeground": "#0369a1",
   "textBlockQuote.background": "#f1f5f9",
@@ -118,67 +156,79 @@ const LIGHT_UI_CONTRAST_COLORS = {
   "markdownAlert.caution.foreground": "#dc2626",
 };
 
-/** @param {unknown} out */
-function applyLightContrast(out) {
-  Object.assign(out.colors, LIGHT_UI_CONTRAST_COLORS);
-  const sem = out.semanticTokenColors;
+/** @param {Record<string, string>} abyssColors */
+function mapAbyssColorsToLight(abyssColors) {
+  /** @type {Record<string, string>} */
+  const out = {};
+  for (const [key, val] of Object.entries(abyssColors)) {
+    out[key] = typeof val === "string" ? remapWorkbenchColor(val, key) : val;
+  }
+  return out;
+}
+
+/** @param {unknown} theme */
+function applyLightUiOverrides(theme) {
+  if (!theme.colors || typeof theme.colors !== "object") return;
+  Object.assign(theme.colors, LIGHT_UI_OVERRIDES);
+
+  const sem = theme.semanticTokenColors;
   if (sem && typeof sem === "object") {
-    if (sem.comment && typeof sem.comment === "object")
-      sem.comment.foreground = "#475569";
+    if (sem.comment && typeof sem.comment === "object") sem.comment.foreground = "#475569";
     if (typeof sem.variable === "string") sem.variable = "#1e293b";
   }
-  const tokens = out.tokenColors;
+
+  const tokens = theme.tokenColors;
   if (!Array.isArray(tokens)) return;
   for (const block of tokens) {
     const scopes = block.scope;
     const sc = Array.isArray(scopes) ? scopes.join(" ") : scopes;
-    if (typeof sc === "string" && sc.includes("comment")) {
-      if (block.settings && typeof block.settings === "object")
-        block.settings.foreground = "#475569";
+    if (typeof sc === "string" && sc.includes("comment") && block.settings && typeof block.settings === "object") {
+      block.settings.foreground = "#475569";
     }
   }
 }
 
-/** Preserves curated light syntax; UI colors still come from abyss mapping. */
-function readExistingLightSyntax() {
+/**
+ * Garde la coloration syntaxique déjà curée dans dusk-light.json si présente,
+ * sinon reprend Abyss (première génération).
+ */
+function loadSyntaxLayerFromExistingLightOrAbyss(abyssTheme) {
   try {
-    const p = path.join(root, "themes/dusk-light.json");
-    const prev = JSON.parse(fs.readFileSync(p, "utf8"));
-    if (Array.isArray(prev.tokenColors) && prev.tokenColors.length && prev.semanticTokenColors)
+    const raw = fs.readFileSync(LIGHT_OUT_PATH, "utf8");
+    const prev = JSON.parse(raw);
+    if (Array.isArray(prev.tokenColors) && prev.tokenColors.length && prev.semanticTokenColors) {
       return {
         tokenColors: structuredClone(prev.tokenColors),
         semanticTokenColors: structuredClone(prev.semanticTokenColors),
       };
+    }
   } catch {
-    /* first run or invalid file */
+    /* fichier absent ou invalide */
   }
-  return null;
+  return {
+    tokenColors: structuredClone(abyssTheme.tokenColors),
+    semanticTokenColors: structuredClone(abyssTheme.semanticTokenColors),
+  };
 }
 
 function main() {
-  const abime = JSON.parse(fs.readFileSync(path.join(root, "themes/dusk-abime.json"), "utf8"));
-  const existingSyntax = readExistingLightSyntax();
-  /** @type {Record<string, string>} */
-  const colors = {};
-  for (const [k, v] of Object.entries(abime.colors || {})) {
-    colors[k] = typeof v === "string" ? mapHex(v, k) : v;
-  }
+  const abyss = JSON.parse(fs.readFileSync(ABYSS_PATH, "utf8"));
+  const syntax = loadSyntaxLayerFromExistingLightOrAbyss(abyss);
 
-  const out = {
+  const theme = {
     $schema: "vscode://schemas/color-theme",
     name: "Dusk Office Light",
     type: "light",
     include: "./dusk.json",
-    colors,
-    tokenColors: existingSyntax?.tokenColors ?? structuredClone(abime.tokenColors),
-    semanticTokenColors: existingSyntax?.semanticTokenColors ?? structuredClone(abime.semanticTokenColors),
+    colors: mapAbyssColorsToLight(abyss.colors || {}),
+    tokenColors: syntax.tokenColors,
+    semanticTokenColors: syntax.semanticTokenColors,
   };
 
-  applyLightContrast(out);
+  applyLightUiOverrides(theme);
 
-  const dest = path.join(root, "themes/dusk-light.json");
-  fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");
-  console.log("OK", dest, Object.keys(colors).length, "couleurs");
+  fs.writeFileSync(LIGHT_OUT_PATH, JSON.stringify(theme, null, 2) + "\n", "utf8");
+  console.log("OK", LIGHT_OUT_PATH, Object.keys(theme.colors).length, "couleurs");
 }
 
 main();

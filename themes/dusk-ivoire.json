@@ -11,6 +11,9 @@
     "widget.shadow": "#6b5d4a66",
     "selection.background": "#b8765044",
     "sash.hoverBorder": "#c9896244",
+    "tooltip.background": "#f6eedeee",
+    "tooltip.foreground": "#2a2420",
+    "tooltip.border": "#8a7a6a66",
     "sideBar.background": "#efe6d8",
     "activityBar.background": "#f6eede",
     "activityBarTop.background": "#f6eede",
@@ -349,6 +352,8 @@
     "scrollbarSlider.background": "#7d6a5652",
     "scrollbarSlider.hoverBackground": "#5c4d407a",
     "sideBar.foreground": "#2a2420",
+    "titleBar.activeForeground": "#2a2420",
+    "titleBar.inactiveForeground": "#6b5d4a",
     "sideBarTitle.foreground": "#b45309"
   },
   "tokenColors": [

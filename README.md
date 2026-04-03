@@ -14,6 +14,8 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 
 **Note:** This extension installs **Material Icon Theme** (Explorer icons) and [**Markdown All in One**](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) (Markdown shortcuts, snippets, TOC, list tools) via `extensionPack` — both ship with Dusk Office. Uninstall either extension if you do not want it. Theme **colors** for the Markdown preview (`textLink`, `markdownAlert`, etc.) come from Dusk Office’s color themes.
 
+**macOS — title bar:** the **system menu bar** (Apple menu) always follows macOS appearance. The **window** title bar is switched to **custom** when a Dusk Office theme is active so it matches `titleBar.*` in the theme (native title bars often stay dark with a light editor theme). Turn off with setting **`duskOffice.titleBar.alignWithTheme`**: `false`, or set **`window.titleBarStyle`**: `native` yourself if you prefer the native bar.
+
 ## Highlights
 
 - Dark themes for daily work
@@ -49,7 +51,7 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 | **Dusk Office Nocturne** | Smooth dark variant for a calmer night workflow. |
 | **Dusk Office Finance** | Professional dark styling with restrained accents. |
 | **Dusk Office Corporate** | Clean business-oriented dark palette. |
-| **Dusk Office Light** | Cool, neutral light theme for daytime work. |
+| **Dusk Office Light** | Cool, neutral light theme for daytime work. **Built** from Dusk Office Abyss (`npm run build:light`) — mechanical light remap + UI overrides; see `MAINTENANCE.md` → *Dusk Office Light*. |
 | **Dusk Office Ivory** | Warm paper-like light theme with copper accents. |
 | **Dusk Office Dark Ivory** | Warm dark companion to Ivory with cream text. |
 | **Dusk Office High Contrast** | Stronger separation and clearer focus states. |

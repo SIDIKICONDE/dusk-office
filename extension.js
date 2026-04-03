@@ -89,6 +89,32 @@ function getStatusBarEnabled() {
   return getExtensionConfig().get("statusBar.enabled", true);
 }
 
+function getTitleBarAlignWithThemeEnabled() {
+  return getExtensionConfig().get("titleBar.alignWithTheme", true);
+}
+
+/**
+ * Native macOS title bar ignores workbench theme colors; custom draws from the color theme.
+ * configurationDefaults alone is sometimes ignored (host / user overrides) — apply at runtime.
+ */
+async function syncTitleBarStyleForDuskTheme() {
+  try {
+    if (!getTitleBarAlignWithThemeEnabled()) return;
+    if (!isDuskTheme(getCurrentTheme())) return;
+
+    const windowCfg = vscode.workspace.getConfiguration("window");
+    const inspected = windowCfg.inspect("titleBarStyle");
+    if (inspected?.globalValue === "native" || inspected?.workspaceValue === "native") {
+      return;
+    }
+    if (windowCfg.get("titleBarStyle") !== "custom") {
+      await windowCfg.update("titleBarStyle", "custom", vscode.ConfigurationTarget.Global);
+    }
+  } catch {
+    /* read-only or restricted settings in some environments */
+  }
+}
+
 function getThemeShortLabel(theme) {
   return typeof theme === "string" ? theme.replace(/^Dusk Office\s*/, "") || "Dusk" : "Theme";
 }
@@ -107,6 +133,7 @@ async function applyTheme(theme, context, source = "manual") {
     await context.globalState.update(PREVIOUS_THEME_KEY, current);
   }
   await config.update("colorTheme", theme, vscode.ConfigurationTarget.Global);
+  await syncTitleBarStyleForDuskTheme();
   if (source !== "startup") {
     await saveWorkspaceTheme(theme, context);
   }
@@ -388,6 +415,14 @@ async function initializeStartupBehavior(context) {
 
 async function activate(context) {
   context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (
+        e.affectsConfiguration("workbench.colorTheme") ||
+        e.affectsConfiguration("duskOffice.titleBar.alignWithTheme")
+      ) {
+        void syncTitleBarStyleForDuskTheme();
+      }
+    }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => setThemeVariant(context)),
     vscode.commands.registerCommand("duskOffice.switchToPreviousTheme", () => switchToPreviousTheme(context)),
@@ -400,6 +435,7 @@ async function activate(context) {
   );
   createStatusBarItem(context);
   await initializeStartupBehavior(context);
+  await syncTitleBarStyleForDuskTheme();
 }
 
 function deactivate() {}

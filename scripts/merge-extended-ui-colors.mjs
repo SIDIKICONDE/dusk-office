@@ -67,6 +67,10 @@ function buildExtended(p) {
     "selection.background": A(accent, "44"),
     "sash.hoverBorder": A(accentHi, "44"),
 
+    "tooltip.background": A(widget, "ee"),
+    "tooltip.foreground": fg,
+    "tooltip.border": A(border, "55"),
+
     "sideBar.background": panel,
     "activityBar.background": widget,
     "activityBarTop.background": widget,

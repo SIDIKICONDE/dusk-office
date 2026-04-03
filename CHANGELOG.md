@@ -8,6 +8,10 @@ User-facing changes only.
 
 ## 0.7.65 — 3 April 2026
 
+- **Changed**: **Tooltips** — `tooltip.background`, `tooltip.foreground`, `tooltip.border` définis dans les thèmes (merge UI, `dusk.json` / `theme-sources`, Light, Ivory, HC) pour éviter le fond noir par défaut sur les infobulles (ex. panneau Extensions).
+
+- **Changed**: **Title bar** — `window.titleBarStyle` is set to **custom** at runtime when a Dusk Office theme is active (`extension.js`), so the title bar follows `titleBar.*` theme colors (macOS **native** title bar often stays dark with a light theme). Optional: `duskOffice.titleBar.alignWithTheme` (default `true`); explicit `window.titleBarStyle`: `native` in User/Workspace is left unchanged.
+
 - **Removed**: variantes **Focus** (`Dusk Office … Focus`) et `npm run build:focus` — le chrome assombri était si proche des thèmes palette (surfaces déjà très sombres) que l’écart visuel ne justifiait pas onze thèmes de plus.
 
 - **Added**: optional **product icon theme** — `Dusk Office · Product` (`contributes.productIconThemes`), same extension as the color themes; a small set of activity-bar / folding glyphs uses the Microsoft sample `vscode-10.woff` font, with all other icons resolved from the default Codicons mapping.

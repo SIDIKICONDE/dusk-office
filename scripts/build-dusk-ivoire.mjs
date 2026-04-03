@@ -149,6 +149,9 @@ const IVOIRE_UI_CONTRAST = {
   "scrollbarSlider.background": "#7d6a5652",
   "scrollbarSlider.hoverBackground": "#5c4d407a",
   "sideBar.foreground": "#2a2420",
+  "tooltip.background": "#f6eedeee",
+  "tooltip.foreground": "#2a2420",
+  "tooltip.border": "#8a7a6a66",
 };
 
 /** @param {unknown} out */

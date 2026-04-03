@@ -147,7 +147,8 @@
       "workbench.tree.renderIndentGuides": "always",
       "workbench.tree.indent": 14,
       "explorer.decorations.badges": true,
-      "explorer.decorations.colors": true
+      "explorer.decorations.colors": true,
+      "window.titleBarStyle": "custom"
     },
     "configuration": {
       "title": "Dusk Office",
@@ -166,6 +167,11 @@
           "type": "boolean",
           "default": true,
           "description": "Show the Dusk Office status bar button."
+        },
+        "duskOffice.titleBar.alignWithTheme": {
+          "type": "boolean",
+          "default": true,
+          "description": "When a Dusk Office color theme is active, set window.titleBarStyle to custom so the title bar follows theme colors (fixes a dark native title bar on macOS with a light theme). Set false to leave the system title bar alone. Does not override if you explicitly set window.titleBarStyle to native in User or Workspace settings."
         },
         "duskOffice.autoSwitch.enabled": {
           "type": "boolean",
