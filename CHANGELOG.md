@@ -2,6 +2,10 @@
 
 User-facing changes only.
 
+## 0.7.43 — 3 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.42 — 3 April 2026
 
 - **Added**: complete UI color coverage — titleBar, sidebar, panel, notifications, status bar, activity bar, tabs, breadcrumbs, lists, menus, command center, quick input, buttons, badges, scrollbar.

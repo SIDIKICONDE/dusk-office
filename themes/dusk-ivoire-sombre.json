@@ -113,7 +113,7 @@
     "diffEditor.removedTextBorder": "#ef444433",
     "diffEditor.insertedLineBackground": "#22c55e22",
     "diffEditor.removedLineBackground": "#ef444422",
-    "diffEditor.unchangedCodeBackground": "#0101022a",
+    "diffEditor.unchangedCodeBackground": "#2420192a",
     "diffEditor.unchangedRegionShadow": "#00000088",
     "diffEditor.move.border": "#c084fc44",
     "diffEditor.moveActive.border": "#22d3ee55",
