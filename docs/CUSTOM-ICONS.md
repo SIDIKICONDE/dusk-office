@@ -1,10 +1,10 @@
 # Custom Icons Guide for Dusk Office
 
-This guide explains how to create custom icons for both **Product Icon Theme** (UI icons) and **File Icon Theme** (Explorer icons).
+This guide explains how to create custom icons for the **Product Icon Theme** (UI icons).
 
 ## Table of Contents
 - [Product Icon Theme (UI Icons)](#product-icon-theme-ui-icons)
-- [File Icon Theme (Explorer Icons)](#file-icon-theme-explorer-icons)
+- [File Icons (Explorer Icons)](#file-icons-explorer-icons)
 
 ---
 
@@ -82,62 +82,15 @@ VS Code expects specific Unicode codepoints for each icon. The mapping is:
 
 ---
 
-## File Icon Theme (Explorer Icons)
+## File Icons (Explorer Icons)
 
-File Icon Themes change the icons for files and folders in the Explorer.
+Explorer file/folder icons are provided by **Material Icon Theme**.
 
 ### Current Status
-- **Theme file**: `fileicons/dusk-office-file-icon-theme.json`
-- **Icons directory**: `fileicons/icons/`
-- **Icon count**: 92 SVG icons generated
 
-### How It Works
+- **Recommended extension**: `PKief.material-icon-theme`
 
-The theme maps:
-- **File extensions** → icons (e.g., `.js` → `javascript.svg`)
-- **File names** → icons (e.g., `package.json` → `npm.svg`)
-- **Language IDs** → icons (e.g., `typescript` → `typescript.svg`)
-
-### Regenerating Icons
-
-Run the generation script:
-```bash
-node scripts/generate-file-icons.mjs
-```
-
-This script:
-1. Reads the icon definitions from `dusk-office-file-icon-theme.json`
-2. Generates SVG files with the Dusk Office color palette
-3. Saves them to `fileicons/icons/`
-
-### Customizing File Icons
-
-1. **Edit the script**: `scripts/generate-file-icons.mjs`
-   - Modify the `colors` object to change the palette
-   - Modify individual icon generators for custom shapes
-
-2. **Add new icons**:
-   - Add a new generator function in the `icons` object
-   - Add the mapping in `dusk-office-file-icon-theme.json`
-
-3. **Regenerate**: `node scripts/generate-file-icons.mjs`
-
-### Color Palette
-
-```javascript
-const colors = {
-  primary: '#c586c0',      // Mauve/rosé (main accent)
-  secondary: '#569cd6',    // Blue
-  tertiary: '#dcdcaa',     // Yellow
-  quaternary: '#4ec9b0',   // Cyan
-  quinary: '#ce9178',      // Orange
-  senary: '#d16969',       // Red
-  septenary: '#6a9955',    // Green
-  octonary: '#808080',     // Gray
-  folder: '#dcb67a',       // Gold (folders)
-  file: '#cccccc',         // Light gray (files)
-};
-```
+This extension is listed in `extensionPack`, so it will be installed together with Dusk Office.
 
 ---
 
@@ -146,7 +99,6 @@ const colors = {
 | Task | Command |
 |------|---------|
 | Generate product icons JSON | `node scripts/generate-icons.mjs` |
-| Generate file icons SVGs | `node scripts/generate-file-icons.mjs` |
 | Build extension | `make package` |
 | Install extension | `make install-vsix` |
 | Full rebuild + install | `make reinstall` |

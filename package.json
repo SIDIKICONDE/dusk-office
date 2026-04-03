@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.24",
+  "version": "0.7.29",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -23,6 +23,9 @@
   },
   "categories": [
     "Themes"
+  ],
+  "extensionPack": [
+    "PKief.material-icon-theme"
   ],
   "keywords": [
     "theme",
@@ -117,13 +120,6 @@
         "label": "Dusk Office Corporate",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-corporate.json"
-      }
-    ],
-    "iconThemes": [
-      {
-        "id": "dusk-office-file-icons",
-        "label": "Dusk Office File Icons",
-        "path": "./fileicons/dusk-office-file-icon-theme.json"
       }
     ],
     "productIconThemes": [
@@ -264,11 +260,6 @@
       {
         "command": "duskOffice.toggleProductIcons",
         "title": "Dusk Office: Toggle Icons",
-        "category": "Dusk Office"
-      },
-      {
-        "command": "duskOffice.toggleFileIcons",
-        "title": "Dusk Office: Toggle File Icons",
         "category": "Dusk Office"
       },
       {

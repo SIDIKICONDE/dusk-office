@@ -8,7 +8,7 @@ Dark themes for **Visual Studio Code** and **Cursor**.
 
 ## Overview
 
-`Dusk Office` is a theme pack with clean contrast, readable syntax, and an optional icon theme.
+`Dusk Office` is a theme pack with clean contrast, readable syntax, and an optional product icon theme.
 
 It includes dark, light, warm, and high-contrast variants for daily use.
 
@@ -111,6 +111,8 @@ To enable the optional icon set:
 2. Select `Dusk Office Icons`
 
 The icon theme lightly restyles core product icons while staying close to native VS Code shapes.
+
+For Explorer file/folder icons, this extension installs **Material Icon Theme** (as an extension pack).
 
 ### Optional: secondary Git gutter (staged)
 

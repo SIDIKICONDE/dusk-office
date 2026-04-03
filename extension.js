@@ -20,7 +20,6 @@ const THEME_VARIANTS = [
 ];
 
 const PRODUCT_ICON_THEME_ID = "dusk-office-icons";
-const FILE_ICON_THEME_ID = "dusk-office-file-icons";
 const PREVIOUS_THEME_KEY = "duskOffice.previousTheme";
 const FAVORITE_THEME_KEY = "duskOffice.favoriteTheme";
 const WORKSPACE_THEME_KEY = "duskOffice.workspaceTheme";
@@ -40,10 +39,6 @@ function getCurrentTheme() {
 
 function areDuskIconsEnabled() {
   return getWorkbenchConfig().get("productIconTheme") === PRODUCT_ICON_THEME_ID;
-}
-
-function areDuskFileIconsEnabled() {
-  return getWorkbenchConfig().get("iconTheme") === FILE_ICON_THEME_ID;
 }
 
 function getActivityBarLocation() {
@@ -198,20 +193,6 @@ async function toggleProductIcons() {
   );
 }
 
-async function toggleFileIcons() {
-  const config = getWorkbenchConfig();
-  const current = config.get("iconTheme");
-  const enable = current !== FILE_ICON_THEME_ID;
-  await config.update(
-    "iconTheme",
-    enable ? FILE_ICON_THEME_ID : null,
-    vscode.ConfigurationTarget.Global,
-  );
-  void vscode.window.showInformationMessage(
-    enable ? "File icons: enabled." : "File icons: default.",
-  );
-}
-
 async function toggleActivityBarLocation() {
   const config = getWorkbenchConfig();
   const current = getActivityBarLocation();
@@ -268,7 +249,6 @@ async function toggleAutoSwitch(context) {
 async function openControlCenter(context) {
   const currentTheme = getCurrentTheme();
   const iconsEnabled = areDuskIconsEnabled();
-  const fileIconsEnabled = areDuskFileIconsEnabled();
   const activityBarLocation = getActivityBarLocation();
   const previousTheme = context.globalState.get(PREVIOUS_THEME_KEY);
   const favoriteTheme = context.globalState.get(FAVORITE_THEME_KEY);
@@ -325,12 +305,6 @@ async function openControlCenter(context) {
         description: iconsEnabled ? "Current: Dusk icons" : "Current: default icons",
         detail: "Toggle UI icons",
         action: toggleProductIcons,
-      },
-      {
-        label: fileIconsEnabled ? "$(file) Disable File Icons" : "$(file) Enable File Icons",
-        description: fileIconsEnabled ? "Current: Dusk file icons" : "Current: default file icons",
-        detail: "Toggle file icons",
-        action: toggleFileIcons,
       },
       {
         label: "$(layout) Activity Bar Position",
@@ -448,7 +422,6 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.switchToFavoriteTheme", () => switchToFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.toggleAutoSwitch", () => toggleAutoSwitch(context)),
     vscode.commands.registerCommand("duskOffice.toggleProductIcons", toggleProductIcons),
-    vscode.commands.registerCommand("duskOffice.toggleFileIcons", toggleFileIcons),
     vscode.commands.registerCommand("duskOffice.toggleActivityBarLocation", toggleActivityBarLocation),
     vscode.commands.registerCommand("duskOffice.openSettings", openDuskOfficeSettings),
     createAutoSwitchManager(context),
