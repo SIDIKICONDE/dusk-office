@@ -7,6 +7,9 @@ package-lock.json
 Makefile
 MAINTENANCE.md
 
+# Local theme preview samples (not shipped)
+samples/**
+
 # Extra exclusions
 .vscode-test/**
 **/*.map

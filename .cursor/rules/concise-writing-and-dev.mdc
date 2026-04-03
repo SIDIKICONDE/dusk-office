@@ -1,8 +1,6 @@
 ---
-description: Keep AI output concise and aligned with Dusk Office development
 alwaysApply: true
 ---
-
 # Concise Writing And Development
 
 - Default to short, direct wording in UI, docs, changelogs, comments, commit text, and Marketplace copy.

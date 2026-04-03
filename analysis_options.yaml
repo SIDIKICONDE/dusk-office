@@ -1,0 +1,7 @@
+# This file excludes sample files from Dart analysis.
+# The samples/ folder contains code examples for syntax highlighting only,
+# not runnable Flutter projects.
+
+analyzer:
+  exclude:
+    - "samples/**"

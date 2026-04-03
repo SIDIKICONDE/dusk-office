@@ -413,7 +413,7 @@
       "italic": true
     },
     "comment": {
-      "foreground": "#166534",
+      "foreground": "#3d9f65",
       "italic": true
     },
     "*.async": {
@@ -435,14 +435,14 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#166534",
+        "foreground": "#3d9f65",
         "fontStyle": "italic"
       }
     },
     {
       "scope": "comment.line.double-slash",
       "settings": {
-        "foreground": "#166534",
+        "foreground": "#3d9f65",
         "fontStyle": "italic"
       }
     },

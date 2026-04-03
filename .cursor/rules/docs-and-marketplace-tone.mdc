@@ -1,9 +1,6 @@
 ---
-description: Keep docs and Marketplace copy short, plain, and consistent
-globs: {README.md,CHANGELOG.md,MAINTENANCE.md,package.json,extension.js,.vscodeignore,Makefile}
-alwaysApply: false
+alwaysApply: true
 ---
-
 # Docs And Marketplace Tone
 
 - Write short, plain, factual text.

@@ -2,6 +2,22 @@
 
 User-facing changes only.
 
+## 0.7.38 — 3 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.37 — 3 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.36 — 3 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.35 — 3 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.34 — 3 April 2026
 
 - **Changed**: removed all custom icon themes (Product Icons and File Icons).

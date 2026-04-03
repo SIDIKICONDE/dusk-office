@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Advanced HTML5 sample for syntax highlighting">
+  <meta name="theme-color" content="#1a1a2e">
+  
+  <title>Advanced HTML5 Sample</title>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="app.js" as="script">
+  <link rel="preconnect" href="https://api.example.com">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" media="all">
+  <link rel="stylesheet" href="print.css" media="print">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Advanced HTML5 Sample">
+  <meta property="og:description" content="Comprehensive HTML syntax showcase">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:url" content="https://example.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@example">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Advanced HTML5 Sample",
+    "description": "Comprehensive HTML syntax showcase",
+    "author": {
+      "@type": "Person",
+      "name": "Developer"
+    }
+  }
+  </script>
+  
+  <!-- Inline Critical CSS -->
+  <style>
+    :root {
+      --color-primary: #6366f1;
+      --color-secondary: #8b5cf6;
+      --color-surface: #1a1a2e;
+      --color-text: #e4e4e7;
+    }
+    
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+  </style>
+  
+  <!-- Modulepreload for ES modules -->
+  <link rel="modulepreload" href="/modules/utils.js">
+</head>
+<body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Header with Navigation -->
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <div class="nav-container">
+        <a href="/" class="logo" aria-label="Home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" fill="currentColor"/>
+          </svg>
+          <span>Brand</span>
+        </a>
+        
+        <ul role="list" class="nav-links">
+          <li><a href="/products" aria-current="page">Products</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        
+        <div class="nav-actions">
+          <button type="button" class="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-sun" aria-hidden="true"><!-- Sun icon --></svg>
+            <svg class="icon-moon" aria-hidden="true"><!-- Moon icon --></svg>
+          </button>
+          
+          <form action="/search" method="get" role="search">
+            <label for="search-input" class="visually-hidden">Search</label>
+            <input 
+              type="search" 
+              id="search-input" 
+              name="q" 
+              placeholder="Search..."
+              autocomplete="off"
+              aria-describedby="search-hint"
+            >
+            <span id="search-hint" class="visually-hidden">Press Enter to search</span>
+            <button type="submit" aria-label="Submit search">
+              <svg aria-hidden="true"><!-- Search icon --></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <h1 id="hero-title">
+          <span class="hero-subtitle">Welcome to</span>
+          <span class="hero-title-text">Advanced HTML5</span>
+        </h1>
+        
+        <p class="hero-description">
+          A comprehensive showcase of modern HTML elements, 
+          <abbr title="Accessible Rich Internet Applications">ARIA</abbr> 
+          attributes, and semantic markup patterns.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#features" class="btn btn-primary">
+            Explore Features
+            <svg aria-hidden="true"><!-- Arrow icon --></svg>
+          </a>
+          <a href="/docs" class="btn btn-secondary">
+            Documentation
+          </a>
+        </div>
+      </div>
+      
+      <picture class="hero-image">
+        <source 
+          type="image/avif" 
+          srcset="/images/hero-sm.avif 400w,
+                  /images/hero-md.avif 800w,
+                  /images/hero-lg.avif 1200w"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        >
+        <source 
+          type="image/webp" 
+          srcset="/images/hero-sm.webp 400w,
+                  /images/hero-md.webp 800w,
+                  /images/hero-lg.webp 1200w"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        >
+        <img 
+          src="/images/hero.jpg" 
+          alt="Hero image description"
+          width="1200"
+          height="800"
+          loading="eager"
+          decoding="async"
+        >
+      </picture>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" aria-labelledby="features-title">
+      <header class="section-header">
+        <h2 id="features-title">Features</h2>
+        <p class="section-description">Modern HTML5 capabilities</p>
+      </header>
+      
+      <div class="features-grid">
+        <!-- Feature Card with Article -->
+        <article class="feature-card">
+          <header>
+            <div class="feature-icon" aria-hidden="true">
+              <svg><!-- Icon --></svg>
+            </div>
+            <h3>Semantic Markup</h3>
+          </header>
+          <p>Use meaningful elements for better accessibility and SEO.</p>
+          <footer>
+            <a href="/docs/semantic" aria-describedby="feature-1-desc">
+              Learn more <span class="visually-hidden">about Semantic Markup</span>
+            </a>
+          </footer>
+        </article>
+        
+        <!-- Feature Card with Figure -->
+        <article class="feature-card">
+          <figure>
+            <img 
+              src="/images/feature-2.jpg" 
+              alt="Feature demonstration"
+              loading="lazy"
+            >
+            <figcaption>Figure 1: Feature demonstration</figcaption>
+          </figure>
+          <h3>Responsive Images</h3>
+          <p>Optimize images for all devices with srcset and sizes.</p>
+        </article>
+        
+        <!-- Feature Card with Details -->
+        <article class="feature-card">
+          <h3>Interactive Elements</h3>
+          <details open>
+            <summary>
+              <span class="summary-title">Expandable content</span>
+              <svg class="summary-icon" aria-hidden="true"><!-- Chevron --></svg>
+            </summary>
+            <div class="details-content">
+              <p>Native HTML disclosure widgets without JavaScript.</p>
+              <ul>
+                <li>No dependencies</li>
+                <li>Keyboard accessible</li>
+                <li>Screen reader friendly</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+      </div>
+    </section>
+    
+    <!-- Data Table Section -->
+    <section aria-labelledby="data-title">
+      <h2 id="data-title">Data Table</h2>
+      
+      <div class="table-container" tabindex="0" role="region" aria-label="Data table">
+        <table>
+          <caption class="visually-hidden">Product comparison table</caption>
+          <thead>
+            <tr>
+              <th scope="col">Feature</th>
+              <th scope="col">Basic</th>
+              <th scope="col">Pro</th>
+              <th scope="col">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Storage</th>
+              <td data-label="Basic">5 GB</td>
+              <td data-label="Pro">50 GB</td>
+              <td data-label="Enterprise">Unlimited</td>
+            </tr>
+            <tr>
+              <th scope="row">API Access</th>
+              <td data-label="Basic">
+                <span class="status status-no" aria-label="Not included">✗</span>
+              </td>
+              <td data-label="Pro">
+                <span class="status status-yes" aria-label="Included">✓</span>
+              </td>
+              <td data-label="Enterprise">
+                <span class="status status-yes" aria-label="Included">✓</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Support</th>
+              <td data-label="Basic">Email</td>
+              <td data-label="Pro">Priority</td>
+              <td data-label="Enterprise">24/7</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Price</th>
+              <td data-label="Basic">$9/mo</td>
+              <td data-label="Pro">$29/mo</td>
+              <td data-label="Enterprise">Custom</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+    
+    <!-- Form Section -->
+    <section aria-labelledby="form-title">
+      <h2 id="form-title">Contact Form</h2>
+      
+      <form action="/api/contact" method="post" novalidate>
+        <fieldset>
+          <legend>Personal Information</legend>
+          
+          <div class="form-group">
+            <label for="name">
+              Full Name <span class="required" aria-label="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              autocomplete="name"
+              aria-describedby="name-error"
+              pattern="^[a-zA-Z\s]{2,50}$"
+            >
+            <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">
+              Email Address <span class="required" aria-label="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              autocomplete="email"
+              aria-describedby="email-hint email-error"
+              placeholder="you@example.com"
+            >
+            <small id="email-hint" class="form-hint">
+              We'll never share your email.
+            </small>
+            <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              autocomplete="tel"
+              aria-describedby="phone-hint"
+            >
+            <small id="phone-hint" class="form-hint">
+              Optional. Format: +1 (555) 000-0000
+            </small>
+          </div>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Preferences</legend>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+              <optgroup label="General">
+                <option value="">Select a subject...</option>
+                <option value="general">General Inquiry</option>
+                <option value="feedback">Feedback</option>
+              </optgroup>
+              <optgroup label="Support">
+                <option value="technical">Technical Support</option>
+                <option value="billing">Billing Question</option>
+              </optgroup>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <fieldset>
+              <legend>Notification Preferences</legend>
+              
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-email" name="notify[]" value="email" checked>
+                <label for="notify-email">Email notifications</label>
+              </div>
+              
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-sms" name="notify[]" value="sms">
+                <label for="notify-sms">SMS notifications</label>
+              </div>
+              
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-push" name="notify[]" value="push">
+                <label for="notify-push">Push notifications</label>
+              </div>
+            </fieldset>
+          </div>
+          
+          <div class="form-group">
+            <fieldset>
+              <legend>Contact Method</legend>
+              
+              <div class="radio-group">
+                <input type="radio" id="method-email" name="method" value="email" checked>
+                <label for="method-email">Email</label>
+              </div>
+              
+              <div class="radio-group">
+                <input type="radio" id="method-phone" name="method" value="phone">
+                <label for="method-phone">Phone</label>
+              </div>
+              
+              <div class="radio-group">
+                <input type="radio" id="method-video" name="method" value="video">
+                <label for="method-video">Video Call</label>
+              </div>
+            </fieldset>
+          </div>
+        </fieldset>
+        
+        <div class="form-group">
+          <label for="message">
+            Message <span class="required" aria-label="required">*</span>
+          </label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="5"
+            required
+            minlength="10"
+            maxlength="1000"
+            aria-describedby="message-hint message-counter"
+            placeholder="How can we help you?"
+          ></textarea>
+          <div class="textarea-meta">
+            <small id="message-hint" class="form-hint">
+              10-1000 characters
+            </small>
+            <small id="message-counter" class="char-counter" aria-live="off">
+              <span id="char-count">0</span>/1000
+            </small>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="attachment">Attachment</label>
+          <input 
+            type="file" 
+            id="attachment" 
+            name="attachment"
+            accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+            multiple
+            aria-describedby="attachment-hint"
+          >
+          <small id="attachment-hint" class="form-hint">
+            Accepted: PDF, DOC, PNG, JPG (max 5MB each)
+          </small>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input 
+            type="date" 
+            id="date" 
+            name="date"
+            min="2024-01-01"
+            max="2025-12-31"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="time">Preferred Time</label>
+          <input 
+            type="time" 
+            id="time" 
+            name="time"
+            step="1800"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="budget">Budget Range</label>
+          <input 
+            type="range" 
+            id="budget" 
+            name="budget"
+            min="1000"
+            max="100000"
+            step="1000"
+            value="10000"
+            aria-describedby="budget-value"
+          >
+          <output id="budget-value" for="budget">$10,000</output>
+        </div>
+        
+        <div class="form-group">
+          <label for="url">Website</label>
+          <input 
+            type="url" 
+            id="url" 
+            name="url"
+            placeholder="https://example.com"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="color">Brand Color</label>
+          <input 
+            type="color" 
+            id="color" 
+            name="color"
+            value="#6366f1"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input 
+            type="number" 
+            id="quantity" 
+            name="quantity"
+            min="1"
+            max="100"
+            step="1"
+            value="1"
+          >
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" hidden>
+              <svg class="spinner" aria-hidden="true"><!-- Spinner --></svg>
+              Sending...
+            </span>
+          </button>
+          
+          <button type="reset" class="btn btn-secondary">Reset</button>
+          
+          <button type="button" class="btn btn-ghost" formnovalidate>
+            Save Draft
+          </button>
+        </div>
+        
+        <!-- Hidden fields -->
+        <input type="hidden" name="_token" value="csrf-token-here">
+        <input type="hidden" name="_redirect" value="/thank-you">
+        <input type="hidden" name="_honeypot" tabindex="-1" autocomplete="off">
+      </form>
+    </section>
+    
+    <!-- Dialog/Modal -->
+    <dialog id="confirm-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+      <article>
+        <header>
+          <h3 id="dialog-title">Confirm Action</h3>
+          <button type="button" class="close-btn" aria-label="Close dialog" autofocus>
+            <svg aria-hidden="true"><!-- Close icon --></svg>
+          </button>
+        </header>
+        
+        <p id="dialog-desc">Are you sure you want to proceed?</p>
+        
+        <footer>
+          <button type="button" class="btn btn-secondary" value="cancel">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" value="confirm">
+            Confirm
+          </button>
+        </footer>
+      </article>
+    </dialog>
+    
+    <!-- Progress Indicators -->
+    <section aria-labelledby="progress-title">
+      <h2 id="progress-title">Progress Indicators</h2>
+      
+      <label for="download-progress">Download Progress</label>
+      <progress id="download-progress" max="100" value="65">65%</progress>
+      
+      <label for="upload-progress">Upload Progress</label>
+      <meter 
+        id="upload-progress" 
+        min="0" 
+        max="100" 
+        low="33" 
+        high="66" 
+        optimum="100" 
+        value="75"
+      >
+        75% (high)
+      </meter>
+    </section>
+  </main>
+  
+  <!-- Sidebar -->
+  <aside role="complementary" aria-label="Sidebar">
+    <section aria-labelledby="sidebar-title">
+      <h2 id="sidebar-title">Quick Links</h2>
+      <nav aria-label="Sidebar navigation">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#data-title">Data Table</a></li>
+          <li><a href="#form-title">Contact Form</a></li>
+        </ul>
+      </nav>
+    </section>
+    
+    <!-- Widget with data-* attributes -->
+    <div 
+      class="widget" 
+      data-widget-id="12345"
+      data-widget-type="weather"
+      data-widget-config='{"units":"metric","location":"Paris"}'
+      data-widget-refresh="300000"
+    >
+      <h3>Weather</h3>
+      <p data-temperature="22" data-unit="celsius">22°C</p>
+    </div>
+  </aside>
+  
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="footer-container">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+        </ul>
+      </nav>
+      
+      <address>
+        <strong>Company Name</strong><br>
+        123 Main Street<br>
+        City, State 12345<br>
+        <a href="tel:+15551234567">+1 (555) 123-4567</a><br>
+        <a href="mailto:info@example.com">info@example.com</a>
+      </address>
+      
+      <p>
+        <small>
+          &copy; <time datetime="2024">2024</time> Company Name. 
+          All rights reserved.
+        </small>
+      </p>
+    </div>
+  </footer>
+  
+  <!-- Template for dynamic content -->
+  <template id="card-template">
+    <article class="card">
+      <img src="" alt="" loading="lazy">
+      <h3></h3>
+      <p></p>
+      <a href="" class="btn">Read more</a>
+    </article>
+  </template>
+  
+  <!-- Slot for Web Components -->
+  <template id="custom-card-template">
+    <style>
+      :host {
+        display: block;
+        border: 1px solid var(--color-border, #ccc);
+        border-radius: var(--radius, 8px);
+        padding: var(--space, 1rem);
+      }
+      
+      ::slotted(h3) {
+        margin: 0 0 var(--space, 1rem);
+      }
+      
+      ::slotted([slot="footer"]) {
+        border-top: 1px solid var(--color-border, #ccc);
+        padding-top: var(--space, 1rem);
+      }
+    </style>
+    
+    <slot name="header"></slot>
+    <slot></slot>
+    <slot name="footer"></slot>
+  </template>
+  
+  <!-- Scripts -->
+  <script src="app.js" type="module" defer></script>
+  <script nomodule src="app.legacy.js" defer></script>
+  
+  <!-- Inline script with type -->
+  <script type="module">
+    import { initApp } from '/modules/app.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+    });
+  </script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          const registration = await navigator.serviceWorker.register('/sw.js');
+          console.log('SW registered:', registration.scope);
+        } catch (error) {
+          console.error('SW registration failed:', error);
+        }
+      });
+    }
+  </script>
+  
+  <!-- Noscript fallback -->
+  <noscript>
+    <style>
+      .noscript-warning {
+        display: block;
+        padding: 1rem;
+        background: #fef3c7;
+        color: #92400e;
+        text-align: center;
+      }
+    </style>
+    <div class="noscript-warning" role="alert">
+      JavaScript is required for full functionality.
+    </div>
+  </noscript>
+</body>
+</html>

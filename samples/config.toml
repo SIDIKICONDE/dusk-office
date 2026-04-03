@@ -1,0 +1,420 @@
+# Advanced TOML: nested tables, arrays, inline tables, dates.
+
+# Basic types
+string = "value"
+string_multiline = """
+This is a
+multiline string.
+"""
+string_literal = 'C:\Users\name\path'
+string_literal_multiline = '''
+No escaping needed: \n \t
+'''
+
+integer = 42
+integer_hex = 0xDEADBEEF
+integer_oct = 0o755
+integer_bin = 0b11010110
+
+float = 3.14159
+float_exp = 1.0e+10
+float_neg_exp = 1.0e-10
+float_special_1 = inf
+float_special_2 = -inf
+float_special_3 = +nan
+
+boolean = true
+boolean_false = false
+
+odate = 2024-01-15
+otime = 10:30:00
+otime_with_offset = 10:30:00+02:00
+odatetime = 2024-01-15T10:30:00Z
+odatetime_with_offset = 2024-01-15T10:30:00+02:00
+odatetime_local = 2024-01-15T10:30:00
+
+# Arrays
+array_simple = [1, 2, 3]
+array_strings = ["red", "green", "blue"]
+array_mixed = [1, "two", 3.0]
+array_nested = [[1, 2], [3, 4]]
+array_multiline = [
+  "alpha",
+  "beta",
+  "gamma",
+]
+array_trailing_comma = [
+  1,
+  2,
+]
+
+# Inline tables
+inline_table = { name = "value", count = 42 }
+inline_nested = { outer = { inner = "value" } }
+
+# Tables (sections)
+[database]
+host = "localhost"
+port = 5432
+name = "myapp"
+pool_size = 10
+
+[database.credentials]
+username = "admin"
+password = "secret"
+
+# Dotted keys
+server.host = "0.0.0.0"
+server.port = 8080
+server.ssl.enabled = true
+server.ssl.cert = "/path/to/cert.pem"
+server.ssl.key = "/path/to/key.pem"
+
+# Table arrays
+[[products]]
+name = "Laptop"
+price = 999.99
+in_stock = true
+
+[products.specs]
+cpu = "M1 Pro"
+ram = "16GB"
+storage = "512GB"
+
+[[products]]
+name = "Phone"
+price = 699.99
+in_stock = true
+
+[products.specs]
+cpu = "A16"
+ram = "6GB"
+storage = "128GB"
+
+[[products.variants]]
+color = "black"
+storage = "128GB"
+
+[[products.variants]]
+color = "white"
+storage = "256GB"
+
+# Complex configuration
+[application]
+name = "MyApp"
+version = "2.1.0"
+environment = "production"
+
+[application.logging]
+level = "info"
+format = "json"
+output = "/var/log/app.log"
+max_size = "100MB"
+max_files = 5
+compress = true
+
+[application.logging.fields]
+app = "myapp"
+env = "production"
+version = "2.1.0"
+
+[[application.logging.handlers]]
+type = "console"
+level = "debug"
+format = "text"
+
+[[application.logging.handlers]]
+type = "file"
+level = "info"
+format = "json"
+path = "/var/log/app.json"
+
+[[application.features]]
+name = "dark_mode"
+enabled = true
+rollout = 100
+
+[[application.features]]
+name = "beta_features"
+enabled = true
+rollout = 25
+conditions = ["user_group:beta"]
+
+[application.cache]
+driver = "redis"
+ttl = 3600
+prefix = "myapp:"
+
+[application.cache.redis]
+host = "localhost"
+port = 6379
+db = 0
+password = ""
+
+[application.cache.options]
+compression = true
+serializer = "msgpack"
+
+[application.queue]
+driver = "rabbitmq"
+prefetch = 10
+
+[application.queue.rabbitmq]
+host = "localhost"
+port = 5672
+user = "guest"
+password = "guest"
+vhost = "/"
+
+[[application.queue.queues]]
+name = "default"
+durable = true
+auto_delete = false
+
+[[application.queue.queues]]
+name = "priority"
+durable = true
+arguments = { "x-max-priority" = 10 }
+
+[application.database]
+default = "primary"
+
+[application.database.connections.primary]
+driver = "postgres"
+host = "localhost"
+port = 5432
+database = "myapp"
+username = "admin"
+password = "secret"
+
+[application.database.connections.primary.options]
+sslmode = "verify-full"
+connect_timeout = 5
+statement_timeout = 30000
+
+[application.database.connections.replica]
+driver = "postgres"
+host = "replica.local"
+port = 5432
+database = "myapp"
+username = "readonly"
+password = "secret"
+read_only = true
+
+# Service definitions
+[services.api]
+image = "ghcr.io/company/api:v2.1.0"
+replicas = 3
+
+[services.api.resources]
+cpu = "2000m"
+memory = "2Gi"
+
+[services.api.healthcheck]
+path = "/health"
+interval = "30s"
+timeout = "10s"
+retries = 3
+
+[services.api.env]
+NODE_ENV = "production"
+LOG_LEVEL = "info"
+DATABASE_URL = "postgres://user:pass@host:5432/db"
+
+[[services.api.volumes]]
+source = "/data/api"
+target = "/app/data"
+read_only = false
+
+[[services.api.volumes]]
+source = "./config"
+target = "/app/config"
+read_only = true
+
+[services.worker]
+image = "ghcr.io/company/worker:v2.1.0"
+replicas = 5
+
+[services.worker.env]
+NODE_ENV = "production"
+QUEUE_NAME = "default"
+CONCURRENCY = 10
+
+[services.redis]
+image = "redis:7-alpine"
+
+[services.redis.command]
+args = ["redis-server", "--appendonly", "yes"]
+
+# Build configuration
+[build]
+context = "."
+dockerfile = "Dockerfile"
+
+[build.args]
+NODE_VERSION = "20"
+APP_VERSION = "2.1.0"
+
+[[build.stages]]
+name = "base"
+from = "node:20-alpine"
+
+[[build.stages.commands]]
+run = "apk add --no-cache python3 make g++"
+
+[[build.stages]]
+name = "deps"
+from = "base"
+
+[[build.stages.commands]]
+copy = { paths = ["package*.json", "./"], dest = "./" }
+
+[[build.stages.commands]]
+run = "npm ci --only=production"
+
+[[build.stages]]
+name = "builder"
+from = "deps"
+
+[[build.stages.commands]]
+copy = { paths = [".", "./"], exclude = ["node_modules"] }
+
+[[build.stages.commands]]
+run = "npm run build"
+
+[[build.stages]]
+name = "runtime"
+from = "base"
+
+[[build.stages.commands]]
+copy = { from = "deps", paths = ["node_modules"], dest = "./" }
+
+[[build.stages.commands]]
+copy = { from = "builder", paths = ["dist"], dest = "./dist" }
+
+[[build.stages.commands]]
+env = { NODE_ENV = "production" }
+
+[[build.stages.commands]]
+expose = [3000]
+
+[[build.stages.commands]]
+entrypoint = ["node", "dist/index.js"]
+
+# Test configuration
+[tests]
+parallel = true
+timeout = "30s"
+reporter = "junit"
+
+[[tests.suites]]
+name = "unit"
+pattern = "tests/unit/**/*.test.ts"
+coverage = true
+
+[[tests.suites]]
+name = "integration"
+pattern = "tests/integration/**/*.test.ts"
+timeout = "60s"
+env = { TEST_ENV = "integration" }
+
+[[tests.suites]]
+name = "e2e"
+pattern = "tests/e2e/**/*.test.ts"
+timeout = "300s"
+parallel = false
+
+# Deployment configuration
+[deployment]
+strategy = "rolling"
+max_unavailable = 0
+max_surge = 1
+
+[deployment.healthchecks]
+readiness_path = "/ready"
+liveness_path = "/live"
+initial_delay = "10s"
+
+[[deployment.environments]]
+name = "staging"
+replicas = 2
+domain = "staging.example.com"
+
+[deployment.environments.resources]
+cpu = "500m"
+memory = "512Mi"
+
+[[deployment.environments]]
+name = "production"
+replicas = 5
+domain = "api.example.com"
+
+[deployment.environments.resources]
+cpu = "2000m"
+memory = "2Gi"
+
+[deployment.environments.autoscaling]
+min = 3
+max = 20
+target_cpu = 70
+target_memory = 80
+
+# CI/CD configuration
+[ci]
+provider = "github"
+
+[ci.triggers]
+push = ["main", "develop"]
+pull_request = ["main"]
+schedule = [{ cron = "0 6 * * 1" }]
+
+[[ci.stages]]
+name = "lint"
+parallel = false
+
+[[ci.stages.jobs]]
+name = "eslint"
+image = "node:20"
+commands = ["npm ci", "npm run lint"]
+
+[[ci.stages.jobs]]
+name = "prettier"
+image = "node:20"
+commands = ["npm ci", "npm run format:check"]
+
+[[ci.stages]]
+name = "test"
+parallel = true
+
+[[ci.stages.jobs]]
+name = "test-unit"
+image = "node:20"
+commands = ["npm ci", "npm run test:unit"]
+coverage = true
+
+[[ci.stages.jobs]]
+name = "test-integration"
+image = "node:20"
+commands = ["npm ci", "npm run test:integration"]
+services = ["postgres", "redis"]
+
+[[ci.stages]]
+name = "build"
+parallel = false
+
+[[ci.stages.jobs]]
+name = "docker"
+image = "docker:24"
+commands = ["docker build -t app:latest ."]
+cache = { key = "docker-${{ hashFiles('Dockerfile', 'package*.json') }}" }
+
+[[ci.stages]]
+name = "deploy"
+parallel = false
+environment = "production"
+
+[[ci.stages.jobs]]
+name = "deploy-production"
+image = "bitnami/kubectl:latest"
+commands = ["kubectl apply -f k8s/"]
+approval = true

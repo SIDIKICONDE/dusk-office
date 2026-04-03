@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/api-response.json",
+  "title": "API Response Schema",
+  "description": "Standard API response format with pagination and metadata",
+  "type": "object",
+  "required": ["data", "meta", "links"],
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      }
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "links": {
+      "$ref": "#/$defs/links"
+    },
+    "included": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/error"
+      }
+    }
+  },
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "required": ["id", "type", "attributes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "examples": ["550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["users", "posts", "comments", "tags"]
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "relationships": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/relationship"
+          }
+        },
+        "links": {
+          "$ref": "#/$defs/links"
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "oneOf": [
+            { "$ref": "#/$defs/resourceIdentifier" },
+            {
+              "type": "array",
+              "items": { "$ref": "#/$defs/resourceIdentifier" }
+            },
+            { "type": "null" }
+          ]
+        },
+        "links": { "$ref": "#/$defs/links" },
+        "meta": { "$ref": "#/$defs/meta" }
+      }
+    },
+    "resourceIdentifier": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "count": { "type": "integer", "minimum": 0 },
+        "per_page": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "current_page": { "type": "integer", "minimum": 1 },
+        "total_pages": { "type": "integer", "minimum": 0 },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "deprecated": { "type": "boolean" },
+        "sunset": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": { "type": "string", "format": "uri" },
+        "first": { "type": "string", "format": "uri" },
+        "last": { "type": "string", "format": "uri" },
+        "prev": { "type": "string", "format": "uri" },
+        "next": { "type": "string", "format": "uri" },
+        "related": { "type": "string", "format": "uri" },
+        "describedby": { "type": "string", "format": "uri" }
+      }
+    },
+    "error": {
+      "type": "object",
+      "required": ["code", "title"],
+      "properties": {
+        "id": { "type": "string" },
+        "status": { "type": "string", "pattern": "^\\d{3}$" },
+        "code": { "type": "string" },
+        "title": { "type": "string" },
+        "detail": { "type": "string" },
+        "source": {
+          "type": "object",
+          "properties": {
+            "pointer": {
+              "type": "string",
+              "pattern": "^/[a-zA-Z0-9_/]*$"
+            },
+            "parameter": { "type": "string" },
+            "header": { "type": "string" }
+          }
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "about": { "type": "string", "format": "uri" },
+            "type": { "type": "string", "format": "uri" }
+          }
+        },
+        "meta": { "type": "object" }
+      }
+    }
+  },
+  "examples": [
+    {
+      "data": [
+        {
+          "id": "550e8400-e29b-41d4-a716-446655440000",
+          "type": "users",
+          "attributes": {
+            "email": "user@example.com",
+            "name": "John Doe",
+            "created_at": "2024-01-15T10:30:00Z",
+            "updated_at": "2024-01-20T14:22:00Z",
+            "settings": {
+              "theme": "dark",
+              "notifications": true,
+              "language": "en-US"
+            },
+            "roles": ["admin", "editor"],
+            "stats": {
+              "posts": 42,
+              "comments": 156,
+              "followers": 1024
+            }
+          },
+          "relationships": {
+            "posts": {
+              "data": [
+                { "id": "post-1", "type": "posts" },
+                { "id": "post-2", "type": "posts" }
+              ],
+              "links": {
+                "self": "/api/v1/users/550e8400/posts",
+                "related": "/api/v1/users/550e8400/posts"
+              }
+            },
+            "avatar": {
+              "data": { "id": "avatar-1", "type": "images" },
+              "links": {
+                "related": "/api/v1/images/avatar-1"
+              }
+            }
+          },
+          "links": {
+            "self": "/api/v1/users/550e8400"
+          }
+        }
+      ],
+      "meta": {
+        "total": 100,
+        "count": 1,
+        "per_page": 20,
+        "current_page": 1,
+        "total_pages": 5,
+        "timestamp": "2024-01-20T15:00:00Z",
+        "version": "2.1.0"
+      },
+      "links": {
+        "self": "/api/v1/users?page=1",
+        "first": "/api/v1/users?page=1",
+        "last": "/api/v1/users?page=5",
+        "next": "/api/v1/users?page=2"
+      },
+      "included": [
+        {
+          "id": "post-1",
+          "type": "posts",
+          "attributes": {
+            "title": "Hello World",
+            "content": "This is my first post...",
+            "status": "published",
+            "tags": ["intro", "welcome"]
+          }
+        }
+      ]
+    }
+  ]
+}
