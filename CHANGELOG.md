@@ -2,6 +2,10 @@
 
 User-facing changes only.
 
+## 0.7.21 — 3 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.20 — 3 April 2026
 
 - **Changed**: version bump.

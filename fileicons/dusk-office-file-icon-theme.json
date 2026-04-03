@@ -1,0 +1,532 @@
+{
+  "$schema": "vscode://schemas/icon-theme",
+  "iconDefinitions": {
+    "_folder": {
+      "iconPath": "./icons/folder.svg"
+    },
+    "_folder_open": {
+      "iconPath": "./icons/folder-open.svg"
+    },
+    "_folder_root": {
+      "iconPath": "./icons/folder-root.svg"
+    },
+    "_file": {
+      "iconPath": "./icons/file.svg"
+    },
+    "_file_code": {
+      "iconPath": "./icons/file-code.svg"
+    },
+    "_file_json": {
+      "iconPath": "./icons/file-json.svg"
+    },
+    "_file_md": {
+      "iconPath": "./icons/file-md.svg"
+    },
+    "_file_image": {
+      "iconPath": "./icons/file-image.svg"
+    },
+    "_file_styles": {
+      "iconPath": "./icons/file-styles.svg"
+    },
+    "_file_config": {
+      "iconPath": "./icons/file-config.svg"
+    },
+    "_file_git": {
+      "iconPath": "./icons/file-git.svg"
+    },
+    "_file_test": {
+      "iconPath": "./icons/file-test.svg"
+    },
+    "_file_lock": {
+      "iconPath": "./icons/file-lock.svg"
+    },
+    "_file_ignored": {
+      "iconPath": "./icons/file-ignored.svg"
+    },
+    "javascript": {
+      "iconPath": "./icons/javascript.svg"
+    },
+    "typescript": {
+      "iconPath": "./icons/typescript.svg"
+    },
+    "javascriptreact": {
+      "iconPath": "./icons/javascriptreact.svg"
+    },
+    "typescriptreact": {
+      "iconPath": "./icons/typescriptreact.svg"
+    },
+    "python": {
+      "iconPath": "./icons/python.svg"
+    },
+    "java": {
+      "iconPath": "./icons/java.svg"
+    },
+    "c": {
+      "iconPath": "./icons/c.svg"
+    },
+    "cpp": {
+      "iconPath": "./icons/cpp.svg"
+    },
+    "csharp": {
+      "iconPath": "./icons/csharp.svg"
+    },
+    "go": {
+      "iconPath": "./icons/go.svg"
+    },
+    "rust": {
+      "iconPath": "./icons/rust.svg"
+    },
+    "ruby": {
+      "iconPath": "./icons/ruby.svg"
+    },
+    "php": {
+      "iconPath": "./icons/php.svg"
+    },
+    "swift": {
+      "iconPath": "./icons/swift.svg"
+    },
+    "kotlin": {
+      "iconPath": "./icons/kotlin.svg"
+    },
+    "dart": {
+      "iconPath": "./icons/dart.svg"
+    },
+    "vue": {
+      "iconPath": "./icons/vue.svg"
+    },
+    "svelte": {
+      "iconPath": "./icons/svelte.svg"
+    },
+    "html": {
+      "iconPath": "./icons/html.svg"
+    },
+    "css": {
+      "iconPath": "./icons/css.svg"
+    },
+    "scss": {
+      "iconPath": "./icons/scss.svg"
+    },
+    "less": {
+      "iconPath": "./icons/less.svg"
+    },
+    "tailwind": {
+      "iconPath": "./icons/tailwind.svg"
+    },
+    "json": {
+      "iconPath": "./icons/json.svg"
+    },
+    "yaml": {
+      "iconPath": "./icons/yaml.svg"
+    },
+    "xml": {
+      "iconPath": "./icons/xml.svg"
+    },
+    "toml": {
+      "iconPath": "./icons/toml.svg"
+    },
+    "markdown": {
+      "iconPath": "./icons/markdown.svg"
+    },
+    "image": {
+      "iconPath": "./icons/image.svg"
+    },
+    "svg": {
+      "iconPath": "./icons/svg.svg"
+    },
+    "font": {
+      "iconPath": "./icons/font.svg"
+    },
+    "docker": {
+      "iconPath": "./icons/docker.svg"
+    },
+    "dockercompose": {
+      "iconPath": "./icons/dockercompose.svg"
+    },
+    "kubernetes": {
+      "iconPath": "./icons/kubernetes.svg"
+    },
+    "terraform": {
+      "iconPath": "./icons/terraform.svg"
+    },
+    "ansible": {
+      "iconPath": "./icons/ansible.svg"
+    },
+    "git": {
+      "iconPath": "./icons/git.svg"
+    },
+    "github": {
+      "iconPath": "./icons/github.svg"
+    },
+    "gitlab": {
+      "iconPath": "./icons/gitlab.svg"
+    },
+    "npm": {
+      "iconPath": "./icons/npm.svg"
+    },
+    "yarn": {
+      "iconPath": "./icons/yarn.svg"
+    },
+    "pnpm": {
+      "iconPath": "./icons/pnpm.svg"
+    },
+    "package": {
+      "iconPath": "./icons/package.svg"
+    },
+    "lock": {
+      "iconPath": "./icons/lock.svg"
+    },
+    "env": {
+      "iconPath": "./icons/env.svg"
+    },
+    "config": {
+      "iconPath": "./icons/config.svg"
+    },
+    "vscode": {
+      "iconPath": "./icons/vscode.svg"
+    },
+    "idea": {
+      "iconPath": "./icons/idea.svg"
+    },
+    "sublime": {
+      "iconPath": "./icons/sublime.svg"
+    },
+    "test": {
+      "iconPath": "./icons/test.svg"
+    },
+    "jest": {
+      "iconPath": "./icons/jest.svg"
+    },
+    "vitest": {
+      "iconPath": "./icons/vitest.svg"
+    },
+    "storybook": {
+      "iconPath": "./icons/storybook.svg"
+    },
+    "database": {
+      "iconPath": "./icons/database.svg"
+    },
+    "sql": {
+      "iconPath": "./icons/sql.svg"
+    },
+    "graphql": {
+      "iconPath": "./icons/graphql.svg"
+    },
+    "prisma": {
+      "iconPath": "./icons/prisma.svg"
+    },
+    "shell": {
+      "iconPath": "./icons/shell.svg"
+    },
+    "terminal": {
+      "iconPath": "./icons/terminal.svg"
+    },
+    "makefile": {
+      "iconPath": "./icons/makefile.svg"
+    },
+    "cmake": {
+      "iconPath": "./icons/cmake.svg"
+    },
+    "gradle": {
+      "iconPath": "./icons/gradle.svg"
+    },
+    "maven": {
+      "iconPath": "./icons/maven.svg"
+    },
+    "sln": {
+      "iconPath": "./icons/sln.svg"
+    },
+    "binary": {
+      "iconPath": "./icons/binary.svg"
+    },
+    "archive": {
+      "iconPath": "./icons/archive.svg"
+    },
+    "audio": {
+      "iconPath": "./icons/audio.svg"
+    },
+    "video": {
+      "iconPath": "./icons/video.svg"
+    },
+    "pdf": {
+      "iconPath": "./icons/pdf.svg"
+    },
+    "doc": {
+      "iconPath": "./icons/doc.svg"
+    },
+    "excel": {
+      "iconPath": "./icons/excel.svg"
+    },
+    "powerpoint": {
+      "iconPath": "./icons/powerpoint.svg"
+    },
+    "text": {
+      "iconPath": "./icons/text.svg"
+    },
+    "license": {
+      "iconPath": "./icons/license.svg"
+    },
+    "changelog": {
+      "iconPath": "./icons/changelog.svg"
+    },
+    "readme": {
+      "iconPath": "./icons/readme.svg"
+    },
+    "todo": {
+      "iconPath": "./icons/todo.svg"
+    },
+    "ignore": {
+      "iconPath": "./icons/ignore.svg"
+    }
+  },
+  "file": "_file",
+  "folder": "_folder",
+  "folderExpanded": "_folder_open",
+  "rootFolder": "_folder_root",
+  "rootFolderExpanded": "_folder_open",
+  "fileExtensions": {
+    "js": "javascript",
+    "mjs": "javascript",
+    "cjs": "javascript",
+    "ts": "typescript",
+    "tsx": "typescriptreact",
+    "jsx": "javascriptreact",
+    "py": "python",
+    "pyw": "python",
+    "java": "java",
+    "c": "c",
+    "cpp": "cpp",
+    "cc": "cpp",
+    "cxx": "cpp",
+    "h": "c",
+    "hpp": "cpp",
+    "cs": "csharp",
+    "go": "go",
+    "rs": "rust",
+    "rb": "ruby",
+    "php": "php",
+    "swift": "swift",
+    "kt": "kotlin",
+    "kts": "kotlin",
+    "dart": "dart",
+    "vue": "vue",
+    "svelte": "svelte",
+    "html": "html",
+    "htm": "html",
+    "css": "css",
+    "scss": "scss",
+    "sass": "scss",
+    "less": "less",
+    "json": "json",
+    "jsonc": "json",
+    "json5": "json",
+    "yaml": "yaml",
+    "yml": "yaml",
+    "xml": "xml",
+    "toml": "toml",
+    "md": "markdown",
+    "mdx": "markdown",
+    "svg": "svg",
+    "png": "image",
+    "jpg": "image",
+    "jpeg": "image",
+    "gif": "image",
+    "webp": "image",
+    "ico": "image",
+    "ttf": "font",
+    "otf": "font",
+    "woff": "font",
+    "woff2": "font",
+    "eot": "font",
+    "dockerfile": "docker",
+    "docker-compose.yml": "dockercompose",
+    "docker-compose.yaml": "dockercompose",
+    "tf": "terraform",
+    "tfvars": "terraform",
+    "sh": "shell",
+    "bash": "shell",
+    "zsh": "shell",
+    "fish": "shell",
+    "ps1": "terminal",
+    "bat": "terminal",
+    "cmd": "terminal",
+    "mk": "makefile",
+    "cmake": "cmake",
+    "gradle": "gradle",
+    "sql": "sql",
+    "graphql": "graphql",
+    "gql": "graphql",
+    "prisma": "prisma",
+    "sol": "solidity",
+    "wasm": "binary",
+    "exe": "binary",
+    "dll": "binary",
+    "so": "binary",
+    "dylib": "binary",
+    "zip": "archive",
+    "tar": "archive",
+    "gz": "archive",
+    "rar": "archive",
+    "7z": "archive",
+    "mp3": "audio",
+    "wav": "audio",
+    "ogg": "audio",
+    "flac": "audio",
+    "mp4": "video",
+    "webm": "video",
+    "avi": "video",
+    "mov": "video",
+    "mkv": "video",
+    "pdf": "pdf",
+    "doc": "doc",
+    "docx": "doc",
+    "xls": "excel",
+    "xlsx": "excel",
+    "ppt": "powerpoint",
+    "pptx": "powerpoint",
+    "txt": "text",
+    "log": "text",
+    "lock": "lock",
+    "env": "env",
+    "example": "config",
+    "sample": "config",
+    "config": "config",
+    "conf": "config",
+    "cfg": "config",
+    "ini": "config",
+    "test.js": "test",
+    "spec.js": "test",
+    "test.ts": "test",
+    "spec.ts": "test",
+    "test.py": "test",
+    "test.go": "test",
+    "spec.tsx": "test",
+    "test.tsx": "test",
+    "spec.jsx": "test",
+    "test.jsx": "test"
+  },
+  "fileNames": {
+    "package.json": "npm",
+    "package-lock.json": "lock",
+    "yarn.lock": "yarn",
+    "pnpm-lock.yaml": "pnpm",
+    "pnpm-workspace.yaml": "pnpm",
+    ".npmrc": "npm",
+    ".yarnrc": "yarn",
+    ".yarnrc.yml": "yarn",
+    "node_modules": "package",
+    ".gitignore": "git",
+    ".gitattributes": "git",
+    ".gitmodules": "git",
+    ".gitkeep": "git",
+    ".github": "github",
+    ".gitlab-ci.yml": "gitlab",
+    ".gitlab": "gitlab",
+    "dockerfile": "docker",
+    "Dockerfile": "docker",
+    "docker-compose.yml": "dockercompose",
+    "docker-compose.yaml": "dockercompose",
+    ".dockerignore": "docker",
+    "docker-compose.override.yml": "dockercompose",
+    "kubernetes": "kubernetes",
+    "k8s": "kubernetes",
+    ".env": "env",
+    ".env.local": "env",
+    ".env.development": "env",
+    ".env.test": "env",
+    ".env.production": "env",
+    ".env.example": "env",
+    "Makefile": "makefile",
+    "CMakeLists.txt": "cmake",
+    "build.gradle": "gradle",
+    "settings.gradle": "gradle",
+    "pom.xml": "maven",
+    "*.sln": "sln",
+    "*.csproj": "sln",
+    "tsconfig.json": "typescript",
+    "tsconfig.base.json": "typescript",
+    "jsconfig.json": "javascript",
+    ".eslintrc": "config",
+    ".eslintrc.js": "config",
+    ".eslintrc.json": "config",
+    ".eslintrc.yml": "config",
+    ".prettierrc": "config",
+    ".prettierrc.js": "config",
+    ".prettierrc.json": "config",
+    ".prettierrc.yml": "config",
+    ".editorconfig": "config",
+    ".vscode": "vscode",
+    ".idea": "idea",
+    ".sublime-project": "sublime",
+    ".sublime-workspace": "sublime",
+    "jest.config.js": "jest",
+    "jest.config.ts": "jest",
+    "vitest.config.ts": "vitest",
+    "vitest.config.js": "vitest",
+    ".storybook": "storybook",
+    "main.storybook": "storybook",
+    "LICENSE": "license",
+    "LICENSE.md": "license",
+    "LICENSE.txt": "license",
+    "CHANGELOG.md": "changelog",
+    "CHANGELOG.txt": "changelog",
+    "README.md": "readme",
+    "README.txt": "readme",
+    "README": "readme",
+    "TODO.md": "todo",
+    "TODO.txt": "todo",
+    "TODO": "todo",
+    ".ignore": "ignore",
+    ".svnignore": "ignore",
+    ".hgignore": "ignore",
+    "tailwind.config.js": "tailwind",
+    "tailwind.config.ts": "tailwind",
+    "tailwind.config.cjs": "tailwind",
+    "tailwind.config.mjs": "tailwind",
+    "postcss.config.js": "config",
+    "vite.config.js": "config",
+    "vite.config.ts": "config",
+    "webpack.config.js": "config",
+    "webpack.config.ts": "config",
+    "rollup.config.js": "config",
+    "rollup.config.ts": "config",
+    "babel.config.js": "config",
+    ".babelrc": "config",
+    "prisma.schema": "prisma",
+    "schema.prisma": "prisma"
+  },
+  "languageIds": {
+    "javascript": "javascript",
+    "javascriptreact": "javascriptreact",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact",
+    "python": "python",
+    "java": "java",
+    "c": "c",
+    "cpp": "cpp",
+    "csharp": "csharp",
+    "go": "go",
+    "rust": "rust",
+    "ruby": "ruby",
+    "php": "php",
+    "swift": "swift",
+    "kotlin": "kotlin",
+    "dart": "dart",
+    "vue": "vue",
+    "svelte": "svelte",
+    "html": "html",
+    "css": "css",
+    "scss": "scss",
+    "less": "less",
+    "json": "json",
+    "yaml": "yaml",
+    "xml": "xml",
+    "toml": "toml",
+    "markdown": "markdown",
+    "dockerfile": "docker",
+    "shellscript": "shell",
+    "sql": "sql",
+    "graphql": "graphql",
+    "prisma": "prisma"
+  },
+  "hidesExplorerArrows": false
+}
