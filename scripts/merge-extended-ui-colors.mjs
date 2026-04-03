@@ -63,6 +63,24 @@ function buildExtended(p) {
     "selection.background": A(accent, "44"),
     "sash.hoverBorder": A(accentHi, "44"),
 
+    "sideBar.background": panel,
+    "activityBar.background": widget,
+    "activityBarTop.background": widget,
+    "sideBarSectionHeader.background": widget,
+
+    "panel.background": panel,
+    "panel.border": A(border, "59"),
+    "panelSectionHeader.background": widget,
+    "panelSectionHeader.border": A(border, "59"),
+
+    "titleBar.activeBackground": widget,
+    "titleBar.inactiveBackground": panel,
+    "titleBar.border": A(border, "59"),
+    "commandCenter.background": widget,
+    "commandCenter.border": A(border, "59"),
+    "quickInputTitle.background": widget,
+    "notificationCenterHeader.background": widget,
+
     "editor.foreground": fg,
     "editorCursor.foreground": accentHi,
     "editorLineNumber.foreground": A(fg, "55"),
@@ -262,6 +280,8 @@ function buildExtended(p) {
 
     "input.foreground": fg,
     "input.placeholderForeground": A(fg, "55"),
+    "input.background": widget,
+    "input.border": A(border, "59"),
     "inputOption.activeBackground": A(accent, "33"),
     "inputOption.activeBorder": A(accentHi, "44"),
     "inputOption.activeForeground": fg,
@@ -299,6 +319,7 @@ function buildExtended(p) {
     "terminal.findMatchHighlightBorder": A(amber, "44"),
     "terminal.hoverHighlightBackground": A(accentHi, "22"),
     "terminal.border": A(border, "44"),
+    "terminal.background": panel,
     "terminalStickyScroll.background": panel,
     "terminalStickyScroll.border": A(border, "44"),
 
@@ -333,6 +354,7 @@ function buildExtended(p) {
     "editor.symbolHighlightBorder": A(info, "33"),
 
     "notifications.foreground": fg,
+    "notifications.background": widget,
     "notifications.border": A(border, "44"),
     "notificationLink.foreground": accentHi,
 
@@ -343,14 +365,26 @@ function buildExtended(p) {
     "toolbar.activeBackground": A(accent, "28"),
 
     "menu.foreground": fg,
+    "menu.background": widget,
+    "menu.border": A(border, "59"),
     "menu.selectionBackground": A(accent, "33"),
     "menu.selectionForeground": fg,
     "menubar.selectionBackground": A(accent, "22"),
 
     "quickInput.foreground": fg,
+    "quickInput.background": widget,
     "quickInputList.focusBackground": A(accent, "33"),
 
     "dropdown.foreground": fg,
+    "dropdown.background": widget,
+    "dropdown.border": A(border, "59"),
+    "dropdown.listBackground": panel,
+
+    "checkbox.background": widget,
+    "checkbox.border": A(border, "59"),
+    "checkbox.foreground": fg,
+
+    "listFilterWidget.background": widget,
 
     "debugToolBar.background": widget,
     "debugExceptionWidget.background": A(error, "22"),
@@ -583,20 +617,76 @@ const PALETTES = {
   },
 };
 
-/** Retirer avant fusion pour que `buildExtended` réapplique les valeurs à jour. */
-const GIT_DIFF_GUTTER_REFRESH = new Set([
-  "editorGutter.modifiedBackground",
-  "editorGutter.addedBackground",
-  "editorGutter.deletedBackground",
-  "diffEditor.insertedTextBackground",
-  "diffEditor.insertedTextBorder",
-  "diffEditor.removedTextBackground",
-  "diffEditor.removedTextBorder",
-  "diffEditor.insertedLineBackground",
-  "diffEditor.removedLineBackground",
-  "diffEditor.unchangedCodeBackground",
-  "diffEditor.unchangedRegionShadow",
-]);
+/**
+ * Clés où le JSON variante garde la priorité (éditeur, diff, notebook, etc.).
+ * Tout le reste de `buildExtended` réécrit les restes enhance / dusk.json.
+ */
+function themeWinsForKey(k) {
+  if (k.startsWith("editorGroup.")) return false;
+  if (k.startsWith("editorStickyScroll")) return false;
+  if (k.startsWith("editorSuggestWidget")) return false;
+  if (k.startsWith("editorHoverWidget")) return false;
+  if (k.startsWith("editor.")) return true;
+  if (k.startsWith("editorLineNumber")) return true;
+  if (k.startsWith("editorGutter.")) return true;
+  if (k.startsWith("editorBracket")) return true;
+  if (k.startsWith("editorInlayHint")) return true;
+  if (k.startsWith("editorGhost")) return true;
+  if (k.startsWith("editorWhitespace")) return true;
+  if (k.startsWith("editorOverviewRuler")) return true;
+  if (k.startsWith("minimap.")) return true;
+  if (k.startsWith("diffEditor.")) return true;
+  if (k.startsWith("merge.")) return true;
+  if (k.startsWith("inlineChat")) return true;
+  if (k.startsWith("inlineEdit")) return true;
+  if (k.startsWith("peekView")) return true;
+  if (k.startsWith("notebook.")) return true;
+  if (k.startsWith("welcomePage.")) return true;
+  return false;
+}
+
+/** Réapplique buildExtended par-dessus le JSON variante sauf où themeWinsForKey. */
+function applyPaletteOverlay(colors, extended) {
+  for (const [k, v] of Object.entries(extended)) {
+    if (!themeWinsForKey(k)) colors[k] = v;
+  }
+}
+
+/** Après fusion, impose panel/widget pour que les restes du fichier (enhance) ne laissent pas du noir / #010102. */
+function pinChromeFromPalette(colors, p) {
+  const { panel, widget, border, fg, accentHi } = p;
+  colors["terminal.background"] = panel;
+  colors["terminalStickyScroll.background"] = panel;
+  colors["panel.background"] = panel;
+  colors["panelTitle.activeForeground"] = fg;
+  colors["panelTitle.inactiveForeground"] = A(fg, "88");
+  colors["panelTitle.border"] = A(border, "59");
+  colors["panelTitle.activeBorder"] = A(accentHi, "55");
+  colors["terminal.tab.activeBorder"] = accentHi;
+  colors["sideBar.background"] = panel;
+  colors["sideBarSectionHeader.background"] = widget;
+  colors["activityBar.background"] = widget;
+  colors["activityBarTop.background"] = widget;
+  colors["statusBar.background"] = widget;
+  colors["statusBar.noFolderBackground"] = panel;
+  colors["statusBar.border"] = A(border, "59");
+  colors["titleBar.activeBackground"] = widget;
+  colors["titleBar.inactiveBackground"] = panel;
+  colors["titleBar.border"] = A(border, "59");
+  colors["commandCenter.background"] = widget;
+  colors["commandCenter.border"] = A(border, "59");
+  colors["quickInputTitle.background"] = widget;
+  colors["notificationCenterHeader.background"] = widget;
+  colors["editorGroupHeader.tabsBackground"] = widget;
+  colors["editorGroupHeader.noTabsBackground"] = widget;
+  colors["tab.inactiveBackground"] = widget;
+  colors["tab.activeBackground"] = panel;
+
+  const edBg = colors["editor.background"];
+  if (typeof edBg === "string" && edBg.startsWith("#")) {
+    colors["editorGroup.emptyBackground"] = edBg;
+  }
+}
 
 function main() {
   const files = fs
@@ -617,16 +707,10 @@ function main() {
     const full = path.join(themesDir, file);
     const raw = fs.readFileSync(full, "utf8");
     const theme = JSON.parse(raw);
-    for (const k of GIT_DIFF_GUTTER_REFRESH) delete theme.colors[k];
-    for (const k of [
-      "editorGutter.modifiedSecondaryBackground",
-      "editorGutter.addedSecondaryBackground",
-      "editorGutter.deletedSecondaryBackground",
-    ]) {
-      delete theme.colors[k];
-    }
     const extended = buildExtended(palette);
     theme.colors = { ...extended, ...theme.colors };
+    applyPaletteOverlay(theme.colors, extended);
+    pinChromeFromPalette(theme.colors, palette);
     fs.writeFileSync(full, JSON.stringify(theme, null, 2) + "\n", "utf8");
     console.log("OK", file, Object.keys(theme.colors).length, "clés colors");
   }

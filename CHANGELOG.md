@@ -1,13 +1,10 @@
 # Changelog — Dusk Office
 
-User-facing changes only.
-
-## 0.7.43 — 3 April 2026
+## 0.7.58 — 3 April 2026
 
 - **Changed**: version bump.
 
-## 0.7.42 — 3 April 2026
-
+User-facing changes only.
 - **Added**: complete UI color coverage — titleBar, sidebar, panel, notifications, status bar, activity bar, tabs, breadcrumbs, lists, menus, command center, quick input, buttons, badges, scrollbar.
 - **Added**: editor enhancements — line highlight, selection highlight, search match colors, word highlight, occurrences highlight, symbol highlight, indent guides, inlay hints, lightbulb colors.
 - **Added**: workspace trust colors — trust indicators, untrusted content banners, extension icons, settings trust indicators.
@@ -20,32 +17,6 @@ User-facing changes only.
 - **Added**: full terminal ANSI color palette — standard 8 colors, bright 8 colors, cursor styling, selection and find highlights.
 - **Added**: `scripts/enhance-themes.mjs` for batch theme enhancement.
 - **Added**: advanced code samples in 18 languages (Dart, Flutter, Kotlin, Swift, PHP, HTML, YAML, JSON Schema, GraphQL, TOML, and more).
-
-## 0.7.40 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.39 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.38 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.37 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.36 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.35 — 3 April 2026
-
-- **Changed**: version bump.
-
-## 0.7.34 — 3 April 2026
 
 - **Changed**: removed all custom icon themes (Product Icons and File Icons).
 - **Changed**: Material Icon Theme is now installed automatically as an extension pack for file/folder icons.

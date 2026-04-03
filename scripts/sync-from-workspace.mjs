@@ -43,10 +43,10 @@ if (
 ) {
   repoRoot = standaloneRoot;
 } else {
-  console.error(
-    "Aucun .vscode/settings.json trouve a la racine du projet Dusk Office ou du monorepo Nythy.",
+  console.warn(
+    "Pas de .vscode/settings.json — sync ignoree (themes/dusk.json inchange).",
   );
-  process.exit(1);
+  process.exit(0);
 }
 
 const settingsPath = path.join(repoRoot, ".vscode", "settings.json");

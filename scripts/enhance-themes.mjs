@@ -389,16 +389,15 @@ const UI_COLORS = {
   "panelSectionHeader.background": "#000000",
   "panelSectionHeader.border": "#304f6059",
   "panelSectionHeader.foreground": "#d1e0e8",
-  "panel.dropBackground": "#06b6d433",
+  "panelSection.dropBackground": "#06b6d433",
   
   // Notifications
   "notifications.background": "#02060b",
   "notifications.foreground": "#d1e0e8",
   "notifications.border": "#304f6044",
-  "notifications.linksForeground": "#22d3ee",
-  "notifications.errorIconForeground": "#f87171",
-  "notifications.warningIconForeground": "#fbbf24",
-  "notifications.infoIconForeground": "#38bdf8",
+  "notificationsErrorIcon.foreground": "#f87171",
+  "notificationsWarningIcon.foreground": "#fbbf24",
+  "notificationsInfoIcon.foreground": "#38bdf8",
   "notificationCenter.border": "#304f6044",
   "notificationCenterHeader.background": "#010102",
   "notificationCenterHeader.foreground": "#d1e0e888",
@@ -425,9 +424,9 @@ const UI_COLORS = {
   "statusBarItem.remoteBackground": "#c084fc44",
   "statusBarItem.remoteForeground": "#c084fc",
   "statusBarItem.remoteHoverBackground": "#c084fc33",
-  "statusBarItem.successBackground": "#22c55e44",
-  "statusBarItem.successForeground": "#22c55e",
-  "statusBarItem.successHoverBackground": "#22c55e33",
+  "terminalCommandDecoration.successBackground": "#22c55e44",
+  "testing.iconPassed": "#22c55e",
+  "notebookStatusSuccessIcon.foreground": "#22c55e33",
   
   // Activity bar
   "activityBar.background": "#000000",
@@ -436,14 +435,14 @@ const UI_COLORS = {
   "activityBar.border": "#304f6059",
   "activityBar.activeBorder": "#22d3ee",
   "activityBar.activeBackground": "#06b6d422",
-  "activityBar.dropBackground": "#06b6d433",
+  "activityBar.dropBorder": "#06b6d433",
   "activityBarBadge.background": "#06b6d4aa",
   "activityBarBadge.foreground": "#0a0a0a",
   "activityBarTop.background": "#000000",
   "activityBarTop.foreground": "#22d3ee",
   "activityBarTop.inactiveForeground": "#4b6c7a",
   "activityBarTop.activeBorder": "#22d3ee",
-  "activityBarTop.dropBackground": "#06b6d433",
+  "activityBarTop.dropBorder": "#06b6d433",
   
   // Editor groups
   "editorGroup.emptyBackground": "#010203",
@@ -482,8 +481,6 @@ const UI_COLORS = {
   "breadcrumbPicker.background": "#02060b",
   
   // Lists and trees
-  "list.background": "#010202",
-  "list.foreground": "#d1e0e8",
   "list.hoverBackground": "#304f600f",
   "list.hoverForeground": "#d1e0e8",
   "list.activeSelectionBackground": "#304f601a",
@@ -496,13 +493,11 @@ const UI_COLORS = {
   "list.errorForeground": "#f87171",
   "list.warningForeground": "#fbbf24",
   "listFilterWidget.background": "#02060b",
-  "listFilterWidget.foreground": "#d1e0e8",
   "listFilterWidget.outline": "#06b6d444",
   "listFilterWidget.noMatchesOutline": "#f8717155",
   "tree.indentGuidesStroke": "#304f6066",
   "tree.inactiveIndentGuidesStroke": "#304f6033",
   "tree.tableOddRowsBackground": "#01010222",
-  "tree.tableSelectedBackground": "#06b6d422",
   
   // Menus
   "menu.background": "#02060b",
@@ -512,7 +507,6 @@ const UI_COLORS = {
   "menu.selectionForeground": "#d1e0e8",
   "menu.selectionBorder": "#06b6d444",
   "menu.separatorBackground": "#304f6044",
-  "menu.disabledForeground": "#d1e0e855",
   "menubar.selectionBackground": "#06b6d422",
   "menubar.selectionForeground": "#d1e0e8",
   "menubar.selectionBorder": "#06b6d444",
@@ -529,7 +523,6 @@ const UI_COLORS = {
   // Quick input
   "quickInput.background": "#02060b",
   "quickInput.foreground": "#d1e0e8",
-  "quickInput.border": "#304f6044",
   "quickInputList.focusBackground": "#06b6d433",
   "quickInputList.focusForeground": "#d1e0e8",
   "quickInputList.focusIconForeground": "#22d3ee",
@@ -540,12 +533,10 @@ const UI_COLORS = {
   "input.foreground": "#d1e0e8",
   "input.border": "#304f6059",
   "input.placeholderForeground": "#d1e0e855",
-  "inputOption.activeBackground": "#06b6d433",
+  "inputOption.activeBackground": "#06b6d444",
   "inputOption.activeBorder": "#22d3ee44",
   "inputOption.activeForeground": "#d1e0e8",
   "inputOption.hoverBackground": "#06b6d422",
-  "inputOption.selectedBackground": "#06b6d444",
-  "inputOption.selectedForeground": "#d1e0e8",
   "inputValidation.errorBackground": "#f8717122",
   "inputValidation.errorBorder": "#f8717155",
   "inputValidation.errorForeground": "#f87171",
@@ -576,7 +567,6 @@ const UI_COLORS = {
   "button.hoverBackground": "#22d3eedd",
   "button.secondaryBackground": "#304f6044",
   "button.secondaryForeground": "#d1e0e8",
-  "button.secondaryBorder": "#304f6059",
   "button.secondaryHoverBackground": "#06b6d433",
   "button.separator": "#304f6059",
   
@@ -611,67 +601,42 @@ const EDITOR_ENHANCEMENTS = {
   "editor.lineHighlightBorder": "#06b6d422",
   "editor.rangeHighlightBackground": "#06b6d418",
   "editor.rangeHighlightBorder": "#06b6d422",
-  "editor.rangeHighlightLineBackground": "#06b6d412",
   
   // Selection
   "editor.selectionBackground": "#06b6d444",
   "editor.selectionForeground": "#d1e0e8",
   "editor.inactiveSelectionBackground": "#06b6d422",
-  "editor.inactiveSelectionForeground": "#d1e0e8",
   "editor.selectionHighlightBackground": "#22d3ee22",
   "editor.selectionHighlightBorder": "#22d3ee2a",
-  "editor.selectionHighlightLineBackground": "#22d3ee12",
   
   // Search
   "editor.findMatchBackground": "#fbbf2466",
   "editor.findMatchForeground": "#d1e0e8",
   "editor.findMatchHighlightBackground": "#06b6d433",
-  "editor.findMatchHighlightForeground": "#d1e0e8",
+  "editor.findMatchHighlightForeground": "#d1e0e8cc",
   "editor.findMatchBorder": "#fbbf2455",
   "editor.findMatchHighlightBorder": "#06b6d444",
   "editor.findRangeHighlightBackground": "#304f6055",
   "editor.findRangeHighlightBorder": "#304f6044",
-  "editor.findMatchLineBackground": "#fbbf2422",
-  "editor.findMatchHighlightLineBackground": "#06b6d412",
   
   // Word highlight
   "editor.wordHighlightBackground": "#06b6d418",
   "editor.wordHighlightBorder": "#06b6d42a",
-  "editor.wordHighlightForeground": "#d1e0e8",
   "editor.wordHighlightStrongBackground": "#f472b622",
   "editor.wordHighlightStrongBorder": "#f472b633",
-  "editor.wordHighlightStrongForeground": "#d1e0e8",
   "editor.wordHighlightTextBackground": "#c084fc18",
   "editor.wordHighlightTextBorder": "#c084fc2a",
-  "editor.wordHighlightTextForeground": "#d1e0e8",
-  
-  // Occurrences highlight
-  "editor.occurrencesHighlightBackground": "#06b6d422",
-  "editor.occurrencesHighlightBorder": "#06b6d433",
-  "editor.occurrencesHighlightForeground": "#d1e0e8",
-  "editor.occurrencesHighlightLineBackground": "#06b6d412",
-  "editor.occurrencesHighlightLineBorder": "#06b6d422",
   
   // Symbol highlight
   "editor.symbolHighlightBackground": "#c084fc22",
   "editor.symbolHighlightBorder": "#c084fc33",
-  "editor.symbolHighlightForeground": "#d1e0e8",
-  "editor.symbolHighlightLineBackground": "#c084fc12",
   
   // Link
   "editor.linkedEditingBackground": "#c084fc33",
   "editorLink.activeForeground": "#22d3ee",
   
-  // Hover
+  // Hover (line highlight); widget uses editorHoverWidget.* in base theme
   "editor.hoverHighlightBackground": "#22d3ee18",
-  "editor.hoverBackground": "#02060b",
-  "editor.hoverForeground": "#d1e0e8",
-  "editor.hoverBorder": "#304f6044",
-  "editor.hoverStatusBarBackground": "#010203",
-  
-  // Inline suggest
-  "editor.inlineSuggest.background": "#304f6033",
-  "editor.inlineSuggest.border": "#304f6044",
   
   // Ghost text
   "editorGhostText.foreground": "#d1e0e844",
@@ -683,7 +648,6 @@ const EDITOR_ENHANCEMENTS = {
   "editorStickyScroll.border": "#304f6044",
   "editorStickyScroll.shadow": "#00000055",
   "editorStickyScrollHover.background": "#06b6d418",
-  "editor.stickyScroll.defaultProfile": "#d1e0e888",
   
   // Whitespace
   "editorWhitespace.foreground": "#d1e0e818",
@@ -715,29 +679,13 @@ const EDITOR_ENHANCEMENTS = {
   // Lightbulb
   "editorLightBulb.foreground": "#fbbf24",
   "editorLightBulbAutoFix.foreground": "#22c55e",
-  "editorLightBulbWarning.foreground": "#fbbf24",
-  "editorLightBulbError.foreground": "#f87171",
-  
-  // Drop into editor
-  "editor.dropBackground": "#06b6d433",
-  
-  // Drag and drop
-  "editor.dragAndDropBackground": "#06b6d422",
   
   // Walkthrough
   "walkThrough.embeddedEditorBackground": "#010203",
 };
 
-// Workspace Trust Colors
+// Restricted-mode banner uses banner.* (workbench.trust.* is not a VS Code color ID)
 const WORKSPACE_TRUST_COLORS = {
-  // Workspace trust
-  "workbench.trust.backgroundColor": "#fbbf2433",
-  "workbench.trust.foregroundColor": "#fbbf24",
-  "workbench.trust.untrustedBackgroundColor": "#f8717133",
-  "workbench.trust.untrustedForegroundColor": "#f87171",
-  "workbench.trust.partialBackgroundColor": "#fbbf2433",
-  "workbench.trust.partialForegroundColor": "#fbbf24",
-  
   // Banner
   "banner.background": "#fbbf2433",
   "banner.foreground": "#fbbf24",
@@ -747,9 +695,6 @@ const WORKSPACE_TRUST_COLORS = {
   "statusBarItem.prominentHoverBackground": "#06b6d433",
   
   // Editor trust
-  "editor.untrustedContentBannerForeground": "#f87171",
-  "editor.untrustedContentBannerBackground": "#f8717122",
-  "editor.untrustedContentBorder": "#f8717144",
   
   // Restricted mode
   "extensionButton.prominentForeground": "#22d3ee",
@@ -763,14 +708,10 @@ const WORKSPACE_TRUST_COLORS = {
   "extensionIcon.preReleaseForeground": "#c084fc",
   "extensionIcon.sponsorForeground": "#f472b6",
   "extensionIcon.privateForeground": "#f87171",
-  "extensionIcon.installedForeground": "#22c55e",
-  "extensionIcon.recommendedForeground": "#22d3ee",
-  "extensionIcon.disabledForeground": "#6b7280",
   
   // Settings trust
   "settings.modifiedItemIndicator": "#fbbf2444",
   "settings.headerForeground": "#67e8f9",
-  "settings.modifiedItemForeground": "#fbbf24",
   "settings.dropdownBackground": "#02060b",
   "settings.dropdownForeground": "#d1e0e8",
   "settings.dropdownBorder": "#304f6059",
@@ -828,8 +769,8 @@ const TERMINAL_COLORS = {
   "terminal.ansiBrightWhite": "#fafafa",
   
   // Terminal cursor
-  "terminalCursor.foreground": "#010102",
-  "terminalCursor.background": "#22d3ee",
+  "terminalCursor.foreground": "#22d3ee",
+  "terminalCursor.background": "#010102",
   
   // Terminal tabs
   "terminal.tab.activeBorder": "#22d3ee",

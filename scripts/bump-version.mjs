@@ -61,12 +61,13 @@ const eol = changelog.includes("\r\n") ? "\r\n" : "\n";
 const normalized = changelog.replace(/\r\n/g, "\n");
 const newSection =
   `## ${nextVersion} — ${today}\n\n- **Changed**: version bump.\n\n`;
-const anchorRegex =
-  /(# Changelog — Dusk Office\n\n(?:.*\n)?\n)/;
+const anchorRegex = /^(# Changelog — Dusk Office\n\n)/m;
 if (!anchorRegex.test(normalized)) {
   throw new Error("Ancre changelog introuvable.");
 }
-const nextChangelog = normalized.replace(anchorRegex, `$1${newSection}`).replace(/\n/g, eol);
+const nextChangelog = normalized
+  .replace(anchorRegex, `$1${newSection}`)
+  .replace(/\n/g, eol);
 
 fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2) + "\n", "utf8");
 fs.writeFileSync(packageLockPath, JSON.stringify(lock, null, 2) + "\n", "utf8");
