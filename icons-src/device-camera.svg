@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="5" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="9" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 5V4C6 3.44772 6.44772 3 7 3H9C9.55228 3 10 3.44772 10 4V5" stroke="currentColor" stroke-width="1.5"/>
+</svg>

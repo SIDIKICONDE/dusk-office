@@ -18,568 +18,88 @@
       "fontCharacter": "\\eb99",
       "fontId": "dusk-office-codicon"
     },
-    "activate-breakpoints": {
-      "fontCharacter": "\\ea97",
-      "fontId": "dusk-office-codicon"
-    },
-    "add-small": {
-      "fontCharacter": "\\ec7b",
-      "fontId": "dusk-office-codicon"
-    },
     "add": {
       "fontCharacter": "\\ea60",
       "fontId": "dusk-office-codicon"
     },
-    "agent": {
-      "fontCharacter": "\\ec67",
-      "fontId": "dusk-office-codicon"
-    },
-    "archive": {
-      "fontCharacter": "\\ea98",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-both": {
-      "fontCharacter": "\\ea99",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-circle-down": {
-      "fontCharacter": "\\ebfc",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-circle-left": {
-      "fontCharacter": "\\ebfd",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-circle-right": {
-      "fontCharacter": "\\ebfe",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-circle-up": {
-      "fontCharacter": "\\ebff",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-down": {
-      "fontCharacter": "\\ea9a",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-left": {
-      "fontCharacter": "\\ea9b",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-right": {
-      "fontCharacter": "\\ea9c",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-small-down": {
-      "fontCharacter": "\\ea9d",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-small-left": {
-      "fontCharacter": "\\ea9e",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-small-right": {
-      "fontCharacter": "\\ea9f",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-small-up": {
-      "fontCharacter": "\\eaa0",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-swap": {
-      "fontCharacter": "\\ebcb",
-      "fontId": "dusk-office-codicon"
-    },
-    "arrow-up": {
-      "fontCharacter": "\\eaa1",
-      "fontId": "dusk-office-codicon"
-    },
-    "ask": {
-      "fontCharacter": "\\ec80",
-      "fontId": "dusk-office-codicon"
-    },
-    "attach": {
-      "fontCharacter": "\\ec34",
-      "fontId": "dusk-office-codicon"
-    },
-    "azure-devops": {
-      "fontCharacter": "\\ebe8",
-      "fontId": "dusk-office-codicon"
-    },
-    "azure": {
-      "fontCharacter": "\\ebd8",
-      "fontId": "dusk-office-codicon"
-    },
-    "beaker-stop": {
-      "fontCharacter": "\\ebe1",
-      "fontId": "dusk-office-codicon"
-    },
     "beaker": {
-      "fontCharacter": "\\ea79",
-      "fontId": "dusk-office-codicon"
-    },
-    "bell-dot": {
-      "fontCharacter": "\\eb9a",
-      "fontId": "dusk-office-codicon"
-    },
-    "bell-slash-dot": {
-      "fontCharacter": "\\ec09",
-      "fontId": "dusk-office-codicon"
-    },
-    "bell-slash": {
-      "fontCharacter": "\\ec08",
+      "fontCharacter": "\\eb29",
       "fontId": "dusk-office-codicon"
     },
     "bell": {
       "fontCharacter": "\\eaa2",
       "fontId": "dusk-office-codicon"
     },
-    "blank": {
-      "fontCharacter": "\\ec03",
-      "fontId": "dusk-office-codicon"
-    },
-    "bold": {
-      "fontCharacter": "\\eaa3",
-      "fontId": "dusk-office-codicon"
-    },
     "book": {
       "fontCharacter": "\\eaa4",
       "fontId": "dusk-office-codicon"
     },
-    "bookmark": {
-      "fontCharacter": "\\eaa5",
-      "fontId": "dusk-office-codicon"
-    },
-    "bracket-dot": {
-      "fontCharacter": "\\ebe5",
-      "fontId": "dusk-office-codicon"
-    },
-    "bracket-error": {
-      "fontCharacter": "\\ebe6",
-      "fontId": "dusk-office-codicon"
-    },
-    "briefcase": {
-      "fontCharacter": "\\eaac",
-      "fontId": "dusk-office-codicon"
-    },
-    "broadcast": {
-      "fontCharacter": "\\eaad",
-      "fontId": "dusk-office-codicon"
-    },
-    "browser": {
-      "fontCharacter": "\\eaae",
-      "fontId": "dusk-office-codicon"
-    },
-    "bug": {
-      "fontCharacter": "\\eaaf",
-      "fontId": "dusk-office-codicon"
-    },
-    "build": {
-      "fontCharacter": "\\ec5a",
-      "fontId": "dusk-office-codicon"
-    },
-    "calendar": {
-      "fontCharacter": "\\eab0",
-      "fontId": "dusk-office-codicon"
-    },
-    "call-incoming": {
-      "fontCharacter": "\\eb92",
-      "fontId": "dusk-office-codicon"
-    },
-    "call-outgoing": {
-      "fontCharacter": "\\eb93",
-      "fontId": "dusk-office-codicon"
-    },
     "case-sensitive": {
-      "fontCharacter": "\\eab1",
-      "fontId": "dusk-office-codicon"
-    },
-    "chat-sparkle-error": {
-      "fontCharacter": "\\ec56",
-      "fontId": "dusk-office-codicon"
-    },
-    "chat-sparkle-warning": {
-      "fontCharacter": "\\ec55",
-      "fontId": "dusk-office-codicon"
-    },
-    "chat-sparkle": {
-      "fontCharacter": "\\ec4f",
-      "fontId": "dusk-office-codicon"
-    },
-    "check-all": {
-      "fontCharacter": "\\ebb1",
+      "fontCharacter": "\\eb2e",
       "fontId": "dusk-office-codicon"
     },
     "check": {
-      "fontCharacter": "\\eab2",
-      "fontId": "dusk-office-codicon"
-    },
-    "checklist": {
-      "fontCharacter": "\\eab3",
+      "fontCharacter": "\\ea73",
       "fontId": "dusk-office-codicon"
     },
     "chevron-down": {
-      "fontCharacter": "\\eab4",
+      "fontCharacter": "\\ea5c",
       "fontId": "dusk-office-codicon"
     },
     "chevron-left": {
-      "fontCharacter": "\\eab5",
+      "fontCharacter": "\\ea59",
       "fontId": "dusk-office-codicon"
     },
     "chevron-right": {
-      "fontCharacter": "\\eab6",
+      "fontCharacter": "\\ea5a",
       "fontId": "dusk-office-codicon"
     },
     "chevron-up": {
-      "fontCharacter": "\\eab7",
-      "fontId": "dusk-office-codicon"
-    },
-    "chip": {
-      "fontCharacter": "\\ec19",
-      "fontId": "dusk-office-codicon"
-    },
-    "chrome-close": {
-      "fontCharacter": "\\eab8",
-      "fontId": "dusk-office-codicon"
-    },
-    "chrome-maximize": {
-      "fontCharacter": "\\eab9",
-      "fontId": "dusk-office-codicon"
-    },
-    "chrome-minimize": {
-      "fontCharacter": "\\eaba",
-      "fontId": "dusk-office-codicon"
-    },
-    "chrome-restore": {
-      "fontCharacter": "\\eabb",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-filled": {
-      "fontCharacter": "\\ea71",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-large-filled": {
-      "fontCharacter": "\\ebb4",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-large": {
-      "fontCharacter": "\\ebb5",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-slash": {
-      "fontCharacter": "\\eabd",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-small-filled": {
-      "fontCharacter": "\\eb8a",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle-small": {
-      "fontCharacter": "\\ec07",
-      "fontId": "dusk-office-codicon"
-    },
-    "circle": {
-      "fontCharacter": "\\eabc",
+      "fontCharacter": "\\ea5b",
       "fontId": "dusk-office-codicon"
     },
     "circuit-board": {
-      "fontCharacter": "\\eabe",
-      "fontId": "dusk-office-codicon"
-    },
-    "claude": {
-      "fontCharacter": "\\ec82",
+      "fontCharacter": "\\ead8",
       "fontId": "dusk-office-codicon"
     },
     "clear-all": {
-      "fontCharacter": "\\eabf",
+      "fontCharacter": "\\eb3b",
       "fontId": "dusk-office-codicon"
     },
-    "clippy": {
-      "fontCharacter": "\\eac0",
-      "fontId": "dusk-office-codicon"
-    },
-    "clockface": {
-      "fontCharacter": "\\ec75",
-      "fontId": "dusk-office-codicon"
-    },
-    "close-all": {
-      "fontCharacter": "\\eac1",
+    "clear": {
+      "fontCharacter": "\\eb3b",
       "fontId": "dusk-office-codicon"
     },
     "close": {
       "fontCharacter": "\\ea76",
       "fontId": "dusk-office-codicon"
     },
-    "cloud-download": {
-      "fontCharacter": "\\eac2",
-      "fontId": "dusk-office-codicon"
-    },
-    "cloud-small": {
-      "fontCharacter": "\\ec7a",
-      "fontId": "dusk-office-codicon"
-    },
-    "cloud-upload": {
-      "fontCharacter": "\\eac3",
-      "fontId": "dusk-office-codicon"
-    },
     "cloud": {
-      "fontCharacter": "\\ebaa",
-      "fontId": "dusk-office-codicon"
-    },
-    "code-oss": {
-      "fontCharacter": "\\ec2b",
-      "fontId": "dusk-office-codicon"
-    },
-    "code-review": {
-      "fontCharacter": "\\ec37",
-      "fontId": "dusk-office-codicon"
-    },
-    "code": {
-      "fontCharacter": "\\eac4",
-      "fontId": "dusk-office-codicon"
-    },
-    "coffee": {
-      "fontCharacter": "\\ec15",
+      "fontCharacter": "\\eb01",
       "fontId": "dusk-office-codicon"
     },
     "collapse-all": {
-      "fontCharacter": "\\eac5",
-      "fontId": "dusk-office-codicon"
-    },
-    "collection-small": {
-      "fontCharacter": "\\ec78",
-      "fontId": "dusk-office-codicon"
-    },
-    "collection": {
-      "fontCharacter": "\\ec57",
-      "fontId": "dusk-office-codicon"
-    },
-    "color-mode": {
-      "fontCharacter": "\\eac6",
-      "fontId": "dusk-office-codicon"
-    },
-    "combine": {
-      "fontCharacter": "\\ebb6",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment-discussion-quote": {
-      "fontCharacter": "\\ec5b",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment-discussion-sparkle": {
-      "fontCharacter": "\\ec54",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment-discussion": {
-      "fontCharacter": "\\eac7",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment-draft": {
-      "fontCharacter": "\\ec0e",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment-unresolved": {
-      "fontCharacter": "\\ec0a",
-      "fontId": "dusk-office-codicon"
-    },
-    "comment": {
-      "fontCharacter": "\\ea6b",
-      "fontId": "dusk-office-codicon"
-    },
-    "compass-active": {
-      "fontCharacter": "\\ebd7",
-      "fontId": "dusk-office-codicon"
-    },
-    "compass-dot": {
-      "fontCharacter": "\\ebd6",
-      "fontId": "dusk-office-codicon"
-    },
-    "compass": {
-      "fontCharacter": "\\ebd5",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-blocked": {
-      "fontCharacter": "\\ec3d",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-error": {
-      "fontCharacter": "\\ec4d",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-in-progress": {
-      "fontCharacter": "\\ec4c",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-large": {
-      "fontCharacter": "\\ec3a",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-not-connected": {
-      "fontCharacter": "\\ec3e",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-snooze": {
-      "fontCharacter": "\\ec52",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-success": {
-      "fontCharacter": "\\ec4e",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-unavailable": {
-      "fontCharacter": "\\ec42",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-warning-large": {
-      "fontCharacter": "\\ec3b",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot-warning": {
-      "fontCharacter": "\\ec38",
-      "fontId": "dusk-office-codicon"
-    },
-    "copilot": {
-      "fontCharacter": "\\ec1e",
-      "fontId": "dusk-office-codicon"
-    },
-    "copy": {
-      "fontCharacter": "\\ebcc",
-      "fontId": "dusk-office-codicon"
-    },
-    "coverage": {
-      "fontCharacter": "\\ec2e",
-      "fontId": "dusk-office-codicon"
-    },
-    "credit-card": {
-      "fontCharacter": "\\eac9",
-      "fontId": "dusk-office-codicon"
-    },
-    "cursor": {
-      "fontCharacter": "\\ec5c",
-      "fontId": "dusk-office-codicon"
-    },
-    "dash": {
-      "fontCharacter": "\\eacc",
+      "fontCharacter": "\\eb95",
       "fontId": "dusk-office-codicon"
     },
     "dashboard": {
-      "fontCharacter": "\\eacd",
+      "fontCharacter": "\\ebeb",
       "fontId": "dusk-office-codicon"
     },
     "database": {
-      "fontCharacter": "\\eace",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-all": {
-      "fontCharacter": "\\ebdc",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-alt-small": {
-      "fontCharacter": "\\eba8",
+      "fontCharacter": "\\ebaf",
       "fontId": "dusk-office-codicon"
     },
     "debug-alt": {
-      "fontCharacter": "\\eb91",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-conditional-unverified": {
-      "fontCharacter": "\\eaa6",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-conditional": {
-      "fontCharacter": "\\eaa7",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-data-unverified": {
-      "fontCharacter": "\\eaa8",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-data": {
-      "fontCharacter": "\\eaa9",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-function-unverified": {
-      "fontCharacter": "\\eb87",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-function": {
-      "fontCharacter": "\\eb88",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-log-unverified": {
-      "fontCharacter": "\\eaaa",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-log": {
-      "fontCharacter": "\\eaab",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-breakpoint-unsupported": {
-      "fontCharacter": "\\eb8c",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-connected": {
-      "fontCharacter": "\\ec63",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-console": {
-      "fontCharacter": "\\eb9b",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-continue-small": {
-      "fontCharacter": "\\ebe0",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-continue": {
-      "fontCharacter": "\\eacf",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-coverage": {
-      "fontCharacter": "\\ebdd",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-disconnect": {
-      "fontCharacter": "\\ead0",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-line-by-line": {
-      "fontCharacter": "\\ebd0",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-pause": {
-      "fontCharacter": "\\ead1",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-rerun": {
-      "fontCharacter": "\\ebc0",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-restart-frame": {
-      "fontCharacter": "\\eb90",
+      "fontCharacter": "\\ea79",
       "fontId": "dusk-office-codicon"
     },
     "debug-restart": {
-      "fontCharacter": "\\ead2",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-reverse-continue": {
-      "fontCharacter": "\\eb8e",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-stackframe-active": {
-      "fontCharacter": "\\eb89",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-stackframe": {
-      "fontCharacter": "\\eb8b",
+      "fontCharacter": "\\eb8c",
       "fontId": "dusk-office-codicon"
     },
     "debug-start": {
       "fontCharacter": "\\ead3",
-      "fontId": "dusk-office-codicon"
-    },
-    "debug-step-back": {
-      "fontCharacter": "\\eb8f",
       "fontId": "dusk-office-codicon"
     },
     "debug-step-into": {
@@ -599,23 +119,11 @@
       "fontId": "dusk-office-codicon"
     },
     "debug": {
-      "fontCharacter": "\\ead8",
-      "fontId": "dusk-office-codicon"
-    },
-    "desktop-download": {
-      "fontCharacter": "\\ea78",
-      "fontId": "dusk-office-codicon"
-    },
-    "device-camera-video": {
-      "fontCharacter": "\\ead9",
+      "fontCharacter": "\\eaaf",
       "fontId": "dusk-office-codicon"
     },
     "device-camera": {
       "fontCharacter": "\\eada",
-      "fontId": "dusk-office-codicon"
-    },
-    "device-mobile": {
-      "fontCharacter": "\\eadb",
       "fontId": "dusk-office-codicon"
     },
     "diff-added": {
@@ -630,10 +138,6 @@
       "fontCharacter": "\\eade",
       "fontId": "dusk-office-codicon"
     },
-    "diff-multiple": {
-      "fontCharacter": "\\ec23",
-      "fontId": "dusk-office-codicon"
-    },
     "diff-removed": {
       "fontCharacter": "\\eadf",
       "fontId": "dusk-office-codicon"
@@ -642,80 +146,24 @@
       "fontCharacter": "\\eae0",
       "fontId": "dusk-office-codicon"
     },
-    "diff-single": {
-      "fontCharacter": "\\eb43",
-      "fontId": "dusk-office-codicon"
-    },
-    "diff": {
-      "fontCharacter": "\\eae1",
-      "fontId": "dusk-office-codicon"
-    },
-    "discard": {
-      "fontCharacter": "\\eae2",
-      "fontId": "dusk-office-codicon"
-    },
-    "download": {
-      "fontCharacter": "\\ec74",
-      "fontId": "dusk-office-codicon"
-    },
-    "edit-code": {
-      "fontCharacter": "\\ec68",
-      "fontId": "dusk-office-codicon"
-    },
-    "edit-session": {
-      "fontCharacter": "\\ec36",
-      "fontId": "dusk-office-codicon"
-    },
-    "edit-sparkle": {
-      "fontCharacter": "\\ec51",
-      "fontId": "dusk-office-codicon"
-    },
     "edit": {
       "fontCharacter": "\\ea73",
-      "fontId": "dusk-office-codicon"
-    },
-    "editor-layout": {
-      "fontCharacter": "\\eae3",
       "fontId": "dusk-office-codicon"
     },
     "ellipsis": {
       "fontCharacter": "\\ea7c",
       "fontId": "dusk-office-codicon"
     },
-    "empty-window": {
-      "fontCharacter": "\\eae4",
-      "fontId": "dusk-office-codicon"
-    },
-    "eraser": {
-      "fontCharacter": "\\ec5d",
-      "fontId": "dusk-office-codicon"
-    },
-    "error-small": {
-      "fontCharacter": "\\ebfb",
-      "fontId": "dusk-office-codicon"
-    },
     "error": {
       "fontCharacter": "\\ea87",
-      "fontId": "dusk-office-codicon"
-    },
-    "exclude": {
-      "fontCharacter": "\\eae5",
       "fontId": "dusk-office-codicon"
     },
     "expand-all": {
       "fontCharacter": "\\eb95",
       "fontId": "dusk-office-codicon"
     },
-    "export": {
-      "fontCharacter": "\\ebac",
-      "fontId": "dusk-office-codicon"
-    },
-    "extensions-large": {
-      "fontCharacter": "\\ec48",
-      "fontId": "dusk-office-codicon"
-    },
     "extensions": {
-      "fontCharacter": "\\eae6",
+      "fontCharacter": "\\eb29",
       "fontId": "dusk-office-codicon"
     },
     "eye-closed": {
@@ -726,44 +174,8 @@
       "fontCharacter": "\\ea70",
       "fontId": "dusk-office-codicon"
     },
-    "feedback": {
-      "fontCharacter": "\\eb96",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-binary": {
-      "fontCharacter": "\\eae8",
-      "fontId": "dusk-office-codicon"
-    },
     "file-code": {
       "fontCharacter": "\\eae9",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-media": {
-      "fontCharacter": "\\eaea",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-pdf": {
-      "fontCharacter": "\\eaeb",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-submodule": {
-      "fontCharacter": "\\eaec",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-symlink-directory": {
-      "fontCharacter": "\\eaed",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-symlink-file": {
-      "fontCharacter": "\\eaee",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-text": {
-      "fontCharacter": "\\ec5e",
-      "fontId": "dusk-office-codicon"
-    },
-    "file-zip": {
-      "fontCharacter": "\\eaef",
       "fontId": "dusk-office-codicon"
     },
     "file": {
@@ -771,43 +183,11 @@
       "fontId": "dusk-office-codicon"
     },
     "files": {
-      "fontCharacter": "\\eaf0",
-      "fontId": "dusk-office-codicon"
-    },
-    "filter-filled": {
-      "fontCharacter": "\\ebce",
+      "fontCharacter": "\\ebdf",
       "fontId": "dusk-office-codicon"
     },
     "filter": {
       "fontCharacter": "\\eaf1",
-      "fontId": "dusk-office-codicon"
-    },
-    "flag": {
-      "fontCharacter": "\\ec3f",
-      "fontId": "dusk-office-codicon"
-    },
-    "flame": {
-      "fontCharacter": "\\eaf2",
-      "fontId": "dusk-office-codicon"
-    },
-    "fold-down": {
-      "fontCharacter": "\\eaf3",
-      "fontId": "dusk-office-codicon"
-    },
-    "fold-up": {
-      "fontCharacter": "\\eaf4",
-      "fontId": "dusk-office-codicon"
-    },
-    "fold": {
-      "fontCharacter": "\\eaf5",
-      "fontId": "dusk-office-codicon"
-    },
-    "folder-active": {
-      "fontCharacter": "\\eaf6",
-      "fontId": "dusk-office-codicon"
-    },
-    "folder-library": {
-      "fontCharacter": "\\ebdf",
       "fontId": "dusk-office-codicon"
     },
     "folder-opened": {
@@ -818,40 +198,8 @@
       "fontCharacter": "\\ea83",
       "fontId": "dusk-office-codicon"
     },
-    "forward": {
-      "fontCharacter": "\\ec73",
-      "fontId": "dusk-office-codicon"
-    },
-    "game": {
-      "fontCharacter": "\\ec17",
-      "fontId": "dusk-office-codicon"
-    },
-    "gear": {
-      "fontCharacter": "\\eaf8",
-      "fontId": "dusk-office-codicon"
-    },
     "gift": {
-      "fontCharacter": "\\eaf9",
-      "fontId": "dusk-office-codicon"
-    },
-    "gist-secret": {
-      "fontCharacter": "\\eafa",
-      "fontId": "dusk-office-codicon"
-    },
-    "gist": {
-      "fontCharacter": "\\eafb",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-branch-changes": {
-      "fontCharacter": "\\ec6c",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-branch-conflicts": {
-      "fontCharacter": "\\ec6e",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-branch-staged-changes": {
-      "fontCharacter": "\\ec6d",
+      "fontCharacter": "\\eb09",
       "fontId": "dusk-office-codicon"
     },
     "git-branch": {
@@ -862,100 +210,20 @@
       "fontCharacter": "\\eafc",
       "fontId": "dusk-office-codicon"
     },
-    "git-compare": {
-      "fontCharacter": "\\eafd",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-fetch": {
-      "fontCharacter": "\\f101",
-      "fontId": "dusk-office-codicon"
-    },
     "git-merge": {
       "fontCharacter": "\\eafe",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-closed": {
-      "fontCharacter": "\\ebda",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-create": {
-      "fontCharacter": "\\ebbc",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-done": {
-      "fontCharacter": "\\ec46",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-draft": {
-      "fontCharacter": "\\ebdb",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-go-to-changes": {
-      "fontCharacter": "\\ec0b",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-pull-request-new-changes": {
-      "fontCharacter": "\\ec0c",
       "fontId": "dusk-office-codicon"
     },
     "git-pull-request": {
       "fontCharacter": "\\ea64",
       "fontId": "dusk-office-codicon"
     },
-    "git-stash-apply": {
-      "fontCharacter": "\\ec27",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-stash-pop": {
-      "fontCharacter": "\\ec28",
-      "fontId": "dusk-office-codicon"
-    },
-    "git-stash": {
-      "fontCharacter": "\\ec26",
-      "fontId": "dusk-office-codicon"
-    },
-    "github-action": {
-      "fontCharacter": "\\eaff",
-      "fontId": "dusk-office-codicon"
-    },
-    "github-alt": {
-      "fontCharacter": "\\eb00",
-      "fontId": "dusk-office-codicon"
-    },
-    "github-inverted": {
-      "fontCharacter": "\\eba1",
-      "fontId": "dusk-office-codicon"
-    },
-    "github-project": {
-      "fontCharacter": "\\ec2f",
-      "fontId": "dusk-office-codicon"
-    },
-    "github": {
-      "fontCharacter": "\\ea84",
-      "fontId": "dusk-office-codicon"
-    },
     "globe": {
       "fontCharacter": "\\eb01",
       "fontId": "dusk-office-codicon"
     },
-    "go-to-editing-session": {
-      "fontCharacter": "\\ec35",
-      "fontId": "dusk-office-codicon"
-    },
     "go-to-file": {
       "fontCharacter": "\\ea94",
-      "fontId": "dusk-office-codicon"
-    },
-    "go-to-search": {
-      "fontCharacter": "\\ec32",
-      "fontId": "dusk-office-codicon"
-    },
-    "grabber": {
-      "fontCharacter": "\\eb02",
-      "fontId": "dusk-office-codicon"
-    },
-    "graph-left": {
-      "fontCharacter": "\\ebad",
       "fontId": "dusk-office-codicon"
     },
     "graph-line": {
@@ -970,18 +238,6 @@
       "fontCharacter": "\\eb03",
       "fontId": "dusk-office-codicon"
     },
-    "gripper": {
-      "fontCharacter": "\\eb04",
-      "fontId": "dusk-office-codicon"
-    },
-    "group-by-ref-type": {
-      "fontCharacter": "\\eb97",
-      "fontId": "dusk-office-codicon"
-    },
-    "heart-filled": {
-      "fontCharacter": "\\ec04",
-      "fontId": "dusk-office-codicon"
-    },
     "heart": {
       "fontCharacter": "\\eb05",
       "fontId": "dusk-office-codicon"
@@ -994,10 +250,6 @@
       "fontCharacter": "\\eb06",
       "fontId": "dusk-office-codicon"
     },
-    "horizontal-rule": {
-      "fontCharacter": "\\eb07",
-      "fontId": "dusk-office-codicon"
-    },
     "hubot": {
       "fontCharacter": "\\eb08",
       "fontId": "dusk-office-codicon"
@@ -1006,176 +258,32 @@
       "fontCharacter": "\\eb09",
       "fontId": "dusk-office-codicon"
     },
-    "indent": {
-      "fontCharacter": "\\ebf9",
-      "fontId": "dusk-office-codicon"
-    },
-    "index-zero": {
-      "fontCharacter": "\\ec66",
-      "fontId": "dusk-office-codicon"
-    },
     "info": {
       "fontCharacter": "\\ea74",
-      "fontId": "dusk-office-codicon"
-    },
-    "insert": {
-      "fontCharacter": "\\ec11",
-      "fontId": "dusk-office-codicon"
-    },
-    "inspect": {
-      "fontCharacter": "\\ebd1",
-      "fontId": "dusk-office-codicon"
-    },
-    "issue-draft": {
-      "fontCharacter": "\\ebd9",
-      "fontId": "dusk-office-codicon"
-    },
-    "issue-reopened": {
-      "fontCharacter": "\\eb0b",
-      "fontId": "dusk-office-codicon"
-    },
-    "issues": {
-      "fontCharacter": "\\eb0c",
-      "fontId": "dusk-office-codicon"
-    },
-    "italic": {
-      "fontCharacter": "\\eb0d",
-      "fontId": "dusk-office-codicon"
-    },
-    "jersey": {
-      "fontCharacter": "\\eb0e",
-      "fontId": "dusk-office-codicon"
-    },
-    "json": {
-      "fontCharacter": "\\ea8b",
-      "fontId": "dusk-office-codicon"
-    },
-    "kebab-vertical": {
-      "fontCharacter": "\\eb10",
       "fontId": "dusk-office-codicon"
     },
     "key": {
       "fontCharacter": "\\eb11",
       "fontId": "dusk-office-codicon"
     },
-    "keyboard-tab-above": {
-      "fontCharacter": "\\ec44",
-      "fontId": "dusk-office-codicon"
-    },
-    "keyboard-tab-below": {
-      "fontCharacter": "\\ec45",
-      "fontId": "dusk-office-codicon"
-    },
-    "keyboard-tab": {
-      "fontCharacter": "\\ec3c",
-      "fontId": "dusk-office-codicon"
-    },
     "law": {
       "fontCharacter": "\\eb12",
-      "fontId": "dusk-office-codicon"
-    },
-    "layers-active": {
-      "fontCharacter": "\\ebd4",
-      "fontId": "dusk-office-codicon"
-    },
-    "layers-dot": {
-      "fontCharacter": "\\ebd3",
       "fontId": "dusk-office-codicon"
     },
     "layers": {
       "fontCharacter": "\\ebd2",
       "fontId": "dusk-office-codicon"
     },
-    "layout-activitybar-left": {
-      "fontCharacter": "\\ebec",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-activitybar-right": {
-      "fontCharacter": "\\ebed",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-centered": {
-      "fontCharacter": "\\ebf7",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-menubar": {
-      "fontCharacter": "\\ebf6",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-center": {
-      "fontCharacter": "\\ebef",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-dock": {
-      "fontCharacter": "\\ec49",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-justify": {
-      "fontCharacter": "\\ebf0",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-left": {
-      "fontCharacter": "\\ebee",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-off": {
-      "fontCharacter": "\\ec01",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-panel-right": {
-      "fontCharacter": "\\ebf1",
-      "fontId": "dusk-office-codicon"
-    },
     "layout-panel": {
       "fontCharacter": "\\ebf2",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-sidebar-left-dock": {
-      "fontCharacter": "\\ec4a",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-sidebar-left-off": {
-      "fontCharacter": "\\ec02",
       "fontId": "dusk-office-codicon"
     },
     "layout-sidebar-left": {
       "fontCharacter": "\\ebf3",
       "fontId": "dusk-office-codicon"
     },
-    "layout-sidebar-right-dock": {
-      "fontCharacter": "\\ec4b",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-sidebar-right-off": {
-      "fontCharacter": "\\ec00",
-      "fontId": "dusk-office-codicon"
-    },
     "layout-sidebar-right": {
       "fontCharacter": "\\ebf4",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout-statusbar": {
-      "fontCharacter": "\\ebf5",
-      "fontId": "dusk-office-codicon"
-    },
-    "layout": {
-      "fontCharacter": "\\ebeb",
-      "fontId": "dusk-office-codicon"
-    },
-    "library": {
-      "fontCharacter": "\\eb9c",
-      "fontId": "dusk-office-codicon"
-    },
-    "lightbulb-autofix": {
-      "fontCharacter": "\\eb13",
-      "fontId": "dusk-office-codicon"
-    },
-    "lightbulb-empty": {
-      "fontCharacter": "\\ec40",
-      "fontId": "dusk-office-codicon"
-    },
-    "lightbulb-sparkle": {
-      "fontCharacter": "\\ec1f",
       "fontId": "dusk-office-codicon"
     },
     "lightbulb": {
@@ -1190,200 +298,28 @@
       "fontCharacter": "\\eb15",
       "fontId": "dusk-office-codicon"
     },
-    "list-filter": {
-      "fontCharacter": "\\eb83",
-      "fontId": "dusk-office-codicon"
-    },
-    "list-flat": {
-      "fontCharacter": "\\eb84",
-      "fontId": "dusk-office-codicon"
-    },
     "list-ordered": {
       "fontCharacter": "\\eb16",
-      "fontId": "dusk-office-codicon"
-    },
-    "list-selection": {
-      "fontCharacter": "\\eb85",
-      "fontId": "dusk-office-codicon"
-    },
-    "list-tree": {
-      "fontCharacter": "\\eb86",
       "fontId": "dusk-office-codicon"
     },
     "list-unordered": {
       "fontCharacter": "\\eb17",
       "fontId": "dusk-office-codicon"
     },
-    "live-share": {
-      "fontCharacter": "\\eb18",
-      "fontId": "dusk-office-codicon"
-    },
-    "loading": {
-      "fontCharacter": "\\eb19",
-      "fontId": "dusk-office-codicon"
-    },
-    "location": {
-      "fontCharacter": "\\eb1a",
-      "fontId": "dusk-office-codicon"
-    },
-    "lock-small": {
-      "fontCharacter": "\\ebe7",
-      "fontId": "dusk-office-codicon"
-    },
     "lock": {
       "fontCharacter": "\\ea75",
-      "fontId": "dusk-office-codicon"
-    },
-    "magnet": {
-      "fontCharacter": "\\ebae",
-      "fontId": "dusk-office-codicon"
-    },
-    "mail-read": {
-      "fontCharacter": "\\eb1b",
-      "fontId": "dusk-office-codicon"
-    },
-    "mail": {
-      "fontCharacter": "\\eb1c",
-      "fontId": "dusk-office-codicon"
-    },
-    "map-filled": {
-      "fontCharacter": "\\ec06",
-      "fontId": "dusk-office-codicon"
-    },
-    "map-vertical-filled": {
-      "fontCharacter": "\\ec31",
-      "fontId": "dusk-office-codicon"
-    },
-    "map-vertical": {
-      "fontCharacter": "\\ec30",
-      "fontId": "dusk-office-codicon"
-    },
-    "map": {
-      "fontCharacter": "\\ec05",
-      "fontId": "dusk-office-codicon"
-    },
-    "markdown": {
-      "fontCharacter": "\\eb1d",
-      "fontId": "dusk-office-codicon"
-    },
-    "mcp": {
-      "fontCharacter": "\\ec47",
-      "fontId": "dusk-office-codicon"
-    },
-    "megaphone": {
-      "fontCharacter": "\\eb1e",
-      "fontId": "dusk-office-codicon"
-    },
-    "mention": {
-      "fontCharacter": "\\eb1f",
-      "fontId": "dusk-office-codicon"
-    },
-    "menu": {
-      "fontCharacter": "\\eb94",
-      "fontId": "dusk-office-codicon"
-    },
-    "merge-into": {
-      "fontCharacter": "\\ec6b",
       "fontId": "dusk-office-codicon"
     },
     "merge": {
       "fontCharacter": "\\ebab",
       "fontId": "dusk-office-codicon"
     },
-    "mic-filled": {
-      "fontCharacter": "\\ec1c",
-      "fontId": "dusk-office-codicon"
-    },
-    "mic": {
-      "fontCharacter": "\\ec12",
-      "fontId": "dusk-office-codicon"
-    },
-    "milestone": {
-      "fontCharacter": "\\eb20",
-      "fontId": "dusk-office-codicon"
-    },
-    "mirror": {
-      "fontCharacter": "\\ea69",
-      "fontId": "dusk-office-codicon"
-    },
     "mortar-board": {
       "fontCharacter": "\\eb21",
       "fontId": "dusk-office-codicon"
     },
-    "move": {
-      "fontCharacter": "\\eb22",
-      "fontId": "dusk-office-codicon"
-    },
-    "multiple-windows": {
-      "fontCharacter": "\\eb23",
-      "fontId": "dusk-office-codicon"
-    },
-    "music": {
-      "fontCharacter": "\\ec1b",
-      "fontId": "dusk-office-codicon"
-    },
-    "mute": {
-      "fontCharacter": "\\eb24",
-      "fontId": "dusk-office-codicon"
-    },
-    "new-collection": {
-      "fontCharacter": "\\ec58",
-      "fontId": "dusk-office-codicon"
-    },
-    "new-file": {
-      "fontCharacter": "\\ea7f",
-      "fontId": "dusk-office-codicon"
-    },
-    "new-folder": {
-      "fontCharacter": "\\ea80",
-      "fontId": "dusk-office-codicon"
-    },
-    "new-session": {
-      "fontCharacter": "\\ec84",
-      "fontId": "dusk-office-codicon"
-    },
-    "newline": {
-      "fontCharacter": "\\ebea",
-      "fontId": "dusk-office-codicon"
-    },
-    "no-newline": {
-      "fontCharacter": "\\eb25",
-      "fontId": "dusk-office-codicon"
-    },
-    "note": {
-      "fontCharacter": "\\eb26",
-      "fontId": "dusk-office-codicon"
-    },
-    "notebook-template": {
-      "fontCharacter": "\\ebbf",
-      "fontId": "dusk-office-codicon"
-    },
     "notebook": {
       "fontCharacter": "\\ebaf",
-      "fontId": "dusk-office-codicon"
-    },
-    "octoface": {
-      "fontCharacter": "\\eb27",
-      "fontId": "dusk-office-codicon"
-    },
-    "open-in-product": {
-      "fontCharacter": "\\ec65",
-      "fontId": "dusk-office-codicon"
-    },
-    "open-in-window": {
-      "fontCharacter": "\\ec83",
-      "fontId": "dusk-office-codicon"
-    },
-    "open-preview": {
-      "fontCharacter": "\\eb28",
-      "fontId": "dusk-office-codicon"
-    },
-    "openai": {
-      "fontCharacter": "\\ec81",
-      "fontId": "dusk-office-codicon"
-    },
-    "organization": {
-      "fontCharacter": "\\ea7e",
       "fontId": "dusk-office-codicon"
     },
     "output": {
@@ -1394,32 +330,8 @@
       "fontCharacter": "\\eb29",
       "fontId": "dusk-office-codicon"
     },
-    "paintcan": {
-      "fontCharacter": "\\eb2a",
-      "fontId": "dusk-office-codicon"
-    },
-    "pass-filled": {
-      "fontCharacter": "\\ebb3",
-      "fontId": "dusk-office-codicon"
-    },
-    "pass": {
-      "fontCharacter": "\\eba4",
-      "fontId": "dusk-office-codicon"
-    },
-    "percentage": {
-      "fontCharacter": "\\ec33",
-      "fontId": "dusk-office-codicon"
-    },
-    "person-add": {
-      "fontCharacter": "\\ebcd",
-      "fontId": "dusk-office-codicon"
-    },
-    "person": {
-      "fontCharacter": "\\ea67",
-      "fontId": "dusk-office-codicon"
-    },
-    "piano": {
-      "fontCharacter": "\\ec1a",
+    "pause": {
+      "fontCharacter": "\\eb19",
       "fontId": "dusk-office-codicon"
     },
     "pie-chart": {
@@ -1430,84 +342,28 @@
       "fontCharacter": "\\eb2b",
       "fontId": "dusk-office-codicon"
     },
-    "pinned-dirty": {
-      "fontCharacter": "\\ebb2",
-      "fontId": "dusk-office-codicon"
-    },
     "pinned": {
       "fontCharacter": "\\eba0",
-      "fontId": "dusk-office-codicon"
-    },
-    "play-circle": {
-      "fontCharacter": "\\eba6",
       "fontId": "dusk-office-codicon"
     },
     "play": {
       "fontCharacter": "\\eb2c",
       "fontId": "dusk-office-codicon"
     },
-    "plug": {
-      "fontCharacter": "\\eb2d",
-      "fontId": "dusk-office-codicon"
-    },
     "preserve-case": {
       "fontCharacter": "\\eb2e",
-      "fontId": "dusk-office-codicon"
-    },
-    "preview": {
-      "fontCharacter": "\\eb2f",
-      "fontId": "dusk-office-codicon"
-    },
-    "primitive-square": {
-      "fontCharacter": "\\ea72",
-      "fontId": "dusk-office-codicon"
-    },
-    "project": {
-      "fontCharacter": "\\eb30",
       "fontId": "dusk-office-codicon"
     },
     "pulse": {
       "fontCharacter": "\\eb31",
       "fontId": "dusk-office-codicon"
     },
-    "python": {
-      "fontCharacter": "\\ec39",
-      "fontId": "dusk-office-codicon"
-    },
-    "question": {
-      "fontCharacter": "\\eb32",
-      "fontId": "dusk-office-codicon"
-    },
     "quote": {
       "fontCharacter": "\\eb33",
       "fontId": "dusk-office-codicon"
     },
-    "quotes": {
-      "fontCharacter": "\\ec60",
-      "fontId": "dusk-office-codicon"
-    },
     "radio-tower": {
       "fontCharacter": "\\eb34",
-      "fontId": "dusk-office-codicon"
-    },
-    "reactions": {
-      "fontCharacter": "\\eb35",
-      "fontId": "dusk-office-codicon"
-    },
-    "record-keys": {
-      "fontCharacter": "\\ea65",
-      "fontId": "dusk-office-codicon"
-    },
-    "record-small": {
-      "fontCharacter": "\\ebfa",
-      "fontId": "dusk-office-codicon"
-    },
-    "record": {
-      "fontCharacter": "\\eba7",
-      "fontId": "dusk-office-codicon"
-    },
-    "redo": {
-      "fontCharacter": "\\ebb0",
       "fontId": "dusk-office-codicon"
     },
     "references": {
@@ -1522,24 +378,12 @@
       "fontCharacter": "\\eb38",
       "fontId": "dusk-office-codicon"
     },
-    "remote-explorer": {
-      "fontCharacter": "\\eb39",
-      "fontId": "dusk-office-codicon"
-    },
     "remote": {
-      "fontCharacter": "\\eb3a",
-      "fontId": "dusk-office-codicon"
-    },
-    "remove-small": {
-      "fontCharacter": "\\ec7c",
+      "fontCharacter": "\\eaad",
       "fontId": "dusk-office-codicon"
     },
     "remove": {
       "fontCharacter": "\\eb3b",
-      "fontId": "dusk-office-codicon"
-    },
-    "rename": {
-      "fontCharacter": "\\ec61",
       "fontId": "dusk-office-codicon"
     },
     "replace-all": {
@@ -1550,50 +394,6 @@
       "fontCharacter": "\\eb3d",
       "fontId": "dusk-office-codicon"
     },
-    "reply": {
-      "fontCharacter": "\\ea7d",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-clone": {
-      "fontCharacter": "\\eb3e",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-fetch": {
-      "fontCharacter": "\\ec1d",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-force-push": {
-      "fontCharacter": "\\eb3f",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-forked": {
-      "fontCharacter": "\\ea63",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-pinned": {
-      "fontCharacter": "\\ec43",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-pull": {
-      "fontCharacter": "\\eb40",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-push": {
-      "fontCharacter": "\\eb41",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo-selected": {
-      "fontCharacter": "\\ec69",
-      "fontId": "dusk-office-codicon"
-    },
-    "repo": {
-      "fontCharacter": "\\ea62",
-      "fontId": "dusk-office-codicon"
-    },
-    "report": {
-      "fontCharacter": "\\eb42",
-      "fontId": "dusk-office-codicon"
-    },
     "robot": {
       "fontCharacter": "\\ec20",
       "fontId": "dusk-office-codicon"
@@ -1602,64 +402,12 @@
       "fontCharacter": "\\eb44",
       "fontId": "dusk-office-codicon"
     },
-    "root-folder-opened": {
-      "fontCharacter": "\\eb45",
-      "fontId": "dusk-office-codicon"
-    },
-    "root-folder": {
-      "fontCharacter": "\\eb46",
-      "fontId": "dusk-office-codicon"
-    },
     "rss": {
       "fontCharacter": "\\eb47",
       "fontId": "dusk-office-codicon"
     },
-    "ruby": {
-      "fontCharacter": "\\eb48",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-above": {
-      "fontCharacter": "\\ebbd",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-all-coverage": {
-      "fontCharacter": "\\ec2d",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-all": {
-      "fontCharacter": "\\eb9e",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-below": {
-      "fontCharacter": "\\ebbe",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-coverage": {
-      "fontCharacter": "\\ec2c",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-errors": {
-      "fontCharacter": "\\ebde",
-      "fontId": "dusk-office-codicon"
-    },
-    "run-with-deps": {
-      "fontCharacter": "\\ec62",
-      "fontId": "dusk-office-codicon"
-    },
-    "save-all": {
-      "fontCharacter": "\\eb49",
-      "fontId": "dusk-office-codicon"
-    },
-    "save-as": {
-      "fontCharacter": "\\eb4a",
-      "fontId": "dusk-office-codicon"
-    },
     "save": {
       "fontCharacter": "\\eb4b",
-      "fontId": "dusk-office-codicon"
-    },
-    "screen-cut": {
-      "fontCharacter": "\\ec7f",
       "fontId": "dusk-office-codicon"
     },
     "screen-full": {
@@ -1674,44 +422,16 @@
       "fontCharacter": "\\ec0d",
       "fontId": "dusk-office-codicon"
     },
-    "search-large": {
-      "fontCharacter": "\\ec70",
-      "fontId": "dusk-office-codicon"
-    },
-    "search-sparkle": {
-      "fontCharacter": "\\ec50",
-      "fontId": "dusk-office-codicon"
-    },
     "search-stop": {
       "fontCharacter": "\\eb4e",
       "fontId": "dusk-office-codicon"
     },
     "search": {
-      "fontCharacter": "\\ea6d",
-      "fontId": "dusk-office-codicon"
-    },
-    "send-to-remote-agent": {
-      "fontCharacter": "\\ec53",
-      "fontId": "dusk-office-codicon"
-    },
-    "send": {
-      "fontCharacter": "\\ec0f",
-      "fontId": "dusk-office-codicon"
-    },
-    "server-environment": {
-      "fontCharacter": "\\eba3",
-      "fontId": "dusk-office-codicon"
-    },
-    "server-process": {
-      "fontCharacter": "\\eba2",
+      "fontCharacter": "\\ec0d",
       "fontId": "dusk-office-codicon"
     },
     "server": {
       "fontCharacter": "\\eb50",
-      "fontId": "dusk-office-codicon"
-    },
-    "session-in-progress": {
-      "fontCharacter": "\\ec77",
       "fontId": "dusk-office-codicon"
     },
     "settings-gear": {
@@ -1720,10 +440,6 @@
     },
     "settings": {
       "fontCharacter": "\\eb52",
-      "fontId": "dusk-office-codicon"
-    },
-    "share": {
-      "fontCharacter": "\\ec25",
       "fontId": "dusk-office-codicon"
     },
     "shield": {
@@ -1738,24 +454,12 @@
       "fontCharacter": "\\ea6e",
       "fontId": "dusk-office-codicon"
     },
-    "skip": {
-      "fontCharacter": "\\ec6a",
-      "fontId": "dusk-office-codicon"
-    },
     "smiley": {
       "fontCharacter": "\\eb54",
       "fontId": "dusk-office-codicon"
     },
-    "snake": {
-      "fontCharacter": "\\ec16",
-      "fontId": "dusk-office-codicon"
-    },
-    "sort-precedence": {
-      "fontCharacter": "\\eb55",
-      "fontId": "dusk-office-codicon"
-    },
-    "sparkle-filled": {
-      "fontCharacter": "\\ec21",
+    "source-control": {
+      "fontCharacter": "\\ec6f",
       "fontId": "dusk-office-codicon"
     },
     "sparkle": {
@@ -1770,10 +474,6 @@
       "fontCharacter": "\\eb57",
       "fontId": "dusk-office-codicon"
     },
-    "squirrel": {
-      "fontCharacter": "\\eb58",
-      "fontId": "dusk-office-codicon"
-    },
     "star-empty": {
       "fontCharacter": "\\ea6a",
       "fontId": "dusk-office-codicon"
@@ -1782,20 +482,8 @@
       "fontCharacter": "\\eb59",
       "fontId": "dusk-office-codicon"
     },
-    "star-half": {
-      "fontCharacter": "\\eb5a",
-      "fontId": "dusk-office-codicon"
-    },
-    "stop-circle": {
-      "fontCharacter": "\\eba5",
-      "fontId": "dusk-office-codicon"
-    },
-    "strikethrough": {
-      "fontCharacter": "\\ec64",
-      "fontId": "dusk-office-codicon"
-    },
-    "surround-with": {
-      "fontCharacter": "\\ec24",
+    "stop": {
+      "fontCharacter": "\\ead7",
       "fontId": "dusk-office-codicon"
     },
     "symbol-array": {
@@ -1818,6 +506,10 @@
       "fontCharacter": "\\eb5d",
       "fontId": "dusk-office-codicon"
     },
+    "symbol-custom": {
+      "fontCharacter": "\\ea88",
+      "fontId": "dusk-office-codicon"
+    },
     "symbol-enum-member": {
       "fontCharacter": "\\eb5e",
       "fontId": "dusk-office-codicon"
@@ -1832,6 +524,10 @@
     },
     "symbol-field": {
       "fontCharacter": "\\eb5f",
+      "fontId": "dusk-office-codicon"
+    },
+    "symbol-file": {
+      "fontCharacter": "\\ea7b",
       "fontId": "dusk-office-codicon"
     },
     "symbol-interface": {
@@ -1858,12 +554,24 @@
       "fontCharacter": "\\eb63",
       "fontId": "dusk-office-codicon"
     },
+    "symbol-namespace": {
+      "fontCharacter": "\\ea88",
+      "fontId": "dusk-office-codicon"
+    },
     "symbol-numeric": {
       "fontCharacter": "\\ea90",
       "fontId": "dusk-office-codicon"
     },
+    "symbol-object": {
+      "fontCharacter": "\\ea88",
+      "fontId": "dusk-office-codicon"
+    },
     "symbol-operator": {
       "fontCharacter": "\\eb64",
+      "fontId": "dusk-office-codicon"
+    },
+    "symbol-package": {
+      "fontCharacter": "\\eb29",
       "fontId": "dusk-office-codicon"
     },
     "symbol-parameter": {
@@ -1882,100 +590,48 @@
       "fontCharacter": "\\eb66",
       "fontId": "dusk-office-codicon"
     },
+    "symbol-string": {
+      "fontCharacter": "\\ea7b",
+      "fontId": "dusk-office-codicon"
+    },
     "symbol-structure": {
       "fontCharacter": "\\ea91",
+      "fontId": "dusk-office-codicon"
+    },
+    "symbol-text": {
+      "fontCharacter": "\\ea7b",
       "fontId": "dusk-office-codicon"
     },
     "symbol-variable": {
       "fontCharacter": "\\ea88",
       "fontId": "dusk-office-codicon"
     },
-    "sync-ignored": {
-      "fontCharacter": "\\eb9f",
+    "symbol": {
+      "fontCharacter": "\\ea8c",
       "fontId": "dusk-office-codicon"
     },
     "sync": {
       "fontCharacter": "\\ea77",
       "fontId": "dusk-office-codicon"
     },
-    "table": {
-      "fontCharacter": "\\ebb7",
-      "fontId": "dusk-office-codicon"
-    },
     "tag": {
       "fontCharacter": "\\ea66",
-      "fontId": "dusk-office-codicon"
-    },
-    "target": {
-      "fontCharacter": "\\ebf8",
-      "fontId": "dusk-office-codicon"
-    },
-    "tasklist": {
-      "fontCharacter": "\\eb67",
       "fontId": "dusk-office-codicon"
     },
     "telescope": {
       "fontCharacter": "\\eb68",
       "fontId": "dusk-office-codicon"
     },
-    "terminal-bash": {
-      "fontCharacter": "\\ebca",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-cmd": {
-      "fontCharacter": "\\ebc4",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-debian": {
-      "fontCharacter": "\\ebc5",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-git-bash": {
-      "fontCharacter": "\\ec71",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-linux": {
-      "fontCharacter": "\\ebc6",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-powershell": {
-      "fontCharacter": "\\ebc7",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-tmux": {
-      "fontCharacter": "\\ebc8",
-      "fontId": "dusk-office-codicon"
-    },
-    "terminal-ubuntu": {
-      "fontCharacter": "\\ebc9",
-      "fontId": "dusk-office-codicon"
-    },
     "terminal": {
-      "fontCharacter": "\\ea85",
+      "fontCharacter": "\\eba2",
       "fontId": "dusk-office-codicon"
     },
-    "text-size": {
-      "fontCharacter": "\\eb69",
-      "fontId": "dusk-office-codicon"
-    },
-    "thinking": {
-      "fontCharacter": "\\ec59",
-      "fontId": "dusk-office-codicon"
-    },
-    "three-bars": {
-      "fontCharacter": "\\eb6a",
-      "fontId": "dusk-office-codicon"
-    },
-    "thumbsdown-filled": {
-      "fontCharacter": "\\ec13",
+    "test": {
+      "fontCharacter": "\\eb67",
       "fontId": "dusk-office-codicon"
     },
     "thumbsdown": {
       "fontCharacter": "\\eb6b",
-      "fontId": "dusk-office-codicon"
-    },
-    "thumbsup-filled": {
-      "fontCharacter": "\\ec14",
       "fontId": "dusk-office-codicon"
     },
     "thumbsup": {
@@ -1983,75 +639,19 @@
       "fontId": "dusk-office-codicon"
     },
     "tools": {
-      "fontCharacter": "\\eb6d",
+      "fontCharacter": "\\ec19",
       "fontId": "dusk-office-codicon"
     },
     "trash": {
       "fontCharacter": "\\ea81",
       "fontId": "dusk-office-codicon"
     },
-    "triangle-down": {
-      "fontCharacter": "\\eb6e",
-      "fontId": "dusk-office-codicon"
-    },
-    "triangle-left": {
-      "fontCharacter": "\\eb6f",
-      "fontId": "dusk-office-codicon"
-    },
-    "triangle-right": {
-      "fontCharacter": "\\eb70",
-      "fontId": "dusk-office-codicon"
-    },
-    "triangle-up": {
-      "fontCharacter": "\\eb71",
-      "fontId": "dusk-office-codicon"
-    },
-    "twitter": {
-      "fontCharacter": "\\eb72",
-      "fontId": "dusk-office-codicon"
-    },
-    "type-hierarchy-sub": {
-      "fontCharacter": "\\ebba",
-      "fontId": "dusk-office-codicon"
-    },
-    "type-hierarchy-super": {
-      "fontCharacter": "\\ebbb",
-      "fontId": "dusk-office-codicon"
-    },
-    "type-hierarchy": {
-      "fontCharacter": "\\ebb9",
-      "fontId": "dusk-office-codicon"
-    },
-    "unarchive": {
-      "fontCharacter": "\\ec76",
-      "fontId": "dusk-office-codicon"
-    },
-    "unfold": {
-      "fontCharacter": "\\eb73",
-      "fontId": "dusk-office-codicon"
-    },
-    "ungroup-by-ref-type": {
-      "fontCharacter": "\\eb98",
-      "fontId": "dusk-office-codicon"
-    },
     "unlock": {
       "fontCharacter": "\\eb74",
       "fontId": "dusk-office-codicon"
     },
-    "unmute": {
-      "fontCharacter": "\\eb75",
-      "fontId": "dusk-office-codicon"
-    },
     "unverified": {
       "fontCharacter": "\\eb76",
-      "fontId": "dusk-office-codicon"
-    },
-    "variable-group": {
-      "fontCharacter": "\\ebb8",
-      "fontId": "dusk-office-codicon"
-    },
-    "verified-filled": {
-      "fontCharacter": "\\ebe9",
       "fontId": "dusk-office-codicon"
     },
     "verified": {
@@ -2062,40 +662,8 @@
       "fontCharacter": "\\eb79",
       "fontId": "dusk-office-codicon"
     },
-    "vm-connect": {
-      "fontCharacter": "\\eba9",
-      "fontId": "dusk-office-codicon"
-    },
-    "vm-outline": {
-      "fontCharacter": "\\eb7a",
-      "fontId": "dusk-office-codicon"
-    },
-    "vm-pending": {
-      "fontCharacter": "\\f102",
-      "fontId": "dusk-office-codicon"
-    },
-    "vm-running": {
-      "fontCharacter": "\\eb7b",
-      "fontId": "dusk-office-codicon"
-    },
-    "vm-small": {
-      "fontCharacter": "\\ec79",
-      "fontId": "dusk-office-codicon"
-    },
     "vm": {
       "fontCharacter": "\\ea7a",
-      "fontId": "dusk-office-codicon"
-    },
-    "vr": {
-      "fontCharacter": "\\ec18",
-      "fontId": "dusk-office-codicon"
-    },
-    "vscode-insiders": {
-      "fontCharacter": "\\ec2a",
-      "fontId": "dusk-office-codicon"
-    },
-    "vscode": {
-      "fontCharacter": "\\ec29",
       "fontId": "dusk-office-codicon"
     },
     "wand": {
@@ -2106,10 +674,6 @@
       "fontCharacter": "\\ea6c",
       "fontId": "dusk-office-codicon"
     },
-    "watch": {
-      "fontCharacter": "\\eb7c",
-      "fontId": "dusk-office-codicon"
-    },
     "whitespace": {
       "fontCharacter": "\\eb7d",
       "fontId": "dusk-office-codicon"
@@ -2118,32 +682,16 @@
       "fontCharacter": "\\eb7e",
       "fontId": "dusk-office-codicon"
     },
-    "window-active": {
-      "fontCharacter": "\\ec72",
-      "fontId": "dusk-office-codicon"
-    },
     "word-wrap": {
       "fontCharacter": "\\eb80",
       "fontId": "dusk-office-codicon"
     },
     "workspace-trusted": {
-      "fontCharacter": "\\ebc1",
+      "fontCharacter": "\\eac1",
       "fontId": "dusk-office-codicon"
     },
-    "workspace-unknown": {
-      "fontCharacter": "\\ebc3",
-      "fontId": "dusk-office-codicon"
-    },
-    "workspace-untrusted": {
-      "fontCharacter": "\\ebc2",
-      "fontId": "dusk-office-codicon"
-    },
-    "worktree-small": {
-      "fontCharacter": "\\ec7d",
-      "fontId": "dusk-office-codicon"
-    },
-    "worktree": {
-      "fontCharacter": "\\ec7e",
+    "zap": {
+      "fontCharacter": "\\eb2c",
       "fontId": "dusk-office-codicon"
     },
     "zoom-in": {
