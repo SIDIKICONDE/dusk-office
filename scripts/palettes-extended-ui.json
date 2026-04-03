@@ -196,23 +196,5 @@
     "purple": "#6a7c8a",
     "pink": "#7c6a5a",
     "amber": "#8a6f4a"
-  },
-  "dusk-ivoire-sombre": {
-    "fg": "#eee2d4",
-    "accent": "#a89888",
-    "accentHi": "#c9b8a4",
-    "accentSoft": "#6b5e54",
-    "widget": "#2e2822",
-    "panel": "#242019",
-    "border": "#5c5249",
-    "error": "#f87171",
-    "warning": "#fbbf24",
-    "info": "#d4a574",
-    "success": "#4ade80",
-    "inserted": "#22c55e",
-    "removed": "#ef4444",
-    "purple": "#c4a8e8",
-    "pink": "#f472b6",
-    "amber": "#fbbf24"
   }
 }

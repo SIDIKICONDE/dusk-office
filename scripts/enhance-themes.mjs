@@ -8,9 +8,11 @@
  */
 
 import { readdir, readFile, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const THEMES_DIR = 'themes';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const THEMES_DIR = join(__dirname, '..', 'themes');
 
 // Advanced semantic tokens
 const SEMANTIC_TOKENS = {
@@ -1156,14 +1158,16 @@ async function enhanceTheme(filePath) {
   theme.tokenColors = theme.tokenColors || [];
   
   const existingScopes = new Set(
-    theme.tokenColors.flatMap(t => 
-      Array.isArray(t.scope) ? t.scope : [t.scope]
-    )
+    theme.tokenColors.flatMap((t) => {
+      const sc = t?.scope;
+      if (sc == null) return [];
+      return Array.isArray(sc) ? sc : [sc];
+    }),
   );
-  
+
   for (const token of ADDITIONAL_TOKENS) {
     const scopes = Array.isArray(token.scope) ? token.scope : [token.scope];
-    const hasAny = scopes.some(s => existingScopes.has(s));
+    const hasAny = scopes.some((s) => s != null && existingScopes.has(s));
     
     if (!hasAny) {
       theme.tokenColors.push(token);

@@ -1,6 +1,8 @@
 # Keep VSIX small
 node_modules/**
 scripts/**
+# Dev inputs; themes/ is what the extension loads at runtime
+theme-sources/**
 package-lock.json
 .vscode/**
 .github/**

@@ -1,14 +1,20 @@
 # Changelog — Dusk Office
 
-## 0.7.58 — 3 April 2026
-
-- **Changed**: version bump.
-
 User-facing changes only.
 - **Added**: complete UI color coverage — titleBar, sidebar, panel, notifications, status bar, activity bar, tabs, breadcrumbs, lists, menus, command center, quick input, buttons, badges, scrollbar.
 - **Added**: editor enhancements — line highlight, selection highlight, search match colors, word highlight, occurrences highlight, symbol highlight, indent guides, inlay hints, lightbulb colors.
 - **Added**: workspace trust colors — trust indicators, untrusted content banners, extension icons, settings trust indicators.
 - **Changed**: `enhance-themes.mjs` now adds 6 feature sets (semantic tokens, Git colors, terminal colors, UI colors, editor enhancements, workspace trust).
+
+## 0.7.65 — 3 April 2026
+
+- **Removed**: variantes **Focus** (`Dusk Office … Focus`) et `npm run build:focus` — le chrome assombri était si proche des thèmes palette (surfaces déjà très sombres) que l’écart visuel ne justifiait pas onze thèmes de plus.
+
+- **Added**: optional **product icon theme** — `Dusk Office · Product` (`contributes.productIconThemes`), same extension as the color themes; a small set of activity-bar / folding glyphs uses the Microsoft sample `vscode-10.woff` font, with all other icons resolved from the default Codicons mapping.
+
+- **Changed**: **extensionPack** — **Markdown All in One** (`yzhang.markdown-all-in-one`) est installé **avec** Dusk Office (comme Material Icon Theme) : édition Markdown (raccourcis, snippets, TOC, listes) obligatoire côté pack ; désinstaller l’extension si besoin.
+
+- **Changed**: **Dusk Office High Contrast** — stronger editor / terminal / list selection (`#264f78` with white text), **widget** borders, **minimap** highlights, **inline chat** and **inline edit** (borders + input focus), **peek** editor/result, **notebook** cell borders and backgrounds, **editorOverviewRuler** inline-chat markers, **editorMinimap** inline-chat insert, **text** link colors, **list** focus outline; **README** / **MAINTENANCE** document WCAG **AA** / **AAA** targets for critical pairs.
 
 ## 0.7.41 — 3 April 2026
 

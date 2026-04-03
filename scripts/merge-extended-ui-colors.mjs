@@ -8,6 +8,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { PALETTE_VARIANT_IDS, themeWinsForKey } from "./theme-wins.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const themesDir = path.join(__dirname, "..", "themes");
@@ -397,6 +398,22 @@ function buildExtended(p) {
     "problemsWarningIcon.foreground": warning,
     "problemsInfoIcon.foreground": info,
     "profiles.sashBorder": A(border, "44"),
+
+    // Markdown preview & texte intégré (GFM : liens, citations, blocs de code, alertes)
+    "textLink.foreground": accentHi,
+    "textLink.activeForeground": accent,
+    "textBlockQuote.background": A(fg, "08"),
+    "textBlockQuote.border": A(accent, "44"),
+    "textCodeBlock.background": A(widget, "dd"),
+    "textPreformat.background": A(accentSoft, "55"),
+    "textPreformat.foreground": fg,
+    "textPreformat.border": A(border, "44"),
+
+    "markdownAlert.note.foreground": info,
+    "markdownAlert.tip.foreground": success,
+    "markdownAlert.important.foreground": purple,
+    "markdownAlert.warning.foreground": warning,
+    "markdownAlert.caution.foreground": error,
   };
 }
 
@@ -404,34 +421,6 @@ function buildExtended(p) {
 const PALETTES = /** @type {Record<string, Palette>} */ (
   JSON.parse(fs.readFileSync(palettesPath, "utf8"))
 );
-
-/**
- * Clés où le JSON variante garde la priorité (éditeur, diff, notebook, etc.).
- * Tout le reste de `buildExtended` réécrit les restes enhance / dusk.json.
- */
-function themeWinsForKey(k) {
-  if (k.startsWith("editorGroup.")) return false;
-  if (k.startsWith("editorStickyScroll")) return false;
-  if (k.startsWith("editorSuggestWidget")) return false;
-  if (k.startsWith("editorHoverWidget")) return false;
-  if (k.startsWith("editor.")) return true;
-  if (k.startsWith("editorLineNumber")) return true;
-  if (k.startsWith("editorGutter.")) return true;
-  if (k.startsWith("editorBracket")) return true;
-  if (k.startsWith("editorInlayHint")) return true;
-  if (k.startsWith("editorGhost")) return true;
-  if (k.startsWith("editorWhitespace")) return true;
-  if (k.startsWith("editorOverviewRuler")) return true;
-  if (k.startsWith("minimap.")) return true;
-  if (k.startsWith("diffEditor.")) return true;
-  if (k.startsWith("merge.")) return true;
-  if (k.startsWith("inlineChat")) return true;
-  if (k.startsWith("inlineEdit")) return true;
-  if (k.startsWith("peekView")) return true;
-  if (k.startsWith("notebook.")) return true;
-  if (k.startsWith("welcomePage.")) return true;
-  return false;
-}
 
 /** Réapplique buildExtended par-dessus le JSON variante sauf où themeWinsForKey. */
 function applyPaletteOverlay(colors, extended) {
@@ -477,13 +466,9 @@ function pinChromeFromPalette(colors, p) {
 }
 
 function main() {
-  const files = fs
-    .readdirSync(themesDir)
-    .filter((f) =>
-      /^dusk-(minuit|abime|recif|baie|aube|brume|cendre|nebuleuse|nocturne|finance|corporate|ivoire-sombre)\.json$/.test(
-        f
-      )
-    );
+  const files = PALETTE_VARIANT_IDS.map((id) => `${id}.json`).filter((f) =>
+    fs.existsSync(path.join(themesDir, f))
+  );
 
   for (const file of files) {
     const id = file.replace(/\.json$/, "");

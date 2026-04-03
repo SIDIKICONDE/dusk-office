@@ -4,7 +4,7 @@ Internal guide for theme rebuilds and releases.
 
 ## Script order (dark variants)
 
-1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into `dusk-*.json` (except `dusk.json`, `dusk-hc.json`, `dusk-light.json`).
+1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into `dusk-*.json` (except `dusk.json`, `dusk-hc.json`, `dusk-light.json`). Includes **Markdown preview** tokens (`textLink.*`, `textBlockQuote.*`, `textCodeBlock.*`, `textPreformat.*`, `markdownAlert.*`) derived from each palette.
 2. **`npm run variants:syntax`** — updates `tokenColors` / `semanticTokenColors` for variants listed in the script.
 3. **`node scripts/enhance-themes.mjs`** — adds advanced semantic tokens, Git colors, and terminal ANSI palette to all themes.
 4. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.
@@ -74,7 +74,7 @@ Run once after creating or modifying themes. Handles `include`-based themes (dus
 | File | Role |
 |------|------|
 | `themes/dusk.json` | Empty base (schema, dark type); `include` anchor. |
-| `themes/dusk-hc.json` | `include` Abyss + high-contrast overrides — tweak by hand if needed. |
+| `themes/dusk-hc.json` | **`theme-sources/dusk-hc.json`** → **`npm run build:hc`** copies to `themes/`. `include` Abyss + HC overrides: selection (`#264f78` + white text), **minimap** markers, **inline chat** / **inline edit**, **peek** view, **notebook** cell chrome, **editorOverviewRuler** inline-chat markers, **list** focus outline, **text** links. See README *High Contrast — contrast targets* for WCAG-oriented pairs. |
 | `themes/dusk-light.json` | Built by **`npm run build:light`** from Abyss. |
 | `themes/dusk-ivoire.json` | Built by **`npm run build:ivoire`** from **Dusk Office Light** (paper base **#F6EEDE**). |
 | `themes/dusk-ivoire-sombre.json` | Built by **`npm run build:ivoire-sombre`** from **Dusk Office Ash** (warm dark palette, pairs with Ivory). |
@@ -85,7 +85,7 @@ Run once after creating or modifying themes. Handles `include`-based themes (dus
 npm run validate
 ```
 
-Checks JSON, `include` paths, and `contributes.themes` in `package.json`.
+Checks JSON, `include` paths, `contributes.themes` in `package.json`, pipeline lists, and **terminal vs panel** contrast (`verify-terminal-contrast.mjs` — `terminal.foreground` vs `terminal.background`; ANSI on dark themes only).
 
 ## Visual checks (Git + diff)
 
@@ -122,10 +122,13 @@ Two registries: **Visual Studio Marketplace** (`vsce`) and **Open VSX** (`ovsx`)
   Available helpers:
 
   - `npm run bump:patch|minor|major` — updates `package.json`, `package-lock.json`, and `CHANGELOG.md`
-  - `npm run make:full` — sync + generate variants + build light/ivory + validate
-  - `npm run make:release` — `make:full` + package + remove old `.vsix`
-  - `npm run release:patch|minor|major` — bump + release pipeline
-  - `npm run release:patch:install` — bump + package + install latest VSIX locally
+  - `npm run make:full` — sync + UI merge + syntax merge + HC + light/ivory + validate
+  - `npm run sync:aa` / `sync-from-workspace.mjs` — régénère `themes/dusk.json` depuis `.vscode/settings.json` ; fusionne des **valeurs par défaut** Markdown preview (`textLink`, `textBlockQuote`, `textCodeBlock`, `textPreformat`, `markdownAlert`) que le workspace peut surcharger.
+  - `npm run package` — build the `.vsix` only (**does not** change the version; use for local installs / CI).
+  - `npm run make:release` — `bump:patch` + `make:full` + `package:raw` + remove old `.vsix`
+  - `npm run release:patch` — same as `make:release`
+  - `npm run release:minor|major` — `bump:minor|major` + `make:full` + `package:raw` + clean (no extra patch bump)
+  - `npm run release:patch:install` — `release:patch` + install latest VSIX locally
 
 - **Manual publish** (without Actions):
 
@@ -155,6 +158,10 @@ Two registries: **Visual Studio Marketplace** (`vsce`) and **Open VSX** (`ovsx`)
 Declared in `package.json` → `contributes.configurationDefaults`: **Dusk Office Midnight**, minimap, semantic highlighting, bracket guides, sticky scroll, highlights, explorer, etc. See the file for the current list. **User / workspace** settings override these.
 
 For another Dusk Office variant as team default, set e.g. `"workbench.colorTheme": "Dusk Office Abyss"` in the workspace `settings.json`.
+
+## Product icon theme
+
+`package.json` contributes **`Dusk Office · Product`** (`product-icons/dusk-office-product-icon-theme.json` + `vscode-10.woff`, from the [product-icon-theme-sample](https://github.com/microsoft/vscode-extension-samples/tree/main/product-icon-theme-sample)). Only the icons listed in that JSON use the bundled font; everything else inherits the built-in Codicons product-icon mapping. Users pick it under **Preferences: Product Icon Theme** (`workbench.productIconTheme`). Do **not** set `configurationDefaults` for `workbench.productIconTheme` unless you want to force the suite default for new profiles.
 
 ## Control Center runtime
 

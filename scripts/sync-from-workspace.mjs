@@ -21,6 +21,23 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const DEFAULT_EDITOR_BG = "#010203";
+
+/** Valeurs par défaut si absentes du workspace (prévisualisation Markdown, hovers). */
+const MARKDOWN_PREVIEW_DEFAULTS = {
+  "textLink.foreground": "#00e5ff",
+  "textLink.activeForeground": "#00bcd4",
+  "textBlockQuote.background": "#d1e0e808",
+  "textBlockQuote.border": "#00bcd444",
+  "textCodeBlock.background": "#010203dd",
+  "textPreformat.background": "#1a283855",
+  "textPreformat.foreground": "#d1e0e8",
+  "textPreformat.border": "#2e7d8f44",
+  "markdownAlert.note.foreground": "#38bdf8",
+  "markdownAlert.tip.foreground": "#4ade80",
+  "markdownAlert.important.foreground": "#c084fc",
+  "markdownAlert.warning.foreground": "#fbbf24",
+  "markdownAlert.caution.foreground": "#f87171",
+};
 const MIN_CONTRAST = (() => {
   const n = Number(process.env.SYNC_MIN_CONTRAST);
   return Number.isFinite(n) && n >= 1 && n <= 21 ? n : 4.5;
@@ -55,9 +72,23 @@ const themePath = path.join(__dirname, "..", "themes", "dusk.json");
 const raw = fs.readFileSync(settingsPath, "utf8");
 let s = raw.replace(/\/\/[^\n]*/g, "");
 s = s.replace(/,\s*([\]}])/g, "$1");
-const j = JSON.parse(s);
+let j;
+try {
+  j = JSON.parse(s);
+} catch (e) {
+  console.error(
+    `sync-from-workspace: JSON invalide dans ${settingsPath} — ${e.message}`,
+  );
+  process.exit(1);
+}
 
-const colors = { ...j["workbench.colorCustomizations"] };
+const colors = {
+  ...MARKDOWN_PREVIEW_DEFAULTS,
+  ...(j["workbench.colorCustomizations"] &&
+  typeof j["workbench.colorCustomizations"] === "object"
+    ? j["workbench.colorCustomizations"]
+    : {}),
+};
 delete colors["outline.icons"];
 
 const editorBackground =

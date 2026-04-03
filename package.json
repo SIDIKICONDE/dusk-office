@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.58",
+  "version": "0.7.65",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -22,10 +22,12 @@
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Themes"
+    "Themes",
+    "Product Icon Themes"
   ],
   "extensionPack": [
-    "PKief.material-icon-theme"
+    "PKief.material-icon-theme",
+    "yzhang.markdown-all-in-one"
   ],
   "keywords": [
     "theme",
@@ -37,7 +39,8 @@
     "light",
     "semantic highlighting",
     "color-theme",
-    "product-icon-theme"
+    "product-icon-theme",
+    "markdown"
   ],
   "contributes": {
     "themes": [
@@ -120,6 +123,13 @@
         "label": "Dusk Office Corporate",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-corporate.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "dusk-office-product",
+        "label": "Dusk Office · Product",
+        "path": "./product-icons/dusk-office-product-icon-theme.json"
       }
     ],
     "configurationDefaults": {
@@ -271,9 +281,9 @@
     "sync": "node scripts/sync-from-workspace.mjs",
     "sync:aa": "node scripts/sync-from-workspace.mjs",
     "sync:aaa": "node -e \"process.env.SYNC_MIN_CONTRAST='7'; import('./scripts/sync-from-workspace.mjs')\"",
-    "make:full": "npm run sync:aa && npm run variants:ui && npm run variants:syntax && npm run build:light && npm run build:ivoire && npm run build:ivoire-sombre && npm run validate",
+    "make:full": "npm run theme:sources:sync && npm run sync:aa && npm run variants:ui && npm run variants:syntax && npm run build:hc && npm run build:light && npm run build:ivoire && npm run build:ivoire-sombre && npm run validate",
     "make:full:install": "npm run make:full && npm run package && npm run install-vsix",
-    "make:release": "npm run make:full && npm run package && node scripts/clean-old-vsix.mjs",
+    "make:release": "npm run bump:patch && npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
     "make:release:no-bump": "npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
     "bump:patch": "node scripts/bump-version.mjs patch",
     "bump:minor": "node scripts/bump-version.mjs minor",
@@ -286,6 +296,8 @@
     "release:major:install": "npm run release:major && npm run install-vsix",
     "full": "npm run make:full",
     "themes:regen": "npm run make:full",
+    "theme:sources:sync": "node scripts/sync-theme-sources.mjs",
+    "theme:sources:extract": "node scripts/extract-theme-sources.mjs",
     "rel": "npm run make:release",
     "rpi": "npm run release:patch:install",
     "push:auto": "npm run push:main:auto",
@@ -297,12 +309,13 @@
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
-    "validate": "node scripts/validate-themes.mjs",
+    "validate": "node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs",
+    "verify:terminal": "node scripts/verify-terminal-contrast.mjs",
     "release-check": "node scripts/verify-release-version.mjs",
+    "build:hc": "node scripts/build-dusk-hc.mjs",
     "build:light": "node scripts/build-dusk-light.mjs",
     "build:ivoire": "node scripts/build-dusk-ivoire.mjs",
     "build:ivoire-sombre": "node scripts/build-dusk-ivoire-sombre.mjs",
-    "prepackage": "node scripts/bump-version.mjs patch",
     "package": "npm run package:raw",
     "package:raw": "npx --no-install @vscode/vsce package --no-dependencies",
     "install-vsix": "node scripts/install-vsix.mjs",

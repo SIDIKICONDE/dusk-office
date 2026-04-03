@@ -101,6 +101,21 @@ const LIGHT_UI_CONTRAST_COLORS = {
   focusBorder: "#0ea5e9b3",
   /** abyss palette omits this; without it, included dusk.json leaves sidebar text too light */
   "sideBar.foreground": "#1e293b",
+
+  // Markdown preview (cohérent avec surfaces claires)
+  "textLink.foreground": "#0284c7",
+  "textLink.activeForeground": "#0369a1",
+  "textBlockQuote.background": "#f1f5f9",
+  "textBlockQuote.border": "#22d3ee55",
+  "textCodeBlock.background": "#f8fafc",
+  "textPreformat.background": "#e2e8f0",
+  "textPreformat.foreground": "#1e293b",
+  "textPreformat.border": "#cbd5e1",
+  "markdownAlert.note.foreground": "#0284c7",
+  "markdownAlert.tip.foreground": "#16a34a",
+  "markdownAlert.important.foreground": "#9333ea",
+  "markdownAlert.warning.foreground": "#d97706",
+  "markdownAlert.caution.foreground": "#dc2626",
 };
 
 /** @param {unknown} out */

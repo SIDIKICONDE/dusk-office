@@ -12,12 +12,13 @@ Dark themes for **Visual Studio Code** and **Cursor**.
 
 It includes dark, light, warm, and high-contrast variants for daily use.
 
-**Note:** This extension installs **Material Icon Theme** for file/folder icons in the Explorer.
+**Note:** This extension installs **Material Icon Theme** (Explorer icons) and [**Markdown All in One**](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) (Markdown shortcuts, snippets, TOC, list tools) via `extensionPack` — both ship with Dusk Office. Uninstall either extension if you do not want it. Theme **colors** for the Markdown preview (`textLink`, `markdownAlert`, etc.) come from Dusk Office’s color themes.
 
 ## Highlights
 
 - Dark themes for daily work
 - **Complete UI theming** — title bar, sidebar, panel, tabs, notifications, status bar, activity bar
+- **Markdown preview** — `textLink`, block quotes, fenced code (`textCodeBlock` / `textPreformat`), and GFM **markdownAlert** (note / tip / important / warning / caution) aligned with each variant’s palette; **Markdown All in One** (bundled via `extensionPack`) adds shortcuts, snippets, and list/table helpers for `.md` files
 - **Advanced semantic tokens** — const/let/var differentiation, async functions, decorators, type parameters
 - **Full Git integration** — gutter decorations, file status colors, diff editor, merge conflicts
 - **Complete terminal palette** — ANSI 16 colors with cursor styling
@@ -52,6 +53,19 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 | **Dusk Office Ivory** | Warm paper-like light theme with copper accents. |
 | **Dusk Office Dark Ivory** | Warm dark companion to Ivory with cream text. |
 | **Dusk Office High Contrast** | Stronger separation and clearer focus states. |
+
+### High Contrast — contrast targets
+
+**Dusk Office High Contrast** is tuned for **WCAG 2.1**-style contrast on critical UI pairs (normal text **≥ 4.5:1** AA; where possible **≥ 7:1** AAA for primary reading and selection):
+
+| Pair | Target |
+|------|--------|
+| Default editor text / background | `#ffffff` on `#000000` (ratio **≥ 21:1**) |
+| Selection text / selection fill | `#ffffff` on `#264f78` (aim **≥ 7:1** — AAA for body-sized text) |
+| Focus rings (`focusBorder`, list focus) | **Yellow** (`#ffff00`) or **cyan** on black for keyboard / focus visibility |
+| Inline chat & inline edit panels | **Yellow** widget border on black; **white** input border; **yellow** focus border on the input |
+
+The theme still **`include`s** Dusk Office Abyss for syntax; non-overridden chrome may show Abyss tints. Adjust with `workbench.colorCustomizations` if your environment needs stricter uniformity.
 
 ## Installation
 
@@ -120,7 +134,29 @@ Use matching accent hexes if you use another variant.
 
 ## Terminal Colors
 
-All themes include a complete ANSI color palette:
+Integrated terminal uses **`terminal.background`** = **`panel`** and **`terminal.foreground`** = **`fg`** from each entry in `scripts/palettes-extended-ui.json` (applied by `merge-extended-ui-colors.mjs`). ANSI slots map to the same palette (errors, accents, success, etc.), so each **dark variant** keeps a coherent “profile” (fond + texte + couleurs d’échappement).
+
+### Dark variants — `panel` and default text (`fg`)
+
+| Variant | `panel` (terminal bg) | `fg` (default terminal text) |
+|---------|------------------------|------------------------------|
+| Midnight | `#010102` | `#d1e0e8` |
+| Abyss | `#030810` | `#cfe8f0` |
+| Reef | `#011018` | `#cffafe` |
+| Bay | `#051c14` | `#ecfdf5` |
+| Dawn | `#243a4e` | `#fafcff` |
+| Mist | `#202c3a` | `#f4f9fc` |
+| Ash | `#1e2228` | `#e5e7eb` |
+| Nebula | `#0c0618` | `#f3e8ff` |
+| Nocturne | `#1e1f29` | `#f8f8f2` |
+| Finance | `#0a1219` | `#e8e6e3` |
+| Corporate | `#181a1c` | `#c5c8c6` |
+
+**Light** and **Ivory** themes use a light `terminal.background`; ANSI values still follow the merge pipeline but are tuned for dark shells — contrast on light panels is not the same as on dark `panel` values above.
+
+### Default ANSI mapping (Dusk Office / Abyss family)
+
+All themes include a complete ANSI color palette (exact hex depends on variant):
 
 | Color | Standard | Bright |
 |-------|----------|--------|
@@ -134,6 +170,16 @@ All themes include a complete ANSI color palette:
 | White | `#e5e5e5` | `#fafafa` |
 
 Terminal cursor and selection colors match the active theme accent.
+
+### Check contrast locally
+
+After regenerating themes, run:
+
+```bash
+npm run verify:terminal
+```
+
+This verifies **`terminal.foreground`** vs **`terminal.background`** (WCAG **4.5:1** for default text) and, for **`vs-dark`** / **`hc-black`** themes, ANSI colors (except black slots) at **≥ 2.9:1** vs the terminal background. **Light** themes (`uiTheme: vs`) only check the default terminal text contrast — ANSI checks are skipped because the same hexes target dark terminal backgrounds.
 
 ## Recommended Variants
 
@@ -151,6 +197,15 @@ Terminal cursor and selection colors match the active theme accent.
 - VS Code or Cursor `1.85+`
 
 ### Build
+
+```bash
+npm install
+npm run make:full
+```
+
+Full pipeline (`package.json`): `theme:sources:sync`, workspace `dusk.json` sync (`sync:aa`), UI merge, syntax merge, `dusk-hc`, light / ivory builds, validation. (Run `enhance-themes` separately when batch-adding semantic/Git/terminal blocks — see `MAINTENANCE.md`.)
+
+To produce a `.vsix` without bumping the version:
 
 ```bash
 npm install
