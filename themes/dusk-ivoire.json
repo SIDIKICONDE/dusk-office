@@ -347,6 +347,7 @@
     "tab.inactiveBackground": "#f6eede",
     "tab.activeBackground": "#efe6d8",
     "editorGroup.emptyBackground": "#f6eede",
+    "breadcrumb.background": "#f6eede",
     "activityBar.inactiveForeground": "#6b5f50",
     "sideBarSectionHeader.foreground": "#3d362e",
     "scrollbarSlider.background": "#7d6a5652",

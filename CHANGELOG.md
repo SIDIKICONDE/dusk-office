@@ -8,6 +8,8 @@ User-facing changes only.
 
 ## 0.7.65 — 3 April 2026
 
+- **Fixed**: **Dusk Office Light / Ivory** — `breadcrumb.background` explicite (fond clair) : sans ça, le fil d’Ariane sous les onglets héritait de `dusk.json` (`#02060b`) et formait une bande noire entre les onglets et l’éditeur.
+
 - **Changed**: **Tooltips** — `tooltip.background`, `tooltip.foreground`, `tooltip.border` définis dans les thèmes (merge UI, `dusk.json` / `theme-sources`, Light, Ivory, HC) pour éviter le fond noir par défaut sur les infobulles (ex. panneau Extensions).
 
 - **Changed**: **Title bar** — `window.titleBarStyle` is set to **custom** at runtime when a Dusk Office theme is active (`extension.js`), so the title bar follows `titleBar.*` theme colors (macOS **native** title bar often stays dark with a light theme). Optional: `duskOffice.titleBar.alignWithTheme` (default `true`); explicit `window.titleBarStyle`: `native` in User/Workspace is left unchanged.

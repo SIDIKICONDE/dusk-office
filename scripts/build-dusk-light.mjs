@@ -124,6 +124,8 @@ const LIGHT_UI_OVERRIDES = {
   "editorInlayHint.foreground": "#64748bd9",
   "inlineChatInput.placeholderForeground": "#64748b8c",
   "breadcrumb.foreground": "#475569de",
+  /** Sinon hérité de dusk.json (#02060b) — bande noire sous les onglets en thème clair */
+  "breadcrumb.background": "#ffffff",
   "tab.inactiveForeground": "#475569b8",
   "statusBar.foreground": "#1e293bee",
   "input.placeholderForeground": "#64748b8c",
