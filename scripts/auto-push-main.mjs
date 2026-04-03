@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+/**
+ * Commit + push local changes to `main`.
+ *
+ * By default, shows git status and asks for confirmation (safe).
+ * Pass --yes to skip the prompt (CI / deliberate one-shot automation only).
+ */
 import { execFileSync } from "child_process";
 import fs from "fs";
 import path from "path";
@@ -8,8 +14,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
-const yes = process.argv.includes("--yes");
-const safe = process.argv.includes("--safe");
+const skipConfirm = process.argv.includes("--yes");
 
 function run(args) {
   execFileSync("git", args, {
@@ -47,8 +52,8 @@ if (blocked.length > 0) {
 
 const message = `chore: sync local changes for ${pkg.version}`;
 
-async function confirmSafeMode() {
-  if (!safe || yes) return true;
+async function confirmUnlessYes() {
+  if (skipConfirm) return true;
   console.log("Pending changes:\n");
   console.log(status);
   console.log(`\nCommit message: ${message}\n`);
@@ -63,7 +68,7 @@ async function confirmSafeMode() {
   return String(answer).trim().toLowerCase() === "yes";
 }
 
-const confirmed = await confirmSafeMode();
+const confirmed = await confirmUnlessYes();
 if (!confirmed) {
   console.log("Cancelled.");
   process.exit(0);
