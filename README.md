@@ -17,10 +17,12 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 ## Highlights
 
 - Dark themes for daily work
-- Cohesive editor and workbench styling
+- **Complete UI theming** — title bar, sidebar, panel, tabs, notifications, status bar, activity bar
 - **Advanced semantic tokens** — const/let/var differentiation, async functions, decorators, type parameters
 - **Full Git integration** — gutter decorations, file status colors, diff editor, merge conflicts
 - **Complete terminal palette** — ANSI 16 colors with cursor styling
+- **Editor enhancements** — line highlight, selection, search matches, word highlight, indent guides
+- **Workspace trust indicators** — untrusted content warnings, extension icons
 - Control Center for quick theme actions
 - Auto switch by hour
 - Favorite theme on startup

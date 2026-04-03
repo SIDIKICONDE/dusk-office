@@ -2,6 +2,13 @@
 
 User-facing changes only.
 
+## 0.7.42 — 3 April 2026
+
+- **Added**: complete UI color coverage — titleBar, sidebar, panel, notifications, status bar, activity bar, tabs, breadcrumbs, lists, menus, command center, quick input, buttons, badges, scrollbar.
+- **Added**: editor enhancements — line highlight, selection highlight, search match colors, word highlight, occurrences highlight, symbol highlight, indent guides, inlay hints, lightbulb colors.
+- **Added**: workspace trust colors — trust indicators, untrusted content banners, extension icons, settings trust indicators.
+- **Changed**: `enhance-themes.mjs` now adds 6 feature sets (semantic tokens, Git colors, terminal colors, UI colors, editor enhancements, workspace trust).
+
 ## 0.7.41 — 3 April 2026
 
 - **Added**: advanced semantic tokens for all themes — const/let/var differentiation, async functions (italic), static members, decorators, type parameters, Rust lifetimes, Python decorators, JSX/TSX tags.

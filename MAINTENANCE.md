@@ -14,7 +14,7 @@ Internal guide for theme rebuilds and releases.
 
 ## Theme enhancement script
 
-`scripts/enhance-themes.mjs` adds three feature sets to all themes:
+`scripts/enhance-themes.mjs` adds six feature sets to all themes:
 
 ### 1. Advanced Semantic Tokens
 - Variable kinds: `const` (bold/purple), `let` (normal), `var` (italic)
@@ -33,8 +33,39 @@ Internal guide for theme rebuilds and releases.
 ### 3. Terminal ANSI Palette
 - Standard: black, red, green, yellow, blue, magenta, cyan, white
 - Bright: brightBlack through brightWhite
-- Cursor: foreground, background, accent
+- Cursor: foreground, background
 - Selection and find highlights
+
+### 4. UI Colors
+- Title bar: active/inactive backgrounds and foregrounds
+- Sidebar: background, foreground, section headers, drop feedback
+- Panel: background, borders, titles, section headers
+- Notifications: background, foreground, icons, borders
+- Status bar: background, items, debugging, remote, success/warning/error
+- Activity bar: background, foreground, badges, drop feedback
+- Tabs: active/inactive, hover, selected, drag and drop
+- Breadcrumbs: background, foreground, selection
+- Lists/trees: backgrounds, selections, highlights, indent guides
+- Menus: background, selection, separators, disabled states
+- Command center, quick input, inputs, dropdowns, checkboxes, buttons, badges, scrollbars
+
+### 5. Editor Enhancements
+- Line highlight: background and border
+- Selection: active/inactive, highlight, line background
+- Search: match and highlight backgrounds/borders
+- Word highlight: normal, strong, text variants
+- Occurrences and symbol highlight
+- Indent guides: 4 levels with active variants
+- Inlay hints: type and parameter colors
+- Lightbulb: info, warning, error, auto-fix
+- Ghost text, sticky scroll, whitespace
+
+### 6. Workspace Trust Colors
+- Trust indicators: background and foreground for trusted/untrusted/partial
+- Banner: background, foreground, icon
+- Editor trust: untrusted content banners and borders
+- Extension icons: star, verified, pre-release, sponsor, private, installed, recommended, disabled
+- Settings trust: modified item indicator, header, focused row
 
 Run once after creating or modifying themes. Handles `include`-based themes (dusk-hc, dusk-ivoire, etc.) by only adding colors.
 
