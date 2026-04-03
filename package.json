@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.17",
+  "version": "0.7.20",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -257,6 +257,11 @@
       {
         "command": "duskOffice.toggleProductIcons",
         "title": "Dusk Office: Toggle Icons",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleActivityBarLocation",
+        "title": "Dusk Office: Toggle Activity Bar Position",
         "category": "Dusk Office"
       },
       {

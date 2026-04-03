@@ -2,6 +2,18 @@
 
 User-facing changes only.
 
+## 0.7.20 — 3 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.19 — 3 April 2026
+
+- **Changed**: version bump.
+
+## 0.7.18 — 3 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.17 — 3 April 2026
 
 - **Changed**: stronger Git gutter (primary stripes) and diff editor tints (lines, unchanged hints, shadow).

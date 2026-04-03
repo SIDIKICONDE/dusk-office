@@ -41,8 +41,16 @@ function areDuskIconsEnabled() {
   return getWorkbenchConfig().get("productIconTheme") === PRODUCT_ICON_THEME_ID;
 }
 
+function getActivityBarLocation() {
+  return getWorkbenchConfig().get("activityBar.location");
+}
+
 function isDuskTheme(theme) {
   return typeof theme === "string" && THEME_VARIANTS.includes(theme);
+}
+
+function isThemeName(theme) {
+  return typeof theme === "string" && theme.trim().length > 0;
 }
 
 function cleanPickedLabel(label) {
@@ -100,7 +108,7 @@ async function applyTheme(theme, context, source = "manual") {
   if (!isDuskTheme(theme)) return false;
   const config = getWorkbenchConfig();
   const current = getCurrentTheme();
-  if (context && isDuskTheme(current) && current !== theme) {
+  if (context && isThemeName(current) && current !== theme) {
     await context.globalState.update(PREVIOUS_THEME_KEY, current);
   }
   await config.update("colorTheme", theme, vscode.ConfigurationTarget.Global);
@@ -111,7 +119,6 @@ async function applyTheme(theme, context, source = "manual") {
 }
 
 async function setThemeVariant(context) {
-  const config = getWorkbenchConfig();
   const current = getCurrentTheme();
   const picked = await vscode.window.showQuickPick(
     THEME_VARIANTS.map((label) => ({
@@ -131,13 +138,14 @@ async function setThemeVariant(context) {
 
 async function switchToPreviousTheme(context) {
   const previous = context.globalState.get(PREVIOUS_THEME_KEY);
-  if (!isDuskTheme(previous)) {
+  if (!isThemeName(previous)) {
     void vscode.window.showInformationMessage("No previous theme.");
     return;
   }
   const current = getCurrentTheme();
-  await applyTheme(previous, context);
-  if (isDuskTheme(current) && current !== previous) {
+  const config = getWorkbenchConfig();
+  await config.update("colorTheme", previous, vscode.ConfigurationTarget.Global);
+  if (isThemeName(current) && current !== previous) {
     await context.globalState.update(PREVIOUS_THEME_KEY, current);
   }
   void vscode.window.showInformationMessage(`Previous: ${previous}.`);
@@ -182,6 +190,16 @@ async function toggleProductIcons() {
   );
   void vscode.window.showInformationMessage(
     enable ? "Icons: enabled." : "Icons: default.",
+  );
+}
+
+async function toggleActivityBarLocation() {
+  const config = getWorkbenchConfig();
+  const current = getActivityBarLocation();
+  const next = current === "top" ? "default" : "top";
+  await config.update("activityBar.location", next, vscode.ConfigurationTarget.Global);
+  void vscode.window.showInformationMessage(
+    next === "top" ? "Activity Bar: top." : "Activity Bar: default.",
   );
 }
 
@@ -231,6 +249,7 @@ async function toggleAutoSwitch(context) {
 async function openControlCenter(context) {
   const currentTheme = getCurrentTheme();
   const iconsEnabled = areDuskIconsEnabled();
+  const activityBarLocation = getActivityBarLocation();
   const previousTheme = context.globalState.get(PREVIOUS_THEME_KEY);
   const favoriteTheme = context.globalState.get(FAVORITE_THEME_KEY);
   const rememberedTheme = context.workspaceState.get(WORKSPACE_THEME_KEY);
@@ -286,6 +305,12 @@ async function openControlCenter(context) {
         description: iconsEnabled ? "Current: Dusk icons" : "Current: default icons",
         detail: "Toggle icons",
         action: toggleProductIcons,
+      },
+      {
+        label: "$(layout) Activity Bar Position",
+        description: activityBarLocation === "top" ? "Current: top" : "Current: default",
+        detail: "Toggle location",
+        action: toggleActivityBarLocation,
       },
       {
         label: "$(settings-gear) Settings",
@@ -344,6 +369,44 @@ function startAutoSwitchTimer(context) {
   return new vscode.Disposable(() => clearInterval(timer));
 }
 
+function createAutoSwitchManager(context) {
+  let timerDisposable = null;
+
+  const ensureTimerState = () => {
+    if (getAutoSwitchConfig().enabled) {
+      if (!timerDisposable) timerDisposable = startAutoSwitchTimer(context);
+    } else {
+      timerDisposable?.dispose();
+      timerDisposable = null;
+    }
+  };
+
+  ensureTimerState();
+
+  const configListener = vscode.workspace.onDidChangeConfiguration((event) => {
+    if (!event.affectsConfiguration("duskOffice.autoSwitch")) return;
+
+    const wasEnabled = !!timerDisposable;
+    ensureTimerState();
+    const isEnabled = !!timerDisposable;
+
+    if (isEnabled && !wasEnabled) {
+      void runAutoSwitch(context);
+      return;
+    }
+
+    if (isEnabled) {
+      void runAutoSwitch(context);
+    }
+  });
+
+  return new vscode.Disposable(() => {
+    configListener.dispose();
+    timerDisposable?.dispose();
+    timerDisposable = null;
+  });
+}
+
 async function initializeStartupBehavior(context) {
   if (await runAutoSwitch(context)) return;
   if (await restoreWorkspaceTheme(context)) return;
@@ -359,8 +422,9 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.switchToFavoriteTheme", () => switchToFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.toggleAutoSwitch", () => toggleAutoSwitch(context)),
     vscode.commands.registerCommand("duskOffice.toggleProductIcons", toggleProductIcons),
+    vscode.commands.registerCommand("duskOffice.toggleActivityBarLocation", toggleActivityBarLocation),
     vscode.commands.registerCommand("duskOffice.openSettings", openDuskOfficeSettings),
-    startAutoSwitchTimer(context),
+    createAutoSwitchManager(context),
   );
   createStatusBarItem(context);
   await initializeStartupBehavior(context);
