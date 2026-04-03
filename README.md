@@ -195,3 +195,7 @@ If GitHub does not show them immediately, open the local files from the reposito
 - GitHub: [SIDIKICONDE/dusk-office](https://github.com/SIDIKICONDE/dusk-office)
 - Marketplace: [dekidev.dusk-office](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 - Open VSX: [dekidev.dusk-office](https://open-vsx.org/extension/dekidev/dusk-office)
+
+## Author
+
+**DEKI** — [GitHub](https://github.com/SIDIKICONDE) · [Marketplace](https://marketplace.visualstudio.com/publishers/dekidev)
