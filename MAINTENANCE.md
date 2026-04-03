@@ -6,10 +6,37 @@ Internal guide for theme rebuilds and releases.
 
 1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into `dusk-*.json` (except `dusk.json`, `dusk-hc.json`, `dusk-light.json`).
 2. **`npm run variants:syntax`** — updates `tokenColors` / `semanticTokenColors` for variants listed in the script.
-3. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.
-4. **`npm run dim:borders`** *(optional)* — lowers perceived border brightness (alpha −22, RGB ×0.88). Applies to dark variants + **Dusk Office Light**; not `dusk-hc.json`.
+3. **`node scripts/enhance-themes.mjs`** — adds advanced semantic tokens, Git colors, and terminal ANSI palette to all themes.
+4. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.
+5. **`npm run dim:borders`** *(optional)* — lowers perceived border brightness (alpha −22, RGB ×0.88). Applies to dark variants + **Dusk Office Light**; not `dusk-hc.json`.
 
 **Avoid:** stacking border scripts without a reset.
+
+## Theme enhancement script
+
+`scripts/enhance-themes.mjs` adds three feature sets to all themes:
+
+### 1. Advanced Semantic Tokens
+- Variable kinds: `const` (bold/purple), `let` (normal), `var` (italic)
+- Function modifiers: `async` (italic), `static` (italic), `private` (italic)
+- Types: class, interface, struct, enum, type aliases, type parameters
+- Decorators/attributes: orange italic
+- Language-specific: Rust lifetimes, Python decorators, JSX/TSX tags
+
+### 2. Git Integration Colors
+- Gutter: `editorGutter.modifiedBackground`, `addedBackground`, `deletedBackground`
+- Explorer: `gitDecoration.*` for file status
+- SCM: graph colors, history additions/deletions
+- Diff editor: inserted/removed backgrounds and borders
+- Merge: current/incoming/common headers and content
+
+### 3. Terminal ANSI Palette
+- Standard: black, red, green, yellow, blue, magenta, cyan, white
+- Bright: brightBlack through brightWhite
+- Cursor: foreground, background, accent
+- Selection and find highlights
+
+Run once after creating or modifying themes. Handles `include`-based themes (dusk-hc, dusk-ivoire, etc.) by only adding colors.
 
 ## Themes outside the dark pipeline
 

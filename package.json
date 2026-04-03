@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.39",
+  "version": "0.7.41",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",

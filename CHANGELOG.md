@@ -2,6 +2,18 @@
 
 User-facing changes only.
 
+## 0.7.41 — 3 April 2026
+
+- **Added**: advanced semantic tokens for all themes — const/let/var differentiation, async functions (italic), static members, decorators, type parameters, Rust lifetimes, Python decorators, JSX/TSX tags.
+- **Added**: complete Git integration colors — gutter decorations, explorer file status, SCM graph colors, diff editor backgrounds, merge conflict highlights.
+- **Added**: full terminal ANSI color palette — standard 8 colors, bright 8 colors, cursor styling, selection and find highlights.
+- **Added**: `scripts/enhance-themes.mjs` for batch theme enhancement.
+- **Added**: advanced code samples in 18 languages (Dart, Flutter, Kotlin, Swift, PHP, HTML, YAML, JSON Schema, GraphQL, TOML, and more).
+
+## 0.7.40 — 3 April 2026
+
+- **Changed**: version bump.
+
 ## 0.7.39 — 3 April 2026
 
 - **Changed**: version bump.

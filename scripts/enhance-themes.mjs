@@ -328,12 +328,11 @@ const GIT_COLORS = {
   "gitDecoration.conflictingResourceForeground": "#f97316",
   
   // SCM (Source Control Management)
-  "scm.graph.foreground1": "#22d3ee",
-  "scm.graph.foreground2": "#38bdf8",
-  "scm.graph.foreground3": "#c084fc",
-  "scm.graph.foreground4": "#f472b6",
-  "scm.graph.foreground5": "#34d399",
-  "scm.graph.foreground6": "#fbbf24",
+  "scmGraph.foreground1": "#22d3ee",
+  "scmGraph.foreground2": "#38bdf8",
+  "scmGraph.foreground3": "#c084fc",
+  "scmGraph.foreground4": "#f472b6",
+  "scmGraph.foreground5": "#34d399",
   "scm.historyItemAdditionsForeground": "#22c55e",
   "scm.historyItemDeletionsForeground": "#ef4444",
   "scm.historyItemStatisticsAdditionsForeground": "#22c55e",

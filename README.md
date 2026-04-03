@@ -18,6 +18,9 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 
 - Dark themes for daily work
 - Cohesive editor and workbench styling
+- **Advanced semantic tokens** — const/let/var differentiation, async functions, decorators, type parameters
+- **Full Git integration** — gutter decorations, file status colors, diff editor, merge conflicts
+- **Complete terminal palette** — ANSI 16 colors with cursor styling
 - Control Center for quick theme actions
 - Auto switch by hour
 - Favorite theme on startup
@@ -112,6 +115,23 @@ The theme JSON schema does not allow `editorGutter.*SecondaryBackground` keys. T
 ```
 
 Use matching accent hexes if you use another variant.
+
+## Terminal Colors
+
+All themes include a complete ANSI color palette:
+
+| Color | Standard | Bright |
+|-------|----------|--------|
+| Black | `#1e1e1e` | `#6b7280` |
+| Red | `#f87171` | `#fca5a5` |
+| Green | `#22c55e` | `#86efac` |
+| Yellow | `#fbbf24` | `#fde047` |
+| Blue | `#38bdf8` | `#93c5fd` |
+| Magenta | `#c084fc` | `#f0abfc` |
+| Cyan | `#22d3ee` | `#67e8f9` |
+| White | `#e5e5e5` | `#fafafa` |
+
+Terminal cursor and selection colors match the active theme accent.
 
 ## Recommended Variants
 
