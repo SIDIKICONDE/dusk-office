@@ -43,6 +43,28 @@ function main() {
     }
   }
 
+  /** Après merge-extended-ui, toutes les variantes palette doivent partager le même ensemble de clés `colors`. */
+  const union = new Set();
+  /** @type {Map<string, Set<string>>} */
+  const byId = new Map();
+  for (const id of PALETTE_VARIANT_IDS) {
+    const theme = JSON.parse(
+      fs.readFileSync(path.join(themesDir, `${id}.json`), "utf8"),
+    );
+    const keys = new Set(Object.keys(theme.colors || {}));
+    byId.set(id, keys);
+    for (const k of keys) union.add(k);
+  }
+  for (const id of PALETTE_VARIANT_IDS) {
+    const keys = byId.get(id);
+    const missing = [...union].filter((k) => !keys.has(k)).sort();
+    if (missing.length) {
+      throw new Error(
+        `Variantes palette: ${id}.json manque des clés colors présentes ailleurs: ${missing.join(", ")}`,
+      );
+    }
+  }
+
   const extraPaletteKeys = Object.keys(pe).filter((k) => !PALETTE_VARIANT_IDS.includes(k));
   if (extraPaletteKeys.length) {
     console.warn(

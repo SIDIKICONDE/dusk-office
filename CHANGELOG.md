@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 0.8.0 — 11 April 2026
+
+- **Changed**: version bump.
+
 User-facing changes only.
 - **Added**: complete UI color coverage — titleBar, sidebar, panel, notifications, status bar, activity bar, tabs, breadcrumbs, lists, menus, command center, quick input, buttons, badges, scrollbar.
 - **Added**: editor enhancements — line highlight, selection highlight, search match colors, word highlight, occurrences highlight, symbol highlight, indent guides, inlay hints, lightbulb colors.
@@ -12,7 +16,7 @@ User-facing changes only.
 
 - **Changed**: **Tooltips** — `tooltip.background`, `tooltip.foreground`, `tooltip.border` définis dans les thèmes (merge UI, `dusk.json` / `theme-sources`, Light, Ivory, HC) pour éviter le fond noir par défaut sur les infobulles (ex. panneau Extensions).
 
-- **Changed**: **Title bar** — `window.titleBarStyle` is set to **custom** at runtime when a Dusk Office theme is active (`extension.js`), so the title bar follows `titleBar.*` theme colors (macOS **native** title bar often stays dark with a light theme). Optional: `duskOffice.titleBar.alignWithTheme` (default `true`); explicit `window.titleBarStyle`: `native` in User/Workspace is left unchanged.
+- **Changed**: **Title bar** — `window.titleBarStyle` is set to **custom** at runtime when a Dusk Office theme is active (`extension.js`), so the title bar follows `titleBar.*` theme colors (macOS **native** title bar often stays dark with a light theme). When you leave a Dusk theme or turn off `duskOffice.titleBar.alignWithTheme`, the previous global `window.titleBarStyle` is restored so the setting is not left forced. Optional: `duskOffice.titleBar.alignWithTheme` (default `true`); explicit `window.titleBarStyle`: `native` in User/Workspace is left unchanged.
 
 - **Removed**: variantes **Focus** (`Dusk Office … Focus`) et `npm run build:focus` — le chrome assombri était si proche des thèmes palette (surfaces déjà très sombres) que l’écart visuel ne justifiait pas onze thèmes de plus.
 

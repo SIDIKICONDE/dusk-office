@@ -75,23 +75,26 @@ function main() {
   /** Deeper editor surfaces (espresso / dark ivory) */
   const deep = {
     "editor.background": "#1f1c18",
-    "editorCursor.background": "#1f1c18",
     "editorGutter.background": "#1c1916",
   };
   Object.assign(colors, deep);
+  colors["editorCursor.background"] = colors["editor.background"];
+
+  const sorted = {};
+  for (const k of Object.keys(colors).sort()) sorted[k] = colors[k];
 
   const out = {
     $schema: "vscode://schemas/color-theme",
     name: "Dusk Office Dark Ivory",
     include: "./dusk.json",
-    colors,
+    colors: sorted,
     tokenColors: src.tokenColors,
     semanticTokenColors: src.semanticTokenColors,
   };
 
   const dest = path.join(root, "themes/dusk-ivoire-sombre.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");
-  console.log("OK", dest, Object.keys(colors).length, "colors");
+  console.log("OK", dest, Object.keys(sorted).length, "colors");
 }
 
 main();

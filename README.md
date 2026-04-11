@@ -48,9 +48,9 @@ It includes dark, light, warm, and high-contrast variants for daily use.
 | **Dusk Office Midnight** | Very dark variant, ideal for OLED-style setups. |
 | **Dusk Office Nebula** | Purple and mauve accents with a richer atmosphere. |
 | **Dusk Office Reef** | Bright cyan neon energy and stronger borders. |
-| **Dusk Office Nocturne** | Smooth dark variant for a calmer night workflow. |
-| **Dusk Office Finance** | Professional dark styling with restrained accents. |
-| **Dusk Office Corporate** | Clean business-oriented dark palette. |
+| **Dusk Office Nocturne** | Warm vintage terminal aesthetic with amber and copper accents. |
+| **Dusk Office Finance** | Premium banking aesthetic with gold, deep green and navy accents. |
+| **Dusk Office Corporate** | Sophisticated burgundy-wine theme with refined gold touches. |
 | **Dusk Office Light** | Cool, neutral light theme for daytime work. **Built** from Dusk Office Abyss (`npm run build:light`) — mechanical light remap + UI overrides; see `MAINTENANCE.md` → *Dusk Office Light*. |
 | **Dusk Office Ivory** | Warm paper-like light theme with copper accents. |
 | **Dusk Office Dark Ivory** | Warm dark companion to Ivory with cream text. |
@@ -187,7 +187,9 @@ This verifies **`terminal.foreground`** vs **`terminal.background`** (WCAG **4.5
 
 - **Dusk Office Midnight** for a very dark, focused setup
 - **Dusk Office Abyss** for vivid blue-cyan contrast
-- **Dusk Office Finance** for a professional dark workspace with restrained accents
+- **Dusk Office Nocturne** for a warm vintage terminal aesthetic
+- **Dusk Office Finance** for premium banking colors (gold, green, navy)
+- **Dusk Office Corporate** for sophisticated burgundy-wine professional styling
 - **Dusk Office Ivory** for a warm light reading experience
 - **Dusk Office High Contrast** for stronger visual separation
 

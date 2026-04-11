@@ -481,7 +481,14 @@
     "settings.rowHoverBackground": "#304f6008",
     "settings.focusedRowBorder": "#06b6d444",
     "settings.sashBorder": "#304f6044",
-    "settings.settingsHeaderHoverForeground": "#22d3ee"
+    "settings.settingsHeaderHoverForeground": "#22d3ee",
+    "textLink.foreground": "#00e5ff",
+    "textLink.activeForeground": "#00bcd4",
+    "textBlockQuote.background": "#d1e0e808",
+    "textBlockQuote.border": "#00bcd444",
+    "textCodeBlock.background": "#010203dd",
+    "textPreformat.background": "#1a283855",
+    "textPreformat.foreground": "#d1e0e8"
   },
   "tokenColors": [
     {
@@ -656,7 +663,7 @@
         "storage.modifier.final"
       ],
       "settings": {
-        "foreground": "#9333ea",
+        "foreground": "#9e47ec",
         "fontStyle": "italic"
       }
     },
@@ -836,7 +843,7 @@
         "variable.other.constant.property"
       ],
       "settings": {
-        "foreground": "#9333ea",
+        "foreground": "#9e47ec",
         "fontStyle": "bold"
       }
     },
@@ -919,7 +926,7 @@
         "entity.name.function.macro"
       ],
       "settings": {
-        "foreground": "#9333ea"
+        "foreground": "#9e47ec"
       }
     },
     {

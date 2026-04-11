@@ -67,10 +67,6 @@ function buildExtended(p) {
     "selection.background": A(accent, "44"),
     "sash.hoverBorder": A(accentHi, "44"),
 
-    "tooltip.background": A(widget, "ee"),
-    "tooltip.foreground": fg,
-    "tooltip.border": A(border, "55"),
-
     "sideBar.background": panel,
     "activityBar.background": widget,
     "activityBarTop.background": widget,
@@ -411,13 +407,6 @@ function buildExtended(p) {
     "textCodeBlock.background": A(widget, "dd"),
     "textPreformat.background": A(accentSoft, "55"),
     "textPreformat.foreground": fg,
-    "textPreformat.border": A(border, "44"),
-
-    "markdownAlert.note.foreground": info,
-    "markdownAlert.tip.foreground": success,
-    "markdownAlert.important.foreground": purple,
-    "markdownAlert.warning.foreground": warning,
-    "markdownAlert.caution.foreground": error,
   };
 }
 
@@ -466,7 +455,15 @@ function pinChromeFromPalette(colors, p) {
   const edBg = colors["editor.background"];
   if (typeof edBg === "string" && edBg.startsWith("#")) {
     colors["editorGroup.emptyBackground"] = edBg;
+    colors["editorCursor.background"] = edBg;
   }
+}
+
+/** Ordre des clés stable et identique entre variantes (diffs prévisibles). */
+function sortColorKeys(colors) {
+  const sorted = /** @type {Record<string, string>} */ ({});
+  for (const k of Object.keys(colors).sort()) sorted[k] = colors[k];
+  return sorted;
 }
 
 function main() {
@@ -488,6 +485,7 @@ function main() {
     theme.colors = { ...extended, ...theme.colors };
     applyPaletteOverlay(theme.colors, extended);
     pinChromeFromPalette(theme.colors, palette);
+    theme.colors = sortColorKeys(theme.colors);
     fs.writeFileSync(full, JSON.stringify(theme, null, 2) + "\n", "utf8");
     console.log("OK", file, Object.keys(theme.colors).length, "clés colors");
   }

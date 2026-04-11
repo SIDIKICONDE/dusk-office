@@ -168,6 +168,7 @@
     "peekViewEditor.background": "#050e16",
     "peekViewResult.background": "#040c12",
     "peekViewTitle.background": "#030810",
+    "peekView.border": "#2d5a783d",
     "editorGutter.commentRangeForeground": "#9ccae066",
     "editorGutter.commentGlyphForeground": "#22d3ee",
     "editorGutter.foldingControlForeground": "#4b6c7a",

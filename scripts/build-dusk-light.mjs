@@ -22,8 +22,7 @@
  *    `semanticTokenColors` non vides, les **réutiliser** (affinages manuels ou
  *    itérations précédentes) ; sinon copier celles d’Abyss.
  * 5. Appliquer `LIGHT_UI_OVERRIDES` : contrastes UI (sidebar, tabs, titleBar,
- *    tooltips, Markdown preview, etc.) qui ne sortent pas correctement du seul
- *    remap mécanique.
+ *    Markdown preview, etc.) qui ne sortent pas correctement du seul remap mécanique.
  * 6. Écrire `themes/dusk-light.json`.
  *
  * Quand lancer
@@ -111,7 +110,7 @@ function remapWorkbenchColor(value, colorKey) {
 }
 
 /**
- * Surcharges UI / Markdown preview / titleBar / tooltip après le remap global.
+ * Surcharges UI / Markdown preview / titleBar après le remap global.
  * Sans cela, `include` dusk.json laisserait certains textes ou bordures illisibles.
  */
 const LIGHT_UI_OVERRIDES = {
@@ -134,15 +133,17 @@ const LIGHT_UI_OVERRIDES = {
   "editor.lineHighlightBackground": "#e8edf3",
   "editor.lineHighlightBorder": "#cbd5e199",
   "sideBarSectionHeader.foreground": "#334155",
+  "sideBarTitle.foreground": "#b45309",
   "scrollbarSlider.background": "#94a3b88f",
   "scrollbarSlider.hoverBackground": "#64748bbb",
   focusBorder: "#0ea5e9b3",
   "sideBar.foreground": "#1e293b",
   "titleBar.activeForeground": "#0f172a",
   "titleBar.inactiveForeground": "#64748b",
-  "tooltip.background": "#f8fafcee",
-  "tooltip.foreground": "#0f172a",
-  "tooltip.border": "#cbd5e1",
+  /** Absentes d’Abyss : héritées de `include` dusk.json → fonds #02060b sur UI claire */
+  "editorSuggestWidget.background": "#ffffff",
+  "editorHoverWidget.background": "#ffffff",
+  "editorHoverWidget.statusBarBackground": "#f1f5f9",
   "textLink.foreground": "#0284c7",
   "textLink.activeForeground": "#0369a1",
   "textBlockQuote.background": "#f1f5f9",
@@ -150,12 +151,6 @@ const LIGHT_UI_OVERRIDES = {
   "textCodeBlock.background": "#f8fafc",
   "textPreformat.background": "#e2e8f0",
   "textPreformat.foreground": "#1e293b",
-  "textPreformat.border": "#cbd5e1",
-  "markdownAlert.note.foreground": "#0284c7",
-  "markdownAlert.tip.foreground": "#16a34a",
-  "markdownAlert.important.foreground": "#9333ea",
-  "markdownAlert.warning.foreground": "#d97706",
-  "markdownAlert.caution.foreground": "#dc2626",
 };
 
 /** @param {Record<string, string>} abyssColors */

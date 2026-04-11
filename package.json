@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "Dark themes for VS Code and Cursor.",
-  "version": "0.7.65",
+  "version": "0.8.0",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -22,8 +22,7 @@
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Themes",
-    "Product Icon Themes"
+    "Themes"
   ],
   "extensionPack": [
     "PKief.material-icon-theme",
@@ -147,8 +146,7 @@
       "workbench.tree.renderIndentGuides": "always",
       "workbench.tree.indent": 14,
       "explorer.decorations.badges": true,
-      "explorer.decorations.colors": true,
-      "window.titleBarStyle": "custom"
+      "explorer.decorations.colors": true
     },
     "configuration": {
       "title": "Dusk Office",
@@ -171,7 +169,7 @@
         "duskOffice.titleBar.alignWithTheme": {
           "type": "boolean",
           "default": true,
-          "description": "When a Dusk Office color theme is active, set window.titleBarStyle to custom so the title bar follows theme colors (fixes a dark native title bar on macOS with a light theme). Set false to leave the system title bar alone. Does not override if you explicitly set window.titleBarStyle to native in User or Workspace settings."
+          "description": "When a Dusk Office color theme is active, set window.titleBarStyle to custom so the title bar follows theme colors (fixes a dark native title bar on macOS with a light theme). When you switch to a non-Dusk theme or turn this off, the previous global title bar style is restored (nothing left forced). Does not override if you explicitly set window.titleBarStyle to native in User or Workspace settings."
         },
         "duskOffice.autoSwitch.enabled": {
           "type": "boolean",

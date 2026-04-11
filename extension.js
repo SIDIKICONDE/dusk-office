@@ -22,6 +22,9 @@ const THEME_VARIANTS = [
 const PREVIOUS_THEME_KEY = "duskOffice.previousTheme";
 const FAVORITE_THEME_KEY = "duskOffice.favoriteTheme";
 const WORKSPACE_THEME_KEY = "duskOffice.workspaceTheme";
+/** Stored global `window.titleBarStyle` before forcing `custom`; `__unset__` = no user global (restore with undefined). */
+const PREVIOUS_TITLE_BAR_GLOBAL_KEY = "duskOffice.previousTitleBarStyleGlobal";
+const PREVIOUS_TITLE_BAR_GLOBAL_UNSET = "__duskOfficeUnset__";
 const STATUS_BAR_PRIORITY = 100;
 
 function getExtensionConfig() {
@@ -96,11 +99,31 @@ function getTitleBarAlignWithThemeEnabled() {
 /**
  * Native macOS title bar ignores workbench theme colors; custom draws from the color theme.
  * configurationDefaults alone is sometimes ignored (host / user overrides) — apply at runtime.
+ * When leaving a Dusk theme (or disabling alignWithTheme), restores the previous global
+ * `window.titleBarStyle` instead of leaving `custom` forced in user settings.
  */
-async function syncTitleBarStyleForDuskTheme() {
+async function restoreTitleBarGlobalIfStored(context) {
+  const stored = context.globalState.get(PREVIOUS_TITLE_BAR_GLOBAL_KEY);
+  if (stored === undefined) return;
+  const windowCfg = vscode.workspace.getConfiguration("window");
+  const toRestore = stored === PREVIOUS_TITLE_BAR_GLOBAL_UNSET ? undefined : stored;
+  await windowCfg.update("titleBarStyle", toRestore, vscode.ConfigurationTarget.Global);
+  await context.globalState.update(PREVIOUS_TITLE_BAR_GLOBAL_KEY, undefined);
+}
+
+async function syncTitleBarStyleForDuskTheme(context) {
   try {
-    if (!getTitleBarAlignWithThemeEnabled()) return;
-    if (!isDuskTheme(getCurrentTheme())) return;
+    if (!context) return;
+
+    if (!getTitleBarAlignWithThemeEnabled()) {
+      await restoreTitleBarGlobalIfStored(context);
+      return;
+    }
+
+    if (!isDuskTheme(getCurrentTheme())) {
+      await restoreTitleBarGlobalIfStored(context);
+      return;
+    }
 
     const windowCfg = vscode.workspace.getConfiguration("window");
     const inspected = windowCfg.inspect("titleBarStyle");
@@ -108,6 +131,14 @@ async function syncTitleBarStyleForDuskTheme() {
       return;
     }
     if (windowCfg.get("titleBarStyle") !== "custom") {
+      const existing = context.globalState.get(PREVIOUS_TITLE_BAR_GLOBAL_KEY);
+      if (existing === undefined) {
+        const prevGlobal =
+          inspected?.globalValue === undefined
+            ? PREVIOUS_TITLE_BAR_GLOBAL_UNSET
+            : inspected.globalValue;
+        await context.globalState.update(PREVIOUS_TITLE_BAR_GLOBAL_KEY, prevGlobal);
+      }
       await windowCfg.update("titleBarStyle", "custom", vscode.ConfigurationTarget.Global);
     }
   } catch {
@@ -133,7 +164,7 @@ async function applyTheme(theme, context, source = "manual") {
     await context.globalState.update(PREVIOUS_THEME_KEY, current);
   }
   await config.update("colorTheme", theme, vscode.ConfigurationTarget.Global);
-  await syncTitleBarStyleForDuskTheme();
+  await syncTitleBarStyleForDuskTheme(context);
   if (source !== "startup") {
     await saveWorkspaceTheme(theme, context);
   }
@@ -420,7 +451,7 @@ async function activate(context) {
         e.affectsConfiguration("workbench.colorTheme") ||
         e.affectsConfiguration("duskOffice.titleBar.alignWithTheme")
       ) {
-        void syncTitleBarStyleForDuskTheme();
+        void syncTitleBarStyleForDuskTheme(context);
       }
     }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
@@ -435,7 +466,7 @@ async function activate(context) {
   );
   createStatusBarItem(context);
   await initializeStartupBehavior(context);
-  await syncTitleBarStyleForDuskTheme();
+  await syncTitleBarStyleForDuskTheme(context);
 }
 
 function deactivate() {}

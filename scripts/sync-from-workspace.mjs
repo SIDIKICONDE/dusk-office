@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Régénère themes/dusk.json à partir de `.vscode/settings.json` à la racine du projet.
+ * Régénère themes/dusk.json à partir de `theme-sources/dusk.json` + `.vscode/settings.json`
+ * (surcharges workbench / token / sémantique). Sans base, le fichier serait réduit aux seules
+ * customisations et la validation du pipeline échouerait.
  *
  * Cherche la racine dans cet ordre :
  *   1) Monorepo Nythy : …/Nythy/.vscode/settings.json (3 niveaux au-dessus de scripts/)
@@ -31,12 +33,6 @@ const MARKDOWN_PREVIEW_DEFAULTS = {
   "textCodeBlock.background": "#010203dd",
   "textPreformat.background": "#1a283855",
   "textPreformat.foreground": "#d1e0e8",
-  "textPreformat.border": "#2e7d8f44",
-  "markdownAlert.note.foreground": "#38bdf8",
-  "markdownAlert.tip.foreground": "#4ade80",
-  "markdownAlert.important.foreground": "#c084fc",
-  "markdownAlert.warning.foreground": "#fbbf24",
-  "markdownAlert.caution.foreground": "#f87171",
 };
 const MIN_CONTRAST = (() => {
   const n = Number(process.env.SYNC_MIN_CONTRAST);
@@ -68,6 +64,20 @@ if (
 
 const settingsPath = path.join(repoRoot, ".vscode", "settings.json");
 const themePath = path.join(__dirname, "..", "themes", "dusk.json");
+const baseThemePath = path.join(standaloneRoot, "theme-sources", "dusk.json");
+
+if (!fs.existsSync(baseThemePath)) {
+  console.error(
+    `sync-from-workspace: fichier base introuvable — ${baseThemePath}`,
+  );
+  process.exit(1);
+}
+
+const baseTheme = JSON.parse(fs.readFileSync(baseThemePath, "utf8"));
+if (!baseTheme || typeof baseTheme.colors !== "object") {
+  console.error(`sync-from-workspace: ${baseThemePath} — colors invalides.`);
+  process.exit(1);
+}
 
 const raw = fs.readFileSync(settingsPath, "utf8");
 let s = raw.replace(/\/\/[^\n]*/g, "");
@@ -83,6 +93,7 @@ try {
 }
 
 const colors = {
+  ...baseTheme.colors,
   ...MARKDOWN_PREVIEW_DEFAULTS,
   ...(j["workbench.colorCustomizations"] &&
   typeof j["workbench.colorCustomizations"] === "object"
@@ -220,12 +231,16 @@ function ensureForegroundContrast(fgStr, bgStr) {
   return { value: rgbToHex(next), changed: true };
 }
 
+const wsTextMate = j["editor.tokenColorCustomizations"]?.textMateRules;
 const tokenColors = structuredClone(
-  j["editor.tokenColorCustomizations"]?.textMateRules ?? [],
+  Array.isArray(wsTextMate) && wsTextMate.length > 0
+    ? wsTextMate
+    : baseTheme.tokenColors ?? [],
 );
+
 const semRules =
   j["editor.semanticTokenColorCustomizations"]?.rules ?? {};
-const semanticTokenColors = {};
+const semanticTokenColors = structuredClone(baseTheme.semanticTokenColors ?? {});
 
 let contrastAdjustCount = 0;
 
@@ -262,10 +277,13 @@ for (const rule of tokenColors) {
 }
 
 const theme = {
-  $schema: "vscode://schemas/color-theme",
-  name: "Dusk Office",
-  type: "dark",
-  semanticHighlighting: true,
+  $schema: baseTheme.$schema ?? "vscode://schemas/color-theme",
+  name: baseTheme.name ?? "Dusk Office",
+  type: baseTheme.type ?? "dark",
+  semanticHighlighting:
+    baseTheme.semanticHighlighting !== undefined
+      ? baseTheme.semanticHighlighting
+      : true,
   colors,
   tokenColors,
   semanticTokenColors,

@@ -61,6 +61,26 @@ export const palettes = {
     enumMember: "#a78bfa",
     decorator: "#ea580c",
   },
+  /** Fond #1f1b17 : terminal vintage chaud - accents ambre/cuivre. */
+  nocturne: {
+    class: "#d4a853",
+    interface: "#e8c87a",
+    type: "#8fb8a8",
+    namespace: "#a8c0b0",
+    function: "#c9b080",
+    method: "#d4b890",
+    keyword: "#c97565",
+    string: "#a8b898",
+    number: "#d4a853",
+    comment: "#7a6b5a",
+    parameter: "#c9a87a",
+    variable: "#e8dcc8",
+    property: "#b8a890",
+    operator: "#a09078",
+    regexp: "#c98b7a",
+    enumMember: "#a890b8",
+    decorator: "#b8a050",
+  },
   /** Fond #2a3a4c : plus clair que la base ; tokens resserrés vs gris du parent. */
   brume: {
     class: "#ffd54a",
@@ -157,65 +177,45 @@ export const palettes = {
     enumMember: "#e879f9",
     decorator: "#fdba74",
   },
-  /** Aligné palettes-extended-ui dusk-finance — or / bleu / vert discret. */
+  /** Finance premium — or profond, vert banque, bleu confiance. */
   finance: {
-    class: "#c9a227",
-    interface: "#d4c4a0",
-    type: "#4a90a4",
-    namespace: "#5a9eb8",
-    function: "#7ec9a8",
-    method: "#6eb89a",
-    keyword: "#b8343a",
-    string: "#8fbc9a",
-    number: "#c9a227",
-    comment: "#6a7a8a",
-    parameter: "#d4a574",
-    variable: "#e8e6e3",
-    property: "#4a90a4",
-    operator: "#8b7355",
-    regexp: "#8b9dc3",
-    enumMember: "#8b9dc3",
-    decorator: "#c9a227",
+    class: "#d4a853",
+    interface: "#e8d8a0",
+    type: "#5a8fc0",
+    namespace: "#6a9ed0",
+    function: "#6ab080",
+    method: "#5a9a70",
+    keyword: "#c94f4f",
+    string: "#7aa88a",
+    number: "#e8d570",
+    comment: "#5a6a7a",
+    parameter: "#c9a87a",
+    variable: "#d4d0c8",
+    property: "#5a8fc0",
+    operator: "#8a8070",
+    regexp: "#8a7db8",
+    enumMember: "#8a7db8",
+    decorator: "#d4a853",
   },
-  /** Style Dracula / dusk-nocturne (accent violet–cyan). */
-  nocturne: {
-    class: "#ffb86c",
-    interface: "#8be9fd",
-    type: "#8be9fd",
-    namespace: "#8be9fd",
-    function: "#50fa7b",
-    method: "#50fa7b",
-    keyword: "#ff79c6",
-    string: "#f1fa8c",
-    number: "#bd93f9",
-    comment: "#6272a4",
-    parameter: "#ffb86c",
-    variable: "#f8f8f2",
-    property: "#66d9ef",
-    operator: "#ff79c6",
-    regexp: "#f1fa8c",
-    enumMember: "#bd93f9",
-    decorator: "#50fa7b",
-  },
-  /** Tons bronze / gris-vert dusk-corporate. */
+  /** Corporate burgundy — accents bordeaux/wine avec touches or. */
   corporate: {
-    class: "#8a6f4a",
-    interface: "#9a8060",
-    type: "#6a7c8a",
-    namespace: "#6a7c8a",
-    function: "#8ec9c9",
-    method: "#8ec9c9",
-    keyword: "#a55a5a",
-    string: "#8ec9c9",
-    number: "#8a6f4a",
-    comment: "#5c5249",
-    parameter: "#8a6f4a",
-    variable: "#c5c8c6",
-    property: "#6a7c8a",
-    operator: "#8a6f4a",
-    regexp: "#7c6a5a",
-    enumMember: "#6a7c8a",
-    decorator: "#8a6f4a",
+    class: "#c9a050",
+    interface: "#d8b880",
+    type: "#6a8aa0",
+    namespace: "#7a9ab0",
+    function: "#8a7aa8",
+    method: "#9a8ab8",
+    keyword: "#b87080",
+    string: "#7aa090",
+    number: "#c9a050",
+    comment: "#5a5060",
+    parameter: "#a08060",
+    variable: "#c8c4c0",
+    property: "#8a7aa8",
+    operator: "#7a7080",
+    regexp: "#a07080",
+    enumMember: "#8a7aa8",
+    decorator: "#c9a050",
   },
 };
 
@@ -262,11 +262,11 @@ function buildSemantic(p) {
 }
 
 /**
- * Règles TextMate supplémentaires pour fonds plus clairs que la base :
- * surcharger les scopes encore colorés par le parent (include).
+ * Règles TextMate étendues (même liste pour chaque variante : nombre d’entrées aligné).
+ * Les couleurs viennent de la palette `p` de la variante.
  */
-const tokenExtrasBuilders = {
-  aube: (p) => [
+function extendedTokenColorRules(p) {
+  return [
     {
       scope: ["variable.other.readwrite", "variable.other"],
       settings: { foreground: p.variable },
@@ -321,64 +321,8 @@ const tokenExtrasBuilders = {
       scope: "meta.embedded",
       settings: { foreground: p.variable },
     },
-  ],
-  brume: (p) => [
-    {
-      scope: ["variable.other.readwrite", "variable.other"],
-      settings: { foreground: p.variable },
-    },
-    { scope: "variable.language", settings: { foreground: p.keyword } },
-    { scope: "variable.parameter", settings: { foreground: p.parameter } },
-    {
-      scope: "entity.name.function.member",
-      settings: { foreground: p.method },
-    },
-    { scope: "support.function", settings: { foreground: p.function } },
-    { scope: "support.function.builtin", settings: { foreground: p.namespace } },
-    { scope: "support.type", settings: { foreground: p.type } },
-    { scope: "support.class", settings: { foreground: p.class } },
-    { scope: "entity.name.namespace", settings: { foreground: p.namespace } },
-    {
-      scope: "punctuation.definition.string",
-      settings: { foreground: p.string },
-    },
-    {
-      scope: ["punctuation.separator", "punctuation.terminator"],
-      settings: { foreground: p.operator },
-    },
-    {
-      scope: "keyword.control",
-      settings: { foreground: p.keyword },
-    },
-    {
-      scope: "keyword.operator.new",
-      settings: { foreground: p.keyword, fontStyle: "italic" },
-    },
-    {
-      scope: "keyword.operator.logical",
-      settings: { foreground: p.keyword },
-    },
-    { scope: "storage.modifier", settings: { foreground: p.keyword } },
-    {
-      scope: "constant.language",
-      settings: { foreground: p.number },
-    },
-    {
-      scope: "constant.character.escape",
-      settings: { foreground: p.string },
-    },
-    { scope: "string.template", settings: { foreground: p.string } },
-    { scope: "string.regexp", settings: { foreground: p.regexp } },
-    {
-      scope: "entity.other.attribute-name",
-      settings: { foreground: p.decorator },
-    },
-    {
-      scope: "meta.embedded",
-      settings: { foreground: p.variable },
-    },
-  ],
-};
+  ];
+}
 
 function buildTokenColors(p) {
   return [
@@ -471,9 +415,8 @@ export function syntaxBlocksFor(slug) {
   const p = palettes[slug];
   if (!p) throw new Error(`Unknown palette ${slug}`);
   const sem = fixSemanticKeys(buildSemantic(p));
-  const extras = tokenExtrasBuilders[slug]?.(p) ?? [];
   return {
     semanticTokenColors: sem,
-    tokenColors: [...buildTokenColors(p), ...extras],
+    tokenColors: [...buildTokenColors(p), ...extendedTokenColorRules(p)],
   };
 }
