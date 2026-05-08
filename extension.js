@@ -34,6 +34,8 @@ const THEME_VARIANTS = [
 const PREVIOUS_THEME_KEY = "duskOffice.previousTheme";
 const FAVORITE_THEME_KEY = "duskOffice.favoriteTheme";
 const WORKSPACE_THEME_KEY = "duskOffice.workspaceTheme";
+/** Set once a fingerprint suggestion has been shown for the workspace (any decision: accept/dismiss/explore). */
+const WORKSPACE_FINGERPRINT_KEY = "duskOffice.workspaceFingerprintShown";
 /** Stored global `window.titleBarStyle` before forcing `custom`; `__unset__` = no user global (restore with undefined). */
 const PREVIOUS_TITLE_BAR_GLOBAL_KEY = "duskOffice.previousTitleBarStyleGlobal";
 const PREVIOUS_TITLE_BAR_GLOBAL_UNSET = "__duskOfficeUnset__";
@@ -1123,6 +1125,286 @@ function createAdaptiveFocusManager(context) {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Workspace Fingerprint — auto-suggest a Dusk Office variant matching the
+// detected workspace context (fintech, cybersecurity, ML, etc.).
+// Runs once per workspace, opt-out via setting, all local (no telemetry).
+// ---------------------------------------------------------------------------
+
+function getWorkspaceFingerprintEnabled() {
+  return getExtensionConfig().get("workspaceFingerprint.enabled", true);
+}
+
+/** Shallow JSON read with a 256 KB cap to stay fast and avoid huge configs. */
+function readJsonFile(absolutePath) {
+  try {
+    const stat = fs.statSync(absolutePath);
+    if (!stat.isFile() || stat.size > 256 * 1024) return null;
+    return JSON.parse(fs.readFileSync(absolutePath, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+/** Plain-text read with the same 256 KB cap. */
+function readTextFile(absolutePath) {
+  try {
+    const stat = fs.statSync(absolutePath);
+    if (!stat.isFile() || stat.size > 256 * 1024) return null;
+    return fs.readFileSync(absolutePath, "utf8");
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Collects lightweight signals from the workspace root. Reads only top-level
+ * manifest files; never recurses into the project. Returns lowercased haystacks.
+ */
+function collectWorkspaceSignals(rootDir) {
+  const signals = {
+    npmDeps: new Set(),
+    npmKeywords: [],
+    npmText: "",
+    cargoDeps: new Set(),
+    pythonText: "",
+    goText: "",
+    composerText: "",
+    files: new Set(),
+    extensionCounts: {},
+  };
+
+  if (!rootDir) return signals;
+
+  // package.json
+  const pkg = readJsonFile(path.join(rootDir, "package.json"));
+  if (pkg && typeof pkg === "object") {
+    const deps = { ...(pkg.dependencies || {}), ...(pkg.devDependencies || {}) };
+    for (const name of Object.keys(deps)) signals.npmDeps.add(String(name).toLowerCase());
+    if (Array.isArray(pkg.keywords)) signals.npmKeywords = pkg.keywords.map((k) => String(k).toLowerCase());
+    signals.npmText = [pkg.name, pkg.description, ...(pkg.keywords || [])]
+      .filter((v) => typeof v === "string")
+      .join(" ")
+      .toLowerCase();
+  }
+
+  // Cargo.toml
+  const cargo = readTextFile(path.join(rootDir, "Cargo.toml"));
+  if (cargo) {
+    const inDeps = cargo.match(/\[dependencies\][\s\S]*?(?=\n\[|\Z)/);
+    const block = inDeps ? inDeps[0] : cargo;
+    for (const m of block.matchAll(/^([a-zA-Z0-9_-]+)\s*=/gm)) {
+      signals.cargoDeps.add(m[1].toLowerCase());
+    }
+  }
+
+  // Python: pyproject.toml + requirements.txt
+  signals.pythonText =
+    [
+      readTextFile(path.join(rootDir, "pyproject.toml")) || "",
+      readTextFile(path.join(rootDir, "requirements.txt")) || "",
+      readTextFile(path.join(rootDir, "Pipfile")) || "",
+    ]
+      .join("\n")
+      .toLowerCase();
+
+  // Go
+  signals.goText = (readTextFile(path.join(rootDir, "go.mod")) || "").toLowerCase();
+
+  // PHP / Composer
+  const composer = readJsonFile(path.join(rootDir, "composer.json"));
+  if (composer) signals.composerText = JSON.stringify(composer).toLowerCase();
+
+  // Top-level file listing (no recursion)
+  try {
+    const entries = fs.readdirSync(rootDir, { withFileTypes: true });
+    for (const e of entries) {
+      if (e.isFile()) {
+        signals.files.add(e.name.toLowerCase());
+        const ext = path.extname(e.name).toLowerCase();
+        if (ext) signals.extensionCounts[ext] = (signals.extensionCounts[ext] || 0) + 1;
+      } else if (e.isDirectory()) {
+        signals.files.add(e.name.toLowerCase() + "/");
+      }
+    }
+  } catch {
+    /* permission errors etc. — ignore */
+  }
+
+  return signals;
+}
+
+/**
+ * Pattern set: each entry yields a score for a Dusk Office variant based on
+ * collected signals. Higher score = stronger match. Scores are tuned so a
+ * meaningful match generally lands ≥ 30, with stacking signals reaching 50–80.
+ */
+const FINGERPRINT_PATTERNS = [
+  {
+    variant: "Dusk Office Vault",
+    displayLabel: "Vault",
+    reason: "fintech or banking project",
+    score(s) {
+      let n = 0;
+      const fintechDeps = ["stripe", "plaid", "dwolla", "square", "paypal-rest-sdk", "braintree"];
+      for (const d of fintechDeps) if (s.npmDeps.has(d)) n += 25;
+      if (/\b(fintech|banking|payment|wallet|kyc|aml|treasury)\b/.test(s.npmText)) n += 20;
+      if (s.npmKeywords.some((k) => /(fintech|banking|payment|wallet)/.test(k))) n += 15;
+      return Math.min(n, 80);
+    },
+  },
+  {
+    variant: "Dusk Office Audit",
+    displayLabel: "Audit",
+    reason: "audit, accounting, or financial compliance project",
+    score(s) {
+      let n = 0;
+      const auditDeps = ["accounting", "quickbooks", "xero-node", "sage-intacct"];
+      for (const d of auditDeps) if (s.npmDeps.has(d)) n += 30;
+      if (/\b(audit|accounting|ledger|gaap|ifrs|sox|compliance)\b/.test(s.npmText)) n += 20;
+      if ([...s.files].some((f) => /(audit|accounting|ledger)/.test(f))) n += 15;
+      return Math.min(n, 75);
+    },
+  },
+  {
+    variant: "Dusk Office Sentinel",
+    displayLabel: "Sentinel",
+    reason: "cybersecurity, SOC, or DevSecOps project",
+    score(s) {
+      let n = 0;
+      const secDeps = ["helmet", "passport", "jsonwebtoken", "bcrypt", "node-forge", "crypto-js", "owasp", "snyk"];
+      for (const d of secDeps) if (s.npmDeps.has(d)) n += 12;
+      if (/\b(security|cybersecurity|soc|siem|firewall|vault|falco|osquery|owasp)\b/.test(s.npmText)) n += 18;
+      if ([...s.files].some((f) => /^(security|auth|firewall|sentinel)\/?$/.test(f) || f.endsWith(".tf"))) n += 12;
+      if (s.files.has("dockerfile") && s.files.has("docker-compose.yml") && /\b(vault|consul|falco)\b/.test(s.npmText)) n += 15;
+      return Math.min(n, 75);
+    },
+  },
+  {
+    variant: "Dusk Office Steward",
+    displayLabel: "Steward",
+    reason: "data science, ML, or backend Python project",
+    score(s) {
+      let n = 0;
+      if (/(numpy|pandas|scikit-learn|tensorflow|pytorch|jupyter|fastapi|django|flask)/.test(s.pythonText)) n += 25;
+      if (s.files.has("requirements.txt") || s.files.has("pyproject.toml") || s.files.has("pipfile")) n += 15;
+      const pyExtCount = (s.extensionCounts[".py"] || 0) + (s.extensionCounts[".ipynb"] || 0);
+      if (pyExtCount >= 2) n += 10;
+      return Math.min(n, 70);
+    },
+  },
+  {
+    variant: "Dusk Office Voltage",
+    displayLabel: "Voltage",
+    reason: "high-energy modern web stack (Bun / Deno / Vite / Next)",
+    score(s) {
+      let n = 0;
+      const modernDeps = ["next", "astro", "vite", "remix", "solid-js", "qwik", "hono", "elysia"];
+      for (const d of modernDeps) if (s.npmDeps.has(d)) n += 18;
+      if (s.files.has("bun.lockb") || s.files.has("deno.json") || s.files.has("deno.jsonc")) n += 25;
+      return Math.min(n, 70);
+    },
+  },
+  {
+    variant: "Dusk Office Nocturne",
+    displayLabel: "Nocturne",
+    reason: "frontend / design-system project",
+    score(s) {
+      let n = 0;
+      const uiDeps = ["react", "vue", "svelte", "tailwindcss", "@storybook/react", "framer-motion", "@radix-ui/react-dialog"];
+      for (const d of uiDeps) if (s.npmDeps.has(d)) n += 10;
+      if (s.files.has("tailwind.config.js") || s.files.has("tailwind.config.ts") || s.files.has(".storybook/")) n += 15;
+      const cssCount = (s.extensionCounts[".css"] || 0) + (s.extensionCounts[".scss"] || 0);
+      if (cssCount >= 2) n += 8;
+      return Math.min(n, 65);
+    },
+  },
+  {
+    variant: "Dusk Office Terminal",
+    displayLabel: "Terminal",
+    reason: "CLI, infrastructure, or DevOps tooling project",
+    score(s) {
+      let n = 0;
+      if (s.goText || (s.extensionCounts[".go"] || 0) >= 2) n += 20;
+      if (s.cargoDeps.size > 0 && (s.cargoDeps.has("clap") || s.cargoDeps.has("structopt"))) n += 25;
+      if ([...s.files].some((f) => f.endsWith(".tf") || f.endsWith(".tfvars"))) n += 15;
+      if (s.files.has("makefile") || s.files.has("dockerfile") || s.files.has("docker-compose.yml")) n += 8;
+      return Math.min(n, 65);
+    },
+  },
+];
+
+const FINGERPRINT_THRESHOLD = 30;
+
+/**
+ * Inspects the active workspace and offers a Dusk Office variant suggestion if
+ * a strong match is detected. Returns the chosen variant when the user accepts,
+ * or null otherwise. Stores a flag in workspaceState to avoid re-prompting.
+ *
+ * @param {vscode.ExtensionContext} context
+ * @param {{ force?: boolean, showAlways?: boolean }} options
+ *   - force: re-run even if already shown (used by the manual command).
+ *   - showAlways: surface the suggestion even when the user is already on the
+ *     recommended theme (used by the manual command).
+ */
+async function detectWorkspaceFingerprint(context, options = {}) {
+  if (!options.force && !getWorkspaceFingerprintEnabled()) return null;
+  if (!options.force && context.workspaceState.get(WORKSPACE_FINGERPRINT_KEY)) return null;
+
+  const folders = vscode.workspace.workspaceFolders;
+  if (!folders || folders.length === 0) return null;
+  const rootDir = folders[0].uri.fsPath;
+  if (!rootDir) return null;
+
+  let signals;
+  try {
+    signals = collectWorkspaceSignals(rootDir);
+  } catch {
+    return null;
+  }
+
+  const ranked = FINGERPRINT_PATTERNS
+    .map((p) => ({ pattern: p, score: p.score(signals) }))
+    .filter((entry) => entry.score >= FINGERPRINT_THRESHOLD)
+    .sort((a, b) => b.score - a.score);
+
+  if (ranked.length === 0) {
+    if (options.force) {
+      void vscode.window.showInformationMessage(
+        "Dusk Office: no strong workspace match detected. Use \"Dusk Office: Set Theme Variant\" to pick one manually.",
+      );
+    }
+    return null;
+  }
+
+  const top = ranked[0];
+  const currentTheme = getCurrentTheme();
+  if (!options.showAlways && currentTheme === top.pattern.variant) {
+    await context.workspaceState.update(WORKSPACE_FINGERPRINT_KEY, true);
+    return null;
+  }
+
+  const message = `🌒 Dusk Office detected this looks like a ${top.pattern.reason}. Try the \"${top.pattern.displayLabel}\" variant?`;
+  const choice = await vscode.window.showInformationMessage(
+    message,
+    "Try it",
+    "Show all variants",
+    "Don't suggest here",
+  );
+
+  await context.workspaceState.update(WORKSPACE_FINGERPRINT_KEY, true);
+
+  if (choice === "Try it") {
+    await applyTheme(top.pattern.variant, context, "manual");
+    return top.pattern.variant;
+  }
+  if (choice === "Show all variants") {
+    await setThemeVariant(context);
+    return null;
+  }
+  return null;
+}
+
 async function initializeStartupBehavior(context) {
   if (await applyAdaptiveFocusTheme(context)) return;
   if (await runAutoSwitch(context)) return;
@@ -1179,12 +1461,21 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.applyAdaptiveFocusTheme", () =>
       applyAdaptiveFocusTheme(context, { force: true, showMessage: true }),
     ),
+    vscode.commands.registerCommand("duskOffice.suggestVariantForWorkspace", () =>
+      detectWorkspaceFingerprint(context, { force: true, showAlways: true }),
+    ),
     createAutoSwitchManager(context),
     createAdaptiveFocusManager(context),
   );
   createStatusBarItem(context);
   await initializeStartupBehavior(context);
   await syncTitleBarStyleForDuskTheme(context);
+
+  // Workspace fingerprint runs after startup behavior and is non-blocking. The
+  // small delay avoids racing with auto-switch / adaptive focus notifications.
+  setTimeout(() => {
+    void detectWorkspaceFingerprint(context);
+  }, 1500);
 }
 
 async function verifyTerminalContrast(context) {

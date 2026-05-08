@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 26 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring, DevOps and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "0.9.19",
+  "version": "0.9.20",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -317,6 +317,11 @@
           "maximum": 23,
           "description": "Hour to start the dark theme."
         },
+        "duskOffice.workspaceFingerprint.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "On first open of a workspace, suggest a Dusk Office variant matching the detected project type (fintech, audit, cybersecurity, ML/data, modern web, frontend, CLI). Runs once per workspace, all local."
+        },
         "duskOffice.adaptiveFocus.enabled": {
           "type": "boolean",
           "default": false,
@@ -447,6 +452,11 @@
         "command": "duskOffice.toggleAdaptiveFocus",
         "title": "Dusk Office: Toggle Adaptive Focus",
         "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.suggestVariantForWorkspace",
+        "title": "Dusk Office: Suggest Variant for This Workspace",
+        "category": "Dusk Office"
       }
     ],
     "menus": {
@@ -456,6 +466,9 @@
         },
         {
           "command": "duskOffice.applyAdaptiveFocusTheme"
+        },
+        {
+          "command": "duskOffice.suggestVariantForWorkspace"
         }
       ]
     }

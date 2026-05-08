@@ -1,5 +1,19 @@
 # Changelog — Dusk Office
 
+## 0.9.20 — 9 May 2026
+
+- **Added**: **Workspace Fingerprint** — on first open of a workspace, Dusk Office now scans top-level project files (`package.json`, `Cargo.toml`, `pyproject.toml`, `requirements.txt`, `go.mod`, `composer.json`, plus the root file listing) and suggests the most relevant variant via a one-time notification:
+  - **Vault** for fintech / banking projects (Stripe, Plaid, Dwolla, payment / wallet keywords).
+  - **Audit** for accounting / compliance projects (QuickBooks, Xero, audit / ledger / SOX / GAAP / IFRS keywords).
+  - **Sentinel** for cybersecurity / SOC / DevSecOps projects (helmet, passport, jsonwebtoken, Vault / Falco / OWASP, `*.tf`).
+  - **Steward** for data science / ML / Python backend projects (numpy, pandas, scikit-learn, FastAPI, Django, Flask, Jupyter).
+  - **Voltage** for modern web stacks (Next, Astro, Vite, Bun, Deno, Hono, Elysia).
+  - **Nocturne** for frontend / design-system projects (React, Vue, Svelte, Tailwind, Storybook).
+  - **Terminal** for CLI / infra / DevOps tooling (Go, Rust+clap, Terraform, Makefile / Dockerfile).
+- **Added**: command **"Dusk Office: Suggest Variant for This Workspace"** to manually re-run the suggestion.
+- **Added**: setting **`duskOffice.workspaceFingerprint.enabled`** (default: `true`) to opt out.
+- **Privacy**: detection runs entirely locally — no telemetry, no network calls, file reads capped at 256 KB and never recurse into the project. The suggestion is shown at most once per workspace (state stored in `workspaceState`).
+
 ## 0.9.19 — 9 May 2026
 
 - **Added**: GitHub Actions **CI** workflow (`.github/workflows/ci.yml`) — runs `node --check`, `npm run validate` (themes, pipeline, terminal contrast), and a packaging smoke test on every push and pull request to `main`.

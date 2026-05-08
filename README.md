@@ -12,6 +12,7 @@ Built for developers who want readable code, coherent chrome across the editor a
 **Why Dusk Office:**
 - **One family, 26 variants** — dark, light, warm, and high-contrast options that still feel related instead of random skins
 - **Readable by design** — semantic highlighting, workbench polish, and terminal contrast checks tuned for long sessions
+- **Workspace Fingerprint** — on first open, Dusk Office detects your project type (fintech, audit, cybersecurity, ML/data, modern web, frontend, CLI) from `package.json`/`Cargo.toml`/`pyproject.toml`/etc. and suggests the variant tuned for that context (Vault, Audit, Sentinel, Steward, Voltage, Nocturne, Terminal). Local-only, opt-out via `duskOffice.workspaceFingerprint.enabled`.
 - **Useful automation** — favorite theme restore, workspace memory, auto switch, adaptive focus, and a Control Center for quick actions
 - **Trust-first behavior** — no surprise companion installs, local-only runtime logic, and clean reset options
 
