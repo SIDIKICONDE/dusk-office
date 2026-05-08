@@ -8,7 +8,7 @@ EDITOR ?= cursor
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix push-main-auto push-main-safe pa ps rel rpi all make
+.PHONY: help install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix push-main-auto push-main-safe pa ps rel rpi all make release release-tag release-status release-watch release-logs tag
 
 help:
 	@echo "Dusk Office — $(ROOT)"
@@ -29,6 +29,14 @@ help:
 	@echo "  make push-main-safe   show status, then confirm commit + push"
 	@echo "  make pa / ps          aliases for push-main-auto / push-main-safe"
 	@echo "  make rel / rpi        short aliases for release / release patch install"
+	@echo ""
+	@echo "Automated dual-marketplace release (via GitHub Actions):"
+	@echo "  make release          full release: validate + push main + tag + push tag (triggers CI)"
+	@echo "  make tag              tag-only (alias for release-tag) — when code is already pushed"
+	@echo "  make release-tag      create vX.Y.Z tag from package.json version and push it"
+	@echo "  make release-status   show the latest release workflow run status"
+	@echo "  make release-watch    watch the latest release workflow run live"
+	@echo "  make release-logs     show logs of the latest failed release workflow"
 	@echo ""
 	@echo "  Example: make reinstall EDITOR=code"
 
@@ -89,3 +97,47 @@ rel:
 
 rpi:
 	cd "$(ROOT)" && $(NPM) run rpi
+
+# ---------------------------------------------------------------------------
+# Automated dual-marketplace release (VS Marketplace + Open VSX via GitHub Actions)
+# ---------------------------------------------------------------------------
+# Read the version from package.json (no jq dependency).
+RELEASE_VERSION := $(shell node -p "require('./package.json').version" 2>/dev/null)
+
+release-tag tag:
+	@if [ -z "$(RELEASE_VERSION)" ]; then \
+		echo "[ERR] Cannot read version from package.json"; exit 1; \
+	fi
+	@cd "$(ROOT)" && \
+	if git rev-parse "v$(RELEASE_VERSION)" >/dev/null 2>&1; then \
+		echo "[ERR] Tag v$(RELEASE_VERSION) already exists locally. Bump package.json version or run: git tag -d v$(RELEASE_VERSION) && git push origin :refs/tags/v$(RELEASE_VERSION)"; \
+		exit 1; \
+	fi; \
+	echo "[INFO] Tagging v$(RELEASE_VERSION) and pushing to origin..."; \
+	git tag -a "v$(RELEASE_VERSION)" -m "Release v$(RELEASE_VERSION)" && \
+	git push origin "v$(RELEASE_VERSION)" && \
+	echo "[OK] Tag pushed. GitHub Actions release workflow triggered."; \
+	echo "     Watch with: make release-watch"
+
+release: validate push-main-auto release-tag
+	@echo ""
+	@echo "[OK] Release pipeline triggered for v$(RELEASE_VERSION)."
+	@echo "     VS Marketplace + Open VSX publish runs in GitHub Actions."
+	@echo "     Track: https://github.com/SIDIKICONDE/dusk-office/actions/workflows/release.yml"
+
+release-status:
+	@command -v gh >/dev/null 2>&1 || { echo "[ERR] gh CLI not installed."; exit 1; }
+	@gh run list --repo SIDIKICONDE/dusk-office --workflow=release.yml --limit 5
+
+release-watch:
+	@command -v gh >/dev/null 2>&1 || { echo "[ERR] gh CLI not installed."; exit 1; }
+	@RUN_ID=$$(gh run list --repo SIDIKICONDE/dusk-office --workflow=release.yml --limit 1 --json databaseId --jq '.[0].databaseId'); \
+	if [ -z "$$RUN_ID" ]; then echo "[ERR] No release run found."; exit 1; fi; \
+	echo "[INFO] Watching release run $$RUN_ID..."; \
+	gh run watch --repo SIDIKICONDE/dusk-office "$$RUN_ID" --exit-status
+
+release-logs:
+	@command -v gh >/dev/null 2>&1 || { echo "[ERR] gh CLI not installed."; exit 1; }
+	@RUN_ID=$$(gh run list --repo SIDIKICONDE/dusk-office --workflow=release.yml --limit 1 --json databaseId --jq '.[0].databaseId'); \
+	if [ -z "$$RUN_ID" ]; then echo "[ERR] No release run found."; exit 1; fi; \
+	gh run view --repo SIDIKICONDE/dusk-office "$$RUN_ID" --log-failed
