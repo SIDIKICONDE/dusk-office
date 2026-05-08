@@ -1,12 +1,13 @@
 # Changelog — Dusk Office
 
-## Unreleased — Infrastructure
+## 0.9.19 — 9 May 2026
 
 - **Added**: GitHub Actions **CI** workflow (`.github/workflows/ci.yml`) — runs `node --check`, `npm run validate` (themes, pipeline, terminal contrast), and a packaging smoke test on every push and pull request to `main`.
 - **Added**: GitHub Actions **Release** workflow (`.github/workflows/release.yml`) — on push of a `v*` tag, validates that the tag matches `package.json`, packages the VSIX, publishes to **VS Marketplace** (when `VSCE_PAT` secret is set) and **Open VSX** (when `OVSX_PAT` secret is set), then creates a GitHub Release with the changelog section attached.
 - **Added**: npm scripts `publish:vsce`, `publish:ovsx`, `publish:all`, and `tag:release` for manual publishing.
 - **Added**: CI badge in the README.
 - **Added**: `ovsx` as a dev dependency.
+- **Note**: This is the first version published via the new automated dual-marketplace pipeline.
 
 ## 0.9.18 — 9 May 2026
 
