@@ -61,7 +61,10 @@ jobs:
             echo "::warning::VSCE_PAT secret not set; skipping VS Marketplace publish."
             exit 0
           fi
-          npx --yes @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}" -p "$VSCE_PAT"
+          # Use the locally-pinned vsce from devDependencies (--no-install) instead of
+          # the latest from npm — newer vsce versions have introduced auth regressions
+          # that cause TF400813 errors despite a valid PAT.
+          npx --no-install @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}" -p "$VSCE_PAT"
 
       - name: Publish to Open VSX
         env:
@@ -71,7 +74,7 @@ jobs:
             echo "::warning::OVSX_PAT secret not set; skipping Open VSX publish."
             exit 0
           fi
-          npx --yes ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
+          npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
 
       - name: Extract changelog section for this version
         id: changelog
