@@ -1,0 +1,248 @@
+#!/usr/bin/env node
+/**
+ * Dusk Office Light — génération de `themes/dusk-light.json`
+ *
+ * Principe
+ * --------
+ * Le thème clair n’est pas édité à la main couleur par couleur : il est **dérivé**
+ * de **Dusk Office Abyss** (`themes/dusk-abime.json`), lui-même produit par le
+ * pipeline sombre (`theme:sources` → sync → `variants:ui` → `variants:syntax`).
+ * Ainsi Light reste **aligné** sur la même grammaire de couleurs qu’Abyss, avec
+ * des surfaces et des textes adaptés au fond clair.
+ *
+ * Étapes
+ * ------
+ * 1. Charger Abyss (JSON complet : `colors`, `tokenColors`, `semanticTokenColors`).
+ * 2. Pour chaque entrée de `colors`, remapper les hex : fonds très sombres → gris /
+ *    blancs cassés ; teintes « texte clair Abyss » (#cfe8f0…) → texte ardoise ;
+ *    ombres noires → gris ; très faible luminance → fallback clair.
+ * 3. Construire le thème : `type: "light"`, `include: "./dusk.json"` (hérite des
+ *    clés non surchargées du socle Dusk), `colors` = résultat du remap.
+ * 4. Syntaxe : si `themes/dusk-light.json` existe déjà avec des `tokenColors` /
+ *    `semanticTokenColors` non vides, les **réutiliser** (affinages manuels ou
+ *    itérations précédentes) ; sinon copier celles d’Abyss.
+ * 5. Appliquer `LIGHT_UI_OVERRIDES` : contrastes UI (sidebar, tabs, titleBar,
+ *    Markdown preview, etc.) qui ne sortent pas correctement du seul remap mécanique.
+ * 6. Écrire `themes/dusk-light.json`.
+ *
+ * Quand lancer
+ * ------------
+ * `npm run build:light` — idéalement après `variants:ui` et `variants:syntax`
+ * (voir `make:full`). Ivory (`build-dusk-ivoire.mjs`) part ensuite de ce fichier.
+ */
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(__dirname, "..");
+const ABYSS_PATH = path.join(root, "themes", "dusk-abime.json");
+const LIGHT_OUT_PATH = path.join(root, "themes", "dusk-light.json");
+
+/** Fonds sombres typiques d’Abyss (#RRGGBB) → surfaces claires */
+const DARK_BG_TO_LIGHT_SURFACE = {
+  "000000": "#e2e8f0",
+  "02060c": "#e8edf4",
+  "030810": "#f1f5f9",
+  "040a10": "#f8fafc",
+  "040a12": "#f1f5f9",
+  "040c10": "#eef2f7",
+  "040c12": "#f1f5f9",
+  "050e16": "#ffffff",
+  "061018": "#f8fafc",
+  "122030": "#cbd5e1",
+  "1e3448": "#94a3b8",
+  "285868": "#94a3b8",
+  "2d5a78": "#64748b",
+};
+
+/**
+ * Texte / icônes clairs d’Abyss (#cfe8f0 + variantes alpha) → lisibles sur blanc.
+ * Clés = rgb(+aa) en minuscules, sans #.
+ */
+const ABYSS_LIGHT_FG_TO_SLATE = {
+  cfe8f0: "#0f172a",
+  cfe8f0aa: "#334155aa",
+  cfe8f0cc: "#334155cc",
+  cfe8f077: "#64748b77",
+  cfe8f055: "#64748b55",
+  cfe8f0bb: "#475569bb",
+  cfe8f088: "#64748b88",
+  cfe8f022: "#33415522",
+  cfe8f012: "#33415512",
+};
+
+function srgbLuminance(rgb6) {
+  const r = parseInt(rgb6.slice(0, 2), 16) / 255;
+  const g = parseInt(rgb6.slice(2, 4), 16) / 255;
+  const b = parseInt(rgb6.slice(4, 6), 16) / 255;
+  const lin = (v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+}
+
+/**
+ * @param {string} value
+ * @param {string} colorKey clé `colors` (pour règles contextuelles, ex. shadow)
+ */
+function remapWorkbenchColor(value, colorKey) {
+  if (typeof value !== "string" || !value.startsWith("#")) return value;
+  const h = value.slice(1);
+  if (h.length !== 6 && h.length !== 8) return value;
+  const rgb = h.slice(0, 6).toLowerCase();
+  const alpha = h.length === 8 ? h.slice(6).toLowerCase() : "";
+  const rgbWithAlpha = (rgb + alpha).toLowerCase();
+
+  if (ABYSS_LIGHT_FG_TO_SLATE[rgbWithAlpha]) return ABYSS_LIGHT_FG_TO_SLATE[rgbWithAlpha];
+
+  if (colorKey.includes("shadow") && rgb === "000000") return "#64748b" + (alpha || "44");
+
+  const surface = DARK_BG_TO_LIGHT_SURFACE[rgb];
+  if (surface) {
+    const body = surface.slice(1);
+    return "#" + body + (alpha || "");
+  }
+
+  if (srgbLuminance(rgb) < 0.08 && rgb !== "0a0a0a" && rgb !== "1e1e1e") {
+    return "#f1f5f9" + (alpha || "");
+  }
+
+  return value;
+}
+
+/**
+ * Surcharges UI / Markdown preview / titleBar après le remap global.
+ * Sans cela, `include` dusk.json laisserait certains textes ou bordures illisibles.
+ */
+const LIGHT_UI_OVERRIDES = {
+  descriptionForeground: "#334155dd",
+  "icon.foreground": "#334155eb",
+  "widget.border": "#4d5a6b73",
+  "editor.foldPlaceholderForeground": "#64748b99",
+  "editorGhostText.foreground": "#94a3b878",
+  "editorWhitespace.foreground": "#94a3b838",
+  // Rouge bien visible sur fond clair (soulignement diagnostics).
+  "editorError.foreground": "#e11d48",
+  "editorInlayHint.foreground": "#64748bd9",
+  "inlineChatInput.placeholderForeground": "#64748b8c",
+  "breadcrumb.foreground": "#475569de",
+  /** Sinon hérité de dusk.json (#02060b) — bande noire sous les onglets en thème clair */
+  "breadcrumb.background": "#ffffff",
+  "tab.inactiveForeground": "#475569b8",
+  "statusBar.foreground": "#1e293bee",
+  "input.placeholderForeground": "#64748b8c",
+  "activityBar.inactiveForeground": "#64748b",
+  "tree.indentGuidesStroke": "#64748b22",
+  "tree.inactiveIndentGuidesStroke": "#64748b14",
+  "editor.lineHighlightBackground": "#e8edf3",
+  "editor.lineHighlightBorder": "#cbd5e166",
+  "editorIndentGuide.background1": "#64748b22",
+  "editorIndentGuide.background2": "#64748b16",
+  "editorIndentGuide.background3": "#64748b0e",
+  "editorIndentGuide.background4": "#64748b08",
+  "editorIndentGuide.activeBackground1": "#0ea5e930",
+  "editorIndentGuide.activeBackground2": "#0284c730",
+  "editorIndentGuide.activeBackground3": "#0ea5e91c",
+  "editorIndentGuide.activeBackground4": "#0284c71c",
+  "sideBarSectionHeader.foreground": "#334155",
+  "sideBarTitle.foreground": "#b45309",
+  "scrollbarSlider.background": "#94a3b88f",
+  "scrollbarSlider.hoverBackground": "#64748bbb",
+  focusBorder: "#0ea5e9b3",
+  "sideBar.foreground": "#1e293b",
+  "titleBar.activeForeground": "#0f172a",
+  "titleBar.inactiveForeground": "#64748b",
+  "panelTitle.border": "#0ea5e94d",
+  /** Absentes d’Abyss : héritées de `include` dusk.json → fonds #02060b sur UI claire */
+  "editorSuggestWidget.background": "#ffffff",
+  "editorHoverWidget.background": "#ffffff",
+  "editorHoverWidget.statusBarBackground": "#f1f5f9",
+  "textLink.foreground": "#0284c7",
+  "textLink.activeForeground": "#0369a1",
+  "textBlockQuote.background": "#f1f5f9",
+  "textBlockQuote.border": "#22d3ee55",
+  "textCodeBlock.background": "#f8fafc",
+  "textPreformat.background": "#e2e8f0",
+  "textPreformat.foreground": "#1e293b",
+};
+
+/** @param {Record<string, string>} abyssColors */
+function mapAbyssColorsToLight(abyssColors) {
+  /** @type {Record<string, string>} */
+  const out = {};
+  for (const [key, val] of Object.entries(abyssColors)) {
+    out[key] = typeof val === "string" ? remapWorkbenchColor(val, key) : val;
+  }
+  return out;
+}
+
+/** @param {unknown} theme */
+function applyLightUiOverrides(theme) {
+  if (!theme.colors || typeof theme.colors !== "object") return;
+  Object.assign(theme.colors, LIGHT_UI_OVERRIDES);
+
+  const ed = theme.colors["editor.background"];
+  if (typeof ed === "string" && ed.startsWith("#")) {
+    theme.colors["sideBar.background"] = ed;
+  }
+
+  const sem = theme.semanticTokenColors;
+  if (sem && typeof sem === "object") {
+    if (sem.comment && typeof sem.comment === "object") sem.comment.foreground = "#475569";
+    if (typeof sem.variable === "string") sem.variable = "#1e293b";
+  }
+
+  const tokens = theme.tokenColors;
+  if (!Array.isArray(tokens)) return;
+  for (const block of tokens) {
+    const scopes = block.scope;
+    const sc = Array.isArray(scopes) ? scopes.join(" ") : scopes;
+    if (typeof sc === "string" && sc.includes("comment") && block.settings && typeof block.settings === "object") {
+      block.settings.foreground = "#475569";
+    }
+  }
+}
+
+/**
+ * Garde la coloration syntaxique déjà curée dans dusk-light.json si présente,
+ * sinon reprend Abyss (première génération).
+ */
+function loadSyntaxLayerFromExistingLightOrAbyss(abyssTheme) {
+  try {
+    const raw = fs.readFileSync(LIGHT_OUT_PATH, "utf8");
+    const prev = JSON.parse(raw);
+    if (Array.isArray(prev.tokenColors) && prev.tokenColors.length && prev.semanticTokenColors) {
+      return {
+        tokenColors: structuredClone(prev.tokenColors),
+        semanticTokenColors: structuredClone(prev.semanticTokenColors),
+      };
+    }
+  } catch {
+    /* fichier absent ou invalide */
+  }
+  return {
+    tokenColors: structuredClone(abyssTheme.tokenColors),
+    semanticTokenColors: structuredClone(abyssTheme.semanticTokenColors),
+  };
+}
+
+function main() {
+  const abyss = JSON.parse(fs.readFileSync(ABYSS_PATH, "utf8"));
+  const syntax = loadSyntaxLayerFromExistingLightOrAbyss(abyss);
+
+  const theme = {
+    $schema: "vscode://schemas/color-theme",
+    name: "Dusk Office Light",
+    type: "light",
+    include: "./dusk.json",
+    colors: mapAbyssColorsToLight(abyss.colors || {}),
+    tokenColors: syntax.tokenColors,
+    semanticTokenColors: syntax.semanticTokenColors,
+  };
+
+  applyLightUiOverrides(theme);
+
+  fs.writeFileSync(LIGHT_OUT_PATH, JSON.stringify(theme, null, 2) + "\n", "utf8");
+  console.log("OK", LIGHT_OUT_PATH, Object.keys(theme.colors).length, "couleurs");
+}
+
+main();

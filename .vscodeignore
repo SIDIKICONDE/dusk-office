@@ -1,0 +1,23 @@
+# Keep VSIX small
+node_modules/**
+scripts/**
+# Dev inputs; themes/ is what the extension loads at runtime
+theme-sources/**
+package-lock.json
+analysis_options.yaml
+.vscode/**
+.github/**
+Makefile
+MAINTENANCE.md
+
+# Local theme preview samples (not shipped)
+samples/**
+images/screenshot-*.jpg
+
+# Extra exclusions
+.vscode-test/**
+**/*.map
+**/tsconfig.json
+**/.eslintrc*
+.gitignore
+*.vsix

@@ -1,0 +1,739 @@
+# Advanced GraphQL: schema, queries, mutations, subscriptions, directives.
+
+"""
+Schema documentation with multi-line descriptions.
+This demonstrates advanced GraphQL features for syntax highlighting.
+"""
+
+# Directives
+directive @auth(
+  """Required role for access"""
+  role: Role! = USER
+) on OBJECT | FIELD_DEFINITION
+
+directive @deprecated(
+  reason: String = "No longer supported"
+) on FIELD_DEFINITION | ENUM_VALUE | ARGUMENT_DEFINITION
+
+directive @validate(
+  min: Int
+  max: Int
+  pattern: String
+) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @cache(
+  maxAge: Int! = 300
+  scope: CacheScope! = PUBLIC
+) on FIELD_DEFINITION
+
+directive @rateLimit(
+  max: Int!
+  window: Int! = 60
+) on FIELD_DEFINITION | OBJECT
+
+directive @complexity(
+  value: Int!
+  multipliers: [String!]
+) on FIELD_DEFINITION
+
+enum CacheScope {
+  PUBLIC
+  PRIVATE
+}
+
+# Enums with descriptions
+enum Role {
+  """Administrator with full access"""
+  ADMIN
+  
+  """Editor with content management access"""
+  EDITOR
+  
+  """Regular user with limited access"""
+  USER
+  
+  """Guest with read-only access"""
+  GUEST @deprecated(reason: "Use USER role instead")
+}
+
+enum PostStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  ARCHIVED
+  DELETED
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+}
+
+# Scalars
+scalar DateTime
+scalar Email
+scalar URL
+scalar JSON
+scalar Upload
+scalar PositiveInt
+scalar NonEmptyString
+
+# Input Types
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+input OrderInput {
+  field: String!
+  direction: SortOrder! = ASC
+}
+
+input FilterInput {
+  search: String
+  ids: [ID!]
+  createdAfter: DateTime
+  createdBefore: DateTime
+  updatedAfter: DateTime
+}
+
+input PostFilterInput {
+  status: PostStatus
+  authorId: ID
+  tags: [String!]
+  search: String
+  publishedAfter: DateTime
+  publishedBefore: DateTime
+}
+
+input CreatePostInput @validate(min: 1) {
+  title: NonEmptyString! @validate(min: 3, max: 200)
+  content: String! @validate(min: 10)
+  excerpt: String @validate(max: 500)
+  status: PostStatus! = DRAFT
+  tags: [String!] @validate(max: 10)
+  featuredImage: Upload
+  meta: JSON
+  publishAt: DateTime
+}
+
+input UpdatePostInput {
+  id: ID!
+  title: NonEmptyString @validate(min: 3, max: 200)
+  content: String @validate(min: 10)
+  excerpt: String @validate(max: 500)
+  status: PostStatus
+  tags: [String!]
+  featuredImage: Upload
+  meta: JSON
+}
+
+input CreateCommentInput {
+  postId: ID!
+  parentId: ID
+  content: NonEmptyString! @validate(min: 1, max: 2000)
+  author: AuthorInput!
+}
+
+input AuthorInput {
+  name: NonEmptyString!
+  email: Email!
+  url: URL
+}
+
+input UserFilterInput {
+  role: Role
+  active: Boolean
+  search: String
+  createdAfter: DateTime
+}
+
+input UpdateUserInput {
+  name: String
+  email: Email
+  bio: String @validate(max: 1000)
+  avatar: Upload
+  settings: UserSettingsInput
+}
+
+input UserSettingsInput {
+  theme: String
+  language: String
+  notifications: NotificationSettingsInput
+}
+
+input NotificationSettingsInput {
+  email: Boolean
+  push: Boolean
+  sms: Boolean
+}
+
+# Interfaces
+interface Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+interface Content {
+  title: String!
+  content: String!
+  author: User!
+  status: PostStatus!
+}
+
+interface Timestamped {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+interface Searchable {
+  searchPreview: String!
+  searchKeywords: [String!]!
+}
+
+# Union Types
+union SearchResult = User | Post | Comment | Tag
+union MediaContent = Image | Video | Audio | Document
+
+union Error = ValidationError | AuthenticationError | NotFoundError | PermissionError
+
+# Type Definitions
+type User implements Node & Timestamped & Searchable @auth(role: USER) @rateLimit(max: 100) {
+  id: ID!
+  email: Email! @auth(role: ADMIN)
+  name: String!
+  bio: String
+  avatar: Image
+  role: Role!
+  active: Boolean!
+  settings: UserSettings!
+  
+  # Relationships
+  posts(
+    filter: PostFilterInput
+    pagination: PaginationInput
+    order: OrderInput
+  ): PostConnection! @cache(maxAge: 60)
+  
+  comments(
+    pagination: PaginationInput
+  ): CommentConnection! @cache(maxAge: 120)
+  
+  followers: [User!]! @cache(maxAge: 300)
+  following: [User!]! @cache(maxAge: 300)
+  followerCount: Int! @cache(maxAge: 300)
+  followingCount: Int! @cache(maxAge: 300)
+  
+  # Timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  lastLoginAt: DateTime @auth(role: ADMIN)
+  
+  # Search
+  searchPreview: String!
+  searchKeywords: [String!]!
+  
+  # Computed
+  isFollowing: Boolean!
+  isSelf: Boolean!
+}
+
+type UserSettings {
+  theme: String!
+  language: String!
+  notifications: NotificationSettings!
+}
+
+type NotificationSettings {
+  email: Boolean!
+  push: Boolean!
+  sms: Boolean!
+}
+
+type Post implements Node & Content & Timestamped & Searchable @auth @rateLimit(max: 200) {
+  id: ID!
+  title: String!
+  slug: String!
+  content: String!
+  excerpt: String
+  status: PostStatus!
+  featured: Boolean!
+  
+  # Author relationship
+  author: User! @cache(maxAge: 600)
+  
+  # Media
+  featuredImage: Image
+  attachments: [Media!]!
+  
+  # Tags and categories
+  tags: [Tag!]! @cache(maxAge: 3600)
+  categories: [Category!]! @cache(maxAge: 3600)
+  
+  # Comments
+  comments(
+    filter: CommentFilterInput
+    pagination: PaginationInput
+    order: OrderInput
+  ): CommentConnection! @cache(maxAge: 60)
+  commentCount: Int! @cache(maxAge: 60)
+  
+  # Stats
+  viewCount: Int! @cache(maxAge: 300)
+  likeCount: Int! @cache(maxAge: 60)
+  
+  # User interactions
+  liked: Boolean!
+  bookmarked: Boolean!
+  
+  # SEO
+  metaTitle: String
+  metaDescription: String
+  meta: JSON
+  
+  # Timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  
+  # Search
+  searchPreview: String!
+  searchKeywords: [String!]!
+  
+  # URL
+  url: URL!
+}
+
+type Comment implements Node & Timestamped @auth {
+  id: ID!
+  content: String!
+  author: CommentAuthor!
+  
+  # Relationships
+  post: Post!
+  parent: Comment
+  replies(
+    pagination: PaginationInput
+  ): CommentConnection!
+  replyCount: Int!
+  
+  # Reactions
+  likeCount: Int!
+  liked: Boolean!
+  
+  # Timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  
+  # Status
+  approved: Boolean!
+  spam: Boolean!
+}
+
+union CommentAuthor = User | GuestAuthor
+
+type GuestAuthor {
+  name: String!
+  email: Email!
+  url: URL
+}
+
+type Tag implements Node & Searchable {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  
+  posts(
+    pagination: PaginationInput
+  ): PostConnection! @cache(maxAge: 600)
+  postCount: Int! @cache(maxAge: 600)
+  
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  
+  searchPreview: String!
+  searchKeywords: [String!]!
+}
+
+type Category implements Node {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  parent: Category
+  children: [Category!]!
+  
+  posts(
+    pagination: PaginationInput
+  ): PostConnection! @cache(maxAge: 600)
+  postCount: Int! @cache(maxAge: 600)
+  
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Media implements Node {
+  id: ID!
+  type: MediaType!
+  url: URL!
+  thumbnail: URL
+  alt: String
+  title: String
+  description: String
+  size: Int!
+  width: Int
+  height: Int
+  duration: Float
+  
+  uploadedBy: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Image {
+  id: ID!
+  url: URL!
+  thumbnail: URL
+  small: URL
+  medium: URL
+  large: URL
+  alt: String
+  width: Int!
+  height: Int!
+}
+
+type Video {
+  id: ID!
+  url: URL!
+  thumbnail: URL!
+  duration: Float!
+  width: Int!
+  height: Int!
+}
+
+type Audio {
+  id: ID!
+  url: URL!
+  duration: Float!
+  waveform: [Float!]!
+}
+
+type Document {
+  id: ID!
+  url: URL!
+  filename: String!
+  mimeType: String!
+  size: Int!
+}
+
+# Connection Types (Relay-style pagination)
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+type CommentConnection {
+  edges: [CommentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# Error Types
+type ValidationError {
+  field: String!
+  message: String!
+  code: String!
+}
+
+type AuthenticationError {
+  message: String!
+  code: String!
+}
+
+type NotFoundError {
+  message: String!
+  resource: String!
+  id: ID
+}
+
+type PermissionError {
+  message: String!
+  requiredRole: Role!
+}
+
+# Payload Types
+type AuthPayload {
+  user: User
+  token: String
+  refreshToken: String
+  expiresAt: DateTime!
+  errors: [Error!]
+}
+
+type PostPayload {
+  post: Post
+  errors: [Error!]
+}
+
+type CommentPayload {
+  comment: Comment
+  errors: [Error!]
+}
+
+type UploadPayload {
+  media: Media
+  errors: [Error!]
+}
+
+# Root Types
+type Query {
+  # Current user
+  me: User @auth @cache(maxAge: 60)
+  
+  # Users
+  user(id: ID!): User @auth
+  users(
+    filter: UserFilterInput
+    pagination: PaginationInput
+    order: OrderInput
+  ): UserConnection! @auth(role: ADMIN) @cache(maxAge: 60)
+  
+  # Posts
+  post(id: ID!): Post @cache(maxAge: 300)
+  postBySlug(slug: String!): Post @cache(maxAge: 300)
+  posts(
+    filter: PostFilterInput
+    pagination: PaginationInput
+    order: OrderInput
+  ): PostConnection! @cache(maxAge: 60)
+  featuredPosts(limit: Int = 5): [Post!]! @cache(maxAge: 300)
+  relatedPosts(postId: ID!, limit: Int = 5): [Post!]! @cache(maxAge: 600)
+  
+  # Comments
+  comment(id: ID!): Comment @auth
+  comments(
+    filter: CommentFilterInput
+    pagination: PaginationInput
+  ): CommentConnection! @cache(maxAge: 60)
+  
+  # Tags and Categories
+  tag(id: ID!): Tag @cache(maxAge: 3600)
+  tagBySlug(slug: String!): Tag @cache(maxAge: 3600)
+  tags(pagination: PaginationInput): [Tag!]! @cache(maxAge: 3600)
+  
+  category(id: ID!): Category @cache(maxAge: 3600)
+  categoryBySlug(slug: String!): Category @cache(maxAge: 3600)
+  categories: [Category!]! @cache(maxAge: 3600)
+  
+  # Search
+  search(
+    query: String!
+    types: [SearchableType!]
+    pagination: PaginationInput
+  ): SearchConnection! @cache(maxAge: 30) @complexity(value: 10, multipliers: ["query"])
+  
+  # Media
+  media(id: ID!): Media @auth
+  mediaLibrary(
+    type: MediaType
+    pagination: PaginationInput
+  ): MediaConnection! @auth @cache(maxAge: 600)
+}
+
+input CommentFilterInput {
+  postId: ID
+  authorId: ID
+  approved: Boolean
+  spam: Boolean
+}
+
+enum SearchableType {
+  USER
+  POST
+  COMMENT
+  TAG
+}
+
+type SearchConnection {
+  edges: [SearchEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SearchEdge {
+  node: SearchResult!
+  cursor: String!
+  score: Float!
+}
+
+type MediaConnection {
+  edges: [MediaEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type MediaEdge {
+  node: Media!
+  cursor: String!
+}
+
+type Mutation {
+  # Authentication
+  login(email: Email!, password: String!): AuthPayload!
+  logout: Boolean!
+  refreshToken(token: String!): AuthPayload!
+  register(
+    email: Email!
+    password: String!
+    name: String!
+  ): AuthPayload! @rateLimit(max: 5, window: 3600)
+  
+  # Password
+  requestPasswordReset(email: Email!): Boolean!
+    @rateLimit(max: 3, window: 3600)
+  resetPassword(token: String!, password: String!): AuthPayload!
+  changePassword(
+    currentPassword: String!
+    newPassword: String!
+  ): Boolean! @auth
+  
+  # User
+  updateUser(input: UpdateUserInput!): User! @auth
+  deleteUser: Boolean! @auth
+  followUser(userId: ID!): User! @auth
+  unfollowUser(userId: ID!): User! @auth
+  
+  # Posts
+  createPost(input: CreatePostInput!): PostPayload! @auth(role: EDITOR)
+  updatePost(input: UpdatePostInput!): PostPayload! @auth(role: EDITOR)
+  deletePost(id: ID!): Boolean! @auth(role: EDITOR)
+  publishPost(id: ID!, publishAt: DateTime): Post! @auth(role: EDITOR)
+  unpublishPost(id: ID!): Post! @auth(role: EDITOR)
+  
+  # Post interactions
+  likePost(id: ID!): Post! @auth
+  unlikePost(id: ID!): Post! @auth
+  bookmarkPost(id: ID!): Post! @auth
+  unbookmarkPost(id: ID!): Post! @auth
+  
+  # Comments
+  createComment(input: CreateCommentInput!): CommentPayload! @auth
+  updateComment(id: ID!, content: String!): Comment! @auth
+  deleteComment(id: ID!): Boolean! @auth
+  approveComment(id: ID!): Comment! @auth(role: EDITOR)
+  rejectComment(id: ID!): Comment! @auth(role: EDITOR)
+  markAsSpam(id: ID!): Comment! @auth(role: EDITOR)
+  
+  # Media
+  uploadMedia(
+    file: Upload!
+    alt: String
+    title: String
+  ): UploadPayload! @auth
+  deleteMedia(id: ID!): Boolean! @auth
+  
+  # Tags
+  createTag(
+    name: String!
+    slug: String!
+    description: String
+  ): Tag! @auth(role: EDITOR)
+  updateTag(
+    id: ID!
+    name: String
+    description: String
+  ): Tag! @auth(role: EDITOR)
+  deleteTag(id: ID!): Boolean! @auth(role: ADMIN)
+  
+  # Categories
+  createCategory(
+    name: String!
+    slug: String!
+    description: String
+    parentId: ID
+  ): Category! @auth(role: EDITOR)
+  updateCategory(
+    id: ID!
+    name: String
+    description: String
+    parentId: ID
+  ): Category! @auth(role: EDITOR)
+  deleteCategory(id: ID!): Boolean! @auth(role: ADMIN)
+}
+
+type Subscription {
+  # Real-time updates
+  onPostPublished: Post!
+  onPostUpdated(postId: ID): Post!
+  onCommentAdded(postId: ID!): Comment!
+  onNotification: Notification! @auth
+  
+  # Live metrics
+  onPostViewCount(postId: ID!): Int!
+  onPostLikeCount(postId: ID!): Int!
+}
+
+type Notification {
+  id: ID!
+  type: NotificationType!
+  title: String!
+  message: String!
+  read: Boolean!
+  createdAt: DateTime!
+  data: JSON
+}
+
+enum NotificationType {
+  COMMENT
+  LIKE
+  FOLLOW
+  MENTION
+  SYSTEM
+}
+
+# Schema Configuration
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

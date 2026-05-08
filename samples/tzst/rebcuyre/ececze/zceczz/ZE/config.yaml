@@ -1,0 +1,515 @@
+# Advanced YAML: anchors, aliases, multi-documents, complex structures.
+
+# Anchors and Aliases
+defaults: &defaults
+  timeout: 30
+  retries: 3
+  log_level: info
+  enabled: true
+
+development: &development
+  <<: *defaults
+  database:
+    host: localhost
+    port: 5432
+    name: app_dev
+    pool_size: 10
+  cache:
+    driver: redis
+    host: localhost
+    port: 6379
+    ttl: 3600
+
+production: &production
+  <<: *defaults
+  log_level: warn
+  database:
+    host: ${DB_HOST}
+    port: ${DB_PORT:-5432}
+    name: ${DB_NAME}
+    pool_size: 50
+  cache:
+    driver: redis
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT:-6379}
+    ttl: 86400
+
+staging:
+  <<: *production
+  log_level: debug
+  database:
+    <<: *production.database
+    pool_size: 25
+
+# Complex nested structure
+services:
+  api:
+    image: ghcr.io/company/api:v2.1.0
+    build:
+      context: ./services/api
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: production
+        VERSION: ${VERSION:-latest}
+      target: production
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    environment: &api-env
+      NODE_ENV: production
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}
+      REDIS_URL: redis://${REDIS_HOST}:6379
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRY: 3600
+      LOG_LEVEL: info
+      CORS_ORIGINS: "https://example.com,https://api.example.com"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      mode: replicated
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    networks:
+      - backend
+      - frontend
+    volumes:
+      - api-data:/app/data
+      - ./config:/app/config:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    labels:
+      - "com.company.description=API Service"
+      - "com.company.version=2.1.0"
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`api.example.com`)"
+      - "traefik.http.services.api.loadbalancer.server.port=3000"
+
+  worker:
+    <<: *api-env
+    image: ghcr.io/company/worker:v2.1.0
+    command: ["node", "dist/worker.js"]
+    scale: 5
+    environment:
+      <<: *api-env
+      QUEUE_NAME: default
+      CONCURRENCY: 10
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    networks:
+      - backend
+
+# Network definitions
+networks:
+  backend:
+    driver: bridge
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+  frontend:
+    driver: bridge
+
+# Volume definitions
+volumes:
+  api-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/api
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+
+# Multi-document with ---
+---
+# Kubernetes Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  namespace: production
+  labels:
+    app: api
+    version: v2.1.0
+    team: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: api
+        version: v2.1.0
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      serviceAccountName: api-service-account
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: api
+          image: ghcr.io/company/api:v2.1.0
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+            - name: metrics
+              containerPort: 9090
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: database-url
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-secrets
+                  key: jwt-secret
+          envFrom:
+            - configMapRef:
+                name: api-config
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config
+              readOnly: true
+            - name: tmp-volume
+              mountPath: /tmp
+      volumes:
+        - name: config-volume
+          configMap:
+            name: api-config
+            items:
+              - key: config.yaml
+                path: config.yaml
+        - name: tmp-volume
+          emptyDir:
+            sizeLimit: 100Mi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: api
+                topologyKey: kubernetes.io/hostname
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "api"
+          effect: "NoSchedule"
+
+---
+# ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: production
+data:
+  config.yaml: |
+    server:
+      host: 0.0.0.0
+      port: 3000
+    logging:
+      level: info
+      format: json
+    features:
+      rate_limit:
+        enabled: true
+        window_ms: 60000
+        max_requests: 100
+      cors:
+        enabled: true
+        origins:
+          - https://example.com
+          - https://app.example.com
+
+---
+# GitHub Actions Workflow
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Monday at 6 AM
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      version:
+        description: 'Version to deploy'
+        required: false
+        type: string
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+
+  test:
+    runs-on: ${{ matrix.os }}
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [18, 20, 22]
+        exclude:
+          - os: macos-latest
+            node: 18
+        include:
+          - os: ubuntu-latest
+            node: 20
+            coverage: true
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+      
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:coverage
+        if: ${{ matrix.coverage }}
+      - run: pnpm test
+        if: ${{ !matrix.coverage }}
+      
+      - uses: codecov/codecov-action@v3
+        if: ${{ matrix.coverage }}
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Determine version
+        id: version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+          else
+            VERSION=$(node -p "require('./package.json').version")
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}
+            ghcr.io/${{ github.repository }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VERSION=${{ steps.version.outputs.version }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
+    environment:
+      name: ${{ github.event.inputs.environment || 'production' }}
+      url: https://api.example.com
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/api \
+            api=ghcr.io/${{ github.repository }}:${{ needs.build.outputs.version }} \
+            --namespace production
+          kubectl rollout status deployment/api -n production --timeout=300s
+
+# Complex flow styles
+flow-style: { key1: value1, key2: [item1, item2], key3: { nested: value } }
+
+block-style:
+  - item1
+  - item2
+  - key: value
+
+# Multi-line strings
+literal-block: |
+  This is a literal block scalar.
+  Line breaks are preserved.
+  
+  Blank lines become newlines.
+  This is useful for code or configs.
+
+folded-block: >
+  This is a folded block scalar.
+  Line breaks are replaced with spaces,
+  creating a single flowing paragraph.
+  
+  Blank lines become newlines.
+
+literal-strip: |-
+  No trailing newline
+  at the end of this block.
+
+literal-keep: |+
+  Keep all trailing newlines.
+  
+  
+  
+
+# Explicit types
+explicit-null: null
+explicit-bool: true
+explicit-int: !!int 42
+explicit-float: !!float 3.14159
+explicit-str: !!str "123"
+explicit-date: 2024-01-15
+explicit-time: 2024-01-15T10:30:00Z
+explicit-binary: !!binary |
+  SGVsbG8gV29ybGQh
+explicit-map: !!map
+  key: value
+explicit-seq: !!seq
+  - item1
+  - item2
+
+# Custom tags
+custom: !custom-tag
+  value: something
+  nested:
+    key: value

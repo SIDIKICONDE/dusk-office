@@ -1,0 +1,511 @@
+{
+  "name": "dusk-office",
+  "displayName": "Dusk Office",
+  "description": "26 dark, light, and high-contrast themes for VS Code, Cursor, and Windsurf with semantic highlighting, polished UI colors, terminal contrast care, and an optional product icon theme.",
+  "version": "0.9.16",
+  "publisher": "dekidev",
+  "icon": "images/icon.png",
+  "main": "./extension.js",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/SIDIKICONDE/dusk-office-docs",
+  "sponsor": {
+    "url": "https://buymeacoffee.com/dekidev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SIDIKICONDE/dusk-office.git"
+  },
+  "galleryBanner": {
+    "color": "#031c28",
+    "theme": "dark"
+  },
+  "qna": "marketplace",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "theme",
+    "theme pack",
+    "vs code theme",
+    "cursor theme",
+    "windsurf theme",
+    "dark theme",
+    "light theme",
+    "high contrast theme",
+    "accessible theme",
+    "dusk-office",
+    "semantic highlighting",
+    "color theme",
+    "product icon theme",
+    "terminal theme",
+    "oled theme",
+    "developer theme",
+    "auto switch"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Dusk Office",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk.json"
+      },
+      {
+        "label": "Dusk Office Abyss",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-abime.json"
+      },
+      {
+        "label": "Dusk Office Dawn",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-aube.json"
+      },
+      {
+        "label": "Dusk Office Bay",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-baie.json"
+      },
+      {
+        "label": "Dusk Office Mist",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-brume.json"
+      },
+      {
+        "label": "Dusk Office Ash",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-cendre.json"
+      },
+      {
+        "label": "Dusk Office Midnight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-minuit.json"
+      },
+      {
+        "label": "Dusk Office Nebula",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-nebuleuse.json"
+      },
+      {
+        "label": "Dusk Office Reef",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-recif.json"
+      },
+      {
+        "label": "Dusk Office High Contrast",
+        "uiTheme": "hc-black",
+        "path": "./themes/dusk-hc.json"
+      },
+      {
+        "label": "Dusk Office Light",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-light.json"
+      },
+      {
+        "label": "Dusk Office Ivory",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-ivoire.json"
+      },
+      {
+        "label": "Dusk Office Dark Ivory",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-ivoire-sombre.json"
+      },
+      {
+        "label": "Dusk Office Nocturne",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-nocturne.json"
+      },
+      {
+        "label": "Dusk Office Finance",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-finance.json"
+      },
+      {
+        "label": "Dusk Office Corporate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-corporate.json"
+      },
+      {
+        "label": "Dusk Office Voltage",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-voltage.json"
+      },
+      {
+        "label": "Dusk Office Neon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-neon.json"
+      },
+      {
+        "label": "Dusk Office Luxe",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-luxe.json"
+      },
+      {
+        "label": "Dusk Office Terminal",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-terminal.json"
+      },
+      {
+        "label": "Dusk Office Steward",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-steward.json"
+      },
+      {
+        "label": "Dusk Office Ledger",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-ledger.json"
+      },
+      {
+        "label": "Dusk Office Secure",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-secure.json"
+      },
+      {
+        "label": "Dusk Office Vault",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-vault.json"
+      },
+      {
+        "label": "Dusk Office Audit",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-audit.json"
+      },
+      {
+        "label": "Dusk Office Sentinel",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-sentinel.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "dusk-office-product",
+        "label": "Dusk Office · Product",
+        "path": "./product-icons/dusk-office-product-icon-theme.json"
+      }
+    ],
+    "configurationDefaults": {
+      "editor.minimap.enabled": true,
+      "editor.minimap.showSlider": "always",
+      "editor.semanticHighlighting.enabled": true,
+      "editor.bracketPairColorization.enabled": true,
+      "editor.guides.bracketPairs": "active",
+      "editor.guides.bracketPairsHorizontal": "active",
+      "editor.guides.highlightActiveIndentation": true,
+      "editor.stickyScroll.enabled": true,
+      "editor.renderLineHighlight": "line",
+      "editor.selectionHighlight": true,
+      "editor.linkedEditing": true,
+      "workbench.tree.renderIndentGuides": "always",
+      "workbench.tree.indent": 14,
+      "explorer.decorations.badges": true,
+      "explorer.decorations.colors": true
+    },
+    "configuration": {
+      "title": "Dusk Office",
+      "properties": {
+        "duskOffice.applyFavoriteOnStartup": {
+          "type": "boolean",
+          "default": false,
+          "description": "Apply the favorite theme on startup."
+        },
+        "duskOffice.rememberWorkspaceTheme": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remember the last Dusk Office theme for each workspace."
+        },
+        "duskOffice.statusBar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Dusk Office status bar button."
+        },
+        "duskOffice.titleBar.alignWithTheme": {
+          "type": "boolean",
+          "default": true,
+          "description": "When a Dusk Office color theme is active, set window.titleBarStyle to custom so the title bar follows theme colors (fixes a dark native title bar on macOS with a light theme). When you switch to a non-Dusk theme or turn this off, the previous global title bar style is restored (nothing left forced). Does not override if you explicitly set window.titleBarStyle to native in User or Workspace settings."
+        },
+        "duskOffice.autoSwitch.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Switch between light and dark Dusk Office themes by hour."
+        },
+        "duskOffice.autoSwitch.lightTheme": {
+          "type": "string",
+          "default": "Dusk Office Light",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "Theme used during light hours."
+        },
+        "duskOffice.autoSwitch.darkTheme": {
+          "type": "string",
+          "default": "Dusk Office Midnight",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "Theme used during dark hours."
+        },
+        "duskOffice.autoSwitch.lightHour": {
+          "type": "integer",
+          "default": 7,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to start the light theme."
+        },
+        "duskOffice.autoSwitch.darkHour": {
+          "type": "integer",
+          "default": 18,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to start the dark theme."
+        },
+        "duskOffice.adaptiveFocus.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically adapt Dusk Office theme using active editor language and time of day."
+        },
+        "duskOffice.adaptiveFocus.onlyWhenDuskThemeActive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Only auto-apply adaptive focus when a Dusk Office theme is already active."
+        },
+        "duskOffice.adaptiveFocus.lateNightEyeComfort": {
+          "type": "boolean",
+          "default": true,
+          "description": "Force an ultra-dark theme for late-night eye comfort."
+        },
+        "duskOffice.adaptiveFocus.lateNightStartHour": {
+          "type": "integer",
+          "default": 22,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to start late-night eye comfort."
+        },
+        "duskOffice.adaptiveFocus.lateNightEndHour": {
+          "type": "integer",
+          "default": 5,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour to end late-night eye comfort."
+        },
+        "duskOffice.adaptiveFocus.lockTheme": {
+          "type": "string",
+          "default": "",
+          "enum": [
+            "",
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "When set, always apply this theme in adaptive focus mode."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "duskOffice.openControlCenter",
+        "title": "Dusk Office: Control Center",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchThemeVariant",
+        "title": "Dusk Office: Choose Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchToPreviousTheme",
+        "title": "Dusk Office: Previous Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.setFavoriteTheme",
+        "title": "Dusk Office: Set Favorite",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.switchToFavoriteTheme",
+        "title": "Dusk Office: Favorite Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleActivityBarLocation",
+        "title": "Dusk Office: Toggle Activity Bar Position",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleProductIconTheme",
+        "title": "Dusk Office: Toggle Product Icon Theme",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleAutoSwitch",
+        "title": "Dusk Office: Toggle Auto Switch",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.openSettings",
+        "title": "Dusk Office: Settings",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.verifyTerminalContrast",
+        "title": "Dusk Office: Verify Terminal Contrast",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.resetTheme",
+        "title": "Dusk Office: Reset All Settings",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.applyAdaptiveFocusTheme",
+        "title": "Dusk Office: Apply Adaptive Theme Now",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleAdaptiveFocus",
+        "title": "Dusk Office: Toggle Adaptive Focus",
+        "category": "Dusk Office"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "duskOffice.toggleAdaptiveFocus"
+        },
+        {
+          "command": "duskOffice.applyAdaptiveFocusTheme"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "sync": "node scripts/sync-from-workspace.mjs",
+    "sync:aa": "node scripts/sync-from-workspace.mjs",
+    "sync:aaa": "node -e \"process.env.SYNC_MIN_CONTRAST='7'; import('./scripts/sync-from-workspace.mjs')\"",
+    "make:full": "npm run theme:sources:sync && npm run sync:aa && npm run variants:ui && npm run variants:syntax && npm run build:hc && npm run build:light && npm run build:ivoire && npm run build:ivoire-sombre && npm run validate",
+    "make:full:install": "npm run make:full && npm run package && npm run install-vsix",
+    "make:release": "npm run bump:patch && npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
+    "make:release:no-bump": "npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
+    "bump:patch": "node scripts/bump-version.mjs patch",
+    "bump:minor": "node scripts/bump-version.mjs minor",
+    "bump:major": "node scripts/bump-version.mjs major",
+    "release:patch": "npm run make:release",
+    "release:minor": "npm run bump:minor && npm run make:release:no-bump",
+    "release:major": "npm run bump:major && npm run make:release:no-bump",
+    "release:patch:install": "npm run release:patch && npm run install-vsix",
+    "release:minor:install": "npm run release:minor && npm run install-vsix",
+    "release:major:install": "npm run release:major && npm run install-vsix",
+    "full": "npm run make:full",
+    "themes:regen": "npm run make:full",
+    "theme:sources:sync": "node scripts/sync-theme-sources.mjs",
+    "theme:sources:extract": "node scripts/extract-theme-sources.mjs",
+    "rel": "npm run make:release",
+    "rpi": "npm run release:patch:install",
+    "push:auto": "npm run push:main:auto",
+    "push:safe": "npm run push:main:safe",
+    "push:main:auto": "node scripts/auto-push-main.mjs --yes",
+    "push:main:safe": "node scripts/auto-push-main.mjs",
+    "variants:ui": "node scripts/merge-extended-ui-colors.mjs",
+    "soften:borders": "node scripts/soften-chrome-borders.mjs",
+    "boost:borders": "node scripts/boost-border-contrast.mjs",
+    "dim:borders": "node scripts/dim-border-luminosity.mjs",
+    "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
+    "validate": "node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs",
+    "verify:terminal": "node scripts/verify-terminal-contrast.mjs",
+    "adaptive:focus": "node scripts/adaptive-focus-mode.mjs",
+    "release-check": "node scripts/verify-release-version.mjs",
+    "build:hc": "node scripts/build-dusk-hc.mjs",
+    "build:light": "node scripts/build-dusk-light.mjs",
+    "build:ivoire": "node scripts/build-dusk-ivoire.mjs",
+    "build:ivoire-sombre": "node scripts/build-dusk-ivoire-sombre.mjs",
+    "package": "npm run package:raw",
+    "package:raw": "npx --no-install @vscode/vsce package --no-dependencies",
+    "install-vsix": "node scripts/install-vsix.mjs",
+    "upgrade": "npm run package && node scripts/install-vsix.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.1",
+    "@types/react": "^19.2.14",
+    "@vscode/vsce": "^3.2.2",
+    "typescript": "~5.7.3"
+  }
+}
