@@ -1,5 +1,13 @@
 # Changelog — Dusk Office
 
+## Unreleased — Infrastructure
+
+- **Added**: GitHub Actions **CI** workflow (`.github/workflows/ci.yml`) — runs `node --check`, `npm run validate` (themes, pipeline, terminal contrast), and a packaging smoke test on every push and pull request to `main`.
+- **Added**: GitHub Actions **Release** workflow (`.github/workflows/release.yml`) — on push of a `v*` tag, validates that the tag matches `package.json`, packages the VSIX, publishes to **VS Marketplace** (when `VSCE_PAT` secret is set) and **Open VSX** (when `OVSX_PAT` secret is set), then creates a GitHub Release with the changelog section attached.
+- **Added**: npm scripts `publish:vsce`, `publish:ovsx`, `publish:all`, and `tag:release` for manual publishing.
+- **Added**: CI badge in the README.
+- **Added**: `ovsx` as a dev dependency.
+
 ## 0.9.18 — 9 May 2026
 
 - **Changed**: `displayName` rewritten to highlight the niche positioning — *"Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps"* — improving Marketplace SEO and signaling the professional context the variants were designed for (Audit, Vault, Sentinel, Steward, Ledger, etc.).

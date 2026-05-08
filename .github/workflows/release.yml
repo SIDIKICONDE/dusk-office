@@ -1,0 +1,104 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build, publish to Marketplaces, create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify tag matches package.json version
+        run: |
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          echo "Tag version : $TAG_VERSION"
+          echo "package.json: $PKG_VERSION"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::Tag (v$TAG_VERSION) does not match package.json ($PKG_VERSION)."
+            exit 1
+          fi
+
+      - name: Validate themes (palette, pipeline, terminal contrast)
+        run: npm run validate
+
+      - name: Package VSIX
+        run: npm run package
+
+      - name: Resolve VSIX path
+        id: vsix
+        run: |
+          VSIX_FILE=$(ls dusk-office-*.vsix | head -n 1)
+          if [ -z "$VSIX_FILE" ]; then
+            echo "::error::No VSIX found after npm run package."
+            exit 1
+          fi
+          echo "path=$VSIX_FILE" >> "$GITHUB_OUTPUT"
+          echo "Resolved VSIX: $VSIX_FILE"
+
+      - name: Publish to Visual Studio Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then
+            echo "::warning::VSCE_PAT secret not set; skipping VS Marketplace publish."
+            exit 0
+          fi
+          npx --yes @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}" -p "$VSCE_PAT"
+
+      - name: Publish to Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$OVSX_PAT" ]; then
+            echo "::warning::OVSX_PAT secret not set; skipping Open VSX publish."
+            exit 0
+          fi
+          npx --yes ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
+
+      - name: Extract changelog section for this version
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          # Extract everything from "## VERSION" up to the next "## " (exclusive)
+          BODY=$(awk -v v="$VERSION" '
+            $0 ~ "^## "v" " { found=1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md)
+          if [ -z "$BODY" ]; then
+            BODY="See CHANGELOG.md for the full release notes."
+          fi
+          {
+            echo 'body<<__EOF__'
+            echo "$BODY"
+            echo '__EOF__'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Dusk Office ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.body }}
+          files: ${{ steps.vsix.outputs.path }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
