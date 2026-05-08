@@ -1,31 +1,21 @@
-All Rights Reserved
+MIT License
 
-Copyright (c) 2026 DEKIDEV
+Copyright (c) 2026 dekidev (SIDIKICONDE)
 
-The Dusk Office theme pack (source files, JSON themes, images, documentation,
-and any other materials in this package) is proprietary and confidential.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This extension installs **Material Icon Theme** (PKief) and **Markdown All in One**
-(Yu Zhang) as part of its extension pack. **Those third-party extensions are not
-owned by DEKIDEV, are not part of the proprietary Dusk Office work product, and
-are not covered by the “All Rights Reserved” terms above** — they remain the
-property of their respective authors and are governed only by their own
-licenses and terms. Dusk Office merely recommends or bundles them for
-convenience. For details, see:
-https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
-https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
-
-No license is granted to copy, modify, merge, publish, distribute,
-sublicense, sell, reverse engineer, or create derivative works from
-this software, except as strictly necessary to install and use the
-extension as provided by DEKI through authorized distribution channels
-(for example the Visual Studio Marketplace or a VSIX file supplied by DEKI).
-
-Any use beyond running the packaged extension in VS Code or Cursor
-requires prior written permission from DEKI.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-DEKI BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM
-THE USE OF THIS SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

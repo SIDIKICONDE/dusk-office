@@ -2,11 +2,11 @@
   "name": "dusk-office",
   "displayName": "Dusk Office",
   "description": "26 dark, light, and high-contrast themes for VS Code, Cursor, and Windsurf with semantic highlighting, polished UI colors, terminal contrast care, and an optional product icon theme.",
-  "version": "0.9.16",
+  "version": "0.9.17",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "homepage": "https://github.com/SIDIKICONDE/dusk-office-docs",
   "sponsor": {
     "url": "https://buymeacoffee.com/dekidev"

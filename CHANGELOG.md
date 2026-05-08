@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 0.9.17 — 9 May 2026
+
+- **Changed**: **Relicensed under the MIT License.** Dusk Office is now fully open source. Anyone can use, modify, fork, redistribute, and create derivative works freely.
+- **Removed**: Outdated mention of bundled third-party extensions (Material Icon Theme, Markdown All in One) from the LICENSE — they are not part of this extension's manifest.
+- **Changed**: `package.json` SPDX `license` field switched from `SEE LICENSE IN LICENSE` to `MIT`.
+
 ## 0.9.16 — 8 May 2026
 
 - **Fixed**: Startup chain no longer overwrites the saved workspace theme with the favorite when the current theme already matches the auto-switch / adaptive-focus / workspace-memory decision.
