@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 0.9.18 — 9 May 2026
+
+- **Changed**: `displayName` rewritten to highlight the niche positioning — *"Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps"* — improving Marketplace SEO and signaling the professional context the variants were designed for (Audit, Vault, Sentinel, Steward, Ledger, etc.).
+- **Changed**: `description` rewritten to describe the actual use cases (finance, audit, banking, fintech, SOC monitoring, DevOps, long coding sessions) instead of listing generic features.
+- **Changed**: `keywords` rebalanced — removed redundant generic terms, added high-intent niche keywords (`finance theme`, `audit theme`, `banking theme`, `fintech theme`, `cybersecurity theme`, `soc theme`, `devops theme`, `professional theme`, `adaptive theme`).
+
 ## 0.9.17 — 9 May 2026
 
 - **Changed**: **Relicensed under the MIT License.** Dusk Office is now fully open source. Anyone can use, modify, fork, redistribute, and create derivative works freely.
