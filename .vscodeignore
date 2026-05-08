@@ -9,6 +9,7 @@ analysis_options.yaml
 .github/**
 Makefile
 MAINTENANCE.md
+PROMOTION.md
 
 # Local theme preview samples (not shipped)
 samples/**
