@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sidikiconde.github.io/dusk-office/sitemap.xml
