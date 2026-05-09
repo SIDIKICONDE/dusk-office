@@ -1,5 +1,19 @@
 # Changelog — Dusk Office
 
+## 0.9.26 — 9 May 2026
+
+- **Fixed**: **Hover surfaces on all four light themes** (`Dusk Office Light`, `Ivory`, `Audit`, `Ledger`). Several keys inherited from the dark `dusk.json` base produced **invisible or jarring hover states** on light backgrounds:
+  - `tab.hoverBackground` was `#010203aa` (near-black, ~67% alpha) — caused a dark flash when hovering a tab on a light theme.
+  - `list.hoverForeground` was `#d1e0e8` (almost white) — hovered items in the explorer / Quick Pick had near-invisible text.
+  - `list.hoverBackground` was either `#304f600f` (6% alpha, imperceptible) or `#d9d3ca14` (8%, sand on sand).
+- **Each light theme now uses a palette-coherent hover tint** at 13–20% alpha:
+  - **Light** → cyan accent `#06b6d4` (matches the active line number / focus border)
+  - **Ivory** → warm amber `#c98962` (matches the cream palette)
+  - **Audit** → slate-blue `#556f83`
+  - **Ledger** → slate-blue `#658297`
+- Each theme also sets `tab.unfocusedHoverBackground`, `list.focusBackground`, and `menubar.selectionBackground` consistently so hovers, focus rings, and menubar selection share the same visual language.
+- The build scripts (`scripts/build-dusk-light.mjs`, `scripts/build-dusk-ivoire.mjs`) and the Audit / Ledger theme files are updated, so regeneration preserves these values.
+
 ## 0.9.25 — 9 May 2026
 
 - **Fixed**: **Light theme contrast — major WCAG AA cleanup across the four light variants** (`Dusk Office Light`, `Ivory`, `Audit`, `Ledger`). Several foreground colors used very low alpha (`55`, `66`, `88`, `8c`) on light backgrounds, producing contrast ratios as low as **1.23:1** (e.g. white selection text on light slate background) — WCAG AA requires ≥ 4.5:1 for normal text. Now every checked key reaches ≥ 4.9:1.

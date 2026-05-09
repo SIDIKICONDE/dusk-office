@@ -155,6 +155,15 @@ const LIGHT_UI_OVERRIDES = {
   "editorLineNumber.foreground": "#475569dd",
   // Active line number stays bright cyan to mark the cursor line
   "editorLineNumber.activeForeground": "#0ea5e9",
+  // Hover surfaces — replace the dark-theme inherited values that produced
+  // invisible (alpha 0f) or near-black (#010203aa) hovers on light backgrounds.
+  // Cyan accent at 13–20% alpha gives a clearly visible but subtle highlight.
+  "list.hoverBackground": "#06b6d422",
+  "list.hoverForeground": "#0f172a",
+  "list.focusBackground": "#06b6d433",
+  "tab.hoverBackground": "#06b6d422",
+  "tab.unfocusedHoverBackground": "#06b6d418",
+  "menubar.selectionBackground": "#06b6d433",
   "scrollbarSlider.background": "#94a3b88f",
   "scrollbarSlider.hoverBackground": "#64748bbb",
   focusBorder: "#0ea5e9b3",

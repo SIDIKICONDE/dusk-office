@@ -143,6 +143,15 @@ const IVOIRE_UI_CONTRAST = {
   // WCAG AA: bump alpha b8 (~72%) → ee (~93%) so inactive tabs reach ≥4.5:1
   "tab.inactiveForeground": "#4a4036ee",
   "statusBar.foreground": "#2a2420ee",
+  // Hover surfaces — replace dark-theme-inherited values (#010203aa, #d1e0e8) that
+  // produced black flashes / invisible white hover text on the cream Ivory base.
+  // Warm amber tint at 13–20% alpha gives a clearly visible, palette-coherent highlight.
+  "list.hoverBackground": "#c9896222",
+  "list.hoverForeground": "#2a2420",
+  "list.focusBackground": "#b8765033",
+  "tab.hoverBackground": "#c9896222",
+  "tab.unfocusedHoverBackground": "#c9896218",
+  "menubar.selectionBackground": "#c9896233",
   "activityBar.inactiveForeground": "#6b5f50",
   "editor.lineHighlightBackground": "#c9bbaa22",
   "editor.lineHighlightBorder": "#8a6d5236",
