@@ -1,5 +1,10 @@
 # Changelog — Dusk Office
 
+## 0.9.24 — 9 May 2026
+
+- **Changed**: Variant picker title and placeholder updated to clarify that live preview is **keyboard-driven** — use **↑/↓ arrows or type to filter** for live preview. Mouse click commits the highlighted variant directly (this is a VS Code QuickPick API constraint: hover does not emit any event, so we can't preview on mouse hover).
+- **No functional change** since 0.9.23 — only the on-screen guidance is clearer.
+
 ## 0.9.23 — 9 May 2026
 
 - **Changed**: **Variant picker is now a live preview**. `Dusk Office: Set Theme Variant` (and the entry in the Control Center) now opens an interactive Quick Pick where moving the selection (arrow keys, type-to-filter) **applies the highlighted variant in real time**, so you can see the editor and workbench in each theme before committing. Press **Enter** to confirm or **Escape** to revert to the variant active before opening the picker.

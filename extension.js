@@ -590,8 +590,8 @@ async function setThemeVariant(context) {
 
   return new Promise((resolve) => {
     const quickPick = vscode.window.createQuickPick();
-    quickPick.title = "Dusk Office — Pick a variant";
-    quickPick.placeholder = "↑↓ to preview live · Enter to confirm · Esc to revert";
+    quickPick.title = "Dusk Office — Pick a variant (live preview with ↑↓ or type to filter)";
+    quickPick.placeholder = "Use ↑↓ keys (or type) for live preview · Enter to confirm · Esc to revert · click commits";
     quickPick.matchOnDescription = true;
 
     const items = THEME_VARIANTS.map((label) => ({
