@@ -488,26 +488,6 @@ p {
   color: var(--fg);
 }
 
-/* -------------------- Screenshots -------------------- */
-
-.screenshots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-.screenshots img {
-  width: 100%;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  display: block;
-  transition: transform 0.2s ease, border-color 0.15s ease;
-}
-.screenshots img:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-}
-
 /* -------------------- Footer -------------------- */
 
 .footer {
