@@ -1,5 +1,13 @@
 # Changelog — Dusk Office
 
+## 0.9.25 — 9 May 2026
+
+- **Fixed**: **Light theme contrast — major WCAG AA cleanup across the four light variants** (`Dusk Office Light`, `Ivory`, `Audit`, `Ledger`). Several foreground colors used very low alpha (`55`, `66`, `88`, `8c`) on light backgrounds, producing contrast ratios as low as **1.23:1** (e.g. white selection text on light slate background) — WCAG AA requires ≥ 4.5:1 for normal text. Now every checked key reaches ≥ 4.9:1.
+  - **Dusk Office Light** — `editor.selectionForeground` (was `#d1e0e8`, ratio 1.29 ❌) → `#0f172a`; `editorLineNumber.foreground` (1.53 ❌) → slate-600 `dd`; `panelTitle.inactiveForeground` (2.03 ❌); `input.placeholderForeground` and `inlineChatInput.placeholderForeground` (2.09 ❌) → slate-600 `ee`; `tab.inactiveForeground` (3.68 ⚠️) → slate-600 `dd`; `sideBarTitle.foreground` switched from amber `#b45309` to slate-700 `#334155` for visual coherence.
+  - **Dusk Office Ivory** — same alpha pattern fixed for `editorLineNumber.foreground`, `tab.inactiveForeground`, `input.placeholderForeground`, `inlineChatInput.placeholderForeground`.
+  - **Dusk Office Audit** and **Ledger** — `editor.selectionForeground` (was `#ffffff` on light slate / sand, ratio 1.23 ❌, selected text invisible) now matches `editor.foreground`. `editorLineNumber.foreground`, `panelTitle.inactiveForeground`, `tab.inactiveForeground`, `input.placeholderForeground` and `inlineChatInput.placeholderForeground` all bumped from alpha `66`/`88` to `dd`.
+- **Updated**: `scripts/build-dusk-light.mjs` and `scripts/build-dusk-ivoire.mjs` so the WCAG-correct values are now part of the build pipeline (no risk of regression at the next regeneration).
+
 ## 0.9.24 — 9 May 2026
 
 - **Changed**: Variant picker title and placeholder updated to clarify that live preview is **keyboard-driven** — use **↑/↓ arrows or type to filter** for live preview. Mouse click commits the highlighted variant directly (this is a VS Code QuickPick API constraint: hover does not emit any event, so we can't preview on mouse hover).

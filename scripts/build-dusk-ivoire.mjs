@@ -129,16 +129,19 @@ const IVOIRE_UI_CONTRAST = {
   "icon.foreground": "#3d352ceb",
   "widget.border": "#8a7a6a6e",
   focusBorder: "#7d5a42a6",
-  "editorLineNumber.foreground": "#7a6c5e",
+  // WCAG AA on #f6eede ivoire bg: stone-700-ish solid color clears 4.5:1
+  "editorLineNumber.foreground": "#5c5045",
   "editorLineNumber.activeForeground": "#5c4532",
   "editor.foldPlaceholderForeground": "#5c504598",
   "editorGhostText.foreground": "#8a7d6f7a",
   "editorWhitespace.foreground": "#9a8b7840",
   "editorInlayHint.foreground": "#52483dd9",
-  "inlineChatInput.placeholderForeground": "#5c50458c",
-  "input.placeholderForeground": "#5c50458c",
+  // WCAG AA: bump alpha 8c (~55%) → ee (~93%) to reach ≥4.5:1 on ivoire bg
+  "inlineChatInput.placeholderForeground": "#5c5045ee",
+  "input.placeholderForeground": "#5c5045ee",
   "breadcrumb.foreground": "#453d34de",
-  "tab.inactiveForeground": "#4a4036b8",
+  // WCAG AA: bump alpha b8 (~72%) → ee (~93%) so inactive tabs reach ≥4.5:1
+  "tab.inactiveForeground": "#4a4036ee",
   "statusBar.foreground": "#2a2420ee",
   "activityBar.inactiveForeground": "#6b5f50",
   "editor.lineHighlightBackground": "#c9bbaa22",

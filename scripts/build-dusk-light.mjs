@@ -122,14 +122,17 @@ const LIGHT_UI_OVERRIDES = {
   "editorWhitespace.foreground": "#94a3b838",
   // Rouge bien visible sur fond clair (soulignement diagnostics).
   "editorError.foreground": "#e11d48",
-  "editorInlayHint.foreground": "#64748bd9",
-  "inlineChatInput.placeholderForeground": "#64748b8c",
+  "editorInlayHint.foreground": "#475569dd",
+  // WCAG AA: slate-600 ee → ~5.7:1 sur #f8fafc (anciennement slate-500 8c → 2.09 ❌)
+  "inlineChatInput.placeholderForeground": "#475569ee",
   "breadcrumb.foreground": "#475569de",
   /** Sinon hérité de dusk.json (#02060b) — bande noire sous les onglets en thème clair */
   "breadcrumb.background": "#ffffff",
-  "tab.inactiveForeground": "#475569b8",
+  // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-600 b8 → 3.68 ⚠️)
+  "tab.inactiveForeground": "#475569dd",
   "statusBar.foreground": "#1e293bee",
-  "input.placeholderForeground": "#64748b8c",
+  // WCAG AA: slate-600 ee → ~5.7:1 (anciennement slate-500 8c → 2.09 ❌)
+  "input.placeholderForeground": "#475569ee",
   "activityBar.inactiveForeground": "#64748b",
   "tree.indentGuidesStroke": "#64748b22",
   "tree.inactiveIndentGuidesStroke": "#64748b14",
@@ -144,7 +147,14 @@ const LIGHT_UI_OVERRIDES = {
   "editorIndentGuide.activeBackground3": "#0ea5e91c",
   "editorIndentGuide.activeBackground4": "#0284c71c",
   "sideBarSectionHeader.foreground": "#334155",
-  "sideBarTitle.foreground": "#b45309",
+  // Match secondary text style (slate-700) instead of standalone amber for visual coherence
+  "sideBarTitle.foreground": "#334155",
+  // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-500 88 → 2.03 ❌, titres de panel invisibles)
+  "panelTitle.inactiveForeground": "#475569dd",
+  // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-500 55 → 1.53 ❌, numéros de ligne illisibles)
+  "editorLineNumber.foreground": "#475569dd",
+  // Active line number stays bright cyan to mark the cursor line
+  "editorLineNumber.activeForeground": "#0ea5e9",
   "scrollbarSlider.background": "#94a3b88f",
   "scrollbarSlider.hoverBackground": "#64748bbb",
   focusBorder: "#0ea5e9b3",
@@ -179,6 +189,13 @@ function mapAbyssColorsToLight(abyssColors) {
 function applyLightUiOverrides(theme) {
   if (!theme.colors || typeof theme.colors !== "object") return;
   Object.assign(theme.colors, LIGHT_UI_OVERRIDES);
+
+  // dusk.json (the dark base inherited via `include`) sets selection foregrounds to #d1e0e8,
+  // which made selected text invisible on light surfaces. Force them to the deep-navy
+  // editor.foreground so selected text stays high-contrast and readable.
+  theme.colors["editor.selectionForeground"] = "#0f172a";
+  theme.colors["menu.selectionForeground"] = "#0f172a";
+  theme.colors["menubar.selectionForeground"] = "#0f172a";
 
   const ed = theme.colors["editor.background"];
   if (typeof ed === "string" && ed.startsWith("#")) {
