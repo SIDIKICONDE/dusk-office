@@ -1,5 +1,19 @@
 # Changelog — Dusk Office
 
+## 0.9.28 — 9 May 2026
+
+- **Fixed**: **Suite-wide WCAG AA audit — 0 FAIL across all 26 themes** (previously **54 FAILs**). A new audit script (`scripts/audit-contrast.mjs`) checks 25 critical foreground/background pairs per theme (icons, activity bar, title bar, tabs, sidebar, panels, breadcrumbs, inputs, menus, buttons, dropdowns, notifications, list hovers, selection foreground). Bulk fixes:
+  - **`editorLineNumber.foreground`** (all themes) — alpha bumped from `55` (~33%) to `cc` (~80%); ratios moved from ~2.6 ❌ to ~4.6+ ✅.
+  - **`input.placeholderForeground`** and **`inlineChatInput.placeholderForeground`** (all themes) — same `55` → `cc` bump.
+  - **`editor.foldPlaceholderForeground`** (all themes) — bumped to `cc` for consistency with the placeholder alpha policy.
+  - **`activityBar.inactiveForeground`** — recurring solid `#4b6c7a` slate-blue (failing 2.0–3.0 across many dark themes) replaced with lighter `#8a9eaa`.
+  - **`activityBar.inactiveForeground`** on **Neon** (`#6a4a7a` → `#a87cb8`), **Luxe** (`#6a5a70` → `#a89cae`), **Terminal** (`#3a5a3a` → `#7ab57a`) — palette-coherent lighter accents.
+  - **`editorLineNumber.foreground`** on **Dawn** (`#6e5d68` → `#a89aa3`) and **Mist** (`#5a7088` → `#94a3b8`) — solid colors that didn't clear 4.5:1 against their plum / slate gutter backgrounds.
+  - **`editorLineNumber.activeForeground`** on **Light** (`#0ea5e9` cyan-500 → `#0e7490` cyan-700) — pale cyan failed 2.65:1 on `#f8fafc`.
+  - **`sideBarSectionHeader.foreground`** on **Audit** and **Ledger** — was inheriting `#d1e0e8` (near-white) from the dark `dusk.json` base. Now overridden to `editor.foreground` for both light themes.
+- **Added**: `scripts/audit-contrast.mjs` — runnable any time to re-audit the suite. Returns non-zero when any FAIL is detected (suitable for CI integration).
+- **Added**: `scripts/bump-contrast-alpha.mjs` and `scripts/bump-contrast-second-pass.mjs` — bulk fix scripts that produce idempotent changes when re-run after future regenerations from `theme-sources/`.
+
 ## 0.9.27 — 9 May 2026
 
 - **Fixed**: **Header / activity bar / title bar icons on the four light themes**. Several icon-related foregrounds inherited the dark-base values (`#d1e0e8` near-white) and produced contrast as low as **1.03:1** on the light chrome — chrome icons (gear, search, branch, …) were effectively invisible.
