@@ -1,5 +1,10 @@
 # Changelog — Dusk Office
 
+## 0.9.30 — 9 May 2026
+
+- **Changed**: All sponsor links now point to **[NythyCleaner](https://nythycleaner.cloud)** — the maintainer's own native macOS utility for developers (Xcode cleanup, disk scanner, AI duplicate detection, real-time monitoring) — instead of a generic Buy Me a Coffee page.
+- Updated locations: `package.json` `sponsor.url`, `.github/FUNDING.yml` (GitHub repo Sponsor button), and the docs landing page footer.
+
 ## 0.9.29 — 9 May 2026
 
 - **Added**: **Public landing site** at <https://sidikiconde.github.io/dusk-office/> — a single-page hand-built `docs/` site (vanilla HTML/CSS/JS, no framework, no tracker) with a hero, six feature cards, a 26-variant gallery (click any name to copy the variant identifier), the Workspace Fingerprint matrix by project type, a 30-second install guide for VS Code / Cursor / Open VSX / source, and a screenshot grid. Deployed automatically by a new GitHub Pages workflow (`.github/workflows/pages.yml`) on every change to `docs/`.
