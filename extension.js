@@ -573,22 +573,79 @@ async function applyTheme(theme, context, source = "manual") {
   return true;
 }
 
+/**
+ * Opens a live-preview Quick Pick of the 26 Dusk Office variants. As the user
+ * moves the selection (arrow keys, mouse hover with filter, type-to-filter),
+ * the highlighted variant is applied immediately so they see the editor and
+ * workbench in that variant without committing. Enter confirms; Escape — or
+ * dismissing the picker — reverts to the variant active before the picker
+ * was opened.
+ *
+ * Side effects (workspace memory, previous-theme tracking, title-bar sync)
+ * only run on accept, never during preview.
+ */
 async function setThemeVariant(context) {
-  const current = getCurrentTheme();
-  const picked = await vscode.window.showQuickPick(
-    THEME_VARIANTS.map((label) => ({
-      label: label === current ? `$(check) ${label}` : label,
-      description: label === current ? "Current theme" : "",
-    })),
-    {
-      placeHolder: "Choose a theme",
-      matchOnDescription: true,
-    },
-  );
-  if (!picked) return;
-  const theme = cleanPickedLabel(picked.label);
-  await applyTheme(theme, context);
-  void vscode.window.showInformationMessage(`Theme: ${theme}.`);
+  const config = getWorkbenchConfig();
+  const originalTheme = getCurrentTheme();
+
+  return new Promise((resolve) => {
+    const quickPick = vscode.window.createQuickPick();
+    quickPick.title = "Dusk Office — Pick a variant";
+    quickPick.placeholder = "↑↓ to preview live · Enter to confirm · Esc to revert";
+    quickPick.matchOnDescription = true;
+
+    const items = THEME_VARIANTS.map((label) => ({
+      label: label === originalTheme ? `$(check) ${label}` : label,
+      description: label === originalTheme ? "Current theme" : "",
+      _theme: label,
+    }));
+    quickPick.items = items;
+
+    const currentItem = items.find((it) => it._theme === originalTheme);
+    if (currentItem) quickPick.activeItems = [currentItem];
+
+    let accepted = false;
+    let lastPreviewed = originalTheme;
+
+    quickPick.onDidChangeActive((active) => {
+      const item = active[0];
+      if (!item || !item._theme || item._theme === lastPreviewed) return;
+      lastPreviewed = item._theme;
+      // Preview only — no workspace memory, no previous-theme tracking, no title-bar sync.
+      void updateConfigValue(config, "colorTheme", item._theme);
+    });
+
+    quickPick.onDidAccept(async () => {
+      accepted = true;
+      const item = quickPick.activeItems[0];
+      quickPick.hide();
+      if (!item || !item._theme) {
+        resolve();
+        return;
+      }
+      const picked = item._theme;
+      // Persist originalTheme as "previous" so Switch-to-Previous returns to the variant
+      // the user had before opening the picker, not the last previewed item.
+      if (context && isThemeName(originalTheme) && originalTheme !== picked) {
+        await context.globalState.update(PREVIOUS_THEME_KEY, originalTheme);
+      }
+      // colorTheme is already set to picked from the last preview, so applyTheme's
+      // own previous-tracking branch is a no-op; it still runs workspace memory + title-bar sync.
+      await applyTheme(picked, context, "manual");
+      void vscode.window.showInformationMessage(`Theme: ${picked}.`);
+      resolve();
+    });
+
+    quickPick.onDidHide(async () => {
+      if (!accepted && lastPreviewed !== originalTheme) {
+        await updateConfigValue(config, "colorTheme", originalTheme);
+      }
+      quickPick.dispose();
+      resolve();
+    });
+
+    quickPick.show();
+  });
 }
 
 async function switchToPreviousTheme(context) {

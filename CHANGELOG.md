@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 0.9.23 — 9 May 2026
+
+- **Changed**: **Variant picker is now a live preview**. `Dusk Office: Set Theme Variant` (and the entry in the Control Center) now opens an interactive Quick Pick where moving the selection (arrow keys, type-to-filter) **applies the highlighted variant in real time**, so you can see the editor and workbench in each theme before committing. Press **Enter** to confirm or **Escape** to revert to the variant active before opening the picker.
+- **Why**: previously you had to commit each variant one by one to compare them. With 26 variants, that was painful. Live preview makes browsing and choosing instant.
+- **Behavior**: workspace memory, previous-theme tracking, and title-bar synchronization only run on accept — preview itself produces no side effects beyond the visible color change.
+
 ## 0.9.22 — 9 May 2026
 
 - **Added**: **"Get Started with Dusk Office" walkthrough** — VS Code now opens an interactive 6-step tour the first time the extension activates after install:
