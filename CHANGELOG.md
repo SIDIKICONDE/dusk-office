@@ -1,5 +1,13 @@
 # Changelog — Dusk Office
 
+## 0.9.27 — 9 May 2026
+
+- **Fixed**: **Header / activity bar / title bar icons on the four light themes**. Several icon-related foregrounds inherited the dark-base values (`#d1e0e8` near-white) and produced contrast as low as **1.03:1** on the light chrome — chrome icons (gear, search, branch, …) were effectively invisible.
+  - **Dusk Office Audit & Ledger** — `icon.foreground` was `#d1e0e8cc` (1.09 / 1.10 ❌). Now overridden to `editor.foreground` (`#25313a` / `#24313a`, ratio ≥ 9). Also fixes `titleBar.activeForeground` (Ledger 1.13 ❌), `titleBar.inactiveForeground` (1.03 / 2.93 ❌), `activityBar.foreground`, and `activityBar.inactiveForeground` (≤ 2.79 ❌).
+  - **Dusk Office Light** — `activityBar.foreground` was the inherited cyan `#22d3ee` (1.81 ❌ on white activity bar). Replaced with cyan-700 `#0e7490` (clears 4.5:1).
+  - **Dusk Office Ivory** — same `activityBar.foreground` issue (1.57 ❌). Replaced with amber-700 `#92400e` to match the warm palette.
+- **Added** for Audit, Ledger, Light and Ivory: `activityBar.activeBorder`, `activityBar.activeBackground`, `editorActionList.foreground`/`background`, `settings.headerForeground`, `settings.modifiedItemIndicator`, `toolbar.hoverBackground`, `toolbar.activeBackground` — so the editor and settings toolbars share the same chrome contrast as the rest of the workbench.
+
 ## 0.9.26 — 9 May 2026
 
 - **Fixed**: **Hover surfaces on all four light themes** (`Dusk Office Light`, `Ivory`, `Audit`, `Ledger`). Several keys inherited from the dark `dusk.json` base produced **invisible or jarring hover states** on light backgrounds:

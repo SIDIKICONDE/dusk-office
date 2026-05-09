@@ -152,6 +152,11 @@ const IVOIRE_UI_CONTRAST = {
   "tab.hoverBackground": "#c9896222",
   "tab.unfocusedHoverBackground": "#c9896218",
   "menubar.selectionBackground": "#c9896233",
+  // Active activity-bar icons — amber-700 instead of inherited #22d3ee cyan
+  // (which produced 1.57:1 against the cream activity bar = invisible).
+  "activityBar.foreground": "#92400e",
+  "activityBar.activeBorder": "#92400e",
+  "activityBar.activeBackground": "#c9896222",
   "activityBar.inactiveForeground": "#6b5f50",
   "editor.lineHighlightBackground": "#c9bbaa22",
   "editor.lineHighlightBorder": "#8a6d5236",

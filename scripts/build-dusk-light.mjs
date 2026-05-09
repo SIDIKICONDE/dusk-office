@@ -164,6 +164,11 @@ const LIGHT_UI_OVERRIDES = {
   "tab.hoverBackground": "#06b6d422",
   "tab.unfocusedHoverBackground": "#06b6d418",
   "menubar.selectionBackground": "#06b6d433",
+  // Active activity-bar icons — dark cyan-700 instead of inherited #22d3ee
+  // (which produced 1.81:1 against the white activity bar = invisible).
+  "activityBar.foreground": "#0e7490",
+  "activityBar.activeBorder": "#0e7490",
+  "activityBar.activeBackground": "#06b6d422",
   "scrollbarSlider.background": "#94a3b88f",
   "scrollbarSlider.hoverBackground": "#64748bbb",
   focusBorder: "#0ea5e9b3",
