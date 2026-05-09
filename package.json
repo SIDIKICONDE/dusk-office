@@ -2,11 +2,11 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 26 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring, DevOps and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "0.9.20",
+  "version": "0.9.21",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "homepage": "https://github.com/SIDIKICONDE/dusk-office-docs",
   "sponsor": {
     "url": "https://buymeacoffee.com/dekidev"

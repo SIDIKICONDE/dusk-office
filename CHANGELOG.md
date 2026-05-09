@@ -1,5 +1,10 @@
 # Changelog — Dusk Office
 
+## 0.9.21 — 9 May 2026
+
+- **Changed**: **Relicensed from MIT to GNU General Public License v3 (or later).** Dusk Office remains fully open source, but **derivative works (forks, modifications, redistributions) must also be published under GPL v3**. This protects the project from being absorbed into closed-source commercial products while keeping it 100% free for individual use, contribution, and study. SPDX identifier in `package.json` updated to `GPL-3.0-or-later`. Full license text in `LICENSE`.
+- **Updated**: README badge, marketing playbook (`PROMOTION.md`), and `package-lock.json` license metadata to reflect the new license.
+
 ## 0.9.20 — 9 May 2026
 
 - **Added**: **Workspace Fingerprint** — on first open of a workspace, Dusk Office now scans top-level project files (`package.json`, `Cargo.toml`, `pyproject.toml`, `requirements.txt`, `go.mod`, `composer.json`, plus the root file listing) and suggests the most relevant variant via a one-time notification:

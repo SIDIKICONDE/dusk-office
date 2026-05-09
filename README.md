@@ -1,6 +1,6 @@
 # Dusk Office
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE)
 [![CI](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml/badge.svg)](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml)
 [![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 [![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX)](https://open-vsx.org/extension/dekidev/dusk-office)

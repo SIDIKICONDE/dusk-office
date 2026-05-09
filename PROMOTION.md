@@ -10,8 +10,8 @@
 
 ### Title (pick one)
 
-- `I open-sourced my VS Code theme pack: 26 dark/light/HC variants tuned for finance, audit, cybersecurity & DevOps work [MIT]`
-- `26 themes for long coding sessions — WCAG-verified contrast, semantic highlighting, adaptive focus [Dusk Office, MIT]`
+- `I open-sourced my VS Code theme pack: 26 dark/light/HC variants tuned for finance, audit, cybersecurity & DevOps work [GPL v3]`
+- `26 themes for long coding sessions — WCAG-verified contrast, semantic highlighting, adaptive focus [Dusk Office, GPL v3]`
 - `Just open-sourced "Dusk Office" — a 26-variant theme pack designed for professional contexts (audit, banking, SOC, DevOps)`
 
 ### Body (Markdown)
@@ -19,11 +19,11 @@
 ```markdown
 Hey r/vscode 👋
 
-After ~6 months of iteration, I just relicensed **Dusk Office** under MIT. It's a theme pack with **26 variants** — dark, light, and high-contrast — designed for professional contexts where you spend 8+ hours staring at code: finance, audit, banking, fintech, SOC monitoring, DevOps.
+After ~6 months of iteration, I just open-sourced **Dusk Office** under GPL v3. It's a theme pack with **26 variants** — dark, light, and high-contrast — designed for professional contexts where you spend 8+ hours staring at code: finance, audit, banking, fintech, SOC monitoring, DevOps.
 
 **Marketplace**: https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office
 **Open VSX** (Cursor / VSCodium / Theia): https://open-vsx.org/extension/dekidev/dusk-office
-**GitHub** (MIT): https://github.com/SIDIKICONDE/dusk-office
+**GitHub** (GPL v3): https://github.com/SIDIKICONDE/dusk-office
 
 ### What makes it different from "yet another theme pack"
 
@@ -43,7 +43,7 @@ After ~6 months of iteration, I just relicensed **Dusk Office** under MIT. It's 
 
 ### Why open source now?
 
-It was originally proprietary. After hitting 2,700 downloads on Open VSX I figured the community would benefit more if anyone could fork, contribute language-specific tweaks, fix bugs, and add their own variants. License is now MIT.
+It was originally proprietary. After hitting 2,700 downloads on Open VSX I figured the community would benefit more if anyone could fork, contribute language-specific tweaks, fix bugs, and add their own variants. License is now GPL v3 — meaning forks must stay open source too.
 
 ### Want a specific niche variant?
 
@@ -75,7 +75,7 @@ Happy coding 🌒
 For folks looking for something beyond the default Cursor theme — I just open-sourced **Dusk Office**, a 26-variant theme pack on Open VSX (so it works natively in Cursor without sideloading).
 
 **Open VSX**: https://open-vsx.org/extension/dekidev/dusk-office
-**Source** (MIT): https://github.com/SIDIKICONDE/dusk-office
+**Source** (GPL v3): https://github.com/SIDIKICONDE/dusk-office
 
 Install: Cursor → Extensions → search `Dusk Office` → Install. Then `Cmd+K Cmd+T` to pick a variant.
 
@@ -88,7 +88,7 @@ Designed for the kind of work where readability matters: long audit sessions, fi
 
 Includes adaptive focus (switches theme based on language) and auto day/night switch if you want it. All optional.
 
-Free + MIT. Feedback welcome.
+Free + GPL v3. Feedback welcome.
 ```
 
 ---
@@ -109,7 +109,7 @@ Don't write "look at my pretty theme". Write a **technical article** about the e
 4. Adaptive focus implementation (active editor language → theme mapping)
 5. The boring-but-important: workspace memory, title bar style restoration, race conditions
 
-End with: "Source is MIT, fork it: github.com/SIDIKICONDE/dusk-office"
+End with: "Source is GPL v3, fork it: github.com/SIDIKICONDE/dusk-office"
 
 This converts because:
 - Devs learn something
@@ -127,7 +127,7 @@ This converts because:
 
 ### Title
 
-- `Show HN: Dusk Office – 26 MIT-licensed VS Code themes for finance, audit, cybersecurity work`
+- `Show HN: Dusk Office – 26 GPL v3 VS Code themes for finance, audit, cybersecurity work`
 
 ### Body
 
@@ -135,7 +135,7 @@ Short. HN hates marketing.
 
 ```
 After ~6 months of iteration, I open-sourced my VS Code/Cursor theme pack
-under MIT. 26 variants — dark/light/HC — with WCAG-verified terminal
+under GPL v3. 26 variants — dark/light/HC — with WCAG-verified terminal
 contrast, semantic highlighting, and an adaptive focus mode that switches
 theme based on the active language.
 
@@ -161,7 +161,7 @@ or adaptive focus implementation.
 ## 5. Twitter/X thread
 
 ```
-🌒 Just open-sourced Dusk Office under MIT.
+🌒 Just open-sourced Dusk Office under GPL v3.
 
 26 VS Code / Cursor / Windsurf themes designed for the kind of work you
 actually do at a job: finance, audit, banking, SOC, DevOps.
@@ -210,13 +210,14 @@ Runs entirely locally. No telemetry.
 ```
 
 ```
-Why MIT now?
+Why GPL v3?
 
 Was proprietary. Hit 2,700 downloads on Open VSX as proprietary.
-Realized the contributions, forks, and language-specific tweaks
-the community would add are worth way more than license control.
+Went open source so the community can contribute, fork, add
+language-specific tweaks. Picked GPL v3 (not MIT) so forks must
+stay open source — no one can close it back into a paid product.
 
-So: MIT, anyone can fork.
+Free to use, free to modify, but stays free for everyone.
 6/8
 ```
 
