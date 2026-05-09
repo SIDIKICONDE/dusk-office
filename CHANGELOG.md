@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 0.9.29 — 9 May 2026
+
+- **Added**: **Public landing site** at <https://sidikiconde.github.io/dusk-office/> — a single-page hand-built `docs/` site (vanilla HTML/CSS/JS, no framework, no tracker) with a hero, six feature cards, a 26-variant gallery (click any name to copy the variant identifier), the Workspace Fingerprint matrix by project type, a 30-second install guide for VS Code / Cursor / Open VSX / source, and a screenshot grid. Deployed automatically by a new GitHub Pages workflow (`.github/workflows/pages.yml`) on every change to `docs/`.
+- **Changed**: `package.json` `homepage` now points to the new landing site (was pointing to a previously empty `dusk-office-docs` mirror).
+- **Excluded**: `docs/**` from the published VSIX — the landing page is for the GitHub Pages deployment, not for the extension runtime.
+
 ## 0.9.28 — 9 May 2026
 
 - **Fixed**: **Suite-wide WCAG AA audit — 0 FAIL across all 26 themes** (previously **54 FAILs**). A new audit script (`scripts/audit-contrast.mjs`) checks 25 critical foreground/background pairs per theme (icons, activity bar, title bar, tabs, sidebar, panels, breadcrumbs, inputs, menus, buttons, dropdowns, notifications, list hovers, selection foreground). Bulk fixes:

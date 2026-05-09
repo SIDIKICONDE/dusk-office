@@ -11,6 +11,9 @@ Makefile
 MAINTENANCE.md
 PROMOTION.md
 
+# Landing page (deployed to GitHub Pages, not shipped in the VSIX)
+docs/**
+
 # Local theme preview samples (not shipped)
 samples/**
 images/screenshot-*.jpg
