@@ -1,5 +1,17 @@
 # Changelog — Dusk Office
 
+## 0.9.22 — 9 May 2026
+
+- **Added**: **"Get Started with Dusk Office" walkthrough** — VS Code now opens an interactive 6-step tour the first time the extension activates after install:
+  1. **Welcome** — apply the default Dusk Office theme.
+  2. **Try one of 26 variants** — open the variant picker.
+  3. **Let Dusk match your project automatically** — discover Workspace Fingerprint.
+  4. **Adapt to your day, night, and language** — toggle Adaptive Focus / Auto Day/Night.
+  5. **Your Control Center** — open the unified Quick Pick.
+  6. **Make it yours** — settings shortcut and reset path.
+- **Why**: 90% of Dusk Office's automation (Adaptive Focus, Workspace Fingerprint, Control Center, Auto Switch) used to be invisible to new users. The walkthrough surfaces these features at first launch with one-click commands and rich markdown content for each step.
+- **Discoverable anytime** via *Help → Walkthroughs → Get Started with Dusk Office*.
+
 ## 0.9.21 — 9 May 2026
 
 - **Changed**: **Relicensed from MIT to GNU General Public License v3 (or later).** Dusk Office remains fully open source, but **derivative works (forks, modifications, redistributions) must also be published under GPL v3**. This protects the project from being absorbed into closed-source commercial products while keeping it 100% free for individual use, contribution, and study. SPDX identifier in `package.json` updated to `GPL-3.0-or-later`. Full license text in `LICENSE`.

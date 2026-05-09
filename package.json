@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 26 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring, DevOps and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "0.9.21",
+  "version": "0.9.22",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -190,6 +190,82 @@
         "id": "dusk-office-product",
         "label": "Dusk Office · Product",
         "path": "./product-icons/dusk-office-product-icon-theme.json"
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "duskOfficeGetStarted",
+        "title": "Get Started with Dusk Office",
+        "description": "Discover 26 themes, automatic project detection, day/night switching, and the Control Center.",
+        "steps": [
+          {
+            "id": "welcome",
+            "title": "Welcome to Dusk Office",
+            "description": "Apply the default Dusk Office theme to start exploring.\n[Apply default theme](command:workbench.action.selectTheme)",
+            "media": {
+              "markdown": "walkthrough/01-welcome.md"
+            },
+            "completionEvents": [
+              "onCommand:workbench.action.selectTheme"
+            ]
+          },
+          {
+            "id": "pickVariant",
+            "title": "Try one of 26 variants",
+            "description": "Open the Dusk Office variant picker — niche variants (Audit, Vault, Sentinel, Steward, Voltage…) tuned for specific work contexts.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
+            "media": {
+              "markdown": "walkthrough/02-variants.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.switchThemeVariant"
+            ]
+          },
+          {
+            "id": "fingerprint",
+            "title": "Let Dusk match your project automatically",
+            "description": "Workspace Fingerprint scans your project and suggests the variant tuned for fintech, audit, cybersecurity, ML, modern web, frontend, or CLI work — all locally, no telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
+            "media": {
+              "markdown": "walkthrough/03-fingerprint.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.suggestVariantForWorkspace"
+            ]
+          },
+          {
+            "id": "adaptive",
+            "title": "Adapt to your day, night, and language",
+            "description": "Adaptive Focus picks a variant based on the active editor language and the time of day. Auto Day/Night switches between light and dark on a schedule.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
+            "media": {
+              "markdown": "walkthrough/04-adaptive.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.toggleAdaptiveFocus",
+              "onCommand:duskOffice.applyAdaptiveFocusTheme"
+            ]
+          },
+          {
+            "id": "controlCenter",
+            "title": "Your Control Center",
+            "description": "One Quick Pick to access every Dusk Office action — switch theme, favorite, auto switch, adaptive focus, product icons, status bar, settings, reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
+            "media": {
+              "markdown": "walkthrough/05-control-center.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.openControlCenter"
+            ]
+          },
+          {
+            "id": "makeItYours",
+            "title": "Make it yours",
+            "description": "Fine-tune behavior in Settings, or run \"Dusk Office: Reset All Settings\" anytime to restore VS Code defaults.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
+            "media": {
+              "markdown": "walkthrough/06-make-it-yours.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.openSettings"
+            ]
+          }
+        ]
       }
     ],
     "configurationDefaults": {
