@@ -203,6 +203,17 @@ p {
   color: var(--accent-bright);
 }
 
+.social-proof {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  margin: -1rem 0 2rem;
+  letter-spacing: 0.01em;
+}
+.social-proof strong {
+  color: var(--accent-bright);
+  font-weight: 600;
+}
+
 .hero-stats {
   display: flex;
   justify-content: center;
