@@ -1,19 +1,41 @@
-# Pick a variant for your work
+# Explore 26 variants — find the one that clicks 🎨
 
-Dusk Office ships **26 carefully tuned variants**:
+This isn't a random palette dump. Every variant was designed for a **specific mood, context, or workflow**.
 
-**Dark — long sessions**
-`Dusk Office` · `Abyss` · `Dawn` · `Bay` · `Mist` · `Ash` · `Midnight` · `Nebula` · `Reef` · `Nocturne`
+### Dark — deep focus, long sessions
 
-**Niche — professional contexts**
-`Audit` · `Vault` · `Sentinel` · `Steward` · `Ledger` · `Voltage` · `Finance` · `Corporate` · `Secure` · `Terminal` · `Neon` · `Luxe`
+| Variant | Character |
+|---|---|
+| **Dusk Office** | The flagship — cool cyan accents, OLED-friendly blacks |
+| **Abyss** | Deep ocean blue, for immersive late-night sessions |
+| **Dawn** | Warm amber tones, softer on the eyes at sunrise |
+| **Bay** | Teal-green coastal calm, balanced for all-day use |
+| **Mist** | Muted grey-blue, distraction-free writing and review |
+| **Ash** | Neutral warm grey, minimal color noise |
+| **Midnight** | Pure night mode — the darkest variant |
+| **Nebula** | Purple-violet accents, for creative & expressive work |
+| **Reef** | Aquamarine and coral, vibrant but not loud |
+| **Nocturne** | Deep indigo, frontend developers' favorite |
 
-**Light & warm — daytime**
-`Light` · `Ivory` · `Dark Ivory`
+### Professional — domain-tuned
 
-**Maximum contrast**
-`High Contrast`
+| Variant | Built for |
+|---|---|
+| **Finance** · **Corporate** | Banking dashboards, Bloomberg terminals, financial models |
+| **Audit** · **Ledger** | SOX compliance, accounting, regulatory code review |
+| **Vault** · **Secure** · **Sentinel** | Cybersecurity, secrets management, SOC monitoring |
+| **Steward** | Data science, ML pipelines, Jupyter workflows |
+| **Voltage** · **Neon** · **Terminal** | DevOps, CLI-heavy work, infrastructure as code |
+| **Luxe** | Premium dark gold — executive presentations & demos |
 
-Each variant uses the same UI chrome philosophy — your workbench, sidebar, and status bar feel consistent even when the editor palette changes dramatically.
+### Light — daytime readability
 
-Click **"Open the variant picker"** below, hover names to preview, and click to apply.
+**Light** · **Ivory** · **Dark Ivory** — warm and paper-like, with the same chrome consistency as the dark family.
+
+### Maximum accessibility
+
+**High Contrast** — exceeds WCAG AAA ratios across the board.
+
+---
+
+Click **"Open the variant picker"** below — hover to preview live, click to apply instantly.

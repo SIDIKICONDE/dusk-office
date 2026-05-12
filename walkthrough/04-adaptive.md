@@ -1,27 +1,41 @@
-# Adapt to your day, your night, your language 🌗
+# A theme that adapts to your rhythm 🌗
 
-Dusk Office offers **two automation layers** — both fully optional, both running locally.
+Most themes are static. Dusk Office **moves with you** — shifting palette based on the time of day and the language you're editing. Two automation layers, both optional, both 100% local.
 
-## Auto Day & Night Switch
+## Auto Day/Night Switch
 
-Switches your theme between a light and a dark variant based on the time:
+Your screen should match the light around you. Set once, forget forever:
 
 ```jsonc
 "duskOffice.autoSwitch.enabled": true,
+"duskOffice.autoSwitch.lightTheme": "Dusk Office Ivory",
 "duskOffice.autoSwitch.lightHour": 8,
+"duskOffice.autoSwitch.darkTheme": "Dusk Office Midnight",
 "duskOffice.autoSwitch.darkHour": 18
 ```
 
+8 AM — your editor brightens. 6 PM — it deepens. No manual switching.
+
 ## Adaptive Focus
 
-A finer-grained mode that switches theme based on the **active editor language** plus the time of day. Useful if you context-switch between SQL audits in the morning and Python ML in the evening.
+For developers who context-switch all day — picks a variant based on your **active file language** and the **current hour**:
 
-For example:
+| You're editing… | Time | Dusk applies |
+|---|---|---|
+| Python / Jupyter | Day | **Steward** — data-viz warm tones |
+| Python / Jupyter | Night | **Bay** — calm deep focus |
+| SQL / audit context | Any | **Audit** — high-contrast review |
+| TypeScript / React | Night | **Nocturne** — deep indigo |
+| Terraform / Go | Any | **Terminal** — CLI-optimized |
 
-- `python` + daytime → `Dusk Office Steward`
-- `python` + nighttime → `Dusk Office Bay`
-- `sql` + audit context → `Dusk Office Audit`
+### Late-night eye comfort
 
-Configurable via `duskOffice.adaptiveFocus.*` settings — including a **late-night eye-comfort mode** and a **theme lock** when you find a setup you love.
+After 10 PM, Dusk Office can force an ultra-dark variant — protecting your eyes without you lifting a finger. Configure via `duskOffice.adaptiveFocus.lateNightStartHour`.
 
-Click **"Toggle Adaptive Focus"** below to enable, and **"Apply Adaptive Theme Now"** to see it pick a variant for your current file.
+### Lock your favorite
+
+Found the perfect combo? Use `duskOffice.adaptiveFocus.lockTheme` to freeze it.
+
+---
+
+Click **"Toggle Adaptive Focus"** below to enable, then **"Apply Adaptive Theme Now"** to watch it pick a variant for your current file in real time.

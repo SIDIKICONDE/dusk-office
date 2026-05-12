@@ -1,27 +1,32 @@
-# Your Control Center 🎛️
+# One place to control everything 🎛️
 
-One Quick Pick to access **everything Dusk Office can do**:
+The Control Center is your **single access point** for every Dusk Office feature — no menus to memorize, no settings to hunt for.
 
-- 🎨 Switch theme variant
-- ↩️ Switch to previous theme
-- ⭐ Set / switch to favorite theme
-- 🔄 Toggle Auto Day/Night Switch
-- 🌗 Toggle Adaptive Focus
-- ⚡ Apply Adaptive Theme Now
-- ⚙️ Adaptive Focus settings
-- 🌒 Toggle product icon theme
-- 📍 Toggle Activity Bar location (left ↔ top)
-- 🪟 Toggle title bar alignment with theme
-- 📊 Toggle status bar button visibility
-- 💾 Workspace theme memory
-- 🔧 Open Dusk Office settings
-- ✅ Verify terminal contrast (WCAG checker)
-- 🔄 Reset all Dusk Office settings
+### What's inside
 
-Open it via:
+| Action | What it does |
+|---|---|
+| 🎨 **Switch theme** | Browse and preview all 26 variants |
+| ↩️ **Previous theme** | Instantly go back to what you had |
+| ⭐ **Favorite** | Set or jump to your go-to variant |
+| 🔄 **Auto Day/Night** | Toggle time-based light ↔ dark switching |
+| 🌗 **Adaptive Focus** | Toggle language + time-aware adaptation |
+| ⚡ **Apply Adaptive Now** | Force an adaptive pick for the current file |
+| 🌒 **Product icons** | Toggle the Dusk Office icon set |
+| 📍 **Activity Bar** | Move it left ↔ top in one click |
+| 🪟 **Title bar** | Sync title bar color with the active theme |
+| 📊 **Status bar** | Show or hide the Dusk Office button |
+| 💾 **Workspace memory** | Per-project theme persistence |
+| ✅ **WCAG check** | Verify terminal contrast ratios live |
+| � **Settings** | Jump straight to Dusk Office config |
+| 🔄 **Reset** | Return everything to VS Code defaults |
 
-- **Command Palette** → `Dusk Office: Control Center`
-- **Status bar** → click the Dusk Office entry (when enabled)
-- **Keyboard shortcut** → bind it to your favorite combo
+### Three ways to open it
 
-Click **"Open the Control Center"** below to try it.
+1. **Command Palette** → `Dusk Office: Control Center`
+2. **Status bar** → click the Dusk Office entry
+3. **Custom shortcut** → bind `duskOffice.openControlCenter` to any key combo
+
+---
+
+Click **"Open the Control Center"** below — everything is one keystroke away.

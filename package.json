@@ -196,12 +196,12 @@
       {
         "id": "duskOfficeGetStarted",
         "title": "Get Started with Dusk Office",
-        "description": "Discover 26 themes, automatic project detection, day/night switching, and the Control Center.",
+        "description": "Set up 26 professional themes in 2 minutes — automatic project detection, day/night switching, adaptive focus, and the Control Center.",
         "steps": [
           {
             "id": "welcome",
             "title": "Welcome to Dusk Office",
-            "description": "Apply the default Dusk Office theme to start exploring.\n[Apply default theme](command:workbench.action.selectTheme)",
+            "description": "Your editor is about to feel different. Apply the flagship theme and see the Dusk Office philosophy in action.\n[Apply the default Dusk Office theme](command:workbench.action.selectTheme)",
             "media": {
               "markdown": "walkthrough/01-welcome.md"
             },
@@ -211,8 +211,8 @@
           },
           {
             "id": "pickVariant",
-            "title": "Try one of 26 variants",
-            "description": "Open the Dusk Office variant picker — niche variants (Audit, Vault, Sentinel, Steward, Voltage…) tuned for specific work contexts.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
+            "title": "Explore 26 variants",
+            "description": "Every variant has a purpose \u2014 from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
             "media": {
               "markdown": "walkthrough/02-variants.md"
             },
@@ -222,8 +222,8 @@
           },
           {
             "id": "fingerprint",
-            "title": "Let Dusk match your project automatically",
-            "description": "Workspace Fingerprint scans your project and suggests the variant tuned for fintech, audit, cybersecurity, ML, modern web, frontend, or CLI work — all locally, no telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
+            "title": "Your project, your palette \u2014 automatically",
+            "description": "Dusk Office reads your project\u2019s DNA and suggests the perfect variant. Fintech \u2192 Vault, security \u2192 Sentinel, ML \u2192 Steward. 100% local, zero telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
             "media": {
               "markdown": "walkthrough/03-fingerprint.md"
             },
@@ -233,8 +233,8 @@
           },
           {
             "id": "adaptive",
-            "title": "Adapt to your day, night, and language",
-            "description": "Adaptive Focus picks a variant based on the active editor language and the time of day. Auto Day/Night switches between light and dark on a schedule.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
+            "title": "A theme that adapts to your rhythm",
+            "description": "Auto Day/Night switches light \u2194 dark by the hour. Adaptive Focus goes further \u2014 picking variants by language and time. Late-night eye comfort included.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
             "media": {
               "markdown": "walkthrough/04-adaptive.md"
             },
@@ -245,8 +245,8 @@
           },
           {
             "id": "controlCenter",
-            "title": "Your Control Center",
-            "description": "One Quick Pick to access every Dusk Office action — switch theme, favorite, auto switch, adaptive focus, product icons, status bar, settings, reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
+            "title": "One place to control everything",
+            "description": "The Control Center gives you every Dusk Office action in a single Quick Pick \u2014 themes, favorites, automation, icons, WCAG checks, and reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
             "media": {
               "markdown": "walkthrough/05-control-center.md"
             },
@@ -256,8 +256,8 @@
           },
           {
             "id": "makeItYours",
-            "title": "Make it yours",
-            "description": "Fine-tune behavior in Settings, or run \"Dusk Office: Reset All Settings\" anytime to restore VS Code defaults.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
+            "title": "Make it truly yours",
+            "description": "Fine-tune every behavior in Settings. And if you ever want a clean slate \u2014 one command resets everything with zero residue.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
             "media": {
               "markdown": "walkthrough/06-make-it-yours.md"
             },
@@ -288,6 +288,12 @@
     "configuration": {
       "title": "Dusk Office",
       "properties": {
+        "duskOffice.nythyCleanerRecommendation": {
+          "type": "boolean",
+          "default": true,
+          "order": 0,
+          "markdownDescription": "**🛠️ NythyCleaner Recommendation — [Try NythyCleaner →](https://nythycleaner.cloud)**\n\nAlso by the same developer. Your Mac, clean and fast: Xcode cleanup (22 categories), full system monitoring (CPU, GPU, Neural Engine), security audit (CVE scanning), 20+ dev ecosystem scans, disk treemap, exact SHA-256 duplicates, privacy tools.\n\nThe essentials are free. Disable this checkbox if you do not want to see NythyCleaner recommendations in Dusk Office surfaces."
+        },
         "duskOffice.applyFavoriteOnStartup": {
           "type": "boolean",
           "default": false,

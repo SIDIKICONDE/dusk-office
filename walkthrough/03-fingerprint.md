@@ -1,22 +1,28 @@
-# Let Dusk match your project automatically 🔍
+# Your project, your palette — automatically 🔍
 
-Open a workspace and Dusk Office **scans top-level project files** to suggest the variant tuned for your context:
+Here's the magic moment: open any workspace and Dusk Office **reads your project's DNA** to suggest the perfect variant. No setup, no config — it just works.
 
-| If your project has… | Dusk suggests |
-|---|---|
-| `stripe`, `plaid`, `dwolla` (fintech) | **Vault** |
-| `quickbooks`, `xero`, audit/SOX keywords | **Audit** |
-| `helmet`, `jsonwebtoken`, `*.tf`, Vault, Falco | **Sentinel** |
-| `numpy`, `pandas`, FastAPI, Django, Jupyter | **Steward** |
-| Next, Astro, Vite, Bun, Deno | **Voltage** |
-| React, Vue, Svelte, Tailwind, Storybook | **Nocturne** |
-| Go, Rust+clap, Terraform, Makefile | **Terminal** |
+### How it detects your context
 
-**Privacy first:**
+| Your project signals… | Suggested variant | Why |
+|---|---|---|
+| Stripe, Plaid, Dwolla, payment SDKs | **Vault** | Financial data deserves a secure-feeling palette |
+| QuickBooks, Xero, SOX/audit keywords | **Audit** | High-contrast for regulatory code review |
+| Helmet, JWT, `*.tf`, Falco, security tools | **Sentinel** | Alert-ready colors for threat monitoring |
+| NumPy, Pandas, FastAPI, Jupyter notebooks | **Steward** | Warm tones that work with data visualization |
+| Next.js, Astro, Vite, Bun, Deno | **Voltage** | Energetic palette for modern runtimes |
+| React, Vue, Svelte, Tailwind, Storybook | **Nocturne** | Deep indigo that pairs with component previews |
+| Go, Rust+clap, Terraform, Makefile-heavy | **Terminal** | CLI-optimized, terminal-first contrast |
 
-- Detection runs **entirely locally**, no network calls, no telemetry
-- Reads only top-level manifests (capped at 256 KB), never recurses into your code
-- The suggestion is shown **at most once per workspace**
-- Opt-out anytime via `duskOffice.workspaceFingerprint.enabled`
+### Built on trust, not tracking
 
-Click **"Try the suggestion for this workspace"** below to see what Dusk Office thinks fits this project.
+This is **not** analytics. This is a local heuristic that respects your privacy:
+
+- **100% offline** — reads only top-level manifests (capped at 256 KB)
+- **Never recurses** into your source code
+- **Fires once** per workspace — never nags
+- **Opt-out** anytime: `duskOffice.workspaceFingerprint.enabled → false`
+
+---
+
+Click **"Try the suggestion for this workspace"** — watch Dusk Office read your project and recommend a variant in under a second.
