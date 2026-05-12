@@ -5,7 +5,7 @@
   "colors": {
     "editor.foreground": "#c5c8c6",
     "editorLineNumber.foreground": "#c5c8c6cc",
-    "editorLineNumber.activeForeground": "#8a6f4a",
+    "editorLineNumber.activeForeground": "#c9a86a",
     "editorGutter.modifiedBackground": "#8a6f4acc",
     "editorGutter.addedBackground": "#8ec9c9cc",
     "editorGutter.deletedBackground": "#a55a5acc",

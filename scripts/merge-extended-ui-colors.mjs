@@ -253,7 +253,7 @@ function buildExtended(p) {
     "inlineChatInput.background": panel,
     "inlineChatInput.border": A(border, "44"),
     "inlineChatInput.focusBorder": A(accentHi, "55"),
-    "inlineChatInput.placeholderForeground": A(fg, "55"),
+    "inlineChatInput.placeholderForeground": A(fg, "aa"),
     "inlineChatDiff.inserted": A(inserted, "33"),
     "inlineChatDiff.removed": A(removed, "33"),
 
@@ -305,7 +305,7 @@ function buildExtended(p) {
     "breadcrumbPicker.background": widget,
 
     "tab.activeForeground": fg,
-    "tab.inactiveForeground": A(fg, "88"),
+    "tab.inactiveForeground": A(fg, "b0"),
     "tab.activeBorder": A(accentHi, "44"),
     "tab.unfocusedActiveBorder": A(accent, "44"),
     "tab.lastPinnedBorder": A(border, "44"),
@@ -331,7 +331,7 @@ function buildExtended(p) {
     "badge.foreground": "#0a0a0a",
 
     "input.foreground": fg,
-    "input.placeholderForeground": A(fg, "55"),
+    "input.placeholderForeground": A(fg, "aa"),
     "input.background": widget,
     "input.border": A(border, "59"),
     "inputOption.activeBackground": A(accent, "33"),
@@ -526,7 +526,7 @@ function pinChromeFromPalette(colors, p) {
   colors["terminalStickyScroll.background"] = terminalBg;
   colors["panel.background"] = panel;
   colors["panelTitle.activeForeground"] = fg;
-  colors["panelTitle.inactiveForeground"] = A(fg, "88");
+  colors["panelTitle.inactiveForeground"] = A(fg, "b0");
   colors["panelTitle.border"] = A(accentHi, "33");
   colors["panelTitle.activeBorder"] = A(accentHi, "55");
   colors["terminal.tab.activeBorder"] = accentHi;

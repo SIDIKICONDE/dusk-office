@@ -154,7 +154,7 @@ const LIGHT_UI_OVERRIDES = {
   // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-500 55 → 1.53 ❌, numéros de ligne illisibles)
   "editorLineNumber.foreground": "#475569dd",
   // Active line number stays bright cyan to mark the cursor line
-  "editorLineNumber.activeForeground": "#0ea5e9",
+  "editorLineNumber.activeForeground": "#0369a1",
   // Hover surfaces — replace the dark-theme inherited values that produced
   // invisible (alpha 0f) or near-black (#010203aa) hovers on light backgrounds.
   // Cyan accent at 13–20% alpha gives a clearly visible but subtle highlight.
