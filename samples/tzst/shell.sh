@@ -205,7 +205,7 @@ with_timeout() {
 
 # Case pattern matching
 handle_file() {
-    local file="$1"
+    local file="$1" 
     
     case "$file" in
         *.ts|*.tsx)

@@ -15,7 +15,7 @@ const themesDir = path.join(__dirname, "..", "themes");
 const palettesPath = path.join(__dirname, "palettes-extended-ui.json");
 
 /** Rouge vif tirant vers l’orange : meilleure séparation visuelle vs balises ~#db2777. */
-const EDITOR_ERROR_SQUIGGLE_FOREGROUND = "#ff6b6b";
+const EDITOR_ERROR_SQUIGGLE_FOREGROUND = "#c97565";
 
 /** @param {string} hex #RRGGBB @param {string} aa deux hex d'opacité */
 const A = (hex, aa) => (hex.length === 7 ? hex + aa : hex);

@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 26 Themes for Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 26 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring, DevOps and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "0.9.30",
+  "version": "0.9.31",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -212,7 +212,7 @@
           {
             "id": "pickVariant",
             "title": "Explore 26 variants",
-            "description": "Every variant has a purpose \u2014 from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
+            "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
             "media": {
               "markdown": "walkthrough/02-variants.md"
             },
@@ -222,8 +222,8 @@
           },
           {
             "id": "fingerprint",
-            "title": "Your project, your palette \u2014 automatically",
-            "description": "Dusk Office reads your project\u2019s DNA and suggests the perfect variant. Fintech \u2192 Vault, security \u2192 Sentinel, ML \u2192 Steward. 100% local, zero telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
+            "title": "Your project, your palette — automatically",
+            "description": "Dusk Office reads your project’s DNA and suggests the perfect variant. Fintech → Vault, security → Sentinel, ML → Steward. 100% local, zero telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
             "media": {
               "markdown": "walkthrough/03-fingerprint.md"
             },
@@ -234,7 +234,7 @@
           {
             "id": "adaptive",
             "title": "A theme that adapts to your rhythm",
-            "description": "Auto Day/Night switches light \u2194 dark by the hour. Adaptive Focus goes further \u2014 picking variants by language and time. Late-night eye comfort included.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
+            "description": "Auto Day/Night switches light ↔ dark by the hour. Adaptive Focus goes further — picking variants by language and time. Late-night eye comfort included.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
             "media": {
               "markdown": "walkthrough/04-adaptive.md"
             },
@@ -246,7 +246,7 @@
           {
             "id": "controlCenter",
             "title": "One place to control everything",
-            "description": "The Control Center gives you every Dusk Office action in a single Quick Pick \u2014 themes, favorites, automation, icons, WCAG checks, and reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
+            "description": "The Control Center gives you every Dusk Office action in a single Quick Pick — themes, favorites, automation, icons, WCAG checks, and reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
             "media": {
               "markdown": "walkthrough/05-control-center.md"
             },
@@ -257,7 +257,7 @@
           {
             "id": "makeItYours",
             "title": "Make it truly yours",
-            "description": "Fine-tune every behavior in Settings. And if you ever want a clean slate \u2014 one command resets everything with zero residue.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
+            "description": "Fine-tune every behavior in Settings. And if you ever want a clean slate — one command resets everything with zero residue.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
             "media": {
               "markdown": "walkthrough/06-make-it-yours.md"
             },

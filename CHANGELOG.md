@@ -1,5 +1,18 @@
 # Changelog — Dusk Office
 
+## 0.9.31 — 12 May 2026
+
+- **Changed**: **Dark theme harmonisation — all 20 dark variants now follow a unified "muted professional" colour profile.** Previously some themes used vivid/neon accents (Tailwind 400-level: `#22d3ee`, `#4ade80`, `#00f5ff`, `#ff2d8a`, `#33ff00`) while others were already subdued (`#d4a853`, `#8b4a5a`, `#8fbdbc`), producing a jarring mix. Every dark variant now sits in the 30–55 % HSL saturation band — the same range used by the already-muted Nocturne, Finance, Corporate, Secure, Vault, Sentinel, Steward and Luxe themes. Each variant keeps its hue identity (cyan, green, purple, gold, rose…) but in a tone that no longer "taps on the eyes" during long sessions.
+  - **Palette UI** (`palettes-extended-ui.json`): accent, accentHi, error, info, success, inserted, removed, purple, pink, amber desaturated for Minuit, Abime, Recif, Baie, Aube, Brume, Nebuleuse.
+  - **Palette syntax** (`syntax-variant-palettes.mjs`): keyword, function, string, number, comment and all other token roles desaturated for the same 7 variants.
+  - **Base Dusk theme** (`theme-sources/dusk.json`): the flagship theme itself moved from Tailwind vivids to muted cyan-steel accents — propagates automatically to the 8 non-pipeline themes via `include`.
+  - **Non-pipeline themes**: Voltage (`#a3e635` → `#8aa870`), Neon (`#ff2d8a` → `#a87080`), Terminal (`#33ff00` → `#6a9a70`) fully desaturated; Luxe and Ivoire Sombre cleaned of residual vivid Tailwind colours.
+  - **Nocturne**: residual Dracula-era vivids (`#ff5555`, `#ff79c6`, `#ffb86c`) in editor overlays replaced by palette-coherent muted equivalents.
+  - **Error squiggle**: `EDITOR_ERROR_SQUIGGLE_FOREGROUND` changed from `#ff6b6b` to `#c97565` across all pipeline themes.
+  - **enhance-themes.mjs**: all base SEMANTIC_TOKENS, GIT_COLORS, UI_COLORS, EDITOR_ENHANCEMENTS and TERMINAL_COLORS constants updated to the new muted profile.
+  - **Light theme build**: `build-dusk-light.mjs` foreground mapping table extended for the new muted foreground hex values (`#d0dce4`, `#d1e0e8`), fixing terminal contrast on Light and Ivory.
+- **Verified**: WCAG AA contrast audit passes — **0 FAIL across all 26 themes** (9 WEAK, all on intentionally-dimmed inactive elements). Terminal contrast ≥ 4.5:1 on all themes.
+
 ## 0.9.30 — 9 May 2026
 
 - **Changed**: All sponsor links now point to **[NythyCleaner](https://nythycleaner.cloud)** — the maintainer's own native macOS utility for developers (Xcode cleanup, disk scanner, AI duplicate detection, real-time monitoring) — instead of a generic Buy Me a Coffee page.
