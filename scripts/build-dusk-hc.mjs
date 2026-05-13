@@ -15,8 +15,8 @@ const dest = path.join(root, "themes", "dusk-hc.json");
 
 function main() {
   if (!fs.existsSync(src)) {
-    console.warn("theme-sources/dusk-hc.json absent — skip build:hc.");
-    process.exit(0);
+    console.error("FATAL: theme-sources/dusk-hc.json not found. Cannot build HC theme.");
+    process.exit(1);
   }
   const j = JSON.parse(fs.readFileSync(src, "utf8"));
   if (!j.include || typeof j.include !== "string") {

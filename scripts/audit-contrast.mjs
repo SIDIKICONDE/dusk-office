@@ -16,51 +16,36 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { parseHexColor, luminance, contrastRatio, composite } from "./color-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const themesDir = path.join(root, "themes");
 
 // ---------------------------------------------------------------------------
-// Color math
+// Color math (backed by color-utils.mjs)
 // ---------------------------------------------------------------------------
 
 function hexToRgb(hex) {
-  const h = hex.replace(/^#/, "");
-  if (h.length === 3) return [parseInt(h[0] + h[0], 16), parseInt(h[1] + h[1], 16), parseInt(h[2] + h[2], 16)];
-  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+  const c = parseHexColor(hex);
+  return c ? [c.r, c.g, c.b] : [0, 0, 0];
 }
 
 function alphaBlend(fg, bg) {
-  // fg/bg are #RRGGBB or #RRGGBBAA. Returns an opaque [r,g,b] of fg over bg.
-  const fgHex = fg.replace(/^#/, "");
-  const fr = parseInt(fgHex.slice(0, 2), 16);
-  const fgg = parseInt(fgHex.slice(2, 4), 16);
-  const fb = parseInt(fgHex.slice(4, 6), 16);
-  const a = fgHex.length === 8 ? parseInt(fgHex.slice(6, 8), 16) / 255 : 1;
-  const [br, bgg, bb] = hexToRgb(bg);
-  return [
-    Math.round(fr * a + br * (1 - a)),
-    Math.round(fgg * a + bgg * (1 - a)),
-    Math.round(fb * a + bb * (1 - a)),
-  ];
-}
-
-function relLum([r, g, b]) {
-  const c = (x) => {
-    const v = x / 255;
-    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-  };
-  return 0.2126 * c(r) + 0.7152 * c(g) + 0.0722 * c(b);
+  const fgC = parseHexColor(fg);
+  const bgC = parseHexColor(bg);
+  if (!fgC || !bgC) return [0, 0, 0];
+  const a = fgC.alpha ? parseInt(fgC.alpha, 16) / 255 : 1;
+  const out = composite(fgC, a, bgC);
+  return [out.r, out.g, out.b];
 }
 
 function ratio(fgHex, bgHex) {
   const fg = alphaBlend(fgHex, bgHex);
   const bg = hexToRgb(bgHex);
-  let l1 = relLum(fg);
-  let l2 = relLum(bg);
-  if (l1 < l2) [l1, l2] = [l2, l1];
-  return (l1 + 0.05) / (l2 + 0.05);
+  const l1 = luminance({ r: fg[0], g: fg[1], b: fg[2] });
+  const l2 = luminance({ r: bg[0], g: bg[1], b: bg[2] });
+  return contrastRatio(l1, l2);
 }
 
 // ---------------------------------------------------------------------------

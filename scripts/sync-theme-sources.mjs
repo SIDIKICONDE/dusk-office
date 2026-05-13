@@ -17,13 +17,15 @@ const themesDir = path.join(root, "themes");
 
 function main() {
   if (!fs.existsSync(sourcesDir)) {
-    console.warn("theme-sources/ absent — ignoré (créez-le ou lancez npm run theme:sources:extract).");
-    return;
+    console.error(
+      "FATAL: theme-sources/ is missing. Create it or run npm run theme:sources:extract. Aborting.",
+    );
+    process.exit(1);
   }
   const files = fs.readdirSync(sourcesDir).filter((f) => f.endsWith(".json"));
   if (files.length === 0) {
-    console.warn("theme-sources/ vide — ignoré.");
-    return;
+    console.error("FATAL: theme-sources/ is empty (no JSON files). Aborting.");
+    process.exit(1);
   }
   fs.mkdirSync(themesDir, { recursive: true });
   for (const f of files) {

@@ -1203,16 +1203,28 @@ async function main() {
   
   console.log(`Found ${jsonFiles.length} themes to enhance\n`);
   
+  const failures = [];
   for (const file of jsonFiles) {
     const filePath = join(THEMES_DIR, file);
     try {
       await enhanceTheme(filePath);
     } catch (error) {
       console.error(`✗ Error enhancing ${file}:`, error.message);
+      failures.push(file);
     }
   }
-  
+
+  if (failures.length > 0) {
+    console.error(
+      `\nFATAL: ${failures.length} theme(s) failed to enhance: ${failures.join(", ")}. Aborting.`,
+    );
+    process.exit(1);
+  }
+
   console.log('\n✓ All themes enhanced!');
 }
 
-main().catch(console.error);
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

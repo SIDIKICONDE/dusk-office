@@ -13,6 +13,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { parseHexColor as parseColor, luminance, contrastRatio } from "./color-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -47,49 +48,7 @@ const ANSI_KEYS = [
   "terminal.ansiBrightWhite",
 ];
 
-/** @param {{ r: number; g: number; b: number }} c */
-function luminance(c) {
-  const lin = (v) => {
-    v /= 255;
-    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
-  };
-  const R = lin(c.r),
-    G = lin(c.g),
-    B = lin(c.b);
-  return 0.2126 * R + 0.7152 * G + 0.0722 * B;
-}
-
-/** @param {number} L1 @param {number} L2 */
-function contrastRatio(L1, L2) {
-  const light = Math.max(L1, L2);
-  const dark = Math.min(L1, L2);
-  return (light + 0.05) / (dark + 0.05);
-}
-
-/**
- * @param {string} s
- * @returns {{ r: number; g: number; b: number; alpha?: string } | null}
- */
-function parseColor(s) {
-  if (typeof s !== "string" || !s.startsWith("#")) return null;
-  let h = s.slice(1);
-  if (/^[0-9a-fA-F]{3}$/.test(h))
-    h = [...h].map((ch) => ch + ch).join("");
-  if (/^[0-9a-fA-F]{6}$/.test(h))
-    return {
-      r: parseInt(h.slice(0, 2), 16),
-      g: parseInt(h.slice(2, 4), 16),
-      b: parseInt(h.slice(4, 6), 16),
-    };
-  if (/^[0-9a-fA-F]{8}$/.test(h))
-    return {
-      r: parseInt(h.slice(0, 2), 16),
-      g: parseInt(h.slice(2, 4), 16),
-      b: parseInt(h.slice(4, 6), 16),
-      alpha: h.slice(6, 8),
-    };
-  return null;
-}
+/* luminance, contrastRatio, parseColor — imported from color-utils.mjs */
 
 /** @param {{ r: number; g: number; b: number }} fg @param {number} a01 @param {{ r: number; g: number; b: number }} bg */
 function composite(fg, a01, bg) {

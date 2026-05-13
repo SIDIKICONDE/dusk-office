@@ -33,6 +33,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { luminanceFromHex } from "./color-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -91,11 +92,7 @@ const ABYSS_LIGHT_FG_TO_SLATE = {
 };
 
 function srgbLuminance(rgb6) {
-  const r = parseInt(rgb6.slice(0, 2), 16) / 255;
-  const g = parseInt(rgb6.slice(2, 4), 16) / 255;
-  const b = parseInt(rgb6.slice(4, 6), 16) / 255;
-  const lin = (v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
-  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+  return luminanceFromHex("#" + rgb6) ?? 0;
 }
 
 /**

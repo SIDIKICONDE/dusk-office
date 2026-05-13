@@ -269,19 +269,37 @@
       }
     ],
     "configurationDefaults": {
-      "editor.minimap.enabled": true,
-      "editor.minimap.showSlider": "always",
       "editor.semanticHighlighting.enabled": true,
       "editor.bracketPairColorization.enabled": true,
+      "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
       "editor.guides.bracketPairs": "active",
       "editor.guides.bracketPairsHorizontal": "active",
       "editor.guides.highlightActiveIndentation": true,
-      "editor.stickyScroll.enabled": true,
       "editor.renderLineHighlight": "line",
       "editor.selectionHighlight": true,
       "editor.linkedEditing": true,
+      "editor.roundedSelection": true,
+      "editor.colorDecorators": true,
+      "editor.overviewRulerBorder": false,
+      "editor.padding.top": 6,
+      "editor.padding.bottom": 6,
+      "editor.cursorBlinking": "phase",
+      "editor.cursorSmoothCaretAnimation": "on",
+      "editor.cursorWidth": 2,
+      "editor.smoothScrolling": true,
+      "editor.stickyScroll.enabled": true,
+      "editor.minimap.enabled": true,
+      "editor.minimap.showSlider": "always",
+      "editor.minimap.renderCharacters": false,
+      "editor.minimap.maxColumn": 80,
+      "terminal.integrated.cursorStyle": "line",
+      "terminal.integrated.cursorWidth": 2,
+      "terminal.integrated.smoothScrolling": true,
+      "terminal.integrated.gpuAcceleration": "on",
+      "workbench.list.smoothScrolling": true,
       "workbench.tree.renderIndentGuides": "always",
       "workbench.tree.indent": 14,
+      "window.dialogStyle": "custom",
       "explorer.decorations.badges": true,
       "explorer.decorations.colors": true
     },
@@ -473,12 +491,14 @@
       {
         "command": "duskOffice.openControlCenter",
         "title": "Dusk Office: Control Center",
-        "category": "Dusk Office"
+        "category": "Dusk Office",
+        "icon": "$(color-mode)"
       },
       {
         "command": "duskOffice.switchThemeVariant",
         "title": "Dusk Office: Choose Theme",
-        "category": "Dusk Office"
+        "category": "Dusk Office",
+        "icon": "$(symbol-color)"
       },
       {
         "command": "duskOffice.switchToPreviousTheme",
@@ -533,7 +553,8 @@
       {
         "command": "duskOffice.toggleAdaptiveFocus",
         "title": "Dusk Office: Toggle Adaptive Focus",
-        "category": "Dusk Office"
+        "category": "Dusk Office",
+        "icon": "$(eye)"
       },
       {
         "command": "duskOffice.suggestVariantForWorkspace",
@@ -552,8 +573,53 @@
         {
           "command": "duskOffice.suggestVariantForWorkspace"
         }
+      ],
+      "editor/title": [
+        {
+          "command": "duskOffice.openControlCenter",
+          "group": "navigation@100",
+          "when": "duskOffice.isActive"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "duskOffice.switchThemeVariant",
+          "group": "duskOffice@1",
+          "when": "duskOffice.isActive"
+        },
+        {
+          "command": "duskOffice.toggleAdaptiveFocus",
+          "group": "duskOffice@2",
+          "when": "duskOffice.isActive"
+        }
       ]
-    }
+    },
+    "keybindings": [
+      {
+        "command": "duskOffice.openControlCenter",
+        "key": "ctrl+shift+alt+d",
+        "mac": "cmd+shift+alt+d",
+        "when": "duskOffice.isActive"
+      },
+      {
+        "command": "duskOffice.switchThemeVariant",
+        "key": "ctrl+k ctrl+shift+t",
+        "mac": "cmd+k cmd+shift+t",
+        "when": "duskOffice.isActive"
+      },
+      {
+        "command": "duskOffice.switchToPreviousTheme",
+        "key": "ctrl+k ctrl+shift+p",
+        "mac": "cmd+k cmd+shift+p",
+        "when": "duskOffice.isActive"
+      },
+      {
+        "command": "duskOffice.toggleAdaptiveFocus",
+        "key": "ctrl+k ctrl+shift+a",
+        "mac": "cmd+k cmd+shift+a",
+        "when": "duskOffice.isActive"
+      }
+    ]
   },
   "scripts": {
     "sync": "node scripts/sync-from-workspace.mjs",

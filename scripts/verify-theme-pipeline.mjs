@@ -13,6 +13,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { PALETTE_VARIANT_IDS, SYNTAX_MERGE_SLUGS } from "./theme-wins.mjs";
 import { palettes } from "./syntax-variant-palettes.mjs";
+import { luminanceFromHex as relLuminance } from "./color-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -22,17 +23,6 @@ const pkgPath = path.join(root, "package.json");
 
 const TOL = 0.002;
 const UNIFIED_TOL = TOL * 3;
-
-/** Luminance relative sRGB (WCAG), hex #RRGGBB uniquement. */
-function relLuminance(hex) {
-  if (typeof hex !== "string" || !/^#[0-9a-fA-F]{6}$/.test(hex)) return null;
-  const r = parseInt(hex.slice(1, 3), 16) / 255;
-  const g = parseInt(hex.slice(3, 5), 16) / 255;
-  const b = parseInt(hex.slice(5, 7), 16) / 255;
-  const lin = (v) =>
-    v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
-}
 
 /** @param {string} hex */
 function rgb6(hex) {

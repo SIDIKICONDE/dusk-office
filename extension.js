@@ -1047,6 +1047,18 @@ async function openControlCenter(context) {
         detail: "Extension",
         action: openDuskOfficeSettings,
       },
+      ...(getExtensionConfig().get("nythyCleanerRecommendation", true)
+        ? [
+            {
+              label: "$(heart) NythyCleaner — Dev Disk Cleanup",
+              description: "By the same developer",
+              detail: "macOS utility: Xcode cleanup, AI duplicates, system monitor",
+              action: async () => {
+                void vscode.env.openExternal(vscode.Uri.parse("https://nythycleaner.cloud"));
+              },
+            },
+          ]
+        : []),
     ],
     {
       title: "Dusk Office",
@@ -1229,6 +1241,9 @@ function collectWorkspaceSignals(rootDir) {
     composerText: "",
     files: new Set(),
     extensionCounts: {},
+    // Number of top-level *.yaml/*.yml files containing both `apiVersion:` and
+    // `kind:` — strong heuristic for Kubernetes / Helm / Kustomize manifests.
+    k8sManifestCount: 0,
   };
 
   if (!rootDir) return signals;
@@ -1272,7 +1287,10 @@ function collectWorkspaceSignals(rootDir) {
   const composer = readJsonFile(path.join(rootDir, "composer.json"));
   if (composer) signals.composerText = JSON.stringify(composer).toLowerCase();
 
-  // Top-level file listing (no recursion)
+  // Top-level file listing (no recursion). YAML files are peeked at to detect
+  // K8s manifests inline so we keep the original case for the read path
+  // (case-sensitive filesystems would fail with the lowercased name from
+  // `signals.files`).
   try {
     const entries = fs.readdirSync(rootDir, { withFileTypes: true });
     for (const e of entries) {
@@ -1280,6 +1298,17 @@ function collectWorkspaceSignals(rootDir) {
         signals.files.add(e.name.toLowerCase());
         const ext = path.extname(e.name).toLowerCase();
         if (ext) signals.extensionCounts[ext] = (signals.extensionCounts[ext] || 0) + 1;
+
+        if (ext === ".yaml" || ext === ".yml") {
+          const text = readTextFile(path.join(rootDir, e.name));
+          if (
+            text &&
+            /^apiVersion\s*:/m.test(text) &&
+            /^kind\s*:/m.test(text)
+          ) {
+            signals.k8sManifestCount += 1;
+          }
+        }
       } else if (e.isDirectory()) {
         signals.files.add(e.name.toLowerCase() + "/");
       }
@@ -1300,14 +1329,33 @@ const FINGERPRINT_PATTERNS = [
   {
     variant: "Dusk Office Vault",
     displayLabel: "Vault",
-    reason: "fintech or banking project",
+    reason: "fintech, banking, or smart-contract project",
     score(s) {
       let n = 0;
       const fintechDeps = ["stripe", "plaid", "dwolla", "square", "paypal-rest-sdk", "braintree"];
       for (const d of fintechDeps) if (s.npmDeps.has(d)) n += 25;
       if (/\b(fintech|banking|payment|wallet|kyc|aml|treasury)\b/.test(s.npmText)) n += 20;
       if (s.npmKeywords.some((k) => /(fintech|banking|payment|wallet)/.test(k))) n += 15;
-      return Math.min(n, 80);
+      // Smart contracts / Web3 — finance-adjacent, the vault metaphor fits.
+      const web3Deps = [
+        "hardhat",
+        "@nomicfoundation/hardhat-toolbox",
+        "@nomiclabs/hardhat-ethers",
+        "@nomiclabs/hardhat-waffle",
+        "ethers",
+        "viem",
+        "wagmi",
+        "web3",
+        "@openzeppelin/contracts",
+        "@openzeppelin/contracts-upgradeable",
+      ];
+      for (const d of web3Deps) if (s.npmDeps.has(d)) n += 10;
+      if (s.files.has("hardhat.config.js") || s.files.has("hardhat.config.ts")) n += 25;
+      if (s.files.has("foundry.toml")) n += 25;
+      if (s.files.has("truffle-config.js") || s.files.has("remappings.txt")) n += 12;
+      if (s.files.has("contracts/")) n += 8;
+      if ((s.extensionCounts[".sol"] || 0) >= 1) n += 18;
+      return Math.min(n, 90);
     },
   },
   {
@@ -1326,40 +1374,86 @@ const FINGERPRINT_PATTERNS = [
   {
     variant: "Dusk Office Sentinel",
     displayLabel: "Sentinel",
-    reason: "cybersecurity, SOC, or DevSecOps project",
+    reason: "cybersecurity, IaC, or DevSecOps project",
     score(s) {
       let n = 0;
       const secDeps = ["helmet", "passport", "jsonwebtoken", "bcrypt", "node-forge", "crypto-js", "owasp", "snyk"];
       for (const d of secDeps) if (s.npmDeps.has(d)) n += 12;
       if (/\b(security|cybersecurity|soc|siem|firewall|vault|falco|osquery|owasp)\b/.test(s.npmText)) n += 18;
-      if ([...s.files].some((f) => /^(security|auth|firewall|sentinel)\/?$/.test(f) || f.endsWith(".tf"))) n += 12;
+      if ([...s.files].some((f) => /^(security|auth|firewall|sentinel)\/?$/.test(f))) n += 12;
       if (s.files.has("dockerfile") && s.files.has("docker-compose.yml") && /\b(vault|consul|falco)\b/.test(s.npmText)) n += 15;
-      return Math.min(n, 75);
+      // Infrastructure-as-Code — Terraform / Pulumi / Ansible. Sentinel owns
+      // IaC because it's the security/compliance angle on infra. Terminal
+      // still picks up partial signals on pure tooling repos.
+      if ((s.extensionCounts[".tf"] || 0) >= 1) n += 18;
+      if ((s.extensionCounts[".tfvars"] || 0) >= 1) n += 8;
+      if (s.files.has("terragrunt.hcl") || s.files.has("main.tf")) n += 10;
+      if (s.files.has("pulumi.yaml") || s.files.has("pulumi.yml")) n += 18;
+      if (s.npmDeps.has("@pulumi/pulumi")) n += 15;
+      // Ansible — accumulate, since a real Ansible repo usually has several
+      // of these markers and a single one shouldn't cross the threshold alone.
+      if (s.files.has("ansible.cfg")) n += 18;
+      if (s.files.has("playbook.yml") || s.files.has("playbook.yaml")) n += 10;
+      if (s.files.has("playbooks/")) n += 8;
+      if (s.files.has("roles/")) n += 8;
+      if (s.files.has("inventory") || s.files.has("hosts")) n += 6;
+      if (s.files.has("group_vars/") || s.files.has("host_vars/")) n += 6;
+      if (s.files.has("infra/") || s.files.has("terraform/") || s.files.has("iac/")) n += 8;
+      return Math.min(n, 90);
     },
   },
   {
     variant: "Dusk Office Steward",
     displayLabel: "Steward",
-    reason: "data science, ML, or backend Python project",
+    reason: "data science, ML, AI, or LLM project",
     score(s) {
       let n = 0;
       if (/(numpy|pandas|scikit-learn|tensorflow|pytorch|jupyter|fastapi|django|flask)/.test(s.pythonText)) n += 25;
       if (s.files.has("requirements.txt") || s.files.has("pyproject.toml") || s.files.has("pipfile")) n += 15;
       const pyExtCount = (s.extensionCounts[".py"] || 0) + (s.extensionCounts[".ipynb"] || 0);
       if (pyExtCount >= 2) n += 10;
-      return Math.min(n, 70);
+      // AI / LLM stack — JS side. Larger weight than generic Python deps
+      // because LLM repos tend to declare these explicitly in package.json.
+      const llmJsDeps = [
+        "langchain",
+        "@langchain/core",
+        "@langchain/openai",
+        "@langchain/community",
+        "openai",
+        "@anthropic-ai/sdk",
+        "llamaindex",
+        "@google/generative-ai",
+        "cohere-ai",
+        "replicate",
+        "ai",
+        "@vercel/ai",
+        "@mistralai/mistralai",
+      ];
+      for (const d of llmJsDeps) if (s.npmDeps.has(d)) n += 14;
+      // AI / LLM stack — Python side (single regex to avoid capping out fast).
+      if (/(langchain|llama-?index|transformers|huggingface|sentence-transformers|chromadb|pinecone|weaviate|qdrant|openai|anthropic|cohere|tiktoken)/.test(s.pythonText)) n += 22;
+      if ((s.extensionCounts[".ipynb"] || 0) >= 1) n += 8;
+      return Math.min(n, 85);
     },
   },
   {
     variant: "Dusk Office Voltage",
     displayLabel: "Voltage",
-    reason: "high-energy modern web stack (Bun / Deno / Vite / Next)",
+    reason: "high-energy modern web stack or monorepo",
     score(s) {
       let n = 0;
       const modernDeps = ["next", "astro", "vite", "remix", "solid-js", "qwik", "hono", "elysia"];
       for (const d of modernDeps) if (s.npmDeps.has(d)) n += 18;
       if (s.files.has("bun.lockb") || s.files.has("deno.json") || s.files.has("deno.jsonc")) n += 25;
-      return Math.min(n, 70);
+      // Monorepo orchestrators — Voltage already targets fast/modern stacks
+      // and most of these tools live alongside Next/Vite/Astro repos.
+      if (s.files.has("turbo.json")) n += 22;
+      if (s.files.has("nx.json")) n += 22;
+      if (s.files.has("pnpm-workspace.yaml") || s.files.has("pnpm-workspace.yml")) n += 18;
+      if (s.files.has("lerna.json")) n += 15;
+      if (s.files.has("rush.json")) n += 15;
+      if (s.files.has("apps/") && s.files.has("packages/")) n += 10;
+      return Math.min(n, 85);
     },
   },
   {
@@ -1379,14 +1473,30 @@ const FINGERPRINT_PATTERNS = [
   {
     variant: "Dusk Office Terminal",
     displayLabel: "Terminal",
-    reason: "CLI, infrastructure, or DevOps tooling project",
+    reason: "CLI, Kubernetes, or DevOps tooling project",
     score(s) {
       let n = 0;
       if (s.goText || (s.extensionCounts[".go"] || 0) >= 2) n += 20;
       if (s.cargoDeps.size > 0 && (s.cargoDeps.has("clap") || s.cargoDeps.has("structopt"))) n += 25;
-      if ([...s.files].some((f) => f.endsWith(".tf") || f.endsWith(".tfvars"))) n += 15;
+      if ([...s.files].some((f) => f.endsWith(".tf") || f.endsWith(".tfvars"))) n += 10;
       if (s.files.has("makefile") || s.files.has("dockerfile") || s.files.has("docker-compose.yml")) n += 8;
-      return Math.min(n, 65);
+      // Kubernetes / Helm / Kustomize. Helm Chart.yaml is the strongest
+      // signal, kustomization.yaml a close second.
+      if (s.files.has("chart.yaml")) n += 25;
+      if (s.files.has("kustomization.yaml") || s.files.has("kustomization.yml")) n += 22;
+      if (s.files.has("values.yaml")) n += 8;
+      if (
+        s.files.has("helm/") ||
+        s.files.has("charts/") ||
+        s.files.has("k8s/") ||
+        s.files.has("kubernetes/") ||
+        s.files.has("manifests/")
+      ) n += 12;
+      if (s.k8sManifestCount >= 1) n += 10;
+      if (s.k8sManifestCount >= 3) n += 8;
+      // Local K8s dev tooling.
+      if (s.files.has("skaffold.yaml") || s.files.has("tiltfile")) n += 8;
+      return Math.min(n, 85);
     },
   },
 ];
@@ -1410,12 +1520,25 @@ async function detectWorkspaceFingerprint(context, options = {}) {
 
   const folders = vscode.workspace.workspaceFolders;
   if (!folders || folders.length === 0) return null;
-  const rootDir = folders[0].uri.fsPath;
-  if (!rootDir) return null;
 
   let signals;
   try {
-    signals = collectWorkspaceSignals(rootDir);
+    signals = collectWorkspaceSignals(folders[0].uri.fsPath);
+    for (let i = 1; i < folders.length; i++) {
+      const extra = collectWorkspaceSignals(folders[i].uri.fsPath);
+      for (const dep of extra.npmDeps) signals.npmDeps.add(dep);
+      for (const kw of extra.npmKeywords) signals.npmKeywords.push(kw);
+      if (extra.npmText) signals.npmText += " " + extra.npmText;
+      for (const dep of extra.cargoDeps) signals.cargoDeps.add(dep);
+      if (extra.pythonText) signals.pythonText += "\n" + extra.pythonText;
+      if (extra.goText) signals.goText += "\n" + extra.goText;
+      if (extra.composerText) signals.composerText += "\n" + extra.composerText;
+      for (const f of extra.files) signals.files.add(f);
+      for (const [ext, count] of Object.entries(extra.extensionCounts)) {
+        signals.extensionCounts[ext] = (signals.extensionCounts[ext] || 0) + count;
+      }
+      signals.k8sManifestCount += extra.k8sManifestCount || 0;
+    }
   } catch {
     return null;
   }
@@ -1475,6 +1598,7 @@ async function activate(context) {
   duskProductIconThemeId = picId;
 
   await reconcileAutomaticModes();
+  void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(getCurrentTheme()));
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(async (e) => {
@@ -1490,6 +1614,9 @@ async function activate(context) {
       }
       if (titleBarStyleChanged && (await releaseTitleBarStyleSyncIfOverridden(context))) {
         return;
+      }
+      if (e.affectsConfiguration("workbench.colorTheme")) {
+        void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(getCurrentTheme()));
       }
       if (
         titleBarStyleChanged ||
@@ -1688,10 +1815,10 @@ function resetAllSettings(context) {
       // Clear stored values from extension state.
       await context.globalState.update(PREVIOUS_THEME_KEY, undefined);
       await context.globalState.update(FAVORITE_THEME_KEY, undefined);
-      await context.globalState.update(WORKSPACE_THEME_KEY, undefined);
       await context.globalState.update(PREVIOUS_TITLE_BAR_GLOBAL_KEY, undefined);
       await context.globalState.update(PREVIOUS_PRODUCT_ICON_KEY, undefined);
       await context.workspaceState.update(WORKSPACE_THEME_KEY, undefined);
+      await context.workspaceState.update(WORKSPACE_FINGERPRINT_KEY, undefined);
 
       vscode.window.showInformationMessage(
         "Dusk Office settings were reset to defaults successfully.",
