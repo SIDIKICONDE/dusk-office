@@ -202,6 +202,35 @@ const LIGHT_UI_OVERRIDES = {
   "textCodeBlock.background": "#f8fafc",
   "textPreformat.background": "#e2e8f0",
   "textPreformat.foreground": "#1e293b",
+
+  /** Modern VS Code 1.85+ keys — light-theme tuned. */
+  // Copilot Chat (panel) — sky accent border + cyan-700 slash command badge
+  "chat.requestBorder": "#0ea5e944",
+  "chat.slashCommandBackground": "#06b6d422",
+  "chat.slashCommandForeground": "#0369a1",
+  // Diff editor — unchanged region collapsed bar
+  "diffEditor.unchangedRegionBackground": "#f1f5f988",
+  "diffEditor.unchangedRegionForeground": "#475569dd",
+  // Action bar toggled (filter / layout buttons in active state)
+  "actionBar.toggledBackground": "#06b6d433",
+  // Testing UI — saturated WCAG AA colors on white
+  "testing.iconFailed": "#e11d48",
+  "testing.iconErrored": "#e11d48",
+  "testing.iconPassed": "#16a34a",
+  "testing.iconQueued": "#64748b",
+  "testing.iconSkipped": "#64748b",
+  "testing.iconUnset": "#94a3b8",
+  "testing.runAction": "#16a34a",
+  "testing.peekBorder": "#0ea5e966",
+  "testing.peekHeaderBackground": "#f1f5f9ee",
+  // Comments view (Comments panel)
+  "commentsView.resolvedIcon": "#16a34a",
+  "commentsView.unresolvedIcon": "#d97706",
+  // Status bar item — Profile picker badge + offline state
+  "statusBarItem.profilesBackground": "#8b5cf644",
+  "statusBarItem.profilesForeground": "#1e293b",
+  "statusBarItem.offlineBackground": "#e11d4844",
+  "statusBarItem.offlineForeground": "#1e293b",
 };
 
 /** @param {Record<string, string>} abyssColors */

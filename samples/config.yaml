@@ -7,7 +7,7 @@ defaults: &defaults
   log_level: info
   enabled: true
 
-development: &development
+development: 
   <<: *defaults
   database:
     host: localhost
@@ -508,8 +508,3 @@ explicit-seq: !!seq
   - item1
   - item2
 
-# Custom tags
-custom: !custom-tag
-  value: something
-  nested:
-    key: value

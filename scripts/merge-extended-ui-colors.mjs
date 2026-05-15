@@ -233,6 +233,16 @@ function buildExtended(p) {
     "diffEditor.insertedLineBackground": A(inserted, "22"),
     "diffEditor.removedLineBackground": A(removed, "22"),
     "diffEditor.unchangedCodeBackground": A(panel, "2a"),
+    /**
+     * Barre "X unchanged lines" affichée entre sections diff dépliées :
+     * doit rester *visible* contre `editor.background` même quand `panel`
+     * est presque identique au fond (variantes OLED comme Midnight où
+     * panel = #010102 vs editor = #020304). On utilise donc `border`
+     * (gris-bleuté palette) à 0x22 (~13%) pour un lift discret mais
+     * jamais nul. Le foreground reste à `fg` 0x88 (~53%) pour rester AA.
+     */
+    "diffEditor.unchangedRegionBackground": A(border, "22"),
+    "diffEditor.unchangedRegionForeground": A(fg, "88"),
     "diffEditor.unchangedRegionShadow": "#00000088",
     "diffEditor.move.border": A(purple, "44"),
     "diffEditor.moveActive.border": A(accentHi, "55"),
@@ -256,6 +266,11 @@ function buildExtended(p) {
     "inlineChatInput.placeholderForeground": A(fg, "aa"),
     "inlineChatDiff.inserted": A(inserted, "33"),
     "inlineChatDiff.removed": A(removed, "33"),
+
+    /** Copilot Chat (panel chat) — bordure des requêtes user et badges de slash command. */
+    "chat.requestBorder": A(accent, "44"),
+    "chat.slashCommandBackground": A(accent, "33"),
+    "chat.slashCommandForeground": accentHi,
 
     "inlineEdit.gutterIndicator.background": panel,
     "inlineEdit.gutterIndicator.primaryBackground": A(accent, "33"),
@@ -444,6 +459,8 @@ function buildExtended(p) {
 
     "toolbar.hoverBackground": A(accent, "18"),
     "toolbar.activeBackground": A(accent, "28"),
+    /** Boutons toggle des barres d'action (filtre, layout, etc.) en état actif. */
+    "actionBar.toggledBackground": A(accent, "33"),
 
     "menu.foreground": fg,
     "menu.background": widget,
@@ -475,6 +492,27 @@ function buildExtended(p) {
     "problemsWarningIcon.foreground": warning,
     "problemsInfoIcon.foreground": info,
     "profiles.sashBorder": A(border, "44"),
+
+    /** Testing UI (Test Explorer) — icônes d'état et action run. */
+    "testing.iconFailed": error,
+    "testing.iconErrored": error,
+    "testing.iconPassed": success,
+    "testing.iconQueued": A(fg, "88"),
+    "testing.iconSkipped": A(fg, "66"),
+    "testing.iconUnset": A(fg, "44"),
+    "testing.runAction": success,
+    "testing.peekBorder": A(accent, "66"),
+    "testing.peekHeaderBackground": A(widget, "ee"),
+
+    /** Comments view (Comments panel) — icônes état résolu / non résolu. */
+    "commentsView.resolvedIcon": success,
+    "commentsView.unresolvedIcon": warning,
+
+    /** Status bar item : badge profile (multi-window / profils) et badge offline. */
+    "statusBarItem.profilesBackground": A(purple, "44"),
+    "statusBarItem.profilesForeground": accentHi,
+    "statusBarItem.offlineBackground": A(error, "44"),
+    "statusBarItem.offlineForeground": fg,
 
     // Markdown preview & texte intégré (GFM : liens, citations, blocs de code, alertes)
     "textLink.foreground": accentHi,

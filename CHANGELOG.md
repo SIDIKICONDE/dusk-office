@@ -1,5 +1,23 @@
 # Changelog — Dusk Office
 
+## 1.0.0 — 15 May 2026
+
+- **Changed**: **Production-ready 1.0 release.** Marketplace metadata overhaul for better discoverability and a non-intrusive default policy.
+  - **`displayName`** shortened to `Dusk Office - 26 Pro Themes (Dark, Light, HC)` — fits Marketplace search-result truncation, ASCII dash for tokenizer compatibility, lead with `Themes` keyword.
+  - **`activationEvents`** moved from `onStartupFinished` to fully lazy `onLanguage:*` and `workspaceContains:*` events — no more startup activation penalty; commands auto-activate from `contributes.commands` (VS Code ≥ 1.74).
+  - **`keywords`** reordered with the highest-volume Marketplace search terms first (`dark theme`, `theme pack`, `light theme`, `high contrast theme`, `professional theme`).
+  - **Removed**: unused `"private": true` flag from `package.json`.
+- **Removed**: **`configurationDefaults` no longer forces 29 editor / terminal / window settings on users.** Previously the extension was silently applying `editor.cursorBlinking`, `editor.minimap.*`, `terminal.integrated.cursorStyle`, `window.dialogStyle: "custom"`, `workbench.tree.indent`, etc. as defaults — well outside the scope of a theme. The extension now only contributes the four settings strictly needed for theme rendering: `editor.semanticHighlighting.enabled`, `editor.bracketPairColorization.enabled`, `editor.bracketPairColorization.independentColorPoolPerBracketType`, and `editor.guides.bracketPairs`.
+- **Added**: **Legacy-residue cleanup in `Dusk Office: Reset All Settings`.** After the main reset succeeds, the command inspects whether any of the 29 retired default keys still have a value at User or Workspace scope (via `WorkspaceConfiguration.inspect`). If so, an opt-in second prompt offers to clear them; `Keep them` preserves them untouched (for users who set those values intentionally and unrelated to Dusk Office). The prompt never appears when there is nothing to clean.
+- **Added**: **Modern VS Code 1.85+ color keys** across all 26 themes — surfaces previously left at VS Code's default colors are now palette-coherent:
+  - **Copilot Chat**: `chat.requestBorder`, `chat.slashCommandBackground`, `chat.slashCommandForeground` — slash-command badges and user-request borders now follow each variant's accent.
+  - **Testing UI** (Test Explorer): `testing.iconFailed`, `testing.iconErrored`, `testing.iconPassed`, `testing.iconSkipped`, `testing.iconQueued`, `testing.iconUnset`, `testing.runAction`, `testing.peekBorder`, `testing.peekHeaderBackground` — palette-mapped (error / success / muted-fg).
+  - **Comments view**: `commentsView.resolvedIcon` (success), `commentsView.unresolvedIcon` (warning).
+  - **Status bar item**: `statusBarItem.profilesBackground`, `statusBarItem.profilesForeground` (profile picker badge), `statusBarItem.offlineBackground`, `statusBarItem.offlineForeground` (offline indicator).
+  - **Diff editor**: `diffEditor.unchangedRegionBackground`, `diffEditor.unchangedRegionForeground` — collapsed unchanged-region bar and label.
+  - **Action bar**: `actionBar.toggledBackground` — active state of toolbar toggle buttons (filter, layout, etc.).
+  - Pipeline coverage: 11 palette dark variants get them automatically via `scripts/merge-extended-ui-colors.mjs`; flagship `dusk.json` carries explicit hex values that propagate to the 10 non-palette dark variants via `include`; `dusk-light.json` and `dusk-ivoire.json` get light-tuned variants (sky / cyan-700, slate-500/600, rose-600 for failed, green-600 for passed) via `scripts/build-dusk-light.mjs`.
+
 ## 0.9.31 — 12 May 2026
 
 - **Changed**: **Dark theme harmonisation — all 20 dark variants now follow a unified "muted professional" colour profile.** Previously some themes used vivid/neon accents (Tailwind 400-level: `#22d3ee`, `#4ade80`, `#00f5ff`, `#ff2d8a`, `#33ff00`) while others were already subdued (`#d4a853`, `#8b4a5a`, `#8fbdbc`), producing a jarring mix. Every dark variant now sits in the 30–55 % HSL saturation band — the same range used by the already-muted Nocturne, Finance, Corporate, Secure, Vault, Sentinel, Steward and Luxe themes. Each variant keeps its hue identity (cyan, green, purple, gold, rose…) but in a tone that no longer "taps on the eyes" during long sessions.

@@ -1749,6 +1749,45 @@ async function verifyTerminalContrast(context) {
   }
 }
 
+/**
+ * Editor / UI keys that previous Dusk Office versions (≤ 0.9.31) injected via
+ * `contributes.configurationDefaults`. The newer extension no longer ships these
+ * defaults, so VS Code falls back to its own defaults — BUT any value an upgrading
+ * user explicitly stored in their User or Workspace settings.json will linger.
+ * `resetAllSettings` offers an opt-in cleanup for these residues.
+ */
+const LEGACY_CONFIGURATION_DEFAULTS_KEYS = [
+  "editor.guides.bracketPairsHorizontal",
+  "editor.guides.highlightActiveIndentation",
+  "editor.renderLineHighlight",
+  "editor.selectionHighlight",
+  "editor.linkedEditing",
+  "editor.roundedSelection",
+  "editor.colorDecorators",
+  "editor.overviewRulerBorder",
+  "editor.padding.top",
+  "editor.padding.bottom",
+  "editor.cursorBlinking",
+  "editor.cursorSmoothCaretAnimation",
+  "editor.cursorWidth",
+  "editor.smoothScrolling",
+  "editor.stickyScroll.enabled",
+  "editor.minimap.enabled",
+  "editor.minimap.showSlider",
+  "editor.minimap.renderCharacters",
+  "editor.minimap.maxColumn",
+  "terminal.integrated.cursorStyle",
+  "terminal.integrated.cursorWidth",
+  "terminal.integrated.smoothScrolling",
+  "terminal.integrated.gpuAcceleration",
+  "workbench.list.smoothScrolling",
+  "workbench.tree.renderIndentGuides",
+  "workbench.tree.indent",
+  "window.dialogStyle",
+  "explorer.decorations.badges",
+  "explorer.decorations.colors",
+];
+
 function resetAllSettings(context) {
   const workbenchConfig = getWorkbenchConfig();
   const duskConfig = getExtensionConfig();
@@ -1820,10 +1859,48 @@ function resetAllSettings(context) {
       await context.workspaceState.update(WORKSPACE_THEME_KEY, undefined);
       await context.workspaceState.update(WORKSPACE_FINGERPRINT_KEY, undefined);
 
+      // Detect leftover editor/UI keys previously injected as defaults by older versions.
+      // Only flag values explicitly set at User (Global) or Workspace scope — never
+      // language-scoped or default values, which the user did not author.
+      const rootConfig = vscode.workspace.getConfiguration();
+      const legacyResiduesGlobal = [];
+      const legacyResiduesWorkspace = [];
+      for (const key of LEGACY_CONFIGURATION_DEFAULTS_KEYS) {
+        const inspected = rootConfig.inspect(key);
+        if (!inspected) continue;
+        if (inspected.globalValue !== undefined) legacyResiduesGlobal.push(key);
+        if (hasWorkspace && inspected.workspaceValue !== undefined) {
+          legacyResiduesWorkspace.push(key);
+        }
+      }
+      const legacyResidueCount = legacyResiduesGlobal.length + legacyResiduesWorkspace.length;
+
       vscode.window.showInformationMessage(
         "Dusk Office settings were reset to defaults successfully.",
         "OK"
       );
+
+      if (legacyResidueCount > 0) {
+        const cleanupChoice = await vscode.window.showWarningMessage(
+          `Older Dusk Office versions applied ${LEGACY_CONFIGURATION_DEFAULTS_KEYS.length} editor / terminal / window tweaks as defaults (cursor blink, minimap, dialog style, etc.). ` +
+            `${legacyResidueCount} of them are still present in your User or Workspace settings.\n\n` +
+            "Clear those too? Choose 'Keep them' if you set them intentionally and unrelated to Dusk Office.",
+          "Clear legacy tweaks",
+          "Keep them"
+        );
+        if (cleanupChoice === "Clear legacy tweaks") {
+          for (const key of legacyResiduesGlobal) {
+            await safeUpdate(rootConfig, key, vscode.ConfigurationTarget.Global);
+          }
+          for (const key of legacyResiduesWorkspace) {
+            await safeUpdate(rootConfig, key, vscode.ConfigurationTarget.Workspace);
+          }
+          void vscode.window.showInformationMessage(
+            `Cleared ${legacyResidueCount} legacy Dusk Office tweak${legacyResidueCount === 1 ? "" : "s"}.`,
+            "OK"
+          );
+        }
+      }
     } catch (error) {
       vscode.window.showErrorMessage(
         `Dusk Office reset failed: ${error?.message ?? String(error)}`,
