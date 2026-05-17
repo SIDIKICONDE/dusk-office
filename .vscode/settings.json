@@ -28,5 +28,11 @@
   "workbench.tree.indent": 14,
   "window.dialogStyle": "custom",
   "explorer.decorations.badges": true,
-  "explorer.decorations.colors": true
+  "explorer.decorations.colors": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["ansi-language-configuration.json"],
+      "url": "https://raw.githubusercontent.com/nicolo-ribaudo/vscode/language-configuration-schema/language-configuration.schema.json"
+    }
+  ]
 }

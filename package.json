@@ -86,8 +86,14 @@
     "languages": [
       {
         "id": "ansi",
-        "aliases": ["ANSI Log", "ANSI Text"],
-        "extensions": [".ansi", ".ans"],
+        "aliases": [
+          "ANSI Log",
+          "ANSI Text"
+        ],
+        "extensions": [
+          ".ansi",
+          ".ans"
+        ],
         "configuration": "./ansi-language-configuration.json"
       }
     ],
@@ -487,9 +493,14 @@
         },
         "duskOffice.editorAnsi.languageIds": {
           "type": "array",
-          "default": ["log", "ansi"],
+          "default": [
+            "log",
+            "ansi"
+          ],
           "order": 48,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Language IDs used for ANSI coloring when editorAnsi.allLanguages is false (e.g. log, ansi, plaintext)."
         },
         "duskOffice.editorAnsi.maxLineCount": {
@@ -745,6 +756,7 @@
     "publish:vsce": "npx --no-install @vscode/vsce publish --packagePath dusk-office-$npm_package_version.vsix",
     "publish:ovsx": "npx --no-install ovsx publish dusk-office-$npm_package_version.vsix",
     "publish:all": "npm run publish:vsce && npm run publish:ovsx",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js",
     "tag:release": "git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push origin v$npm_package_version"
   },
   "devDependencies": {

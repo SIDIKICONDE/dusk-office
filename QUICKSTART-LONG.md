@@ -10,7 +10,7 @@
 
 **Open VSX:** [dekidev.dusk-office](https://open-vsx.org/extension/dekidev/dusk-office)
 
-<span style="color:#4ec9b0">◆</span> <span style="color:#569cd6">Dream</span> <span style="color:#c586c0">in</span> <span style="color:#ce9178">color</span> <span style="color:#dcdcaa">◆</span>
+◆ Dream in color ◆
 
 ## Overview
 
@@ -24,7 +24,7 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 
 ## Highlights
 
-- <span style="color:#4ec9b0">Dark themes</span> for daily work
+- **Dark themes** for daily work
 - **Complete UI theming** — title bar, sidebar, panel, tabs, notifications, status bar, activity bar
 - **Markdown preview** — `textLink`, block quotes, fenced code (`textCodeBlock` / `textPreformat`), and GFM **markdownAlert** (note / tip / important / warning / caution) aligned with each variant's palette; if you install **Markdown All in One**, it adds shortcuts, snippets, and list/table helpers for `.md` files
 - **Advanced semantic tokens** — const/let/var differentiation, async functions, decorators, type parameters
@@ -44,41 +44,41 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 ## Included Themes
 
 | Theme | Style |
-|------|------|
-| <span style="color:#4ec9b0">**Dusk Office**</span> | Core dark theme with cyan and pink accents. |
-| <span style="color:#569cd6">**Dusk Office Abyss**</span> | Deep blue night palette with vivid cyan highlights. |
-| <span style="color:#ce9178">**Dusk Office Dawn**</span> | Brighter dark surfaces with bold syntax contrast. |
-| <span style="color:#6a9955">**Dusk Office Bay**</span> | Lagoon-inspired green tones and fresh chrome. |
-| <span style="color:#808080">**Dusk Office Mist**</span> | Slate blue-gray palette with balanced contrast. |
-| <span style="color:#9cdcfe">**Dusk Office Ash**</span> | Neutral gray theme with a clean console feel. |
-| <span style="color:#d4d4d4">**Dusk Office Midnight**</span> | Very dark variant, ideal for OLED-style setups. |
-| <span style="color:#c586c0">**Dusk Office Nebula**</span> | Purple and mauve accents with a richer atmosphere. |
-| <span style="color:#00ffff">**Dusk Office Reef**</span> | Bright cyan neon energy and stronger borders. |
-| <span style="color:#dcdcaa">**Dusk Office Nocturne**</span> | Warm vintage terminal aesthetic with amber and copper accents. |
-| <span style="color:#ffd700">**Dusk Office Finance**</span> | Premium banking aesthetic with gold, deep green and navy accents. |
-| <span style="color:#8b2942">**Dusk Office Corporate**</span> | Sophisticated burgundy-wine theme with refined gold touches. |
-| <span style="color:#a3e635">**Dusk Office Voltage**</span> | Graphite-dark theme with electric lime focus, glacial aqua signals, and coral alert accents. |
-| <span style="color:#ff2d8a">**Dusk Office Neon**</span> | Cyberpunk neon — hot magenta keywords, electric blue strings, dark purple-black base. |
-| <span style="color:#d4af37">**Dusk Office Luxe**</span> | Luxury futuriste — champagne gold accents, rose gold highlights, obsidian surfaces, platinum info. |
-| <span style="color:#ffd700">**Dusk Office Or**</span> | Deep bronze-gold — antique gold accents on obsidian, warm parchment text, treasury-grade calm. |
-| <span style="color:#33ff00">**Dusk Office Terminal**</span> | Hacker terminal — phosphor green on black, amber warnings, CRT-style monochrome energy. |
-| <span style="color:#dec692">**Dusk Office Steward**</span> | Professional dark theme for long sessions — muted gold focus, steel-blue signals, and calm corporate contrast. |
-| <span style="color:#658297">**Dusk Office Ledger**</span> | Soft finance light theme — paper-like surfaces, blue-gray structure, and reduced glare for prolonged reading. |
-| <span style="color:#8fbdbc">**Dusk Office Secure**</span> | Calm security / SOC dark theme — desaturated teal guidance, restrained amber warnings, and low-fatigue monitoring contrast. |
-| <span style="color:#dcc894">**Dusk Office Vault**</span> | Banking / treasury dark theme — executive-grade gold focus, slate-blue structure, and premium boardroom calm. |
-| <span style="color:#556f83">**Dusk Office Audit**</span> | Audit-focused light theme — reduced glare, analytical blue-gray structure, and clean spreadsheet-friendly scanning. |
-| <span style="color:#8fbfc0">**Dusk Office Sentinel**</span> | Cybersecurity dark theme — watchful teal guidance, disciplined alerts, and stable SOC-style monitoring contrast. |
-| <span style="color:#5c6773">**Dusk Office Light**</span> | Cool, neutral light theme for daytime work. **Built** from Dusk Office Abyss (`npm run build:light`) — mechanical light remap + UI overrides. |
-| <span style="color:#b58900">**Dusk Office Ivory**</span> | Warm paper-like light theme with copper accents. |
-| <span style="color:#d4b483">**Dusk Office Dark Ivory**</span> | Warm dark companion to Ivory with cream text. |
-| <span style="color:#ffffff;background:#000000;padding:2px 4px;border-radius:3px">**Dusk Office High Contrast**</span> | Stronger separation and clearer focus states. |
+| ------ | ------ |
+| **Dusk Office** | Core dark theme with cyan and pink accents. |
+| **Dusk Office Abyss** | Deep blue night palette with vivid cyan highlights. |
+| **Dusk Office Dawn** | Brighter dark surfaces with bold syntax contrast. |
+| **Dusk Office Bay** | Lagoon-inspired green tones and fresh chrome. |
+| **Dusk Office Mist** | Slate blue-gray palette with balanced contrast. |
+| **Dusk Office Ash** | Neutral gray theme with a clean console feel. |
+| **Dusk Office Midnight** | Very dark variant, ideal for OLED-style setups. |
+| **Dusk Office Nebula** | Purple and mauve accents with a richer atmosphere. |
+| **Dusk Office Reef** | Bright cyan neon energy and stronger borders. |
+| **Dusk Office Nocturne** | Warm vintage terminal aesthetic with amber and copper accents. |
+| **Dusk Office Finance** | Premium banking aesthetic with gold, deep green and navy accents. |
+| **Dusk Office Corporate** | Sophisticated burgundy-wine theme with refined gold touches. |
+| **Dusk Office Voltage** | Graphite-dark theme with electric lime focus, glacial aqua signals, and coral alert accents. |
+| **Dusk Office Neon** | Cyberpunk neon — hot magenta keywords, electric blue strings, dark purple-black base. |
+| **Dusk Office Luxe** | Luxury futuriste — champagne gold accents, rose gold highlights, obsidian surfaces, platinum info. |
+| **Dusk Office Or** | Deep bronze-gold — antique gold accents on obsidian, warm parchment text, treasury-grade calm. |
+| **Dusk Office Terminal** | Hacker terminal — phosphor green on black, amber warnings, CRT-style monochrome energy. |
+| **Dusk Office Steward** | Professional dark theme for long sessions — muted gold focus, steel-blue signals, and calm corporate contrast. |
+| **Dusk Office Ledger** | Soft finance light theme — paper-like surfaces, blue-gray structure, and reduced glare for prolonged reading. |
+| **Dusk Office Secure** | Calm security / SOC dark theme — desaturated teal guidance, restrained amber warnings, and low-fatigue monitoring contrast. |
+| **Dusk Office Vault** | Banking / treasury dark theme — executive-grade gold focus, slate-blue structure, and premium boardroom calm. |
+| **Dusk Office Audit** | Audit-focused light theme — reduced glare, analytical blue-gray structure, and clean spreadsheet-friendly scanning. |
+| **Dusk Office Sentinel** | Cybersecurity dark theme — watchful teal guidance, disciplined alerts, and stable SOC-style monitoring contrast. |
+| **Dusk Office Light** | Cool, neutral light theme for daytime work. **Built** from Dusk Office Abyss (`npm run build:light`) — mechanical light remap + UI overrides. |
+| **Dusk Office Ivory** | Warm paper-like light theme with copper accents. |
+| **Dusk Office Dark Ivory** | Warm dark companion to Ivory with cream text. |
+| **Dusk Office High Contrast** | Stronger separation and clearer focus states. |
 
 ### High Contrast — contrast targets
 
 **Dusk Office High Contrast** is tuned for **WCAG 2.1**-style contrast on critical UI pairs (normal text **≥ 4.5:1** AA; where possible **≥ 7:1** AAA for primary reading and selection):
 
 | Pair | Target |
-|------|--------|
+| ------ | -------- |
 | Default editor text / background | `#ffffff` on `#000000` (ratio **≥ 21:1**) |
 | Selection text / selection fill | `#ffffff` on `#264f78` (aim **≥ 7:1** — AAA for body-sized text) |
 | Focus rings (`focusBorder`, list focus) | **Yellow** (`#ffff00`) or **cyan** on black for keyboard / focus visibility |
@@ -121,7 +121,7 @@ Open the Command Palette and run `Dusk Office: Control Center`, or use the statu
 Registered in `package.json` → `contributes.commands`. Use these IDs in `keybindings.json`, tasks, or automation.
 
 | Command ID | Palette title |
-|------------|----------------|
+| ------------ | ---------------- |
 | `duskOffice.openControlCenter` | Dusk Office: Control Center |
 | `duskOffice.switchThemeVariant` | Dusk Office: Choose Theme |
 | `duskOffice.switchToPreviousTheme` | Dusk Office: Previous Theme |
@@ -141,7 +141,7 @@ Registered in `package.json` → `contributes.commands`. Use these IDs in `keybi
 Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 
 | Key | Default | Description |
-|-----|---------|-------------|
+| ----- | --------- | ------------- |
 | `duskOffice.applyFavoriteOnStartup` | `false` | Apply the favorite theme on startup. |
 | `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |
 | `duskOffice.statusBar.enabled` | `true` | Show the Dusk Office status bar button. |
@@ -174,7 +174,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 ### Source of truth (repo)
 
 | What | Where |
-|------|--------|
+| ------ | -------- |
 | Color theme list & JSON paths | [`package.json`](./package.json) → `contributes.themes` (16 themes) |
 | Product icon theme | [`package.json`](./package.json) → `contributes.productIconThemes` (`dusk-office-product` → **Dusk Office · Product**) |
 | Theme names for picker, favorite, auto-switch | [`extension.js`](./extension.js) → `THEME_VARIANTS` (keep in sync with `package.json` labels) |
@@ -204,7 +204,7 @@ Integrated terminal uses **`terminal.background`** = **`panel`** and **`terminal
 ### Dark variants — `panel` and default text (`fg`)
 
 | Variant | `panel` (terminal bg) | `fg` (default terminal text) |
-|---------|------------------------|------------------------------|
+| --------- | ------------------------ | ------------------------------ |
 | Midnight | `#010102` | `#d1e0e8` |
 | Abyss | `#030810` | `#cfe8f0` |
 | Reef | `#011018` | `#cffafe` |
@@ -224,7 +224,7 @@ Integrated terminal uses **`terminal.background`** = **`panel`** and **`terminal
 All themes include a complete ANSI color palette (exact hex depends on variant):
 
 | Color | Standard | Bright |
-|-------|----------|--------|
+| ------- | ---------- | -------- |
 | Black | `#1e1e1e` | `#6b7280` |
 | Red | `#f87171` | `#fca5a5` |
 | Green | `#22c55e` | `#86efac` |
@@ -240,6 +240,7 @@ Terminal cursor and selection colors match the active theme accent.
 
 **For users (public):**
 Run the built-in VS Code command:
+
 - `Cmd/Ctrl + Shift + P` -> `Dusk Office: Verify Terminal Contrast`
 
 This displays contrast ratios for all Dusk Office themes and confirms WCAG AA compliance (4.5:1 minimum).
@@ -258,6 +259,7 @@ This verifies **`terminal.foreground`** vs **`terminal.background`** (WCAG **4.5
 
 **For users (public):**
 Run the built-in VS Code command:
+
 - `Cmd/Ctrl + Shift + P` -> `Dusk Office: Reset All Settings`
 
 This completely resets all Dusk Office settings and returns to VS Code defaults, including themes, product icons, activity bar position, auto switch, adaptive focus settings, and all stored preferences.

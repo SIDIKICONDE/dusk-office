@@ -40,6 +40,7 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 `scripts/enhance-themes.mjs` adds six feature sets to all themes:
 
 ### 1. Advanced Semantic Tokens
+
 - Variable kinds: `const` (bold/purple), `let` (normal), `var` (italic)
 - Function modifiers: `async` (italic), `static` (italic), `private` (italic)
 - Types: class, interface, struct, enum, type aliases, type parameters
@@ -47,6 +48,7 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 - Language-specific: Rust lifetimes, Python decorators, JSX/TSX tags
 
 ### 2. Git Integration Colors
+
 - Gutter: `editorGutter.modifiedBackground`, `addedBackground`, `deletedBackground`
 - Explorer: `gitDecoration.*` for file status
 - SCM: graph colors, history additions/deletions
@@ -54,12 +56,14 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 - Merge: current/incoming/common headers and content
 
 ### 3. Terminal ANSI Palette
+
 - Standard: black, red, green, yellow, blue, magenta, cyan, white
 - Bright: brightBlack through brightWhite
 - Cursor: foreground, background
 - Selection and find highlights
 
 ### 4. UI Colors
+
 - Title bar: active/inactive backgrounds and foregrounds
 - Sidebar: background, foreground, section headers, drop feedback
 - Panel: background, borders, titles, section headers
@@ -73,6 +77,7 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 - Command center, quick input, inputs, dropdowns, checkboxes, buttons, badges, scrollbars
 
 ### 5. Editor Enhancements
+
 - Line highlight: background and border
 - Selection: active/inactive, highlight, line background
 - Search: match and highlight backgrounds/borders
@@ -84,6 +89,7 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 - Ghost text, sticky scroll, whitespace
 
 ### 6. Workspace Trust Colors
+
 - Trust indicators: background and foreground for trusted/untrusted/partial
 - Banner: background, foreground, icon
 - Editor trust: untrusted content banners and borders
@@ -106,7 +112,7 @@ Run once after creating or modifying themes. Handles `include`-based themes (dus
 ## Themes outside the dark pipeline
 
 | File | Role |
-|------|------|
+| ------ | ------ |
 | `themes/dusk.json` | Empty base (schema, dark type); `include` anchor. |
 | `themes/dusk-hc.json` | **`theme-sources/dusk-hc.json`** → **`npm run build:hc`** copies to `themes/`. `include` Abyss + HC overrides: selection (`#264f78` + white text), **minimap** markers, **inline chat** / **inline edit**, **peek** view, **notebook** cell chrome, **editorOverviewRuler** inline-chat markers, **list** focus outline, **text** links. See README *High Contrast — contrast targets* for WCAG-oriented pairs. |
 | `themes/dusk-light.json` | Built by **`npm run build:light`** (`scripts/build-dusk-light.mjs`) — see **Dusk Office Light** below. |

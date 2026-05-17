@@ -10,6 +10,7 @@
 Built for developers who want readable code, coherent chrome across the editor and workbench, OLED-friendly night variants, clean daytime options, and theme automation that stays local to the extension.
 
 **Why Dusk Office:**
+
 - **One family, 27 variants** — dark, light, warm, and high-contrast options that still feel related instead of random skins
 - **Readable by design** — semantic highlighting, workbench polish, and terminal contrast checks tuned for long sessions
 - **Workspace Fingerprint** — on first open, Dusk Office detects your project type (fintech, audit, cybersecurity, ML/data, modern web, frontend, CLI) from `package.json`/`Cargo.toml`/`pyproject.toml`/etc. and suggests the variant tuned for that context (Vault, Audit, Sentinel, Steward, Voltage, Nocturne, Terminal). Local-only, opt-out via `duskOffice.workspaceFingerprint.enabled`.
@@ -25,11 +26,11 @@ This **README** is the primary documentation (GitHub and Marketplace). **Public 
 ## Screenshots
 
 | Dusk Office Midnight | Dusk Office Abyss | Dusk Office Nocturne |
-|:---:|:---:|:---:|
+| :---: | :---: | :---: |
 | ![Midnight](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-01.jpg) | ![Abyss](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-02.jpg) | ![Nocturne](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-03.jpg) |
 
 | Dusk Office Finance | Dusk Office Ivory |
-|:---:|:---:|
+| :---: | :---: |
 | ![Finance](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-04.jpg) | ![Ivory](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-05.jpg) |
 
 ---
@@ -37,11 +38,13 @@ This **README** is the primary documentation (GitHub and Marketplace). **Public 
 ## Install
 
 **From Marketplace:**
+
 1. Extensions panel → Search `Dusk Office` → **Install**
 2. Optional companions only: add Material Icon Theme for file/folder icons or Markdown All in One for Markdown editing if you want them
 3. Pick any `Dusk Office` variant from `Preferences: Color Theme`
 
 **From VSIX:**
+
 ```bash
 # Download from GitHub releases, then:
 code --install-extension dusk-office-*.vsix
@@ -52,10 +55,12 @@ code --install-extension dusk-office-*.vsix
 ## Switch Theme
 
 **Command Palette:**
+
 1. `Cmd/Ctrl + Shift + P` → `Preferences: Color Theme`
 2. Pick any `Dusk Office` variant
 
 **Control Center (recommended):**
+
 - `Cmd/Ctrl + Shift + P` → `Dusk Office: Control Center`
 - Or click the status bar entry (enable with `duskOffice.statusBar.enabled`)
 - Quick actions: switch theme, previous, favorite, auto switch, adaptive focus toggle, apply adaptive theme now, adaptive focus settings, product icons, activity bar position, title bar align, status bar button, workspace theme memory, settings
@@ -65,7 +70,7 @@ code --install-extension dusk-office-*.vsix
 ## Pick a Variant
 
 | If you want... | Use |
-|---|---|
+| --- | --- |
 | Very dark, OLED-friendly | **Dusk Office Midnight** |
 | Vivid blue-cyan contrast | **Dusk Office Abyss** |
 | Warm vintage terminal | **Dusk Office Nocturne** |
@@ -101,9 +106,11 @@ Open settings (`Cmd/Ctrl + ,`) and search `Dusk Office`:
 To completely reset all Dusk Office settings and return to VS Code defaults:
 
 **Command Palette:**
+
 - `Cmd/Ctrl + Shift + P` -> `Dusk Office: Reset All Settings`
 
 This will:
+
 - Return to VS Code default theme
 - Reset product icons to default
 - Reset activity bar position to default
@@ -111,6 +118,7 @@ This will:
 - Remove workspace-specific settings
 
 **Use this when:**
+
 - You want to start fresh with Dusk Office
 - Settings are corrupted or not working
 - You're uninstalling and want clean removal
@@ -131,8 +139,6 @@ This will:
 
 **🛠️ [NythyCleaner](https://nythycleaner.cloud)** — Native macOS utility for developers. Xcode cleanup, disk scanner, AI duplicate detection, real-time monitoring.
 
-<a href="https://nythycleaner.cloud">
-  <img src="https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/nythycleaner-logo.png" alt="NythyCleaner logo" width="72" />
-</a>
+[![NythyCleaner logo](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/nythycleaner-logo.png)](https://nythycleaner.cloud)
 
 *Sponsored by our own Mac utility — [NythyCleaner](https://nythycleaner.cloud)*
