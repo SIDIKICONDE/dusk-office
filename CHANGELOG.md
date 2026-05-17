@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 1.1.0 — 17 May 2026
+
+- **Fixed**: **Markdown illisible sur les thèmes clairs** (Light, Ivory) après `npm run variants:ui`. Le build conservait des `tokenColors` hérités du pipeline sombre (`#d1e0e8`, etc.) — gras, italique, ponctuation et sémantique quasi invisibles sur fond clair. Nouveau `scripts/fix-light-syntax.mjs` ; appliqué par `build-dusk-light.mjs` et `build-dusk-ivoire.mjs`.
+- **Changed**: **`npm run variants:ui`** régénère désormais **Light** et **Ivory** (`build:light` + `build:ivoire`) pour garder preview Markdown (`textLink.*`, `textCodeBlock.*`) et syntaxe éditeur alignées sur Abyss après chaque merge UI sombre.
+- **Docs**: **Adaptive Focus** — walkthrough, `QUICKSTART-LONG.md` et landing `docs/` alignés sur `ADAPTIVE_LANGUAGE_RULES` dans `extension.js` (tableau langue/jour/nuit, priorité lock / confort nocturne, distinction vs Workspace Fingerprint).
+
 ## 1.0.0 — 15 May 2026
 
 - **Changed**: **Production-ready 1.0 release.** Marketplace metadata overhaul for better discoverability and a non-intrusive default policy.

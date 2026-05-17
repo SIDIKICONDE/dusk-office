@@ -6,6 +6,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -91,6 +92,9 @@ const SYNTAX_LIGHT_TO_IVOIRE = {
   "334155": "3d352c",
   "9a3412": "85330f",
   "1e293b": "2a2420",
+  d1e0e8: "2a2420",
+  d0dce4: "2a2420",
+  cfe8f0: "2a2420",
   "be185d": "9d1748",
   "a16207": "7a5206",
 };
@@ -210,6 +214,7 @@ function main() {
   };
 
   applyIvoireContrast(out);
+  normalizeLightSyntax(out);
 
   const dest = path.join(root, "themes/dusk-ivoire.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");

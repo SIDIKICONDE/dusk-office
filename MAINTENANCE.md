@@ -27,7 +27,7 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 
 ## Script order (dark variants)
 
-1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into `dusk-*.json` (except `dusk.json`, `dusk-hc.json`, `dusk-light.json`). Includes **Markdown preview** tokens (`textLink.*`, `textBlockQuote.*`, `textCodeBlock.*`, `textPreformat.*`, `markdownAlert.*`) derived from each palette.
+1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into les variantes palette sombres, puis **régénère Light et Ivory** (`build:light`, `build:ivoire`) pour que le Markdown (preview + `markup.*` en éditeur) reste lisible. Inclut les tokens preview (`textLink.*`, `textBlockQuote.*`, `textCodeBlock.*`, `textPreformat.*`).
 2. **`npm run variants:syntax`** — updates `tokenColors` / `semanticTokenColors` for variants listed in the script.
 3. **`node scripts/enhance-themes.mjs`** — adds advanced semantic tokens, Git colors, and terminal ANSI palette to all themes.
 4. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.

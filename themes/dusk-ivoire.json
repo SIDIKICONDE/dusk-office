@@ -427,7 +427,7 @@
         "punctuation.squarebracket"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#2a2420"
       }
     },
     {
@@ -834,7 +834,7 @@
         "punctuation.delimiter"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#2a2420"
       }
     },
     {
@@ -843,7 +843,7 @@
         "punctuation.section.function"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#2a2420"
       }
     },
     {
@@ -1019,7 +1019,7 @@
         "markup.bold.string"
       ],
       "settings": {
-        "foreground": "#d1e0e8",
+        "foreground": "#2a2420",
         "fontStyle": "bold"
       }
     },
@@ -1029,7 +1029,7 @@
         "markup.italic.string"
       ],
       "settings": {
-        "foreground": "#d1e0e8",
+        "foreground": "#2a2420",
         "fontStyle": "italic"
       }
     },
@@ -1180,7 +1180,7 @@
         "markup.strikethrough"
       ],
       "settings": {
-        "foreground": "#d1e0e8",
+        "foreground": "#2a2420",
         "fontStyle": "strikethrough"
       }
     }
@@ -1266,7 +1266,7 @@
     "variable.readonly.global": "#7c3aed",
     "variable.readonly.member": "#8b5cf6",
     "variable.mutable": {
-      "foreground": "#b8d4e4",
+      "foreground": "#2a2420",
       "underline": true
     },
     "variable.constant": {
@@ -1277,9 +1277,9 @@
       "foreground": "#9333ea",
       "bold": true
     },
-    "variable.declaration.let": "#b8d4e4",
+    "variable.declaration.let": "#2a2420",
     "variable.declaration.var": {
-      "foreground": "#b8d4e4",
+      "foreground": "#2a2420",
       "italic": true
     },
     "function.definition": "#22d3ee",
@@ -1398,7 +1398,7 @@
       "italic": true
     },
     "comment.todo": {
-      "foreground": "#fbbf24",
+      "foreground": "#2a2420",
       "bold": true
     },
     "comment.note": {
@@ -1406,18 +1406,18 @@
       "italic": true
     },
     "comment.warning": {
-      "foreground": "#fbbf24",
+      "foreground": "#2a2420",
       "bold": true
     },
     "comment.error": {
       "foreground": "#f87171",
       "bold": true
     },
-    "punctuation": "#d1e0e8",
-    "punctuation.bracket": "#d1e0e8",
+    "punctuation": "#2a2420",
+    "punctuation.bracket": "#2a2420",
     "punctuation.bracket.angle": "#22d3ee",
-    "punctuation.delimiter": "#d1e0e8",
-    "punctuation.separator": "#d1e0e8",
+    "punctuation.delimiter": "#2a2420",
+    "punctuation.separator": "#2a2420",
     "*.readonly": {
       "underline": true
     },
