@@ -736,7 +736,7 @@
     "push:safe": "npm run push:main:safe",
     "push:main:auto": "node scripts/auto-push-main.mjs --yes",
     "push:main:safe": "node scripts/auto-push-main.mjs",
-    "variants:ui": "node scripts/merge-extended-ui-colors.mjs",
+    "variants:ui": "node scripts/merge-extended-ui-colors.mjs && npm run build:light && npm run build:ivoire",
     "soften:borders": "node scripts/soften-chrome-borders.mjs",
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",

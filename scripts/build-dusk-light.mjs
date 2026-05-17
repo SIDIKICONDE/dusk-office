@@ -34,6 +34,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { luminanceFromHex } from "./color-utils.mjs";
+import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -362,6 +363,7 @@ function main() {
   };
 
   applyLightUiOverrides(theme);
+  normalizeLightSyntax(theme);
 
   fs.writeFileSync(LIGHT_OUT_PATH, JSON.stringify(theme, null, 2) + "\n", "utf8");
   console.log("OK", LIGHT_OUT_PATH, Object.keys(theme.colors).length, "couleurs");

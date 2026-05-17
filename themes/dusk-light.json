@@ -427,7 +427,7 @@
         "punctuation.squarebracket"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#1e293b"
       }
     },
     {
@@ -834,7 +834,7 @@
         "punctuation.delimiter"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#1e293b"
       }
     },
     {
@@ -843,7 +843,7 @@
         "punctuation.section.function"
       ],
       "settings": {
-        "foreground": "#d1e0e8"
+        "foreground": "#1e293b"
       }
     },
     {
@@ -1180,7 +1180,7 @@
         "markup.strikethrough"
       ],
       "settings": {
-        "foreground": "#d1e0e8",
+        "foreground": "#1e293b",
         "fontStyle": "strikethrough"
       }
     },
@@ -1537,7 +1537,7 @@
     "variable.readonly.global": "#7c3aed",
     "variable.readonly.member": "#8b5cf6",
     "variable.mutable": {
-      "foreground": "#b8d4e4",
+      "foreground": "#1e293b",
       "underline": true
     },
     "variable.constant": {
@@ -1548,9 +1548,9 @@
       "foreground": "#9333ea",
       "bold": true
     },
-    "variable.declaration.let": "#b8d4e4",
+    "variable.declaration.let": "#1e293b",
     "variable.declaration.var": {
-      "foreground": "#b8d4e4",
+      "foreground": "#1e293b",
       "italic": true
     },
     "function.definition": "#22d3ee",
@@ -1669,7 +1669,7 @@
       "italic": true
     },
     "comment.todo": {
-      "foreground": "#fbbf24",
+      "foreground": "#1e293b",
       "bold": true
     },
     "comment.note": {
@@ -1677,18 +1677,18 @@
       "italic": true
     },
     "comment.warning": {
-      "foreground": "#fbbf24",
+      "foreground": "#1e293b",
       "bold": true
     },
     "comment.error": {
       "foreground": "#f87171",
       "bold": true
     },
-    "punctuation": "#d1e0e8",
-    "punctuation.bracket": "#d1e0e8",
+    "punctuation": "#1e293b",
+    "punctuation.bracket": "#1e293b",
     "punctuation.bracket.angle": "#22d3ee",
-    "punctuation.delimiter": "#d1e0e8",
-    "punctuation.separator": "#d1e0e8",
+    "punctuation.delimiter": "#1e293b",
+    "punctuation.separator": "#1e293b",
     "*.readonly": {
       "underline": true
     },
