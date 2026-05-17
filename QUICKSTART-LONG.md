@@ -1,6 +1,6 @@
 # Dusk Office — Extended guide
 
-**Dusk Office** is a theme suite for **Visual Studio Code**, **Cursor**, and **Windsurf** with **26 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI theming**, and an optional **product icon theme**.
+**Dusk Office** is a theme suite for **Visual Studio Code**, **Cursor**, and **Windsurf** with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI theming**, and an optional **product icon theme**.
 
 **Public copy of this guide:** [dusk-office-docs/QUICKSTART-LONG.md](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/QUICKSTART-LONG.md).
 
@@ -60,6 +60,7 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 | <span style="color:#a3e635">**Dusk Office Voltage**</span> | Graphite-dark theme with electric lime focus, glacial aqua signals, and coral alert accents. |
 | <span style="color:#ff2d8a">**Dusk Office Neon**</span> | Cyberpunk neon — hot magenta keywords, electric blue strings, dark purple-black base. |
 | <span style="color:#d4af37">**Dusk Office Luxe**</span> | Luxury futuriste — champagne gold accents, rose gold highlights, obsidian surfaces, platinum info. |
+| <span style="color:#ffd700">**Dusk Office Or**</span> | Deep bronze-gold — antique gold accents on obsidian, warm parchment text, treasury-grade calm. |
 | <span style="color:#33ff00">**Dusk Office Terminal**</span> | Hacker terminal — phosphor green on black, amber warnings, CRT-style monochrome energy. |
 | <span style="color:#dec692">**Dusk Office Steward**</span> | Professional dark theme for long sessions — muted gold focus, steel-blue signals, and calm corporate contrast. |
 | <span style="color:#658297">**Dusk Office Ledger**</span> | Soft finance light theme — paper-like surfaces, blue-gray structure, and reduced glare for prolonged reading. |

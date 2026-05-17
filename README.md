@@ -5,12 +5,12 @@
 [![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 [![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX)](https://open-vsx.org/extension/dekidev/dusk-office)
 
-**Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** with **26 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
+**Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
 
 Built for developers who want readable code, coherent chrome across the editor and workbench, OLED-friendly night variants, clean daytime options, and theme automation that stays local to the extension.
 
 **Why Dusk Office:**
-- **One family, 26 variants** — dark, light, warm, and high-contrast options that still feel related instead of random skins
+- **One family, 27 variants** — dark, light, warm, and high-contrast options that still feel related instead of random skins
 - **Readable by design** — semantic highlighting, workbench polish, and terminal contrast checks tuned for long sessions
 - **Workspace Fingerprint** — on first open, Dusk Office detects your project type (fintech, audit, cybersecurity, ML/data, modern web, frontend, CLI) from `package.json`/`Cargo.toml`/`pyproject.toml`/etc. and suggests the variant tuned for that context (Vault, Audit, Sentinel, Steward, Voltage, Nocturne, Terminal). Local-only, opt-out via `duskOffice.workspaceFingerprint.enabled`.
 - **Useful automation** — favorite theme restore, workspace memory, auto switch, adaptive focus, and a Control Center for quick actions
@@ -83,7 +83,7 @@ code --install-extension dusk-office-*.vsix
 | Light / daytime | **Dusk Office Ivory** |
 | High contrast / accessibility | **Dusk Office High Contrast** |
 
-Full list of 26 variants: [Included Themes](./QUICKSTART-LONG.md#included-themes) · [on GitHub](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/QUICKSTART-LONG.md#included-themes).
+Full list of 27 variants: [Included Themes](./QUICKSTART-LONG.md#included-themes) · [on GitHub](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/QUICKSTART-LONG.md#included-themes).
 
 ---
 

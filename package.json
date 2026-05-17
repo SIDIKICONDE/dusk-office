@@ -1,8 +1,8 @@
 {
   "name": "dusk-office",
-  "displayName": "Dusk Office - 26 Pro Themes (Dark, Light, HC)",
-  "description": "Professional theme pack with 26 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring, DevOps and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "1.0.0",
+  "displayName": "Dusk Office - 27 Pro Themes · Finance, Audit, Cybersecurity & DevOps",
+  "description": "Professional theme pack with 27 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring & DevOps, and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
+  "version": "1.1.1",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -179,6 +179,11 @@
         "path": "./themes/dusk-luxe.json"
       },
       {
+        "label": "Dusk Office Or",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-or.json"
+      },
+      {
         "label": "Dusk Office Terminal",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-terminal.json"
@@ -225,7 +230,7 @@
       {
         "id": "duskOfficeGetStarted",
         "title": "Get Started with Dusk Office",
-        "description": "Set up 26 professional themes in 2 minutes — automatic project detection, day/night switching, adaptive focus, and the Control Center.",
+        "description": "Set up 27 professional themes in 2 minutes — automatic project detection, day/night switching, adaptive focus, and the Control Center.",
         "steps": [
           {
             "id": "welcome",
@@ -240,7 +245,7 @@
           },
           {
             "id": "pickVariant",
-            "title": "Explore 26 variants",
+            "title": "Explore 27 variants",
             "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
             "media": {
               "markdown": "walkthrough/02-variants.md"
@@ -360,6 +365,7 @@
             "Dusk Office Voltage",
             "Dusk Office Neon",
             "Dusk Office Luxe",
+            "Dusk Office Or",
             "Dusk Office Terminal",
             "Dusk Office Steward",
             "Dusk Office Ledger",
@@ -393,6 +399,7 @@
             "Dusk Office Voltage",
             "Dusk Office Neon",
             "Dusk Office Luxe",
+            "Dusk Office Or",
             "Dusk Office Terminal",
             "Dusk Office Steward",
             "Dusk Office Ledger",
@@ -475,6 +482,7 @@
             "Dusk Office Voltage",
             "Dusk Office Neon",
             "Dusk Office Luxe",
+            "Dusk Office Or",
             "Dusk Office Terminal",
             "Dusk Office Steward",
             "Dusk Office Ledger",

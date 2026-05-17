@@ -6,7 +6,7 @@ The Control Center is your **single access point** for every Dusk Office feature
 
 | Action | What it does |
 |---|---|
-| 🎨 **Switch theme** | Browse and preview all 26 variants |
+| 🎨 **Switch theme** | Browse and preview all 27 variants |
 | ↩️ **Previous theme** | Instantly go back to what you had |
 | ⭐ **Favorite** | Set or jump to your go-to variant |
 | 🔄 **Auto Day/Night** | Toggle time-based light ↔ dark switching |

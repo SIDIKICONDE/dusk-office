@@ -22,6 +22,7 @@ const THEME_VARIANTS = [
   "Dusk Office Voltage",
   "Dusk Office Neon",
   "Dusk Office Luxe",
+  "Dusk Office Or",
   "Dusk Office Terminal",
   "Dusk Office Steward",
   "Dusk Office Ledger",
@@ -574,7 +575,7 @@ async function applyTheme(theme, context, source = "manual") {
 }
 
 /**
- * Opens a live-preview Quick Pick of the 26 Dusk Office variants. As the user
+ * Opens a live-preview Quick Pick of the 27 Dusk Office variants. As the user
  * moves the selection (arrow keys, mouse hover with filter, type-to-filter),
  * the highlighted variant is applied immediately so they see the editor and
  * workbench in that variant without committing. Enter confirms; Escape — or

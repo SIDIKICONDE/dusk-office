@@ -235,7 +235,7 @@
     "statusBarItem.remoteHoverBackground": "#c084fc33",
     "terminalCommandDecoration.successBackground": "#22c55e44",
     "testing.iconPassed": "#22c55e",
-    "notebookStatusSuccessIcon.foreground": "#22c55e33",
+    "notebookStatusSuccessIcon.foreground": "#22c55e",
     "activityBar.activeBackground": "#06b6d422",
     "activityBar.dropBorder": "#06b6d433",
     "activityBarBadge.background": "#06b6d4aa",

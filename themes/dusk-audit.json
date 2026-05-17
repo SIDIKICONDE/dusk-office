@@ -2,7 +2,7 @@
   "$schema": "vscode://schemas/color-theme",
   "name": "Dusk Office Audit",
   "type": "light",
-  "include": "./dusk.json",
+  "include": "./dusk-light.json",
   "colors": {
     "activityBar.background": "#eef2f8",
     "activityBarTop.background": "#eef2f8",
@@ -81,7 +81,7 @@
     "editor.wordHighlightTextBackground": "#9694af18",
     "editor.wordHighlightTextBorder": "#9694af2a",
     "editor.findMatchBackground": "#7993ab66",
-    "editor.findMatchForeground": "#ffffff",
+    "editor.findMatchForeground": "#25313a",
     "editor.findMatchBorder": "#7993ab55",
     "editor.findMatchHighlightBackground": "#556f8330",
     "editor.findMatchHighlightBorder": "#556f8342",
@@ -380,8 +380,8 @@
       "foreground": "#4e738c",
       "italic": true
     },
-    "namespace": "#7d8fa3",
-    "module": "#7d8fa3",
+    "namespace": "#3e5565",
+    "module": "#3e5565",
     "function": "#22343f",
     "function.declaration": "#2d4350",
     "method": "#2d4350",
@@ -393,7 +393,7 @@
     },
     "variable": "#27343d",
     "variable.readonly": "#4f677b",
-    "variable.defaultLibrary": "#4e738c",
+    "variable.defaultLibrary": "#556f83",
     "property": "#4e636f",
     "property.readonly": "#4e636f",
     "parameter": "#6d93a4",
@@ -582,7 +582,16 @@
     {
       "scope": "entity.name.namespace",
       "settings": {
-        "foreground": "#7d8fa3"
+        "foreground": "#3e5565"
+      }
+    },
+    {
+      "scope": [
+        "support.type.python",
+        "support.class.python"
+      ],
+      "settings": {
+        "foreground": "#92400e"
       }
     },
     {

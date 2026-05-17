@@ -1,5 +1,11 @@
 # Changelog — Dusk Office
 
+## 1.1.1 — 17 May 2026
+
+- **Added**: **Dusk Office Or** — deep bronze-gold dark variant (`themes/dusk-or.json`): obsidian base (`#0a0800`), antique gold accents (`#ffd700`, `#c9a227`), warm parchment text (`#e8d5a3`). Registered in `package.json`, `extension.js` picker, walkthrough, docs gallery, and `QUICKSTART-LONG.md`.
+- **Changed**: **`displayName`** — `27 Pro Themes · Finance, Audit, Cybersecurity & DevOps` (niche positioning + ampersand for Marketplace SEO).
+- **Changed**: **`description`** — `27` variants, `SOC monitoring & DevOps`; walkthrough, README, and landing page aligned.
+
 ## 1.0.0 — 15 May 2026
 
 - **Changed**: **Production-ready 1.0 release.** Marketplace metadata overhaul for better discoverability and a non-intrusive default policy.

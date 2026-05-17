@@ -1,4 +1,4 @@
-# Explore 26 variants — find the one that clicks 🎨
+# Explore 27 variants — find the one that clicks 🎨
 
 This isn't a random palette dump. Every variant was designed for a **specific mood, context, or workflow**.
 
@@ -27,6 +27,7 @@ This isn't a random palette dump. Every variant was designed for a **specific mo
 | **Steward** | Data science, ML pipelines, Jupyter workflows |
 | **Voltage** · **Neon** · **Terminal** | DevOps, CLI-heavy work, infrastructure as code |
 | **Luxe** | Premium dark gold — executive presentations & demos |
+| **Or** | Deep bronze-gold — antique accents on obsidian, treasury & premium dashboards |
 
 ### Light — daytime readability
 

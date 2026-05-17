@@ -311,12 +311,12 @@ function buildExtended(p) {
     "list.inactiveSelectionForeground": fg,
     "list.focusBackground": A(accent, "22"),
     "list.focusForeground": fg,
-    "list.highlightForeground": accentHi,
+    "list.highlightForeground": fg,
 
     "breadcrumb.background": widget,
     "breadcrumb.foreground": A(fg, "bb"),
     "breadcrumb.focusForeground": fg,
-    "breadcrumb.activeSelectionForeground": accentHi,
+    "breadcrumb.activeSelectionForeground": fg,
     "breadcrumbPicker.background": widget,
 
     "tab.activeForeground": fg,

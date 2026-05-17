@@ -1,5 +1,5 @@
 // Dusk Office landing — vanilla JS, zero dependencies.
-// Renders the 26-variant gallery using each theme's actual editor.background,
+// Renders the 27-variant gallery using each theme's actual editor.background,
 // editor.foreground and accent color, so each card is a real mini-preview of
 // the theme it represents. Click a card → the variant identifier is copied to
 // the clipboard for direct paste into the VS Code picker.
@@ -17,26 +17,27 @@
    */
   const VARIANTS = [
     { label: "Dusk Office", niche: "Default · OLED-friendly dark", bg: "#040a10", fg: "#cfe8f0", accent: "#22d3ee" },
-    { label: "Dusk Office Abyss", niche: "Deep night · OLED-friendly", bg: "#040a10", fg: "#cfe8f0", accent: "#22d3ee" },
-    { label: "Dusk Office Dawn", niche: "Plum sunrise · warm dawn", bg: "#3d3648", fg: "#fff5f0", accent: "#f5b390" },
-    { label: "Dusk Office Bay", niche: "Deep teal · calm waters", bg: "#061f1c", fg: "#ecfdf5", accent: "#5eead4" },
+    { label: "Dusk Office Abyss", niche: "Deep night · OLED-friendly", bg: "#020c14", fg: "#cfe8f0", accent: "#5a9aaa" },
+    { label: "Dusk Office Dawn", niche: "Plum sunrise · warm dawn", bg: "#2a2436", fg: "#e8e0de", accent: "#ffb38a" },
+    { label: "Dusk Office Bay", niche: "Deep teal · calm waters", bg: "#081410", fg: "#ecfdf5", accent: "#6a9a78" },
     { label: "Dusk Office Mist", niche: "Cool slate · misty morning", bg: "#222f3d", fg: "#f4f9fc", accent: "#7dd3fc" },
     { label: "Dusk Office Ash", niche: "Neutral grey · timeless", bg: "#22262d", fg: "#e5e7eb", accent: "#a3b8cc" },
     { label: "Dusk Office Midnight", niche: "Pure black · late night", bg: "#020304", fg: "#d1e0e8", accent: "#22d3ee" },
     { label: "Dusk Office Nebula", niche: "Cosmic violet", bg: "#10081f", fg: "#f3e8ff", accent: "#c084fc" },
-    { label: "Dusk Office Reef", niche: "Aqua reef", bg: "#01141c", fg: "#cffafe", accent: "#22d3ee" },
+    { label: "Dusk Office Reef", niche: "Aqua reef", bg: "#002830", fg: "#cffafe", accent: "#4ab8c8" },
     { label: "Dusk Office Nocturne", niche: "Warm night · Monokai-like", bg: "#24201c", fg: "#f8f8f2", accent: "#ff9d40" },
     { label: "Dusk Office Audit", niche: "Light · audit & compliance", bg: "#e3e8ec", fg: "#25313a", accent: "#556f83" },
-    { label: "Dusk Office Vault", niche: "Fintech · banking", bg: "#101a31", fg: "#e6ebef", accent: "#dcc894" },
-    { label: "Dusk Office Sentinel", niche: "Cybersecurity · SOC", bg: "#0d1624", fg: "#e2eaed", accent: "#8fbfc0" },
-    { label: "Dusk Office Steward", niche: "ML · data · Python backend", bg: "#12181e", fg: "#e7edf1", accent: "#dec692" },
+    { label: "Dusk Office Vault", niche: "Fintech · banking", bg: "#1a1814", fg: "#e6ebef", accent: "#dcc894" },
+    { label: "Dusk Office Sentinel", niche: "Cybersecurity · SOC", bg: "#121a22", fg: "#e2eaed", accent: "#8fbfc0" },
+    { label: "Dusk Office Steward", niche: "ML · data · Python backend", bg: "#16141e", fg: "#e7edf1", accent: "#dec692" },
     { label: "Dusk Office Voltage", niche: "Modern web stacks", bg: "#151a17", fg: "#edf6ee", accent: "#d5ff88" },
     { label: "Dusk Office Ledger", niche: "Light · accounting", bg: "#ece7de", fg: "#24313a", accent: "#658297" },
-    { label: "Dusk Office Secure", niche: "Security ops", bg: "#0e1716", fg: "#e3eaed", accent: "#8fbdbc" },
+    { label: "Dusk Office Secure", niche: "Security ops", bg: "#0a1e1c", fg: "#e3eaed", accent: "#8fbdbc" },
     { label: "Dusk Office Finance", niche: "Markets · trading", bg: "#0d1520", fg: "#e8e6e3", accent: "#22d3ee" },
     { label: "Dusk Office Corporate", niche: "Enterprise · neutral", bg: "#1d1f21", fg: "#c5c8c6", accent: "#8a6f4a" },
     { label: "Dusk Office Neon", niche: "Vivid pink · violet", bg: "#0a0612", fg: "#f0e6ff", accent: "#ff6eb4" },
     { label: "Dusk Office Luxe", niche: "Gold · champagne", bg: "#0c0a0e", fg: "#f0ece8", accent: "#e8c4a0" },
+    { label: "Dusk Office Or", niche: "Or · bronze profond", bg: "#0a0800", fg: "#e8d5a3", accent: "#ffd700" },
     { label: "Dusk Office Terminal", niche: "CRT green · CLI vibes", bg: "#0a0a0a", fg: "#b8ffb0", accent: "#66ff33" },
     { label: "Dusk Office Light", niche: "Light · daytime default", bg: "#f8fafc", fg: "#0f172a", accent: "#0e7490" },
     { label: "Dusk Office Ivory", niche: "Light · warm cream", bg: "#f6eede", fg: "#2a2420", accent: "#92400e" },

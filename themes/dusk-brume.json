@@ -8,7 +8,7 @@
     "activityBarTop.background": "#243240",
     "badge.background": "#5a7a98aa",
     "badge.foreground": "#0a0a0a",
-    "breadcrumb.activeSelectionForeground": "#8ab0c0",
+    "breadcrumb.activeSelectionForeground": "#e4e8ec",
     "breadcrumb.background": "#243240",
     "breadcrumb.focusForeground": "#e4e8ec",
     "breadcrumb.foreground": "#e4e8ecbb",
@@ -234,7 +234,7 @@
     "list.activeSelectionForeground": "#e4e8ec",
     "list.focusBackground": "#5a7a9822",
     "list.focusForeground": "#e4e8ec",
-    "list.highlightForeground": "#8ab0c0",
+    "list.highlightForeground": "#e4e8ec",
     "list.inactiveSelectionBackground": "#5a7a9818",
     "list.inactiveSelectionForeground": "#e4e8ec",
     "listFilterWidget.background": "#243240",
@@ -577,6 +577,42 @@
     },
     {
       "scope": [
+        "string.quoted.other.lt-gt.include",
+        "string.quoted.other.lt-gt.include.cpp",
+        "string.quoted.other.lt-gt.include.c",
+        "string.quoted.other.lt-gt.include.objc",
+        "string.quoted.other.lt-gt.include.objcpp",
+        "meta.preprocessor.include string",
+        "meta.preprocessor.include entity.name",
+        "meta.preprocessor.include support.class"
+      ],
+      "settings": {
+        "foreground": "#7aa88a"
+      }
+    },
+    {
+      "scope": [
+        "meta.preprocessor.include punctuation.definition.string",
+        "meta.preprocessor.include punctuation.bracket"
+      ],
+      "settings": {
+        "foreground": "#7aa88a"
+      }
+    },
+    {
+      "scope": [
+        "keyword.control.directive.include",
+        "keyword.control.directive.include.cpp",
+        "keyword.control.directive.include.c",
+        "keyword.control.directive.include.objc",
+        "keyword.control.directive.include.objcpp"
+      ],
+      "settings": {
+        "foreground": "#a87080"
+      }
+    },
+    {
+      "scope": [
         "variable.other.readwrite",
         "variable.other"
       ],
@@ -706,6 +742,42 @@
       "scope": "meta.embedded",
       "settings": {
         "foreground": "#e0e4e8"
+      }
+    },
+    {
+      "scope": [
+        "string.quoted.other.lt-gt.include",
+        "string.quoted.other.lt-gt.include.cpp",
+        "string.quoted.other.lt-gt.include.c",
+        "string.quoted.other.lt-gt.include.objc",
+        "string.quoted.other.lt-gt.include.objcpp",
+        "meta.preprocessor.include string",
+        "meta.preprocessor.include entity.name",
+        "meta.preprocessor.include support.class"
+      ],
+      "settings": {
+        "foreground": "#7aa88a"
+      }
+    },
+    {
+      "scope": [
+        "meta.preprocessor.include punctuation.definition.string",
+        "meta.preprocessor.include punctuation.bracket"
+      ],
+      "settings": {
+        "foreground": "#7aa88a"
+      }
+    },
+    {
+      "scope": [
+        "keyword.control.directive.include",
+        "keyword.control.directive.include.cpp",
+        "keyword.control.directive.include.c",
+        "keyword.control.directive.include.objc",
+        "keyword.control.directive.include.objcpp"
+      ],
+      "settings": {
+        "foreground": "#a87080"
       }
     }
   ]

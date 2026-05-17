@@ -49,7 +49,7 @@ const SEMANTIC_TOKENS = {
   "function.call": "#7ab0c8",
   "function.member": "#7ab0c8",
   "function.static": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   "function.private": {
@@ -96,25 +96,25 @@ const SEMANTIC_TOKENS = {
   "enumMember": "#7a68a0",
   
   // Type aliases and parameters
-  "type": "#5a8098",
+  "type": "#6a9ab8",
   "typeAlias": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   "typeParameter": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   
   // Namespaces and modules
-  "namespace": "#5a8098",
+  "namespace": "#6a9ab8",
   "namespace.declaration": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "bold": true
   },
-  "module": "#5a8098",
+  "module": "#6a9ab8",
   "module.declaration": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "bold": true
   },
   
@@ -123,7 +123,7 @@ const SEMANTIC_TOKENS = {
   "method.declaration": "#7ab0c8",
   "method.definition": "#7ab0c8",
   "method.static": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   "method.private": {
@@ -136,18 +136,18 @@ const SEMANTIC_TOKENS = {
   },
   
   // Properties
-  "property": "#5a8098",
-  "property.readonly": "#5a8098",
+  "property": "#6a9ab8",
+  "property.readonly": "#6a9ab8",
   "property.static": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   "property.private": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "italic": true
   },
   "property.deprecated": {
-    "foreground": "#5a8098",
+    "foreground": "#6a9ab8",
     "strikethrough": true
   },
   
@@ -297,10 +297,10 @@ const SEMANTIC_TOKENS = {
   
   // Library defaults
   "class.defaultLibrary": "#c9a050",
-  "function.defaultLibrary": "#5a8098",
-  "variable.defaultLibrary": "#5a8098",
-  "property.defaultLibrary": "#5a8098",
-  "method.defaultLibrary": "#5a8098",
+  "function.defaultLibrary": "#6a9ab8",
+  "variable.defaultLibrary": "#6a9ab8",
+  "property.defaultLibrary": "#6a9ab8",
+  "method.defaultLibrary": "#6a9ab8",
 };
 
 // Git decoration colors
@@ -436,7 +436,7 @@ const UI_COLORS = {
   "statusBarItem.remoteHoverBackground": "#9a8ab833",
   "terminalCommandDecoration.successBackground": "#5a9a6a44",
   "testing.iconPassed": "#5a9a6a",
-  "notebookStatusSuccessIcon.foreground": "#5a9a6a33",
+  "notebookStatusSuccessIcon.foreground": "#5a9a6a",
   
   // Activity bar
   "activityBar.background": "#000000",
@@ -811,7 +811,7 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["constant.other.key", "constant.other.property"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   
   // Storage modifiers
@@ -863,13 +863,13 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["meta.generic", "meta.type.parameters"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   
   // Type annotations
   {
     "scope": ["meta.type.annotation", "meta.return.type"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   {
     "scope": ["storage.type.function.arrow", "storage.type.function"],
@@ -937,11 +937,11 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["variable.other.member", "variable.other.property"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   {
     "scope": ["variable.other.global", "variable.other.global-property"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   
   // Operators
@@ -1025,11 +1025,11 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["entity.name.type.alias", "entity.name.type.type-parameter"],
-    "settings": { "foreground": "#5a8098", "fontStyle": "italic" }
+    "settings": { "foreground": "#6a9ab8", "fontStyle": "italic" }
   },
   {
     "scope": ["meta.type.declaration", "meta.interface.declaration"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   
   // JSX/TSX specific
@@ -1039,7 +1039,7 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["meta.tag.attributes", "meta.jsx.attributes"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   {
     "scope": ["entity.other.attribute-name.jsx", "entity.other.attribute-name.tsx"],
@@ -1057,7 +1057,7 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["support.type.property-name.css", "support.type.property-name.scss"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   {
     "scope": ["support.constant.property-value.css"],
@@ -1079,7 +1079,7 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["punctuation.definition.key.json", "entity.name.key.yaml"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
   
   // Markdown specific
@@ -1121,7 +1121,7 @@ const ADDITIONAL_TOKENS = [
   },
   {
     "scope": ["fenced_code.block.language", "markup.fenced_code.block"],
-    "settings": { "foreground": "#5a8098" }
+    "settings": { "foreground": "#6a9ab8" }
   },
 ];
 

@@ -124,7 +124,7 @@ export const palettes = {
     class: "#c9a050",
     interface: "#d0b060",
     type: "#5a7a90",
-    namespace: "#5a8098",
+    namespace: "#6a9ab8",
     function: "#5a8fa8",
     method: "#7ab0c0",
     keyword: "#a86878",
@@ -133,7 +133,7 @@ export const palettes = {
     comment: "#7a8a98",
     parameter: "#c08060",
     variable: "#b8c8d0",
-    property: "#5a8098",
+    property: "#6a9ab8",
     operator: "#7ab0c0",
     regexp: "#a87080",
     enumMember: "#7a68a0",
@@ -265,6 +265,42 @@ function buildSemantic(p) {
  * Règles TextMate étendues (même liste pour chaque variante : nombre d’entrées aligné).
  * Les couleurs viennent de la palette `p` de la variante.
  */
+/** Chemins #include / import : vert chaîne, pas bleu « type ». */
+function includeHeaderTokenRules(p) {
+  return [
+    {
+      scope: [
+        "string.quoted.other.lt-gt.include",
+        "string.quoted.other.lt-gt.include.cpp",
+        "string.quoted.other.lt-gt.include.c",
+        "string.quoted.other.lt-gt.include.objc",
+        "string.quoted.other.lt-gt.include.objcpp",
+        "meta.preprocessor.include string",
+        "meta.preprocessor.include entity.name",
+        "meta.preprocessor.include support.class",
+      ],
+      settings: { foreground: p.string },
+    },
+    {
+      scope: [
+        "meta.preprocessor.include punctuation.definition.string",
+        "meta.preprocessor.include punctuation.bracket",
+      ],
+      settings: { foreground: p.string },
+    },
+    {
+      scope: [
+        "keyword.control.directive.include",
+        "keyword.control.directive.include.cpp",
+        "keyword.control.directive.include.c",
+        "keyword.control.directive.include.objc",
+        "keyword.control.directive.include.objcpp",
+      ],
+      settings: { foreground: p.keyword },
+    },
+  ];
+}
+
 function extendedTokenColorRules(p) {
   return [
     {
@@ -321,6 +357,7 @@ function extendedTokenColorRules(p) {
       scope: "meta.embedded",
       settings: { foreground: p.variable },
     },
+    ...includeHeaderTokenRules(p),
   ];
 }
 
@@ -392,6 +429,7 @@ function buildTokenColors(p) {
       scope: "support.type",
       settings: { foreground: p.type },
     },
+    ...includeHeaderTokenRules(p),
   ];
 }
 

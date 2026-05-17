@@ -377,8 +377,8 @@
       "foreground": "#658297",
       "italic": true
     },
-    "namespace": "#9a92b0",
-    "module": "#9a92b0",
+    "namespace": "#4a6a82",
+    "module": "#4a6a82",
     "function": "#1f2b33",
     "function.declaration": "#2a3740",
     "method": "#2a3740",
@@ -579,7 +579,16 @@
     {
       "scope": "entity.name.namespace",
       "settings": {
-        "foreground": "#9a92b0"
+        "foreground": "#4a6a82"
+      }
+    },
+    {
+      "scope": [
+        "support.type.python",
+        "support.class.python"
+      ],
+      "settings": {
+        "foreground": "#7a5206"
       }
     },
     {

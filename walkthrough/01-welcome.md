@@ -1,12 +1,12 @@
 # Welcome to Dusk Office 🌒
 
-You didn't just install a theme. You stepped into a **system designed around how you actually work** — across 26 variants, from deep-focus dark sessions to bright daytime readability.
+You didn't just install a theme. You stepped into a **system designed around how you actually work** — across 27 variants, from deep-focus dark sessions to bright daytime readability.
 
 ### Why developers stay
 
 | | |
 |---|---|
-| **One visual language** | 26 variants, one unified chrome philosophy — sidebar, tabs, status bar, terminal all feel *connected* |
+| **One visual language** | 27 variants, one unified chrome philosophy — sidebar, tabs, status bar, terminal all feel *connected* |
 | **Built for your domain** | Variants tuned for finance, audit, cybersecurity, ML, frontend, DevOps — not generic palettes |
 | **Accessibility first** | Every theme WCAG-verified: `4.5:1` terminal foreground, `2.9:1` ANSI colors. Your eyes matter |
 | **Full semantic coverage** | Not just TextMate scopes — modern semantic tokens for TypeScript, Python, Rust, Go, SQL and more |

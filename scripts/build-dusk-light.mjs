@@ -226,6 +226,9 @@ const LIGHT_UI_OVERRIDES = {
   // Comments view (Comments panel)
   "commentsView.resolvedIcon": "#16a34a",
   "commentsView.unresolvedIcon": "#d97706",
+  // SCM Graph — verts hérités (#6a9a78, #5a9a6a) trop pâles sur fond clair (contrastes ~2.5–3:1)
+  "scmGraph.foreground5": "#355e47",
+  "scmGraph.historyItemHoverAdditionsForeground": "#166534",
   // Status bar item — Profile picker badge + offline state
   "statusBarItem.profilesBackground": "#8b5cf644",
   "statusBarItem.profilesForeground": "#1e293b",
@@ -264,17 +267,61 @@ function applyLightUiOverrides(theme) {
   if (sem && typeof sem === "object") {
     if (sem.comment && typeof sem.comment === "object") sem.comment.foreground = "#475569";
     if (typeof sem.variable === "string") sem.variable = "#1e293b";
+    // Modules / espaces de noms (ex. __future__ en Python) — cyan 500 trop pâle sur #f8fafc
+    if (typeof sem.namespace === "string") sem.namespace = "#0e7490";
+    if (typeof sem.module === "string") sem.module = "#0e7490";
+    if (typeof sem["variable.defaultLibrary"] === "string") {
+      sem["variable.defaultLibrary"] = "#92400e";
+    }
   }
 
   const tokens = theme.tokenColors;
   if (!Array.isArray(tokens)) return;
   for (const block of tokens) {
+    if (!block.settings || typeof block.settings !== "object") continue;
     const scopes = block.scope;
-    const sc = Array.isArray(scopes) ? scopes.join(" ") : scopes;
-    if (typeof sc === "string" && sc.includes("comment") && block.settings && typeof block.settings === "object") {
+    const sc = Array.isArray(scopes)
+      ? scopes.join(" ")
+      : typeof scopes === "string"
+        ? scopes
+        : "";
+    if (typeof sc !== "string") continue;
+    if (sc.includes("comment")) {
       block.settings.foreground = "#475569";
     }
+    // dusk.json sets #d1e0e8 for bold/italic markdown — unreadable on light editor.bg
+    if (sc.includes("markup.bold") || sc.includes("markup.italic")) {
+      block.settings.foreground = "#0f172a";
+    }
+    // __future__, typing, etc. — amber 600 (~2.9:1 sur blanc) → amber 700 WCAG
+    if (sc.includes("support.type.python") || sc.includes("support.class.python")) {
+      block.settings.foreground = "#b45309";
+    }
   }
+
+  // Propriétés d'interface (`host`, `port`…) : scope TextMate souvent
+  // `variable.other.readwrite` sans règle light → le motif large `variable` de dusk.json
+  // (#b8d4e4) s'applique et disparaît sur fond clair. Renforcer aussi les blocs
+  // `meta.interface.declaration` (#0891b2 trop faible sur #f8fafc dans les .md).
+  tokens.push(
+    {
+      scope: ["variable.other.readwrite"],
+      settings: { foreground: "#0f172a" },
+    },
+    {
+      scope: ["meta.type.declaration", "meta.interface.declaration"],
+      settings: { foreground: "#0e7490" },
+    },
+    {
+      scope: [
+        "entity.name.namespace",
+        "entity.name.namespace.python",
+        "support.type.python",
+        "support.class.python",
+      ],
+      settings: { foreground: "#92400e" },
+    },
+  );
 }
 
 /**
