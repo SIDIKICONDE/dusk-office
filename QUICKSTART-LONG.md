@@ -158,6 +158,34 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.adaptiveFocus.lateNightEndHour` | `5` | End hour (0–23) for late-night eye comfort mode. |
 | `duskOffice.adaptiveFocus.lockTheme` | `""` | Force one theme when adaptive focus runs (empty = no lock). |
 
+**Adaptive Focus** and **Auto Day/Night** are mutually exclusive — turning one on disables the other.
+
+#### Adaptive Focus — language rules (runtime)
+
+Source of truth: [`extension.js`](./extension.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
+
+| Language ID | Day | Night |
+|---|---|---|
+| `markdown`, `mdx` | Ivory | Nocturne |
+| `dart`, `flutter` | Light | Bay |
+| `typescript`, `javascript` | Ivory | Nebula |
+| `json`, `yaml`, `yml` | Ivory | Ash |
+| `shellscript`, `shell`, `bash`, `zsh` | Ivory | Finance |
+| `python` | Ivory | Abyss |
+| `go` | Ivory | Reef |
+| `rust` | Ivory | Corporate |
+| `html` | Ivory | Dawn |
+| `css` | Ivory | Nebula |
+| `sql` | Ivory | Finance |
+| `ruby` | Ivory | Nocturne |
+| `java` | Light | Corporate |
+| `cpp`, `c` | Light | Reef |
+| `swift` | Ivory | Midnight |
+| `kotlin` | Light | Bay |
+| *(other)* | Ivory | Midnight |
+
+CLI preview (same rules): `node scripts/adaptive-focus-mode.mjs --language python --hour 14`
+
 ### Editor defaults bundled with the extension
 
 `package.json` → `contributes.configurationDefaults` applies these when the extension is enabled (user/workspace settings still win):
@@ -178,6 +206,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | Color theme list & JSON paths | [`package.json`](./package.json) → `contributes.themes` (16 themes) |
 | Product icon theme | [`package.json`](./package.json) → `contributes.productIconThemes` (`dusk-office-product` → **Dusk Office · Product**) |
 | Theme names for picker, favorite, auto-switch | [`extension.js`](./extension.js) → `THEME_VARIANTS` (keep in sync with `package.json` labels) |
+| Adaptive Focus language map | [`extension.js`](./extension.js) → `ADAPTIVE_LANGUAGE_RULES` (mirrored in `scripts/adaptive-focus-mode.mjs`) |
 | Runtime state keys | [`extension.js`](./extension.js) — `duskOffice.previousTheme`, `favoriteTheme`, `workspaceTheme`, title bar / product icon restore keys |
 | Build & theme pipeline | Internal maintainer documentation only (not published). |
 
