@@ -1,0 +1,7 @@
+[90m[DEBUG] [0mApplication started
+[36m[INFO] [0mServer listening on :8080
+[32m[SUCCESS] [0mDatabase connected
+[33m[WARNING] [0mCache miss rate high (42%)
+[31m[ERROR] [0mConnection timeout after 30s
+
+# Same codes as Dart Logger: 90=DEBUG 36=INFO 32=SUCCESS 33=WARNING 31=ERROR

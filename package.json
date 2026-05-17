@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office - 27 Pro Themes · Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 27 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring & DevOps, and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, adaptive focus, auto day/night switch.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -44,6 +44,7 @@
     "onLanguage:dockerfile",
     "onLanguage:sql",
     "onLanguage:plaintext",
+    "onLanguage:log",
     "workspaceContains:**/package.json",
     "workspaceContains:**/Cargo.toml",
     "workspaceContains:**/pyproject.toml",
@@ -82,6 +83,14 @@
     "windsurf theme"
   ],
   "contributes": {
+    "languages": [
+      {
+        "id": "ansi",
+        "aliases": ["ANSI Log", "ANSI Text"],
+        "extensions": [".ansi", ".ans"],
+        "configuration": "./ansi-language-configuration.json"
+      }
+    ],
     "themes": [
       {
         "label": "Dusk Office",
@@ -458,6 +467,45 @@
           "maximum": 23,
           "description": "Hour to end late-night eye comfort."
         },
+        "duskOffice.editorAnsi.enabled": {
+          "type": "boolean",
+          "default": true,
+          "order": 45,
+          "markdownDescription": "**ANSI in editor** — colorize escape sequences in logs and source (`\\x1B[31m`, `\\033[36m`, etc.) using the active theme's `terminal.ansi*` colors.\n\nDisable to turn off all in-editor ANSI highlighting."
+        },
+        "duskOffice.editorAnsi.allLanguages": {
+          "type": "boolean",
+          "default": true,
+          "order": 46,
+          "description": "When enabled, ANSI coloring applies in any language (Dart, TypeScript, Python, …) if the file contains sequences. When disabled, only editorAnsi.languageIds are used."
+        },
+        "duskOffice.editorAnsi.dimEscapeSequences": {
+          "type": "boolean",
+          "default": true,
+          "order": 47,
+          "description": "Fade raw ESC [ … m byte sequences in log/output files. Does not affect \\x1B literals in source code."
+        },
+        "duskOffice.editorAnsi.languageIds": {
+          "type": "array",
+          "default": ["log", "ansi"],
+          "order": 48,
+          "items": { "type": "string" },
+          "description": "Language IDs used for ANSI coloring when editorAnsi.allLanguages is false (e.g. log, ansi, plaintext)."
+        },
+        "duskOffice.editorAnsi.maxLineCount": {
+          "type": "number",
+          "default": 12000,
+          "minimum": 0,
+          "order": 49,
+          "description": "Maximum lines to scan and colorize per file. Set to 0 for no limit (large logs may slow the editor)."
+        },
+        "duskOffice.editorAnsi.maxLineLength": {
+          "type": "number",
+          "default": 32768,
+          "minimum": 0,
+          "order": 50,
+          "description": "Skip individual lines longer than this (characters). Set to 0 for no limit."
+        },
         "duskOffice.adaptiveFocus.lockTheme": {
           "type": "string",
           "default": "",
@@ -567,6 +615,27 @@
       {
         "command": "duskOffice.suggestVariantForWorkspace",
         "title": "Dusk Office: Suggest Variant for This Workspace",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleEditorAnsi",
+        "title": "Dusk Office: Toggle ANSI in Editor",
+        "category": "Dusk Office",
+        "icon": "$(symbol-color)"
+      },
+      {
+        "command": "duskOffice.enableEditorAnsi",
+        "title": "Dusk Office: Enable ANSI in Editor",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.disableEditorAnsi",
+        "title": "Dusk Office: Disable ANSI in Editor",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.openEditorAnsiSettings",
+        "title": "Dusk Office: ANSI in Editor Settings",
         "category": "Dusk Office"
       }
     ],
