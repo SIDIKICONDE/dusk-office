@@ -37,7 +37,7 @@
     { label: "Dusk Office Corporate", niche: "Enterprise · neutral", bg: "#1d1f21", fg: "#c5c8c6", accent: "#8a6f4a" },
     { label: "Dusk Office Neon", niche: "Vivid pink · violet", bg: "#0a0612", fg: "#f0e6ff", accent: "#ff6eb4" },
     { label: "Dusk Office Luxe", niche: "Gold · champagne", bg: "#0c0a0e", fg: "#f0ece8", accent: "#e8c4a0" },
-    { label: "Dusk Office Or", niche: "Or · bronze profond", bg: "#0a0800", fg: "#e8d5a3", accent: "#ffd700" },
+    { label: "Dusk Office Or", niche: "Or · bronze profond", bg: "#0a0800", fg: "#e8d5a3", accent: "#d4a030" },
     { label: "Dusk Office Terminal", niche: "CRT green · CLI vibes", bg: "#0a0a0a", fg: "#b8ffb0", accent: "#66ff33" },
     { label: "Dusk Office Light", niche: "Light · daytime default", bg: "#f8fafc", fg: "#0f172a", accent: "#0e7490" },
     { label: "Dusk Office Ivory", niche: "Light · warm cream", bg: "#f6eede", fg: "#2a2420", accent: "#92400e" },
