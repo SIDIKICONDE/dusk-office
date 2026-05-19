@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Comprehensive WCAG AA contrast audit across all 26 Dusk Office themes.
+ * Comprehensive WCAG AA contrast audit across all 27 Dusk Office themes.
  *
  * Walks `package.json` → `contributes.themes`, resolves each theme's `include`
  * chain, then checks ~20 critical foreground/background pairs (icons,

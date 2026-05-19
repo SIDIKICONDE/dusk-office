@@ -31,5 +31,8 @@ jobs:
       - name: Validate themes (palette, pipeline, terminal contrast)
         run: npm run validate
 
+      - name: Unit tests
+        run: npm test
+
       - name: Package VSIX (smoke test, not uploaded)
         run: npm run package

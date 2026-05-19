@@ -336,22 +336,22 @@
     "tab.inactiveForeground": "#475569dd",
     "tab.lastPinnedBorder": "#3d5a6a44",
     "tab.unfocusedActiveBorder": "#5a9aaa44",
-    "terminal.ansiBlack": "#1e1e1e",
-    "terminal.ansiBlue": "#6a9ab8",
-    "terminal.ansiBrightBlack": "#6b7280",
-    "terminal.ansiBrightBlue": "#93c5fd",
-    "terminal.ansiBrightCyan": "#67e8f9",
-    "terminal.ansiBrightGreen": "#86efac",
-    "terminal.ansiBrightMagenta": "#f0abfc",
-    "terminal.ansiBrightRed": "#fca5a5",
-    "terminal.ansiBrightWhite": "#fafafa",
-    "terminal.ansiBrightYellow": "#fde047",
-    "terminal.ansiCyan": "#7ab8c8",
-    "terminal.ansiGreen": "#5a9a6a",
-    "terminal.ansiMagenta": "#9a8ab8",
-    "terminal.ansiRed": "#c97565",
-    "terminal.ansiWhite": "#e5e5e5",
-    "terminal.ansiYellow": "#c9a85c",
+    "terminal.ansiBlack": "#585651",
+    "terminal.ansiBlue": "#617e93",
+    "terminal.ansiBrightBlack": "#8a9499",
+    "terminal.ansiBrightBlue": "#688497",
+    "terminal.ansiBrightCyan": "#638b8b",
+    "terminal.ansiBrightGreen": "#718a77",
+    "terminal.ansiBrightMagenta": "#877e9c",
+    "terminal.ansiBrightRed": "#b0726b",
+    "terminal.ansiBrightWhite": "#24313a",
+    "terminal.ansiBrightYellow": "#a07e4a",
+    "terminal.ansiCyan": "#638b8b",
+    "terminal.ansiGreen": "#6c8a77",
+    "terminal.ansiMagenta": "#867e9c",
+    "terminal.ansiRed": "#ba7068",
+    "terminal.ansiWhite": "#3c474f",
+    "terminal.ansiYellow": "#a07e48",
     "terminal.background": "#f1f5f9",
     "terminal.border": "#3d5a6a44",
     "terminal.findMatchBackground": "#c9a85c55",
@@ -1190,6 +1190,62 @@
       ],
       "settings": {
         "foreground": "#0f172a"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.namespace",
+        "entity.name.namespace.python",
+        "support.type.python",
+        "support.class.python"
+      ],
+      "settings": {
+        "foreground": "#b45309"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.readwrite"
+      ],
+      "settings": {
+        "foreground": "#0f172a"
+      }
+    },
+    {
+      "scope": [
+        "meta.type.declaration",
+        "meta.interface.declaration"
+      ],
+      "settings": {
+        "foreground": "#0e7490"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.namespace",
+        "entity.name.namespace.python",
+        "support.type.python",
+        "support.class.python"
+      ],
+      "settings": {
+        "foreground": "#b45309"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.readwrite"
+      ],
+      "settings": {
+        "foreground": "#0f172a"
+      }
+    },
+    {
+      "scope": [
+        "meta.type.declaration",
+        "meta.interface.declaration"
+      ],
+      "settings": {
+        "foreground": "#0e7490"
       }
     },
     {

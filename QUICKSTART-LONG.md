@@ -162,7 +162,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 
 #### Adaptive Focus — language rules (runtime)
 
-Source of truth: [`extension.js`](./extension.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
+Source of truth: [`lib/theme-common.js`](./lib/theme-common.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
 
 | Language ID | Day | Night |
 |---|---|---|
@@ -190,24 +190,18 @@ CLI preview (same rules): `node scripts/adaptive-focus-mode.mjs --language pytho
 
 `package.json` → `contributes.configurationDefaults` applies these when the extension is enabled (user/workspace settings still win):
 
-- `editor.minimap.enabled` → `true`; `editor.minimap.showSlider` → `always`
 - `editor.semanticHighlighting.enabled` → `true`
-- `editor.bracketPairColorization.enabled` → `true`
-- `editor.guides.bracketPairs` → `active`; `editor.guides.bracketPairsHorizontal` → `active`; `editor.guides.highlightActiveIndentation` → `true`
-- `editor.stickyScroll.enabled` → `true`
-- `editor.renderLineHighlight` → `line`; `editor.selectionHighlight` → `true`; `editor.linkedEditing` → `true`
-- `workbench.tree.renderIndentGuides` → `always`; `workbench.tree.indent` → `14`
-- `explorer.decorations.badges` / `explorer.decorations.colors` → `true`
+- `editor.bracketPairColorization.enabled` → `true`; `editor.bracketPairColorization.independentColorPoolPerBracketType` → `true`
+- `editor.guides.bracketPairs` → `active`
 
 ### Source of truth (repo)
 
 | What | Where |
 | ------ | -------- |
-| Color theme list & JSON paths | [`package.json`](./package.json) → `contributes.themes` (16 themes) |
+| Color theme list & JSON paths | [`package.json`](./package.json) → `contributes.themes` (**27** themes) |
 | Product icon theme | [`package.json`](./package.json) → `contributes.productIconThemes` (`dusk-office-product` → **Dusk Office · Product**) |
-| Theme names for picker, favorite, auto-switch | [`extension.js`](./extension.js) → `THEME_VARIANTS` (keep in sync with `package.json` labels) |
-| Adaptive Focus language map | [`extension.js`](./extension.js) → `ADAPTIVE_LANGUAGE_RULES` (mirrored in `scripts/adaptive-focus-mode.mjs`) |
-| Runtime state keys | [`extension.js`](./extension.js) — `duskOffice.previousTheme`, `favoriteTheme`, `workspaceTheme`, title bar / product icon restore keys |
+| Theme names & Adaptive Focus rules | [`lib/theme-common.js`](./lib/theme-common.js) → `THEME_VARIANTS`, `ADAPTIVE_LANGUAGE_RULES` (CLI: `scripts/adaptive-focus-mode.mjs`) |
+| Runtime state keys | [`lib/extension-keys.js`](./lib/extension-keys.js) + orchestration in [`extension.js`](./extension.js) |
 | Build & theme pipeline | Internal maintainer documentation only (not published). |
 
 ### Optional: secondary Git gutter (staged)

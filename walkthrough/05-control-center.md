@@ -18,7 +18,8 @@ The Control Center is your **single access point** for every Dusk Office feature
 | 📊 **Status bar** | Show or hide the Dusk Office button |
 | 💾 **Workspace memory** | Per-project theme persistence |
 | ✅ **WCAG check** | Verify terminal contrast ratios live |
-| � **Settings** | Jump straight to Dusk Office config |
+| 🎨 **ANSI in Editor** | Toggle ANSI coloring in logs and source files |
+| ⚙️ **Settings** | Jump straight to Dusk Office config |
 | 🔄 **Reset** | Return everything to VS Code defaults |
 
 ### Three ways to open it

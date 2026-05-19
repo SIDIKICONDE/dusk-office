@@ -52,14 +52,14 @@ describe("checkTerminalContrast", () => {
     assert.equal(failures.length, 0);
   });
 
-  it("skips ANSI checks for light (vs) uiTheme", () => {
+  it("checks ANSI contrast on light (vs) uiTheme", () => {
     const colors = {
       "terminal.background": "#ffffff",
       "terminal.foreground": "#000000",
       "terminal.ansiYellow": "#ffff00",
     };
     const failures = checkTerminalContrast(colors, "vs");
-    assert.equal(failures.length, 0);
+    assert.ok(failures.some((f) => f.includes("terminal.ansiYellow")));
   });
 });
 

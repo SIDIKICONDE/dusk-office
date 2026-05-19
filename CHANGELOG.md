@@ -2,7 +2,7 @@
 
 ## 1.2.0 — 17 May 2026
 
-- **Added**: **ANSI in editor** (`scripts/ansi-editor.js`) — colorizes real ESC sequences in logs and `\x1B` / `\033` literals in any source file, using the active theme's `terminal.ansi*` palette. Registered `ansi` language (`.ansi`, `.ans`), samples `samples/app.log` and `samples/logger.dart`.
+- **Added**: **ANSI in editor** (`lib/ansi-editor.js`) — colorizes real ESC sequences in logs and `\x1B` / `\033` literals in any source file, using the active theme's `terminal.ansi*` palette. Registered `ansi` language (`.ansi`, `.ans`), samples `samples/app.log` and `samples/logger.dart`.
 - **Added**: **Editor ANSI settings & commands** — `duskOffice.editorAnsi.enabled`, `allLanguages`, `dimEscapeSequences`, `languageIds`, `maxLineCount` (default 12000), `maxLineLength` (default 32768); commands **Toggle / Enable / Disable ANSI in Editor** and **ANSI in Editor Settings**; Control Center entries.
 - **Changed**: **Light-theme terminal ANSI** — `scripts/light-terminal-ansi.mjs` plus `build-dusk-light.mjs` / `build-dusk-ivoire.mjs` inject readable ANSI on light terminal backgrounds; **Ledger** and **Audit** palettes adjusted; `verify-terminal-contrast.mjs` now checks ANSI on all themes (including `uiTheme: vs`).
 

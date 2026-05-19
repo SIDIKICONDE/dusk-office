@@ -7,6 +7,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
+import { applyLightTerminalAnsi } from "./light-terminal-ansi.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -215,6 +216,7 @@ function main() {
 
   applyIvoireContrast(out);
   normalizeLightSyntax(out);
+  applyLightTerminalAnsi(out.colors);
 
   const dest = path.join(root, "themes/dusk-ivoire.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");

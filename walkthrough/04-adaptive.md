@@ -20,7 +20,7 @@ Your screen should match the light around you. Set once, forget forever:
 
 ## Adaptive Focus
 
-Picks a variant from the **active editor language** and the **current hour**. Logic lives in `extension.js` (`ADAPTIVE_LANGUAGE_RULES`).
+Picks a variant from the **active editor language** and the **current hour**. Logic lives in **`lib/theme-common.js`** (`ADAPTIVE_LANGUAGE_RULES`).
 
 ### How a theme is chosen (priority order)
 

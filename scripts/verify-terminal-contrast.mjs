@@ -5,7 +5,7 @@
  *
  * Default thresholds: terminal.foreground ≥ 4.5:1 (WCAG 2.1 AA body text),
  * other ANSI (except black / brightBlack) ≥ 2.9:1 on dark backgrounds (vs-dark / hc-black).
- * Light themes (vs): only terminal.foreground vs background.
+ * Light themes (vs): terminal.foreground and ANSI (except black slots) vs terminal.background.
  *
  * Usage: node scripts/verify-terminal-contrast.mjs
  * Env: MIN_FG_RATIO (default 4.5), MIN_ANSI_RATIO (default 2.9)
@@ -156,19 +156,16 @@ function checkTheme(colors, rel, uiTheme) {
     }
   }
 
-  const lightUi = uiTheme === "vs";
-  if (!lightUi) {
-    for (const key of ANSI_KEYS) {
-      if (key === "terminal.foreground") continue;
-      if (SKIP_ANSI.has(key)) continue;
-      const v = colors[key];
-      if (typeof v !== "string") continue;
-      const fgRgb = effectiveFgRgb(v, bgRgb);
-      if (!fgRgb) continue;
-      const r = contrastRatio(luminance(fgRgb), Lbg);
-      if (r < MIN_ANSI) {
-        failures.push(`${key} ${v} → ${r.toFixed(2)}:1 (min ${MIN_ANSI}:1)`);
-      }
+  for (const key of ANSI_KEYS) {
+    if (key === "terminal.foreground") continue;
+    if (SKIP_ANSI.has(key)) continue;
+    const v = colors[key];
+    if (typeof v !== "string") continue;
+    const fgRgb = effectiveFgRgb(v, bgRgb);
+    if (!fgRgb) continue;
+    const r = contrastRatio(luminance(fgRgb), Lbg);
+    if (r < MIN_ANSI) {
+      failures.push(`${key} ${v} → ${r.toFixed(2)}:1 (min ${MIN_ANSI}:1)`);
     }
   }
 
@@ -222,9 +219,8 @@ function main() {
     total,
     "themes — terminal.foreground ≥",
     MIN_FG + ":1 vs terminal.background;",
-    "vs-dark/hc themes: ANSI (except black) ≥",
-    MIN_ANSI + ":1;",
-    "light (vs) themes: ANSI not checked (palette intended for dark backgrounds)",
+    "ANSI (except black) ≥",
+    MIN_ANSI + ":1 on all themes",
   );
 }
 
