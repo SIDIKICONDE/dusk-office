@@ -15,6 +15,7 @@ const require = createRequire(import.meta.url);
 const {
   THEME_VARIANTS,
   computeAdaptiveFocusTheme,
+  isAdaptiveLightPeriod,
 } = require("../lib/theme-common.js");
 
 function parseArgs(argv) {
@@ -69,6 +70,11 @@ function resolveForCli(args) {
     lateNightEyeComfort: args.lateNightEyeComfort,
     lateNightStartHour: args.lateNightStartHour,
     lateNightEndHour: args.lateNightEndHour,
+    dayStartHour: args.dayStartHour ?? 7,
+    dayEndHour: args.dayEndHour ?? 18,
+    defaultLightTheme: "Dusk Office Ivory",
+    defaultDarkTheme: "Dusk Office Midnight",
+    languageOverrides: {},
   };
 
   const result = computeAdaptiveFocusTheme(args.language, now, { force: true }, cfg);
@@ -91,7 +97,7 @@ function main() {
   }
 
   const result = resolveForCli(args);
-  const period = args.hour >= 7 && args.hour < 18 ? "light" : "dark";
+  const period = isAdaptiveLightPeriod(args.hour, cfg) ? "light" : "dark";
 
   if (args.json) {
     process.stdout.write(

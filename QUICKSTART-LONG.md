@@ -135,6 +135,9 @@ Registered in `package.json` → `contributes.commands`. Use these IDs in `keybi
 | `duskOffice.openSettings` | Dusk Office: Settings |
 | `duskOffice.verifyTerminalContrast` | Dusk Office: Verify Terminal Contrast |
 | `duskOffice.resetTheme` | Dusk Office: Reset All Settings |
+| `duskOffice.clearWorkspaceFingerprint` | Dusk Office: Reset Workspace Fingerprint |
+| `duskOffice.toggleEditorAnsi` | Dusk Office: Toggle ANSI in Editor |
+| `duskOffice.suggestVariantForWorkspace` | Dusk Office: Suggest Variant for This Workspace |
 
 ### Settings
 
@@ -142,7 +145,10 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 
 | Key | Default | Description |
 | ----- | --------- | ------------- |
+| `duskOffice.favoriteTheme` | `""` | Favorite variant (Settings Sync–friendly; synced with **Set Favorite**). |
 | `duskOffice.applyFavoriteOnStartup` | `false` | Apply the favorite theme on startup. |
+| `duskOffice.nythyCleanerRecommendation` | `true` | Show NythyCleaner entry in the Control Center. |
+| `duskOffice.workspaceFingerprint.enabled` | `true` | Suggest a variant once per workspace from project signals. |
 | `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |
 | `duskOffice.statusBar.enabled` | `true` | Show the Dusk Office status bar button. |
 | `duskOffice.titleBar.alignWithTheme` | `true` | When a Dusk Office color theme is active, set `window.titleBarStyle` to `custom` so the title bar follows the theme (helps a light editor avoid a stuck-dark native bar on macOS). When you leave Dusk themes or disable this, the previous global title bar style is restored. Does not override if you set `window.titleBarStyle` to `native` yourself in User or Workspace settings. |
@@ -156,7 +162,18 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.adaptiveFocus.lateNightEyeComfort` | `true` | Force ultra-dark late-night behavior for eye comfort. |
 | `duskOffice.adaptiveFocus.lateNightStartHour` | `22` | Start hour (0–23) for late-night eye comfort mode. |
 | `duskOffice.adaptiveFocus.lateNightEndHour` | `5` | End hour (0–23) for late-night eye comfort mode. |
+| `duskOffice.adaptiveFocus.dayStartHour` | `7` | Start of day period for language rules (inclusive, 0–23). |
+| `duskOffice.adaptiveFocus.dayEndHour` | `18` | End of day period (exclusive). |
+| `duskOffice.adaptiveFocus.defaultLightTheme` | `Dusk Office Ivory` | Fallback when no language rule matches (day). |
+| `duskOffice.adaptiveFocus.defaultDarkTheme` | `Dusk Office Midnight` | Fallback when no language rule matches (night). |
+| `duskOffice.adaptiveFocus.languageOverrides` | `{}` | Per-language `{ light, dark }` overrides merged onto built-in rules. |
 | `duskOffice.adaptiveFocus.lockTheme` | `""` | Force one theme when adaptive focus runs (empty = no lock). |
+| `duskOffice.editorAnsi.enabled` | `true` | ANSI coloring in editor for logs and escape literals. |
+| `duskOffice.editorAnsi.allLanguages` | `true` | Apply ANSI in any language when sequences are detected. |
+| `duskOffice.editorAnsi.dimEscapeSequences` | `true` | Fade raw ESC sequences in log files. |
+| `duskOffice.editorAnsi.languageIds` | `log`, `ansi` | Language IDs when `allLanguages` is false. |
+| `duskOffice.editorAnsi.maxLineCount` | `12000` | Max lines to colorize per file (0 = unlimited). |
+| `duskOffice.editorAnsi.maxLineLength` | `32768` | Skip longer lines (0 = unlimited). |
 
 **Adaptive Focus** and **Auto Day/Night** are mutually exclusive — turning one on disables the other.
 

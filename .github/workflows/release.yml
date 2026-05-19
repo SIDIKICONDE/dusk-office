@@ -36,9 +36,10 @@ jobs:
             exit 1
           fi
 
-      - name: Syntax check (extension.js + scripts)
+      - name: Syntax check (extension.js + lib + scripts)
         run: |
           node --check extension.js
+          for f in lib/*.js; do node --check "$f" || exit 1; done
           for f in scripts/*.mjs; do node --check "$f" || exit 1; done
 
       - name: Validate themes (palette, pipeline, terminal contrast)

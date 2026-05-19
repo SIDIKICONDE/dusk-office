@@ -9,6 +9,8 @@ const {
   getThemeShortLabel,
   normalizeLanguageId,
   isHourInRange,
+  isAdaptiveLightPeriod,
+  resolveAdaptiveLanguageRules,
   computeAutoSwitchTheme,
   computeAdaptiveFocusTheme,
 } = require("../lib/theme-common.js");
@@ -180,6 +182,11 @@ describe("computeAdaptiveFocusTheme", () => {
     lateNightStartHour: 22,
     lateNightEndHour: 5,
     lockTheme: "",
+    dayStartHour: 7,
+    dayEndHour: 18,
+    defaultLightTheme: "Dusk Office Ivory",
+    defaultDarkTheme: "Dusk Office Midnight",
+    languageOverrides: {},
   };
 
   it("returns null when disabled and not forced", () => {
@@ -225,5 +232,39 @@ describe("computeAdaptiveFocusTheme", () => {
     const result = computeAdaptiveFocusTheme("", night, {}, { ...baseCfg, lateNightEyeComfort: false });
     assert.equal(result.theme, "Dusk Office Midnight");
     assert.ok(result.reason.includes("Default dark"));
+  });
+
+  it("respects custom day window", () => {
+    const cfg = { ...baseCfg, lateNightEyeComfort: false, dayStartHour: 9, dayEndHour: 17 };
+    const morning = new Date(2025, 0, 1, 8, 0);
+    const result = computeAdaptiveFocusTheme("unknownlang", morning, {}, cfg);
+    assert.equal(result.theme, "Dusk Office Midnight");
+  });
+
+  it("applies languageOverrides over built-in rules", () => {
+    const day = new Date(2025, 0, 1, 12, 0);
+    const rules = resolveAdaptiveLanguageRules({
+      python: { light: "Dusk Office Ledger", dark: "Dusk Office Terminal" },
+    });
+    assert.equal(rules.python.light, "Dusk Office Ledger");
+    const result = computeAdaptiveFocusTheme(
+      "python",
+      day,
+      {},
+      {
+        ...baseCfg,
+        lateNightEyeComfort: false,
+        languageOverrides: { python: { light: "Dusk Office Ledger", dark: "Dusk Office Terminal" } },
+      },
+    );
+    assert.equal(result.theme, "Dusk Office Ledger");
+  });
+});
+
+describe("isAdaptiveLightPeriod", () => {
+  it("uses dayStartHour and dayEndHour", () => {
+    const cfg = { dayStartHour: 9, dayEndHour: 17 };
+    assert.equal(isAdaptiveLightPeriod(10, cfg), true);
+    assert.equal(isAdaptiveLightPeriod(8, cfg), false);
   });
 });

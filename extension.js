@@ -6,6 +6,7 @@ const { isDuskTheme } = require("./lib/theme-common.js");
 const cfg = require("./lib/configuration.js");
 const titleBar = require("./lib/title-bar.js");
 const themes = require("./lib/themes.js");
+const keys = require("./lib/extension-keys.js");
 const autoAdaptive = require("./lib/auto-adaptive.js");
 const editorAnsi = require("./lib/editor-ansi.js");
 const productIcons = require("./lib/product-icons.js");
@@ -13,7 +14,10 @@ const { openControlCenter } = require("./lib/control-center.js");
 const { createStatusBarItem } = require("./lib/status-bar.js");
 const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/feature-managers.js");
 const { initializeStartupBehavior } = require("./lib/startup.js");
-const { detectWorkspaceFingerprint } = require("./lib/workspace-fingerprint.js");
+const {
+  detectWorkspaceFingerprint,
+  clearWorkspaceFingerprint,
+} = require("./lib/workspace-fingerprint.js");
 const { verifyTerminalContrast } = require("./lib/terminal-verify.js");
 const { resetAllSettings } = require("./lib/legacy-reset.js");
 
@@ -42,6 +46,13 @@ async function activate(context) {
       }
       if (e.affectsConfiguration("workbench.colorTheme")) {
         void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
+      }
+      if (e.affectsConfiguration("duskOffice.favoriteTheme")) {
+        const favorite = cfg.getFavoriteThemeSetting();
+        await context.globalState.update(
+          keys.FAVORITE_THEME_KEY,
+          isDuskTheme(favorite) ? favorite : undefined,
+        );
       }
       if (
         titleBarStyleChanged ||
@@ -74,6 +85,9 @@ async function activate(context) {
     ),
     vscode.commands.registerCommand("duskOffice.suggestVariantForWorkspace", () =>
       detectWorkspaceFingerprint(context, { force: true, showAlways: true }),
+    ),
+    vscode.commands.registerCommand("duskOffice.clearWorkspaceFingerprint", () =>
+      clearWorkspaceFingerprint(context),
     ),
     createAutoSwitchManager(context),
     createAdaptiveFocusManager(context),

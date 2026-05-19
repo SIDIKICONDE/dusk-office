@@ -335,6 +335,41 @@
           "order": 0,
           "markdownDescription": "**🛠️ NythyCleaner Recommendation — [Try NythyCleaner →](https://nythycleaner.cloud)**\n\nAlso by the same developer. Your Mac, clean and fast: Xcode cleanup (22 categories), full system monitoring (CPU, GPU, Neural Engine), security audit (CVE scanning), 20+ dev ecosystem scans, disk treemap, exact SHA-256 duplicates, privacy tools.\n\nThe essentials are free. Disable this checkbox if you do not want to see NythyCleaner recommendations in Dusk Office surfaces."
         },
+        "duskOffice.favoriteTheme": {
+          "type": "string",
+          "default": "",
+          "enum": [
+            "",
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Or",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "Favorite Dusk Office variant (synced with Set Favorite; empty = none)."
+        },
         "duskOffice.applyFavoriteOnStartup": {
           "type": "boolean",
           "default": false,
@@ -520,6 +555,93 @@
           "order": 50,
           "description": "Skip individual lines longer than this (characters). Set to 0 for no limit."
         },
+        "duskOffice.adaptiveFocus.dayStartHour": {
+          "type": "integer",
+          "default": 7,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour (0–23) when Adaptive Focus day period starts (inclusive)."
+        },
+        "duskOffice.adaptiveFocus.dayEndHour": {
+          "type": "integer",
+          "default": 18,
+          "minimum": 0,
+          "maximum": 23,
+          "description": "Hour (0–23) when Adaptive Focus day period ends (exclusive — same as Auto Switch light window)."
+        },
+        "duskOffice.adaptiveFocus.defaultLightTheme": {
+          "type": "string",
+          "default": "Dusk Office Ivory",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Or",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "Fallback theme during the day when no language rule matches."
+        },
+        "duskOffice.adaptiveFocus.defaultDarkTheme": {
+          "type": "string",
+          "default": "Dusk Office Midnight",
+          "enum": [
+            "Dusk Office",
+            "Dusk Office Abyss",
+            "Dusk Office Dawn",
+            "Dusk Office Bay",
+            "Dusk Office Mist",
+            "Dusk Office Ash",
+            "Dusk Office Midnight",
+            "Dusk Office Nebula",
+            "Dusk Office Reef",
+            "Dusk Office High Contrast",
+            "Dusk Office Light",
+            "Dusk Office Ivory",
+            "Dusk Office Dark Ivory",
+            "Dusk Office Nocturne",
+            "Dusk Office Finance",
+            "Dusk Office Corporate",
+            "Dusk Office Voltage",
+            "Dusk Office Neon",
+            "Dusk Office Luxe",
+            "Dusk Office Or",
+            "Dusk Office Terminal",
+            "Dusk Office Steward",
+            "Dusk Office Ledger",
+            "Dusk Office Secure",
+            "Dusk Office Vault",
+            "Dusk Office Audit",
+            "Dusk Office Sentinel"
+          ],
+          "description": "Fallback theme at night when no language rule matches."
+        },
+        "duskOffice.adaptiveFocus.languageOverrides": {
+          "type": "object",
+          "default": {},
+          "markdownDescription": "Override built-in Adaptive Focus language rules. Keys: language IDs (`python`, `typescript`, …). Values: `{ \"light\": \"Dusk Office Ivory\", \"dark\": \"Dusk Office Abyss\" }`. Merged onto defaults in `lib/theme-common.js`."
+        },
         "duskOffice.adaptiveFocus.lockTheme": {
           "type": "string",
           "default": "",
@@ -629,6 +751,11 @@
       {
         "command": "duskOffice.suggestVariantForWorkspace",
         "title": "Dusk Office: Suggest Variant for This Workspace",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.clearWorkspaceFingerprint",
+        "title": "Dusk Office: Reset Workspace Fingerprint",
         "category": "Dusk Office"
       },
       {
@@ -744,7 +871,8 @@
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
-    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/audit-contrast.mjs",
+    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/audit-contrast.mjs && node scripts/check-theme-distinctiveness.mjs",
+    "distinctiveness:check": "node scripts/check-theme-distinctiveness.mjs",
     "audit:contrast": "node scripts/audit-contrast.mjs",
     "verify:constants": "node scripts/verify-runtime-constants.mjs",
     "verify:terminal": "node scripts/verify-terminal-contrast.mjs",

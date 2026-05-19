@@ -47,8 +47,32 @@ export function normalizeLightSemanticTokenColors(sem) {
   }
 }
 
+/** @param {unknown} scope */
+function tokenScopeKey(scope) {
+  if (Array.isArray(scope)) return scope.slice().sort().join("|");
+  return typeof scope === "string" ? scope : "";
+}
+
+/** Keep the last rule per scope list (removes build-time duplicates). */
+export function dedupeTokenColors(tokenColors) {
+  if (!Array.isArray(tokenColors)) return tokenColors;
+  const seen = new Set();
+  const out = [];
+  for (let i = tokenColors.length - 1; i >= 0; i -= 1) {
+    const block = tokenColors[i];
+    const key = tokenScopeKey(block?.scope);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.unshift(block);
+  }
+  return out;
+}
+
 /** @param {{ tokenColors?: unknown; semanticTokenColors?: unknown }} theme */
 export function normalizeLightSyntax(theme) {
   normalizeLightTokenColors(theme.tokenColors);
   normalizeLightSemanticTokenColors(theme.semanticTokenColors);
+  if (Array.isArray(theme.tokenColors)) {
+    theme.tokenColors = dedupeTokenColors(theme.tokenColors);
+  }
 }
