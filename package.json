@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office - 27 Pro Themes · Finance, Audit, Cybersecurity & DevOps",
   "description": "Professional theme pack with 27 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring & DevOps, and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, ANSI coloring in the editor, adaptive focus, workspace fingerprint, auto day/night switch.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
