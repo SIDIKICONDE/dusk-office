@@ -78,6 +78,9 @@
       <a class="btn btn-ghost" href="https://open-vsx.org/extension/dekidev/dusk-office" target="_blank" rel="noopener">
         Install on Open VSX
       </a>
+      <a class="btn btn-ghost" href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes" target="_blank" rel="noopener">
+        Install on JetBrains
+      </a>
       <a class="btn btn-ghost" href="https://github.com/SIDIKICONDE/dusk-office" target="_blank" rel="noopener">
         View source
       </a>
@@ -205,6 +208,16 @@
       </ol>
     </article>
     <article>
+      <h3>JetBrains IDEs</h3>
+      <ol>
+        <li>Open <strong>Settings</strong> &rarr; <strong>Plugins</strong> &rarr; <strong>Marketplace</strong></li>
+        <li>Search <code>Dusk Office Themes</code></li>
+        <li>Click <strong>Install</strong>, then <strong>Restart IDE</strong></li>
+        <li>Pick a theme: <strong>Settings &rarr; Appearance &rarr; Theme</strong></li>
+      </ol>
+      <p style="margin-top:0.75rem"><small>Works in IntelliJ IDEA, PyCharm, WebStorm, PhpStorm, GoLand, CLion, Rider, RubyMine, DataGrip, Android Studio, RustRover.</small></p>
+    </article>
+    <article>
       <h3>From the source</h3>
       <ol>
         <li><code>git clone https://github.com/SIDIKICONDE/dusk-office</code></li>
@@ -212,6 +225,10 @@
         <li><code>make install-vsix EDITOR=code</code></li>
       </ol>
     </article>
+  </div>
+
+  <div class="jetbrains-widget" style="margin-top:2.5rem;display:flex;justify-content:center;">
+    <div id="jetbrains-marketplace-card"></div>
   </div>
 </section>
 
@@ -231,5 +248,13 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    if (typeof MarketplaceWidget !== 'undefined') {
+      MarketplaceWidget.setupMarketplaceWidget('card', 31875, '#jetbrains-marketplace-card');
+    }
+  });
+</script>
 </body>
 </html>

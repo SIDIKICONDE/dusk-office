@@ -2,8 +2,12 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE)
 [![CI](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml/badge.svg)](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml)
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
-[![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX)](https://open-vsx.org/extension/dekidev/dusk-office)
+[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=VS%20Code%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/dekidev.dusk-office?label=installs)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+[![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX&color=A60EE5)](https://open-vsx.org/extension/dekidev/dusk-office)
+[![Open VSX Downloads](https://img.shields.io/open-vsx/dt/dekidev/dusk-office?label=Open%20VSX%20downloads)](https://open-vsx.org/extension/dekidev/dusk-office)
+[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/31875?label=JetBrains%20Marketplace&color=FF318C)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
+[![JetBrains Downloads](https://img.shields.io/jetbrains/plugin/d/31875?label=JetBrains%20downloads)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 
 > **27 professional themes for VS Code, Cursor, Windsurf and Open VSX** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **WCAG-verified terminal contrast**, **semantic highlighting**, **ANSI coloring in the editor**, **adaptive day/night focus**, **workspace fingerprint**, **OLED-friendly**, **accessible & colorblind-aware**.
 
