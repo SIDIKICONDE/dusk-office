@@ -82,6 +82,11 @@ cd jetbrains-plugin && ./gradlew runIde
 
 **Coins arrondis** : Dusk Office hérite du mode **Islands** (IntelliJ 2025.3+). Sur une version plus ancienne, l’UI reste en panneaux rectangulaires classiques — ce n’est pas configurable uniquement par les couleurs.
 
+**Look 100% Dusk Office** : JetBrains affiche un **gradient de couleur par projet** sur la barre d’outils (le badge coloré près du nom de projet). Ce gradient est généré à partir du nom du projet et **n’est pas overridable par un thème** (c’est volontaire — ça aide à distinguer plusieurs fenêtres IDE ouvertes). Pour avoir un rendu Dusk Office uniforme :
+
+- **Settings → Appearance & Behavior → Appearance** → décoche **"Show project gradient in toolbar"** (le label varie : *"Color the toolbar by project"* / *"Project Color"*).
+- Sur les versions plus anciennes : **Help → Find Action → Registry…** → décoche `ide.colorful.toolbar`, puis redémarre l’IDE.
+
 **Terminal (2025.2+)** : couleurs via `BLOCK_TERMINAL_*` dans chaque schéma. `editorScheme` = nom du schéma (`Dusk Office Finance`, `Dusk Office Terminal`, …).
 
 **Important** : pas de `parentTheme: Islands Dark` (sinon l’éditeur et le terminal Reworked restent sur le schéma JetBrains « Islands Dark »). Les coins arrondis viennent des clés `Island.*` + `targetUi="islands"`.

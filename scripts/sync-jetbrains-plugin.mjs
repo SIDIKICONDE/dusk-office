@@ -245,6 +245,16 @@ function main() {
     <p><em>Settings → Appearance &amp; Behavior → Appearance → Theme</em> for the complete IDE theme,
     or <em>Settings → Editor → Color Scheme</em> for syntax only.</p>
 
+    <h3>Tip: 100% Dusk look</h3>
+    <p>JetBrains adds a <strong>per-project color gradient</strong> on the main toolbar
+    (the colored badge near your project name). It is generated from the project name and is
+    intentionally <em>not overridable by themes</em> — it helps you tell apart multiple IDE windows.</p>
+    <p>If you prefer a uniform Dusk Office look, disable it once in
+    <em>Settings → Appearance &amp; Behavior → Appearance</em> →
+    uncheck <strong>"Show project gradient in toolbar"</strong>
+    (label varies: "Color the toolbar by project" / "Project Color"). On older builds,
+    use <em>Help → Find Action → Registry…</em> and disable <code>ide.colorful.toolbar</code>.</p>
+
     <h3>Cross-IDE identity</h3>
     <p>Same palette as the <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code Marketplace</a>
     and <a href="https://open-vsx.org/extension/dekidev/dusk-office">Open VSX</a> versions —
