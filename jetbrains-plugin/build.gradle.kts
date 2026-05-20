@@ -24,6 +24,10 @@ intellijPlatform {
         version = providers.gradleProperty("pluginVersion")
         ideaVersion {
             sinceBuild = providers.gradleProperty("pluginSinceBuild")
+            // Theme-only plugin: no internal API dependency,
+            // forward-compatible with all future IntelliJ Platform builds.
+            // Use a very high untilBuild so 2025.x / 2026.x / 2027.x install cleanly.
+            untilBuild = "999.*"
         }
     }
 
