@@ -1,2 +1,6 @@
 node_modules/
 *.vsix
+
+# Generated IDE exports (see exports/README.md — run npm run export:ide)
+exports/*
+!exports/README.md

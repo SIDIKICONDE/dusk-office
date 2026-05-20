@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 1.2.2 — 20 May 2026
+
+- **Changed**: version bump.
+
 ## 1.2.0 — 17 May 2026
 
 - **Added**: **ANSI in editor** (`lib/ansi-editor.js`) — colorizes real ESC sequences in logs and `\x1B` / `\033` literals in any source file, using the active theme's `terminal.ansi*` palette. Registered `ansi` language (`.ansi`, `.ans`), samples `samples/app.log` and `samples/logger.dart`.

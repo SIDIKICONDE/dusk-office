@@ -1,4 +1,4 @@
-# Keep VSIX small
+# Keep VSIX small — only what the runtime extension needs.
 node_modules/**
 scripts/**
 # Dev inputs; themes/ is what the extension loads at runtime
@@ -17,6 +17,26 @@ docs/**
 # Local theme preview samples (not shipped)
 samples/**
 images/screenshot-*.jpg
+
+# JetBrains plugin — has its own distribution channel
+jetbrains-plugin/**
+
+# Cross-IDE exports (Neovim, Emacs, Zed, Helix, JetBrains, base16) —
+# not used by the VS Code runtime, only for downloads from GitHub releases
+exports/**
+
+# Tests — not needed at runtime
+tests/**
+
+# Local IDE / dev / log noise
+.idea/**
+.gradle/**
+.intellijPlatform/**
+*.log
+firebase-debug.log
+firebase-debug.*.log
+.editorconfig
+.vscodeignore
 
 # Extra exclusions
 .vscode-test/**

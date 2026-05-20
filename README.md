@@ -5,7 +5,9 @@
 [![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 [![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX)](https://open-vsx.org/extension/dekidev/dusk-office)
 
-**Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
+> **27 professional themes for VS Code, Cursor, Windsurf and Open VSX** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **WCAG-verified terminal contrast**, **semantic highlighting**, **ANSI coloring in the editor**, **adaptive day/night focus**, **workspace fingerprint**, **OLED-friendly**, **accessible & colorblind-aware**.
+
+**Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** (plus **Neovim, Emacs, Zed, Helix, JetBrains** via [exported themes](./exports/README.md)) with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
 
 Built for developers who want readable code, coherent chrome across the editor and workbench, OLED-friendly night variants, clean daytime options, and theme automation that stays local to the extension.
 
@@ -132,6 +134,38 @@ This will:
 - **Color harmony & eye comfort** - how variants stay coherent and easy on the eyes (chrome vs editor, terminal blend, contrast checks): [MAINTENANCE.md](./MAINTENANCE.md) (section *Color harmony & eye comfort*)
 - **Terminal contrast verification**: run `Dusk Office: Verify Terminal Contrast` (public command). It now performs real contrast calculations on packaged themes (includes merged), checks `terminal.foreground` and ANSI thresholds, and can open a detailed report. See [Terminal Contrast](./QUICKSTART-LONG.md#check-contrast) for details
 - **Adaptive focus (local)**: use `Dusk Office: Toggle Adaptive Focus` and `Dusk Office: Apply Adaptive Theme Now` to adapt themes from active editor language + time, with optional late-night eye comfort and theme lock (`duskOffice.adaptiveFocus.*`)
+
+---
+
+## FAQ
+
+**Is Dusk Office a dark theme or a light theme?**
+Both. The pack ships **27 variants** — dark (Midnight, Abyss, Nocturne, Vault, Sentinel, Steward, Terminal, Voltage, Neon, Luxe, Finance, Corporate, Secure, Mist, Ash, Bay, Reef, Nebula, Dawn, Or, Ivoire Sombre), **light** (Light, Ivory, Ledger, Audit) and **high contrast** (Dusk Office High Contrast) — all sharing the same Dusk Office identity.
+
+**Does Dusk Office work in Cursor, Windsurf and Open VSX?**
+Yes. The exact same extension installs in **VS Code**, **Cursor**, **Windsurf** and is published on **Open VSX** for VS Codium and other open builds.
+
+**Does it work in JetBrains IDEs (IntelliJ, PyCharm, WebStorm, Rider, GoLand, PhpStorm, CLion, RubyMine, DataGrip, RustRover, Android Studio)?**
+Yes — a dedicated **JetBrains plugin** ships the same 27 variants as full IDE themes + editor color schemes. See `@/home/dekidev/dusk-office/jetbrains-plugin/README.md:1-118` and `npm run jetbrains:build`.
+
+**Is the terminal contrast WCAG-compliant?**
+Yes. The build pipeline runs `audit-contrast.mjs` and `verify-terminal-contrast.mjs` on every variant, checking `terminal.foreground` and the 16 ANSI colors against WCAG AA/AAA. Run `Dusk Office: Verify Terminal Contrast` to see the report.
+
+**Is Dusk Office colorblind-friendly?**
+Critical UI signals (errors, warnings, modified, diff, git status) use hue separation, not just red/green, so they remain readable under deuteranopia / protanopia. See `MAINTENANCE.md` → *Color harmony & eye comfort*.
+
+**Does it auto-switch between light and dark by hour?**
+Yes — enable `duskOffice.autoSwitch.enabled` and configure your light/dark hour windows. Combine with **Adaptive Focus** (`duskOffice.adaptiveFocus.enabled`) to also adapt by language and late-night eye comfort.
+
+**Does it track me?**
+No telemetry, no network calls, no companion installs. Workspace fingerprint runs **100% locally** and is opt-out via `duskOffice.workspaceFingerprint.enabled`. Reset everything with `Dusk Office: Reset All Settings`.
+
+**Why use Dusk Office over Dracula, One Dark Pro, Monokai, Solarized, Tokyo Night or Material Theme?**
+Dusk Office is a **domain-tuned theme suite** rather than a single skin: variants designed specifically for **finance / fintech / banking / audit** (Vault, Ledger, Audit, Finance), **cybersecurity / SOC** (Sentinel, Secure), **DevOps** (Voltage, Terminal), **long sessions** (Steward, Midnight), with **verified WCAG terminal contrast**, **semantic highlighting**, **ANSI coloring in the editor**, **workspace fingerprint**, **adaptive day/night focus**, and the same identity across VS Code, Cursor, Windsurf, Open VSX and JetBrains.
+
+## Keywords / Tags
+
+dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · ansi colors · terminal theme · product icon theme · theme bundle
 
 ---
 

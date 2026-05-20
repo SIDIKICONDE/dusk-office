@@ -1,0 +1,6 @@
+# JDK 17 pour Gradle / IntelliJ (si erreur « source sets cannot be resolved »)
+#
+# Option 1 — dans gradle.properties (regénéré par npm run jetbrains:sync si ~/.local/jdk-17 existe) :
+#   org.gradle.java.home=/home/dekidev/.local/jdk-17
+#
+# Option 2 — IntelliJ : Settings → Build Tools → Gradle → Gradle JVM → JDK 17

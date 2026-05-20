@@ -85,6 +85,42 @@ jobs:
           fi
           npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
 
+      - name: Setup Java (JetBrains plugin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Export IDE themes + sync JetBrains plugin
+        run: |
+          npm run export:ide
+          npm run jetbrains:sync
+
+      - name: Build JetBrains plugin ZIP
+        run: cd jetbrains-plugin && chmod +x gradlew && ./gradlew buildPlugin --no-daemon
+
+      - name: Publish to JetBrains Marketplace
+        env:
+          JETBRAINS_TOKEN: ${{ secrets.JETBRAINS_TOKEN }}
+        run: |
+          if [ -z "$JETBRAINS_TOKEN" ]; then
+            echo "::warning::JETBRAINS_TOKEN secret not set; skipping JetBrains Marketplace publish."
+            exit 0
+          fi
+          cd jetbrains-plugin && ./gradlew publishPlugin --no-daemon
+
+      - name: Resolve JetBrains plugin ZIP
+        id: jetbrains_zip
+        run: |
+          ZIP=$(ls jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip 2>/dev/null | head -n 1)
+          if [ -z "$ZIP" ]; then
+            echo "::warning::JetBrains plugin ZIP not found."
+            echo "path=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "path=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "Resolved JetBrains ZIP: $ZIP"
+
       - name: Extract changelog section for this version
         id: changelog
         run: |
@@ -104,12 +140,25 @@ jobs:
             echo '__EOF__'
           } >> "$GITHUB_OUTPUT"
 
+      - name: Prepare GitHub Release assets
+        id: release_assets
+        run: |
+          ASSETS="${{ steps.vsix.outputs.path }}"
+          JB="${{ steps.jetbrains_zip.outputs.path }}"
+          if [ -n "$JB" ] && [ -f "$JB" ]; then
+            ASSETS="${ASSETS}"$'\n'"${JB}"
+          fi
+          echo "paths<<__EOF__" >> "$GITHUB_OUTPUT"
+          echo "$ASSETS" >> "$GITHUB_OUTPUT"
+          echo "__EOF__" >> "$GITHUB_OUTPUT"
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           name: Dusk Office ${{ github.ref_name }}
           body: ${{ steps.changelog.outputs.body }}
-          files: ${{ steps.vsix.outputs.path }}
+          files: ${{ steps.release_assets.outputs.paths }}
+          fail_on_unmatched_files: true
           draft: false
           prerelease: false
         env:

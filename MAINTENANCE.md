@@ -2,6 +2,58 @@
 
 Internal guide for theme rebuilds and releases.
 
+## Development with any IDE
+
+The extension targets **VS Code–compatible editors** (VS Code, Cursor, Windsurf, VSCodium, Code Insiders). Runtime features only run inside those apps; other IDEs (JetBrains, Neovim, Emacs, etc.) do not load `extension.js`.
+
+**IDE-agnostic workflow for contributors:**
+
+| Task | Command (no specific IDE required) |
+| --- | --- |
+| Install deps | `make install` or `npm install` |
+| Validate themes | `make validate` |
+| Full rebuild | `make themes-regen` |
+| Package VSIX | `make package` |
+| Install locally | `make install-vsix EDITOR=auto` |
+| List detected CLIs | `node scripts/install-vsix.mjs --list` |
+
+**Editor-specific install:** `make install-vsix EDITOR=windsurf` (also `cursor`, `code`, `code-insiders`, `codium`).
+
+**Formatting:** `.editorconfig` applies across JetBrains, Vim, Zed, etc. Optional `.vscode/settings.json` is for VS Code-family preview only.
+
+**Theme sync from workspace colors:** `npm run sync` reads `.vscode/settings.json` when tuning `themes/dusk.json`; copy accent keys there or edit `theme-sources/dusk.json` directly from another IDE.
+
+## Export to other IDEs (Neovim, Emacs, Zed, Helix, JetBrains)
+
+```bash
+make export-ide
+# → exports/neovim, exports/emacs, exports/zed, exports/helix, exports/jetbrains, exports/base16, exports/palettes
+```
+
+See [exports/README.md](./exports/README.md) for per-IDE install steps. Regenerate after changing `themes/*.json`. Subset: `node scripts/export-ide-themes.mjs --only=neovim,emacs`.
+
+**Note:** `exports/vscode/*.json` contains the **full resolved workbench** (~500+ color keys + tokens). Other IDE formats map as much UI as each platform supports (Zed/Neovim/Helix/JetBrains). Extension-only features (fingerprint, adaptive focus) remain VS Code–only.
+
+## JetBrains Marketplace plugin (`jetbrains-plugin/`)
+
+Full-theme plugin for IntelliJ Platform IDEs: 27× `.theme.json` (workbench UI) + 27× `.icls` (editor schemes), linked via `themeProvider` + `bundledColorScheme` in generated `plugin.xml`.
+
+```bash
+npm run export:ide
+npm run jetbrains:sync      # copies exports/jetbrains → plugin resources + plugin.xml
+npm run jetbrains:build     # Gradle buildPlugin → jetbrains-plugin/build/distributions/*.zip
+npm run jetbrains:upgrade   # build + install into local JetBrains plugins dir
+make jetbrains-full         # make:full + jetbrains:upgrade (like make full for VS Code)
+```
+
+Publish (local or CI on `v*` tag):
+
+- GitHub secret: `JETBRAINS_TOKEN` (JetBrains Marketplace permanent token)
+- `npm run jetbrains:publish` or CI step `publishPlugin`
+- First-time listing: upload ZIP manually at [plugins.jetbrains.com](https://plugins.jetbrains.com) if needed
+
+See [jetbrains-plugin/README.md](./jetbrains-plugin/README.md).
+
 ## Color harmony & eye comfort
 
 Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `merge-extended-ui-colors.mjs`:
@@ -135,6 +187,15 @@ Before a release, spot-check in the editor:
 2. **Diff**: open a file diff from SCM — inserted / removed line backgrounds should be easy to see.
 
 ## Marketplace publishing
+
+### JetBrains (`jetbrains-plugin/`)
+
+- Sync + build : `npm run jetbrains:build`
+- Secret CI / local : `JETBRAINS_TOKEN`
+- ZIP : `jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip`
+- Plugin ID : `com.dekidev.dusk.office`
+
+### VS Code / Open VSX
 
 - **README screenshots**: the Extensions **Details** webview only keeps `img` sources with **`https:`** (relative `images/…` links are dropped by the markdown sanitizer). Host your screenshots on a HTTPS server.
 

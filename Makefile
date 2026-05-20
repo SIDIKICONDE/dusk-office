@@ -4,11 +4,12 @@
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NPM  := npm
 PKG  := dusk-office
-EDITOR ?= cursor
+EDITOR ?= auto
+IDE    ?= auto
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix push-main-auto push-main-safe pa ps rel rpi all make release release-tag release-status release-watch release-logs tag
+.PHONY: help install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix export-ide jetbrains-sync jetbrains-build jetbrains-install jetbrains-reinstall jetbrains-full jetbrains-publish push-main-auto push-main-safe pa ps rel rpi all make release release-tag release-status release-watch release-logs tag
 
 help:
 	@echo "Dusk Office — $(ROOT)"
@@ -21,10 +22,16 @@ help:
 	@echo "  make variants-syntax  rebuild token and semantic colors"
 	@echo "  make themes-regen     full pipeline: sync + UI + syntax + light/ivoire + validate"
 	@echo "  make package          build $(PKG)-*.vsix (aliases: vsix, build)"
-	@echo "  make install-vsix     install latest .vsix (EDITOR=$(EDITOR))"
+	@echo "  make install-vsix     install latest .vsix (EDITOR=$(EDITOR): auto|cursor|windsurf|code|code-insiders|codium)"
 	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
 	@echo "  make full             make:full + package + install-vsix (aliases: all)"
 	@echo "  make clean-old-vsix   keep only the newest $(PKG)-*.vsix"
+	@echo "  make export-ide       export themes to Neovim, Emacs, Zed, Helix, JetBrains, Base16"
+	@echo "  make jetbrains-build      sync + Gradle buildPlugin (ZIP)"
+	@echo "  make jetbrains-install    install latest ZIP (IDE=$(IDE): auto|flatpak-idea-ce|idea-ce|…)"
+	@echo "  make jetbrains-reinstall  build + install (alias: jetbrains-upgrade)"
+	@echo "  make jetbrains-full       make:full + jetbrains-reinstall"
+	@echo "  make jetbrains-publish    build + publishPlugin (JETBRAINS_TOKEN)"
 	@echo "  make push-main-auto   commit + push to origin/main (--yes, no prompt)"
 	@echo "  make push-main-safe   show status, then confirm commit + push"
 	@echo "  make pa / ps          aliases for push-main-auto / push-main-safe"
@@ -38,7 +45,8 @@ help:
 	@echo "  make release-watch    watch the latest release workflow run live"
 	@echo "  make release-logs     show logs of the latest failed release workflow"
 	@echo ""
-	@echo "  Example: make reinstall EDITOR=code"
+	@echo "  Examples: make reinstall EDITOR=windsurf"
+	@echo "            node scripts/install-vsix.mjs --list"
 
 install:
 	cd "$(ROOT)" && $(NPM) install
@@ -77,6 +85,27 @@ full all:
 # Allows `make full make` without failing.
 make:
 	@:
+
+export-ide:
+	cd "$(ROOT)" && $(NPM) run export:ide
+
+jetbrains-sync:
+	cd "$(ROOT)" && $(NPM) run jetbrains:sync
+
+jetbrains-build:
+	cd "$(ROOT)" && $(NPM) run jetbrains:build
+
+jetbrains-install:
+	cd "$(ROOT)" && node scripts/install-jetbrains-plugin.mjs --editor=$(IDE)
+
+jetbrains-reinstall jetbrains-upgrade:
+	cd "$(ROOT)" && $(NPM) run jetbrains:upgrade
+
+jetbrains-full:
+	cd "$(ROOT)" && $(NPM) run jetbrains:full
+
+jetbrains-publish:
+	cd "$(ROOT)" && $(NPM) run jetbrains:publish
 
 clean-old-vsix:
 	@cd "$(ROOT)" && ls -t $(PKG)-*.vsix 2>/dev/null | tail -n +2 | while IFS= read -r f; do rm -f "$$f"; done || true

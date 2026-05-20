@@ -1,8 +1,8 @@
 {
   "name": "dusk-office",
-  "displayName": "Dusk Office - 27 Pro Themes · Finance, Audit, Cybersecurity & DevOps",
-  "description": "Professional theme pack with 27 dark, light, and high-contrast variants tuned for finance, audit, banking, fintech, SOC monitoring & DevOps, and long coding sessions. WCAG-verified terminal contrast, semantic highlighting, ANSI coloring in the editor, adaptive focus, workspace fingerprint, auto day/night switch.",
-  "version": "1.2.1",
+  "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
+  "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
+  "version": "1.2.2",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -20,8 +20,36 @@
     "theme": "dark"
   },
   "qna": "marketplace",
+  "pricing": "Free",
+  "markdown": "github",
+  "bugs": {
+    "url": "https://github.com/SIDIKICONDE/dusk-office/issues"
+  },
+  "badges": [
+    {
+      "url": "https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace",
+      "href": "https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office",
+      "description": "VS Code Marketplace version"
+    },
+    {
+      "url": "https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX",
+      "href": "https://open-vsx.org/extension/dekidev/dusk-office",
+      "description": "Open VSX version"
+    }
+  ],
   "engines": {
     "vscode": "^1.85.0"
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "Dusk Office only reads workspace metadata (package.json, Cargo.toml, pyproject.toml, etc.) to suggest a theme variant. No code execution, no network calls."
+    },
+    "virtualWorkspaces": true
   },
   "activationEvents": [
     "onLanguage:javascript",
@@ -65,25 +93,36 @@
     "Themes"
   ],
   "keywords": [
+    "theme",
     "dark theme",
-    "theme pack",
     "light theme",
+    "theme pack",
+    "color theme",
+    "vscode theme",
+    "cursor theme",
+    "windsurf theme",
     "high contrast theme",
+    "accessible theme",
+    "colorblind friendly",
+    "wcag theme",
+    "oled theme",
+    "eye comfort",
     "professional theme",
     "finance theme",
-    "cybersecurity theme",
-    "accessible theme",
     "fintech theme",
     "banking theme",
     "audit theme",
+    "cybersecurity theme",
     "soc theme",
     "devops theme",
     "semantic highlighting",
-    "oled theme",
     "adaptive theme",
+    "auto dark mode",
+    "day night switch",
+    "ansi colors",
+    "terminal theme",
     "product icon theme",
-    "cursor theme",
-    "windsurf theme"
+    "theme bundle"
   ],
   "contributes": {
     "languages": [
@@ -884,6 +923,13 @@
     "build:ivoire-sombre": "node scripts/build-dusk-ivoire-sombre.mjs",
     "package": "npm run package:raw",
     "package:raw": "npx --no-install @vscode/vsce package --no-dependencies",
+    "export:ide": "node scripts/export-ide-themes.mjs",
+    "jetbrains:sync": "node scripts/sync-jetbrains-plugin.mjs",
+    "jetbrains:build": "npm run export:ide && npm run jetbrains:sync && cd jetbrains-plugin && ./gradlew buildPlugin --no-daemon",
+    "jetbrains:install": "node scripts/install-jetbrains-plugin.mjs",
+    "jetbrains:upgrade": "npm run jetbrains:build && npm run jetbrains:install",
+    "jetbrains:full": "npm run make:full && npm run jetbrains:upgrade",
+    "jetbrains:publish": "npm run jetbrains:build && cd jetbrains-plugin && ./gradlew publishPlugin --no-daemon",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs",
     "publish:vsce": "npx --no-install @vscode/vsce publish --packagePath dusk-office-$npm_package_version.vsix",
