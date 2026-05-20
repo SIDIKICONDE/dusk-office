@@ -1177,34 +1177,6 @@
     },
     {
       "scope": [
-        "variable.other.readwrite"
-      ],
-      "settings": {
-        "foreground": "#0f172a"
-      }
-    },
-    {
-      "scope": [
-        "meta.type.declaration",
-        "meta.interface.declaration"
-      ],
-      "settings": {
-        "foreground": "#0e7490"
-      }
-    },
-    {
-      "scope": [
-        "entity.name.namespace",
-        "entity.name.namespace.python",
-        "support.type.python",
-        "support.class.python"
-      ],
-      "settings": {
-        "foreground": "#92400e"
-      }
-    },
-    {
-      "scope": [
         "invalid",
         "invalid.illegal",
         "invalid.deprecated"
@@ -1238,7 +1210,7 @@
         "markup.fenced_code"
       ],
       "settings": {
-        "foreground": "#5b21b6"
+        "foreground": "#5c2d8a"
       }
     },
     {
@@ -1255,7 +1227,7 @@
         "punctuation.definition.list"
       ],
       "settings": {
-        "foreground": "#1e40af"
+        "foreground": "#254680"
       }
     },
     {
@@ -1266,6 +1238,34 @@
       "settings": {
         "foreground": "#3d4f58",
         "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.readwrite"
+      ],
+      "settings": {
+        "foreground": "#0f172a"
+      }
+    },
+    {
+      "scope": [
+        "meta.type.declaration",
+        "meta.interface.declaration"
+      ],
+      "settings": {
+        "foreground": "#0e7490"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.namespace",
+        "entity.name.namespace.python",
+        "support.type.python",
+        "support.class.python"
+      ],
+      "settings": {
+        "foreground": "#92400e"
       }
     }
   ],

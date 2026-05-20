@@ -1,5 +1,12 @@
 # Changelog — Dusk Office
 
+## 1.3.0 — 20 May 2026
+
+- **Added (JetBrains)**: 23 new `DEFAULT_` syntax tokens — function calls, parameters, variables, instance/static fields & methods, operators, parentheses, tags, attributes, entities, metadata, labels, string escapes, template language.
+- **Added (JetBrains)**: 40+ general editor attributes — error/warning squigglies, deprecated strikethrough, TODO styling, search highlights, bookmarks, breakpoints, hyperlinks, inline parameter hints, code coverage markers, breadcrumbs, live templates, injected language fragments, log output colors.
+- **Added (JetBrains)**: 7 new UI components — MenuItem, SearchEverywhere, ToolBar, GotItTooltip, Banner, Tag, Lesson. All 34 critical UI sections now covered.
+- **Added (VS Code)**: 8 missing tokenColor scopes — `invalid`, `variable.language`, `punctuation.definition.tag`, `markup.inline.raw`, `markup.changed`, `markup.list`, `markup.quote`. Light variants (Light, Ivory) get WCAG-compliant contrast overrides.
+
 ## 1.2.2 — 20 May 2026
 
 - **Changed**: version bump.
