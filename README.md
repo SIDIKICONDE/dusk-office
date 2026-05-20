@@ -33,11 +33,11 @@ This **README** is the primary documentation (GitHub and Marketplace). **Public 
 
 | Dusk Office Midnight | Dusk Office Abyss | Dusk Office Nocturne |
 | :---: | :---: | :---: |
-| ![Midnight](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-01.jpg) | ![Abyss](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-02.jpg) | ![Nocturne](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-03.jpg) |
+| ![Midnight](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-01.png) | ![Abyss](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-02.png) | ![Nocturne](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-03.png) |
 
 | Dusk Office Finance | Dusk Office Ivory |
 | :---: | :---: |
-| ![Finance](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-04.jpg) | ![Ivory](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-05.jpg) |
+| ![Finance](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-04.png) | ![Ivory](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office-docs/main/images/screenshot-05.png) |
 
 ---
 
