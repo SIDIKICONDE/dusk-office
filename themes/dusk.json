@@ -1379,6 +1379,71 @@
       "settings": {
         "foreground": "#a86878"
       }
+    },
+    {
+      "scope": [
+        "invalid",
+        "invalid.illegal",
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#c97565",
+        "fontStyle": "strikethrough"
+      }
+    },
+    {
+      "scope": "variable.language",
+      "settings": {
+        "foreground": "#a86878",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.tag",
+        "punctuation.definition.tag.begin",
+        "punctuation.definition.tag.end"
+      ],
+      "settings": {
+        "foreground": "#7a6068"
+      }
+    },
+    {
+      "scope": [
+        "markup.inline.raw",
+        "markup.raw",
+        "markup.fenced_code"
+      ],
+      "settings": {
+        "foreground": "#9a8ab0"
+      }
+    },
+    {
+      "scope": "markup.changed",
+      "settings": {
+        "foreground": "#b89040"
+      }
+    },
+    {
+      "scope": [
+        "markup.list",
+        "markup.list.unnumbered",
+        "markup.list.numbered",
+        "punctuation.definition.list"
+      ],
+      "settings": {
+        "foreground": "#5a8fb0"
+      }
+    },
+    {
+      "scope": [
+        "markup.quote",
+        "markup.quote.markdown"
+      ],
+      "settings": {
+        "foreground": "#9ccae0",
+        "fontStyle": "italic"
+      }
     }
   ],
   "semanticTokenColors": {
