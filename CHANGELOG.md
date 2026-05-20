@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 1.3.2 — 21 May 2026
+
+- **Fixed**: screenshots not visible on Marketplace — switched to relative image paths and replaced JPG with higher-quality PNG captures (8 screenshots: Python, React, C, HTML, Flutter, TypeScript).
+
 ## 1.3.1 — 20 May 2026
 
 - **Added (JetBrains)**: 23 new `DEFAULT_` syntax tokens — function calls, parameters, variables, instance/static fields & methods, operators, parentheses, tags, attributes, entities, metadata, labels, string escapes, template language.
