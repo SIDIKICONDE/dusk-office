@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
   "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
