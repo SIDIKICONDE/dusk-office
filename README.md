@@ -31,13 +31,13 @@ This **README** is the primary documentation (GitHub and Marketplace). **Public 
 
 ## Screenshots
 
-| Dusk Office Midnight | Dusk Office Abyss | Dusk Office Nocturne |
+| Dusk Office Finance | Dusk Office Voltage | Dusk Office Nocturne |
 | :---: | :---: | :---: |
-| ![Midnight](images/screenshot-01.png) | ![Abyss](images/screenshot-02.png) | ![Nocturne](images/screenshot-03.png) |
+| ![Finance](images/screenshot-01.png) | ![Voltage](images/screenshot-02.png) | ![Nocturne](images/screenshot-03.png) |
 
-| Dusk Office Finance | Dusk Office Ivory |
+| Dusk Office Finance | Dusk Office Light |
 | :---: | :---: |
-| ![Finance](images/screenshot-04.png) | ![Ivory](images/screenshot-05.png) |
+| ![Finance](images/screenshot-04.png) | ![Light](images/screenshot-05.png) |
 
 ---
 
