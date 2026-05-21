@@ -9,6 +9,7 @@ src/main/resources/colors/*.icls
 src/main/resources/colors/*.xml
 src/main/resources/themes/*.theme.json
 src/main/resources/META-INF/plugin.xml
+src/main/resources/META-INF/pluginIcon.svg
 
 # JDK local (copier depuis local.properties.example)
 local.properties

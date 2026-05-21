@@ -13,6 +13,7 @@ import {
   rmSync,
   existsSync,
 } from "fs";
+import { execSync } from "child_process";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { buildJetBrainsLafTheme } from "../lib/jetbrains-laf-theme.mjs";
@@ -33,6 +34,34 @@ function escapeXml(s) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+/** JetBrains Marketplace: META-INF/pluginIcon.svg (same asset as package.json "icon"). */
+function syncPluginIcon() {
+  const iconRel = String(PKG.icon || "images/icon.png").replace(/^\.\//, "");
+  const iconSrc = join(ROOT, iconRel);
+  if (!existsSync(iconSrc)) {
+    console.warn(`[WARN] ${iconRel} missing — skip pluginIcon.svg`);
+    return;
+  }
+  mkdirSync(META, { recursive: true });
+  const outSvg = join(META, "pluginIcon.svg");
+  let pngBuf;
+  try {
+    pngBuf = execSync(`magick "${iconSrc}" -resize 128x128 PNG:-`, {
+      maxBuffer: 8 * 1024 * 1024,
+    });
+  } catch {
+    pngBuf = readFileSync(iconSrc);
+  }
+  const b64 = pngBuf.toString("base64");
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128" width="40" height="40">
+  <image width="128" height="128" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,${b64}"/>
+</svg>
+`;
+  writeFileSync(outSvg, svg);
+  console.log(`[OK] pluginIcon.svg ← ${iconRel}`);
 }
 
 function resolveGradleJavaHomeLine() {
@@ -297,6 +326,7 @@ ${extensionsXml}
 `;
 
   writeFileSync(join(META, "plugin.xml"), pluginXml, "utf8");
+  syncPluginIcon();
 
   const javaHomeLine = resolveGradleJavaHomeLine();
 

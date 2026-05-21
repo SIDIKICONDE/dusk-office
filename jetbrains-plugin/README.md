@@ -258,6 +258,7 @@ First upload: [Upload plugin](https://plugins.jetbrains.com/author/me/plugins) â
 | --- | --- |
 | `src/main/resources/colors/*.icls` | `exports/jetbrains/` via `jetbrains:sync` |
 | `src/main/resources/META-INF/plugin.xml` | `scripts/sync-jetbrains-plugin.mjs` |
+| `src/main/resources/META-INF/pluginIcon.svg` | copied from `images/icon.png` via `jetbrains:sync` (Marketplace + Plugin Manager) |
 | `gradle.properties` (`pluginVersion`) | `package.json` |
 
 ### Plugin IDs

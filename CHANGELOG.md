@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 1.3.3 — 21 May 2026
+
+- **Changed**: version bump.
+
 ## 1.3.2 — 21 May 2026
 
 - **Fixed**: screenshots not visible on Marketplace — switched to relative image paths and replaced JPG with higher-quality PNG captures (8 screenshots: Python, React, C, HTML, Flutter, TypeScript).
