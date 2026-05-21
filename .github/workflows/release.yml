@@ -25,16 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify tag matches package.json version
-        run: |
-          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
-          PKG_VERSION=$(node -p "require('./package.json').version")
-          echo "Tag version : $TAG_VERSION"
-          echo "package.json: $PKG_VERSION"
-          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
-            echo "::error::Tag (v$TAG_VERSION) does not match package.json ($PKG_VERSION)."
-            exit 1
-          fi
+      - name: Verify tag, package.json version, and CHANGELOG
+        env:
+          GITHUB_REF: ${{ github.ref }}
+        run: npm run release-check
 
       - name: Syntax check (extension.js + lib + scripts)
         run: |
@@ -42,8 +36,8 @@ jobs:
           for f in lib/*.js; do node --check "$f" || exit 1; done
           for f in scripts/*.mjs; do node --check "$f" || exit 1; done
 
-      - name: Validate themes (palette, pipeline, terminal contrast)
-        run: npm run validate
+      - name: Regenerate themes and verify committed output
+        run: npm run verify:themes-fresh
 
       - name: Unit tests
         run: npm test
@@ -67,12 +61,10 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           if [ -z "$VSCE_PAT" ]; then
-            echo "::warning::VSCE_PAT secret not set; skipping VS Marketplace publish."
-            exit 0
+            echo "::error::VSCE_PAT secret is not set; refusing to publish without VS Marketplace."
+            exit 1
           fi
-          # Diagnostic: secret length without revealing the value (PAT should be 84 chars)
           echo "VSCE_PAT length: ${#VSCE_PAT}"
-          # vsce reads VSCE_PAT from env automatically, no need for -p flag
           npx --no-install @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}"
 
       - name: Publish to Open VSX
@@ -80,8 +72,8 @@ jobs:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: |
           if [ -z "$OVSX_PAT" ]; then
-            echo "::warning::OVSX_PAT secret not set; skipping Open VSX publish."
-            exit 0
+            echo "::error::OVSX_PAT secret is not set; refusing to publish without Open VSX."
+            exit 1
           fi
           npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
 
@@ -97,26 +89,25 @@ jobs:
           npm run jetbrains:sync
 
       - name: Build JetBrains plugin ZIP
-        run: cd jetbrains-plugin && chmod +x gradlew && ./gradlew buildPlugin --no-daemon
+        run: node scripts/run-gradle.mjs buildPlugin --no-daemon
 
       - name: Publish to JetBrains Marketplace
         env:
           JETBRAINS_TOKEN: ${{ secrets.JETBRAINS_TOKEN }}
         run: |
           if [ -z "$JETBRAINS_TOKEN" ]; then
-            echo "::warning::JETBRAINS_TOKEN secret not set; skipping JetBrains Marketplace publish."
-            exit 0
+            echo "::error::JETBRAINS_TOKEN secret is not set; refusing to publish without JetBrains Marketplace."
+            exit 1
           fi
-          cd jetbrains-plugin && ./gradlew publishPlugin --no-daemon
+          node scripts/run-gradle.mjs publishPlugin --no-daemon
 
       - name: Resolve JetBrains plugin ZIP
         id: jetbrains_zip
         run: |
           ZIP=$(ls jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip 2>/dev/null | head -n 1)
           if [ -z "$ZIP" ]; then
-            echo "::warning::JetBrains plugin ZIP not found."
-            echo "path=" >> "$GITHUB_OUTPUT"
-            exit 0
+            echo "::error::JetBrains plugin ZIP not found after buildPlugin."
+            exit 1
           fi
           echo "path=$ZIP" >> "$GITHUB_OUTPUT"
           echo "Resolved JetBrains ZIP: $ZIP"
@@ -125,14 +116,14 @@ jobs:
         id: changelog
         run: |
           VERSION="${GITHUB_REF#refs/tags/v}"
-          # Extract everything from "## VERSION" up to the next "## " (exclusive)
           BODY=$(awk -v v="$VERSION" '
             $0 ~ "^## "v" " { found=1; next }
             found && /^## / { exit }
             found { print }
           ' CHANGELOG.md)
           if [ -z "$BODY" ]; then
-            BODY="See CHANGELOG.md for the full release notes."
+            echo "::error::CHANGELOG.md is missing a section for version $VERSION."
+            exit 1
           fi
           {
             echo 'body<<__EOF__'
@@ -145,9 +136,7 @@ jobs:
         run: |
           ASSETS="${{ steps.vsix.outputs.path }}"
           JB="${{ steps.jetbrains_zip.outputs.path }}"
-          if [ -n "$JB" ] && [ -f "$JB" ]; then
-            ASSETS="${ASSETS}"$'\n'"${JB}"
-          fi
+          ASSETS="${ASSETS}"$'\n'"${JB}"
           echo "paths<<__EOF__" >> "$GITHUB_OUTPUT"
           echo "$ASSETS" >> "$GITHUB_OUTPUT"
           echo "__EOF__" >> "$GITHUB_OUTPUT"

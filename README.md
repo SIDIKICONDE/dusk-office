@@ -150,7 +150,7 @@ Both. The pack ships **27 variants** — dark (Midnight, Abyss, Nocturne, Vault,
 Yes. The exact same extension installs in **VS Code**, **Cursor**, **Windsurf** and is published on **Open VSX** for VS Codium and other open builds.
 
 **Does it work in JetBrains IDEs (IntelliJ, PyCharm, WebStorm, Rider, GoLand, PhpStorm, CLion, RubyMine, DataGrip, RustRover, Android Studio)?**
-Yes — a dedicated **JetBrains plugin** ships the same 27 variants as full IDE themes + editor color schemes. See `@/home/dekidev/dusk-office/jetbrains-plugin/README.md:1-118` and `npm run jetbrains:build`.
+Yes — a dedicated **JetBrains plugin** ships the same 27 variants as full IDE themes + editor color schemes. See [jetbrains-plugin/README.md](./jetbrains-plugin/README.md) and `npm run jetbrains:build`.
 
 **Is the terminal contrast WCAG-compliant?**
 Yes. The build pipeline runs `audit-contrast.mjs` and `verify-terminal-contrast.mjs` on every variant, checking `terminal.foreground` and the 16 ANSI colors against WCAG AA/AAA. Run `Dusk Office: Verify Terminal Contrast` to see the report.

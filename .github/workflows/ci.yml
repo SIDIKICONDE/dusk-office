@@ -29,11 +29,41 @@ jobs:
           for f in lib/*.js; do node --check "$f" || exit 1; done
           for f in scripts/*.mjs; do node --check "$f" || exit 1; done
 
-      - name: Validate themes (palette, pipeline, terminal contrast)
-        run: npm run validate
+      - name: Regenerate themes and verify committed output
+        run: npm run verify:themes-fresh
 
       - name: Unit tests
         run: npm test
 
       - name: Package VSIX (smoke test, not uploaded)
         run: npm run package
+
+  jetbrains:
+    name: Build JetBrains plugin (smoke)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Export IDE themes + sync JetBrains plugin
+        run: |
+          npm run export:ide
+          npm run jetbrains:sync
+
+      - name: Build JetBrains plugin ZIP
+        run: node scripts/run-gradle.mjs buildPlugin --no-daemon

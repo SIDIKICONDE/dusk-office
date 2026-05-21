@@ -26,6 +26,34 @@ const ZIP_RE = /^dusk-office-jetbrains-\d+\.\d+\.\d+\.zip$/;
 /** @type {{ id: string, label: string, flatpakApp?: string, nativePrefix: string, autoOrder: number }[]} */
 const JETBRAINS_EDITORS = [
   {
+    id: "idea-ce-win",
+    label: "IntelliJ IDEA Community (Windows)",
+    nativePrefix: "IdeaIC",
+    autoOrder: 0,
+    win32Only: true,
+  },
+  {
+    id: "idea-win",
+    label: "IntelliJ IDEA Ultimate (Windows)",
+    nativePrefix: "IntelliJIdea",
+    autoOrder: 0,
+    win32Only: true,
+  },
+  {
+    id: "webstorm-win",
+    label: "WebStorm (Windows)",
+    nativePrefix: "WebStorm",
+    autoOrder: 0,
+    win32Only: true,
+  },
+  {
+    id: "pycharm-win",
+    label: "PyCharm (Windows)",
+    nativePrefix: "PyCharm",
+    autoOrder: 0,
+    win32Only: true,
+  },
+  {
     id: "flatpak-idea-ce",
     label: "IntelliJ IDEA Community (Flatpak)",
     flatpakApp: "com.jetbrains.IntelliJ-IDEA-Community",
@@ -147,7 +175,20 @@ function resolvePluginsDirForProduct(product, roots) {
   return null;
 }
 
+function userHome() {
+  return process.env.HOME || process.env.USERPROFILE || "";
+}
+
 function jetBrainsRoots(home, flatpakApp) {
+  if (process.platform === "win32") {
+    const appData = process.env.APPDATA;
+    const localAppData = process.env.LOCALAPPDATA;
+    return {
+      configRoot: appData ? join(appData, "JetBrains") : null,
+      dataRoot: localAppData ? join(localAppData, "JetBrains") : null,
+      shareRoot: null,
+    };
+  }
   if (flatpakApp) {
     const appRoot = join(home, ".var", "app", flatpakApp);
     return {
@@ -164,8 +205,10 @@ function jetBrainsRoots(home, flatpakApp) {
 }
 
 function discoverPluginDirs(def) {
-  const home = process.env.HOME;
+  const home = userHome();
   if (!home) return [];
+  if (def.win32Only && process.platform !== "win32") return [];
+  if (!def.win32Only && def.flatpakApp && process.platform === "win32") return [];
 
   const roots = jetBrainsRoots(home, def.flatpakApp);
   const configProducts = listProductDirs(roots.configRoot);
@@ -277,7 +320,7 @@ function listDetectedEditors() {
     } else if (def.flatpakApp && flatpakInstalled(def.flatpakApp)) {
       any = true;
       const inferred = inferFlatpakProduct(def);
-      const home = process.env.HOME;
+      const home = userHome();
       const path = inferred
         ? join(
             home,
@@ -315,13 +358,27 @@ function removeLegacyInstall(legacyPath) {
   }
 }
 
-function installZip(zipPath, pluginsDir, legacyPath) {
-  const target = join(pluginsDir, PLUGIN_FOLDER);
-  mkdirSync(pluginsDir, { recursive: true });
-  if (existsSync(target)) {
-    rmSync(target, { recursive: true, force: true });
+function extractZipArchive(zipPath, pluginsDir) {
+  if (process.platform === "win32") {
+    const ps = [
+      "Expand-Archive",
+      "-Path",
+      zipPath.replace(/'/g, "''"),
+      "-DestinationPath",
+      pluginsDir.replace(/'/g, "''"),
+      "-Force",
+    ].join(" ");
+    const r = spawnSync(
+      "powershell",
+      ["-NoProfile", "-Command", ps],
+      { stdio: "inherit" },
+    );
+    if (r.status !== 0) {
+      console.error("[ERR] Expand-Archive a échoué.");
+      process.exit(1);
+    }
+    return;
   }
-  removeLegacyInstall(legacyPath);
 
   const r = spawnSync("unzip", ["-q", zipPath, "-d", pluginsDir], {
     stdio: "inherit",
@@ -330,6 +387,17 @@ function installZip(zipPath, pluginsDir, legacyPath) {
     console.error("[ERR] unzip a échoué. Installe le paquet unzip.");
     process.exit(1);
   }
+}
+
+function installZip(zipPath, pluginsDir, legacyPath) {
+  const target = join(pluginsDir, PLUGIN_FOLDER);
+  mkdirSync(pluginsDir, { recursive: true });
+  if (existsSync(target)) {
+    rmSync(target, { recursive: true, force: true });
+  }
+  removeLegacyInstall(legacyPath);
+
+  extractZipArchive(zipPath, pluginsDir);
   if (!existsSync(target)) {
     console.error(
       `[ERR] Dossier ${PLUGIN_FOLDER} introuvable après extraction.`,

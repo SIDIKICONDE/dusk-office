@@ -92,6 +92,47 @@ function mapColor(str) {
   return str;
 }
 
+function mapTokenColors(tokenColors) {
+  if (!Array.isArray(tokenColors)) return tokenColors;
+  return tokenColors.map((rule) => {
+    const next = { ...rule };
+    if (next.settings && typeof next.settings === "object") {
+      next.settings = { ...next.settings };
+      if (typeof next.settings.foreground === "string") {
+        next.settings.foreground = mapColor(next.settings.foreground);
+      }
+      if (typeof next.settings.background === "string") {
+        next.settings.background = mapColor(next.settings.background);
+      }
+    }
+    return next;
+  });
+}
+
+function mapSemanticTokenColors(semanticTokenColors) {
+  if (!semanticTokenColors || typeof semanticTokenColors !== "object") {
+    return semanticTokenColors;
+  }
+  const out = {};
+  for (const [key, value] of Object.entries(semanticTokenColors)) {
+    if (typeof value === "string") {
+      out[key] = mapColor(value);
+    } else if (value && typeof value === "object") {
+      const mapped = { ...value };
+      if (typeof mapped.foreground === "string") {
+        mapped.foreground = mapColor(mapped.foreground);
+      }
+      if (typeof mapped.background === "string") {
+        mapped.background = mapColor(mapped.background);
+      }
+      out[key] = mapped;
+    } else {
+      out[key] = value;
+    }
+  }
+  return out;
+}
+
 function main() {
   const src = JSON.parse(fs.readFileSync(path.join(root, "themes/dusk-cendre.json"), "utf8"));
   const colors = {};
@@ -154,8 +195,8 @@ function main() {
     name: "Dusk Office Dark Ivory",
     include: "./dusk.json",
     colors: sorted,
-    tokenColors: src.tokenColors,
-    semanticTokenColors: src.semanticTokenColors,
+    tokenColors: mapTokenColors(src.tokenColors),
+    semanticTokenColors: mapSemanticTokenColors(src.semanticTokenColors),
   };
 
   const dest = path.join(root, "themes/dusk-ivoire-sombre.json");

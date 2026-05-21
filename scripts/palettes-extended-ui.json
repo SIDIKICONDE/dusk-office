@@ -144,13 +144,13 @@
     "amber": "#c9a85c"
   },
   "dusk-nocturne": {
-    "fg": "#e8dcc8",
-    "accent": "#d4a853",
-    "accentHi": "#e8c87a",
-    "accentSoft": "#5a4d3a",
-    "widget": "#2a2520",
-    "panel": "#1f1b17",
-    "border": "#6b5b45",
+    "fg": "#f0e4d0",
+    "accent": "#c98848",
+    "accentHi": "#e0a858",
+    "accentSoft": "#6a5038",
+    "widget": "#322820",
+    "panel": "#1a1610",
+    "border": "#7a6548",
     "error": "#c97565",
     "warning": "#c49d58",
     "info": "#8fb8a8",
@@ -159,7 +159,7 @@
     "removed": "#c97565",
     "purple": "#a890b8",
     "pink": "#c98b7a",
-    "amber": "#d4a853"
+    "amber": "#c98848"
   },
   "dusk-finance": {
     "fg": "#d4d0c8",

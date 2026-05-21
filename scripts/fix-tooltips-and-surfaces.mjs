@@ -6,10 +6,11 @@
  * Usage:  node scripts/fix-tooltips-and-surfaces.mjs [--dry-run]
  */
 import { readFileSync, writeFileSync, readdirSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const DRY = process.argv.includes("--dry-run");
-const dir = new URL("../themes", import.meta.url).pathname;
+const dir = join(dirname(fileURLToPath(import.meta.url)), "..", "themes");
 const files = readdirSync(dir).filter(f => f.endsWith(".json") && f !== "dusk-hc.json").sort();
 
 const h2r = h => { h = h.replace("#",""); if(h.length>6) h=h.slice(0,6); return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]; };

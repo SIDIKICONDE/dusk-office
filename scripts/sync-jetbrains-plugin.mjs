@@ -35,6 +35,31 @@ function escapeXml(s) {
     .replace(/"/g, "&quot;");
 }
 
+function resolveGradleJavaHomeLine() {
+  const candidates = [];
+  if (process.env.JAVA_HOME) {
+    candidates.push(process.env.JAVA_HOME);
+  }
+  if (process.platform === "win32") {
+    const local = process.env.LOCALAPPDATA;
+    if (local) {
+      candidates.push(join(local, "Programs", "Eclipse Adoptium", "jdk-17"));
+      candidates.push(join(local, "Programs", "Microsoft", "jdk-17"));
+    }
+  } else {
+    const home = process.env.HOME ?? "";
+    if (home) {
+      candidates.push(join(home, ".local", "jdk-17"));
+    }
+  }
+  for (const candidate of candidates) {
+    if (candidate && existsSync(candidate)) {
+      return `org.gradle.java.home=${candidate.replace(/\\/g, "/")}\n`;
+    }
+  }
+  return "# org.gradle.java.home=/path/to/jdk-17\n";
+}
+
 function schemeNameFromIcls(content) {
   const m = content.match(/<scheme\s+name="([^"]+)"/);
   return m ? m[1] : null;
@@ -273,10 +298,7 @@ ${extensionsXml}
 
   writeFileSync(join(META, "plugin.xml"), pluginXml, "utf8");
 
-  const jdk17 = join(process.env.HOME ?? "", ".local", "jdk-17");
-  const javaHomeLine = existsSync(jdk17)
-    ? `org.gradle.java.home=${jdk17}\n`
-    : "# org.gradle.java.home=/chemin/vers/jdk-17\n";
+  const javaHomeLine = resolveGradleJavaHomeLine();
 
   const gradleProps = `pluginGroup=dekidev
 pluginVersion=${PKG.version}

@@ -21,9 +21,11 @@
  */
 
 import { readFileSync, readdirSync } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const VERBOSE = process.argv.includes("--verbose");
+const STRICT = process.argv.includes("--strict");
 const DEFAULT_THRESHOLD = 30;
 const WARNING_BAND = 15;
 const THRESHOLD_EQ_ARG = process.argv.find(a => a.startsWith("--threshold="));
@@ -38,8 +40,22 @@ if (!Number.isFinite(THRESHOLD)) {
   process.exit(1);
 }
 
-const dir = new URL("../themes", import.meta.url).pathname;
+const dir = join(dirname(fileURLToPath(import.meta.url)), "..", "themes");
 const files = readdirSync(dir).filter(f => f.endsWith(".json") && f !== "dusk-hc.json").sort();
+
+/** Build pipeline derivatives — allowed to sit closer than the global threshold. */
+const STRICT_EXEMPT_PAIRS = new Set([
+  pairKey("Dusk Office Light", "Dusk Office Ivory"),
+  pairKey("Dusk Office Ash", "Dusk Office Dark Ivory"),
+]);
+
+function pairKey(a, b) {
+  return [a, b].sort().join(" ↔ ");
+}
+
+function isStrictExempt(a, b) {
+  return STRICT_EXEMPT_PAIRS.has(pairKey(a, b));
+}
 
 // --- Color utilities ---
 const h2r = h => {
@@ -168,8 +184,17 @@ pairs.sort((a, b) => a.overall - b.overall);
 console.log(`THEME DISTINCTIVENESS CHECK — ${themes.length} themes, ${pairs.length} pairs`);
 console.log(`Threshold: overall distance < ${THRESHOLD} = too similar (${THRESHOLD}-${THRESHOLD + WARNING_BAND} = review band)\n`);
 
-const problems = pairs.filter(p => p.overall < THRESHOLD);
+const problems = pairs.filter(p => p.overall < THRESHOLD && !isStrictExempt(p.a, p.b));
 const warnings = pairs.filter(p => p.overall >= THRESHOLD && p.overall < THRESHOLD + WARNING_BAND);
+const exemptProblems = pairs.filter(p => p.overall < THRESHOLD && isStrictExempt(p.a, p.b));
+
+if (exemptProblems.length > 0 && VERBOSE) {
+  console.log("ℹ️  EXEMPT (pipeline derivatives, ignored under --strict):\n");
+  for (const p of exemptProblems) {
+    console.log(`  ${p.a} ↔ ${p.b} — overall: ${p.overall}`);
+  }
+  console.log();
+}
 
 if (problems.length > 0) {
   console.log("❌ TOO SIMILAR (need differentiation):\n");
@@ -225,3 +250,10 @@ for (const t of themeAvgDist.slice(-5)) {
 
 // --- Summary ---
 console.log(`\nSUMMARY: ${problems.length} too-similar pairs, ${warnings.length} close pairs, ${pairs.length} total pairs`);
+
+if (STRICT && problems.length > 0) {
+  console.error(
+    `\ncheck-theme-distinctiveness: ${problems.length} pair(s) below threshold ${THRESHOLD} (--strict).`,
+  );
+  process.exit(1);
+}
