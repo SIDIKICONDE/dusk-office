@@ -1,6 +1,14 @@
 # Changelog — Dusk Office
 
-## 1.3.3 — 21 May 2026
+## 1.3.4 — 22 May 2026
+
+- **Fixed**: **Status bar / Control Center theme label stuck on `workbench.colorTheme`** when `window.autoDetectColorScheme` is enabled — e.g. label showed **Vault** while Windows light mode displayed **Light** via `workbench.preferredLightColorTheme`. `getCurrentTheme()` now resolves the **effective** theme (`resolveEffectiveColorTheme` in `lib/theme-common.js`); status bar, title-bar sync, and `duskOffice.isActive` listen to `onDidChangeActiveColorTheme` and preferred-theme settings.
+- **Fixed**: **CodeLens « Run | Debug » invisible on light themes** (Light, Ivory, Ledger, Audit) — `editorCodeLens.foreground` was inherited from the dark base (`#d1e0e888`, ~1.2:1 on light backgrounds). Build scripts set `#475569cc` (Ivory: warm `#453d34cc`); `apply-light-terminal-ansi.mjs` backfills Ledger/Audit.
+- **Fixed**: **Light-theme syntax contrast** — PHP/editor variables (`variable`, `variable.other.php`, `#b8d4e4`) and logical/null-coalescing operators (`#22d3ee`) remapped in `scripts/fix-light-syntax.mjs` and `build-dusk-light.mjs` for readable WCAG contrast on `#f1f5f9`.
+- **Fixed (JetBrains)**: **CodeLens / Code Vision inlay** export aligned with VS Code light fixes — `CODE_VISION_INLAY`, `CODE_VISION_INLAY_HOVERED`, `CODE_LENS_BORDER_COLOR` use `editorCodeLens.foreground`; light palette export runs `remapLightSyntaxForeground` on syntax roles (`lib/theme-export-palette.mjs`, `lib/export-formats.mjs`).
+- **Added**: unit tests for `resolveEffectiveColorTheme` (`tests/theme-common.test.js`).
+
+## 1.3.3 — 22 May 2026
 
 - **Changed**: version bump.
 

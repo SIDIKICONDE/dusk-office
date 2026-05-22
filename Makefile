@@ -4,7 +4,11 @@
 ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 NPM  := npm
 PKG  := dusk-office
-EDITOR ?= auto
+ifeq ($(origin EDITOR),command line)
+VSCODE_EDITOR := $(EDITOR)
+else
+VSCODE_EDITOR ?= auto
+endif
 IDE    ?= auto
 
 .DEFAULT_GOAL := help
@@ -22,7 +26,7 @@ help:
 	@echo "  make variants-syntax  rebuild token and semantic colors"
 	@echo "  make themes-regen     full pipeline: sync + UI + syntax + light/ivoire + validate"
 	@echo "  make package          build $(PKG)-*.vsix (aliases: vsix, build)"
-	@echo "  make install-vsix     install latest .vsix (EDITOR=$(EDITOR): auto|cursor|windsurf|code|code-insiders|codium)"
+	@echo "  make install-vsix     install latest .vsix (VSCODE_EDITOR=$(VSCODE_EDITOR): auto|cursor|windsurf|code|code-insiders|codium)"
 	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
 	@echo "  make full             make:full + package + install-vsix (aliases: all)"
 	@echo "  make clean-old-vsix   keep only the newest $(PKG)-*.vsix"
@@ -46,7 +50,7 @@ help:
 	@echo "  make release-watch    watch the latest release workflow run live"
 	@echo "  make release-logs     show logs of the latest failed release workflow"
 	@echo ""
-	@echo "  Examples: make reinstall EDITOR=windsurf"
+	@echo "  Examples: make reinstall VSCODE_EDITOR=windsurf"
 	@echo "            node scripts/install-vsix.mjs --list"
 
 install:
@@ -74,14 +78,14 @@ package vsix build:
 	cd "$(ROOT)" && $(NPM) run package
 
 install-vsix:
-	cd "$(ROOT)" && node scripts/install-vsix.mjs --editor=$(EDITOR)
+	cd "$(ROOT)" && node scripts/install-vsix.mjs --editor=$(VSCODE_EDITOR)
 
 reinstall upgrade:
 	cd "$(ROOT)" && $(NPM) run upgrade
 
 # make:full = theme-sources-sync + sync + variants:ui + variants:syntax + build:hc + build:light + build:ivoire* + validate
 full all:
-	cd "$(ROOT)" && $(NPM) run make:full && $(NPM) run package && node scripts/install-vsix.mjs --editor=$(EDITOR)
+	cd "$(ROOT)" && $(NPM) run make:full && $(NPM) run package && node scripts/install-vsix.mjs --editor=$(VSCODE_EDITOR)
 
 # Allows `make full make` without failing.
 make:

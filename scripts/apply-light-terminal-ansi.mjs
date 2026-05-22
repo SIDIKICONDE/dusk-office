@@ -17,6 +17,10 @@ for (const entry of pkg.contributes?.themes ?? []) {
   const theme = JSON.parse(fs.readFileSync(file, "utf8"));
   theme.colors = theme.colors ?? {};
   applyLightTerminalAnsi(theme.colors);
+  // Ledger / Audit n’embarquent pas editorCodeLens ; Light/Ivory le définissent au build.
+  if (!theme.colors["editorCodeLens.foreground"]) {
+    theme.colors["editorCodeLens.foreground"] = "#475569cc";
+  }
   fs.writeFileSync(file, JSON.stringify(theme, null, 2) + "\n", "utf8");
   console.log("OK", path.relative(root, file));
 }

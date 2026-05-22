@@ -227,7 +227,8 @@ if (!vsix) {
 const flag = process.argv.find((a) => a.startsWith("--editor="));
 const preferred =
   flag?.split("=")[1] ??
-  process.env.EDITOR ??
+  process.env.DUSK_OFFICE_EDITOR ??
+  process.env.VSCODE_EDITOR ??
   "auto";
 const resolved = resolveCli(preferred);
 if (!resolved) {

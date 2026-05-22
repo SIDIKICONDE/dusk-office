@@ -350,7 +350,8 @@
     "tree.indentGuidesStroke": "#8c8a8218",
     "tree.inactiveIndentGuidesStroke": "#8c8a820a",
     "widget.border": "#8c8a8244",
-    "widget.shadow": "#8c8a8266"
+    "widget.shadow": "#8c8a8266",
+    "editorCodeLens.foreground": "#475569cc"
   },
   "semanticTokenColors": {
     "class": {

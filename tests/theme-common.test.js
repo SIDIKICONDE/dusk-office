@@ -7,6 +7,7 @@ const {
   isThemeName,
   cleanPickedLabel,
   getThemeShortLabel,
+  resolveEffectiveColorTheme,
   normalizeLanguageId,
   isHourInRange,
   isAdaptiveLightPeriod,
@@ -76,6 +77,62 @@ describe("getThemeShortLabel", () => {
   it("returns 'Dusk' for non-string input", () => {
     assert.equal(getThemeShortLabel(null), "Dusk");
     assert.equal(getThemeShortLabel(undefined), "Dusk");
+  });
+});
+
+describe("resolveEffectiveColorTheme", () => {
+  const K = { Light: 1, Dark: 2, HighContrast: 3, HighContrastLight: 4 };
+
+  it("returns colorTheme when auto-detect is off", () => {
+    assert.equal(
+      resolveEffectiveColorTheme({
+        autoDetectColorScheme: false,
+        colorTheme: "Dusk Office Vault",
+        preferredLightColorTheme: "Dusk Office Light",
+        activeThemeKind: K.Light,
+        ColorThemeKind: K,
+      }),
+      "Dusk Office Vault",
+    );
+  });
+
+  it("returns preferredLightColorTheme when OS is light", () => {
+    assert.equal(
+      resolveEffectiveColorTheme({
+        autoDetectColorScheme: true,
+        colorTheme: "Dusk Office Vault",
+        preferredLightColorTheme: "Dusk Office Light",
+        activeThemeKind: K.Light,
+        ColorThemeKind: K,
+      }),
+      "Dusk Office Light",
+    );
+  });
+
+  it("returns preferredDarkColorTheme when set and OS is dark", () => {
+    assert.equal(
+      resolveEffectiveColorTheme({
+        autoDetectColorScheme: true,
+        colorTheme: "Dusk Office Vault",
+        preferredDarkColorTheme: "Dusk Office Midnight",
+        activeThemeKind: K.Dark,
+        ColorThemeKind: K,
+      }),
+      "Dusk Office Midnight",
+    );
+  });
+
+  it("falls back to colorTheme when preferred dark is empty", () => {
+    assert.equal(
+      resolveEffectiveColorTheme({
+        autoDetectColorScheme: true,
+        colorTheme: "Dusk Office Vault",
+        preferredDarkColorTheme: "",
+        activeThemeKind: K.Dark,
+        ColorThemeKind: K,
+      }),
+      "Dusk Office Vault",
+    );
   });
 });
 

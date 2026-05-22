@@ -14,6 +14,7 @@ const { openControlCenter } = require("./lib/control-center.js");
 const { createStatusBarItem } = require("./lib/status-bar.js");
 const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/feature-managers.js");
 const { initializeStartupBehavior } = require("./lib/startup.js");
+const { showActivationPrompt } = require("./lib/activation-prompt.js");
 const {
   detectWorkspaceFingerprint,
   clearWorkspaceFingerprint,
@@ -44,7 +45,12 @@ async function activate(context) {
       if (titleBarStyleChanged && (await titleBar.releaseTitleBarStyleSyncIfOverridden(context))) {
         return;
       }
-      if (e.affectsConfiguration("workbench.colorTheme")) {
+      if (
+        e.affectsConfiguration("workbench.colorTheme") ||
+        e.affectsConfiguration("workbench.preferredLightColorTheme") ||
+        e.affectsConfiguration("workbench.preferredDarkColorTheme") ||
+        e.affectsConfiguration("window.autoDetectColorScheme")
+      ) {
         void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
       }
       if (e.affectsConfiguration("duskOffice.favoriteTheme")) {
@@ -57,10 +63,17 @@ async function activate(context) {
       if (
         titleBarStyleChanged ||
         e.affectsConfiguration("workbench.colorTheme") ||
+        e.affectsConfiguration("workbench.preferredLightColorTheme") ||
+        e.affectsConfiguration("workbench.preferredDarkColorTheme") ||
+        e.affectsConfiguration("window.autoDetectColorScheme") ||
         e.affectsConfiguration("duskOffice.titleBar.alignWithTheme")
       ) {
         void titleBar.syncTitleBarStyleForDuskTheme(context);
       }
+    }),
+    vscode.window.onDidChangeActiveColorTheme(() => {
+      void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
+      void titleBar.syncTitleBarStyleForDuskTheme(context);
     }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => themes.setThemeVariant(context)),
@@ -99,8 +112,12 @@ async function activate(context) {
   await titleBar.syncTitleBarStyleForDuskTheme(context);
 
   setTimeout(() => {
-    void detectWorkspaceFingerprint(context);
-  }, 1500);
+    void showActivationPrompt(context).then((shown) => {
+      if (!shown) {
+        void detectWorkspaceFingerprint(context);
+      }
+    });
+  }, 1200);
 }
 
 function deactivate() {}

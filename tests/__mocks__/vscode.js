@@ -34,7 +34,10 @@ module.exports = {
     activeTextEditor: undefined,
     visibleTextEditors: [],
     onDidChangeActiveTextEditor: () => ({ dispose() {} }),
+    onDidChangeActiveColorTheme: () => ({ dispose() {} }),
+    activeColorTheme: { kind: 2 },
   },
+  ColorThemeKind: { Light: 1, Dark: 2, HighContrast: 3, HighContrastLight: 4 },
   commands: {
     executeCommand: async () => {},
     registerCommand: () => ({ dispose() {} }),

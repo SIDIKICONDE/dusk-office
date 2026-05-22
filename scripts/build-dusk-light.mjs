@@ -137,6 +137,8 @@ const LIGHT_UI_OVERRIDES = {
   "editor.foldPlaceholderForeground": "#64748b99",
   "editorGhostText.foreground": "#94a3b878",
   "editorWhitespace.foreground": "#94a3b838",
+  // CodeLens « Run | Debug » — hérité de dusk.json (#d1e0e888) → ~1.2:1 sur fond clair
+  "editorCodeLens.foreground": "#475569cc",
   // Rouge bien visible sur fond clair (soulignement diagnostics).
   "editorError.foreground": "#e11d48",
   "editorInlayHint.foreground": "#475569dd",
@@ -306,6 +308,17 @@ function applyLightUiOverrides(theme) {
   // (#b8d4e4) s'applique et disparaît sur fond clair. Renforcer aussi les blocs
   // `meta.interface.declaration` (#0891b2 trop faible sur #f8fafc dans les .md).
   tokens.push(
+    {
+      scope: ["variable", "variable.other.php"],
+      settings: { foreground: "#0f172a" },
+    },
+    {
+      scope: [
+        "punctuation.definition.variable",
+        "punctuation.definition.variable.php",
+      ],
+      settings: { foreground: "#0f172a" },
+    },
     {
       scope: ["variable.other.readwrite"],
       settings: { foreground: "#0f172a" },

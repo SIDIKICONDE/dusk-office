@@ -9,9 +9,18 @@ const DARK_PIPELINE_FG_TO_LIGHT = {
   d1e0e8: "1e293b",
   d0dce4: "1e293b",
   cfe8f0: "1e293b",
+  b8d4e4: "1e293b",
   e5e7eb: "334155",
   f8f8f2: "1e293b",
   fafafa: "1e293b",
+};
+
+/** Accents cyan clair du pipeline sombre — lisibles sur fond sombre, ~1.6:1 sur clair. */
+const LIGHT_LOW_CONTRAST_ACCENTS = {
+  "22d3ee": "1d4ed8",
+  "06b6d4": "0369a1",
+  "67e8f9": "0369a1",
+  "38bdf8": "0284c7",
 };
 
 /** @param {string} hex */
@@ -23,6 +32,8 @@ export function remapLightSyntaxForeground(hex, fallback = "1e293b") {
   const alpha = m[2] || "";
   const rep = DARK_PIPELINE_FG_TO_LIGHT[rgb];
   if (rep) return `#${rep}${alpha}`;
+  const accent = LIGHT_LOW_CONTRAST_ACCENTS[rgb];
+  if (accent) return `#${accent}${alpha}`;
   const lum = luminanceFromHex(`#${rgb}`);
   if (lum != null && lum > 0.55) return `#${fallback}${alpha}`;
   return hex;
