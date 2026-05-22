@@ -5,6 +5,7 @@
  *
  *   node scripts/release-tag.mjs
  *   node scripts/release-tag.mjs --dry-run
+ *   node scripts/release-tag.mjs --retag   # move an existing local tag to HEAD, then push --force
  */
 import { execFileSync } from "child_process";
 import fs from "fs";
@@ -14,14 +15,17 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const dryRun = process.argv.includes("--dry-run");
+const retag = process.argv.includes("--retag");
 
-function run(args, env = process.env) {
-  return execFileSync("git", args, {
+function run(args, env = process.env, stdio = "pipe") {
+  const result = execFileSync("git", args, {
     cwd: root,
-    encoding: "utf8",
+    encoding: stdio === "pipe" ? "utf8" : undefined,
     env,
     shell: false,
-  }).trim();
+    stdio,
+  });
+  return stdio === "pipe" ? String(result).trim() : "";
 }
 
 function runInherit(args, env = process.env) {
@@ -62,10 +66,24 @@ function gitIdentityEnv() {
 
 function tagExists(tag) {
   try {
-    run(["rev-parse", tag]);
+    run(["rev-parse", tag], process.env, ["ignore", "pipe", "ignore"]);
     return true;
   } catch {
     return false;
+  }
+}
+
+function tagCommit(tag) {
+  return run(["rev-list", "-n", "1", tag]);
+}
+
+function remoteTagCommit(tag) {
+  try {
+    const out = run(["ls-remote", "--tags", "origin", `refs/tags/${tag}`]);
+    if (!out) return null;
+    return out.split(/\s+/)[0];
+  } catch {
+    return null;
   }
 }
 
@@ -76,14 +94,49 @@ function main() {
     throw new Error("package.json: version missing");
   }
   const tag = `v${version}`;
+  const head = run(["rev-parse", "HEAD"]);
+  const env = gitIdentityEnv();
 
   if (tagExists(tag)) {
+    const localCommit = tagCommit(tag);
+    const remoteCommit = remoteTagCommit(tag);
+
+    if (localCommit === head && remoteCommit === localCommit) {
+      console.log(`[OK] Tag ${tag} already points to HEAD and is on origin. Nothing to do.`);
+      console.log("     Watch with: make release-watch");
+      return;
+    }
+
+    if (localCommit === head && remoteCommit !== localCommit) {
+      console.log(`[INFO] Tag ${tag} exists locally on HEAD; pushing to origin...`);
+      if (dryRun) {
+        console.log(`[DRY] git push origin ${tag}`);
+        return;
+      }
+      runInherit(["push", "origin", tag], env);
+      console.log("[OK] Tag pushed. GitHub Actions release workflow triggered.");
+      return;
+    }
+
+    if (retag) {
+      console.log(`[INFO] Retagging ${tag} on HEAD (${head.slice(0, 7)})...`);
+      if (dryRun) {
+        console.log(`[DRY] git tag -f -a ${tag} -m "Release ${tag}"`);
+        console.log(`[DRY] git push --force origin ${tag}`);
+        return;
+      }
+      runInherit(["tag", "-f", "-a", tag, "-m", `Release ${tag}`], env);
+      runInherit(["push", "--force", "origin", tag], env);
+      console.log("[OK] Tag moved and pushed. GitHub Actions release workflow triggered.");
+      return;
+    }
+
     throw new Error(
-      `Tag ${tag} already exists locally. Bump package.json or delete the tag first.`,
+      `Tag ${tag} already exists on ${localCommit.slice(0, 7)} but HEAD is ${head.slice(0, 7)}. ` +
+        "Bump package.json for a new release, or rerun with --retag to move the tag to HEAD.",
     );
   }
 
-  const env = gitIdentityEnv();
   console.log(`[INFO] Tagging ${tag} and pushing to origin...`);
   if (dryRun) {
     console.log(`[DRY] git tag -a ${tag} -m "Release ${tag}"`);
