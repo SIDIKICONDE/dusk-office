@@ -2,10 +2,16 @@ const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  THEME_BASE,
   THEME_VARIANTS,
+  ALL_DUSK_THEMES,
   isDuskTheme,
   isThemeName,
   cleanPickedLabel,
+  getThemeDisplayLabel,
+  stripThemeDisplayLabel,
+  isLightThemeVariant,
+  isDarkThemeVariant,
   getThemeShortLabel,
   resolveEffectiveColorTheme,
   normalizeLanguageId,
@@ -20,10 +26,14 @@ const {
 // isDuskTheme
 // ---------------------------------------------------------------------------
 describe("isDuskTheme", () => {
-  it("returns true for every known variant", () => {
-    for (const v of THEME_VARIANTS) {
+  it("returns true for every known variant and the base palette", () => {
+    for (const v of ALL_DUSK_THEMES) {
       assert.equal(isDuskTheme(v), true, `expected true for "${v}"`);
     }
+  });
+
+  it("excludes the base palette from picker variants", () => {
+    assert.equal(THEME_VARIANTS.includes(THEME_BASE), false);
   });
 
   it("returns false for non-Dusk themes", () => {
@@ -66,12 +76,42 @@ describe("cleanPickedLabel", () => {
 });
 
 // ---------------------------------------------------------------------------
+// light theme insignia
+// ---------------------------------------------------------------------------
+describe("theme insignia", () => {
+  it("marks light variants with ◒ (sorts after ◑ in VS Code)", () => {
+    assert.equal(getThemeDisplayLabel("Dusk Office Light"), "◒ Dusk Office Light");
+    assert.equal(getThemeDisplayLabel("Dusk Office Midnight"), "◑ Dusk Office Midnight");
+  });
+
+  it("strips ◒, ◐, ◑ and · Base from display labels", () => {
+    assert.equal(stripThemeDisplayLabel("◒ Dusk Office Audit"), "Dusk Office Audit");
+    assert.equal(stripThemeDisplayLabel("◐ Dusk Office Audit"), "Dusk Office Audit");
+    assert.equal(stripThemeDisplayLabel("$(check) ◒ Dusk Office Ivory"), "Dusk Office Ivory");
+    assert.equal(stripThemeDisplayLabel("◑ Dusk Office Midnight"), "Dusk Office Midnight");
+    assert.equal(stripThemeDisplayLabel("◑ Dusk Office · Base"), "Dusk Office");
+  });
+
+  it("identifies light and dark variants", () => {
+    assert.equal(isLightThemeVariant("Dusk Office Ledger"), true);
+    assert.equal(isLightThemeVariant("Dusk Office Dark Ivory"), false);
+    assert.equal(isDarkThemeVariant("Dusk Office Dark Ivory"), true);
+    assert.equal(isDarkThemeVariant("Dusk Office Light"), false);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // getThemeShortLabel
 // ---------------------------------------------------------------------------
 describe("getThemeShortLabel", () => {
   it("strips the 'Dusk Office' prefix", () => {
-    assert.equal(getThemeShortLabel("Dusk Office Midnight"), "Midnight");
-    assert.equal(getThemeShortLabel("Dusk Office"), "Dusk");
+    assert.equal(getThemeShortLabel("Dusk Office Midnight"), "◑ Midnight");
+    assert.equal(getThemeShortLabel("Dusk Office"), "◑ Base");
+  });
+
+  it("adds ◒ or ◑ for light and dark variants", () => {
+    assert.equal(getThemeShortLabel("Dusk Office Light"), "◒ Light");
+    assert.equal(getThemeShortLabel("Dusk Office Midnight"), "◑ Midnight");
   });
 
   it("returns 'Dusk' for non-string input", () => {

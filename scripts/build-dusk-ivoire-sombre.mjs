@@ -78,6 +78,32 @@ const RGB_MAP = {
   a78bfa: "c4a8e8",
   ba84c3: "c49abf",
   c182a5: "b88a9d",
+  /** Dusk cyan / blue UI — remap to copper / cream (Dark Ivory) */
+  "010203": "100d0c",
+  "02060b": "100d0c",
+  "020c14": "100d0c",
+  "06b6d4": "a89888",
+  "22d3ee": "c9b8a4",
+  "38bdf8": "c98962",
+  "304f60": "6b5e54",
+  "23465d": "887b6c",
+  "4b6c7a": "887b6c",
+  "5a8fb0": "b87650",
+  "5a9aaa": "c98962",
+  "6a9ab8": "c98962",
+  "7ab0c8": "c9b8a4",
+  "7ab8c8": "c9b8a4",
+  "8ab5c8": "c9b8a4",
+  "9ccae0": "a89888",
+  d1e0e8: "eee2d4",
+  d0dce4: "eee2d4",
+  cfe8f0: "eae0d2",
+  /** Cool GitHub-style neutrals → warm cream */
+  e6edf3: "eee2d4",
+  f0f3f6: "f0e6d8",
+  c9d1d9: "eae0d2",
+  b1bac4: "c9b8a4",
+  adb5bd: "ae9e8e",
 };
 
 /** @param {string} str */
@@ -165,6 +191,43 @@ function main() {
     "tree.inactiveIndentGuidesStroke": "#887b6c0a",
   };
   Object.assign(colors, softerSegments);
+
+  /** Éditeur : remplace les accents cyan Dusk hérités de Cendre / dusk.json */
+  const warmEditorUi = {
+    "editor.selectionBackground": "#a8988844",
+    "editor.selectionForeground": "#eee2d4",
+    "editor.inactiveSelectionBackground": "#a8988822",
+    "editor.selectionHighlightBackground": "#c9b8a422",
+    "editor.selectionHighlightBorder": "#c9b8a42a",
+    "editor.hoverHighlightBackground": "#c9b8a418",
+    "editor.rangeHighlightBackground": "#a8988818",
+    "editor.rangeHighlightBorder": "#a8988822",
+    "editor.wordHighlightBackground": "#a8988818",
+    "editor.wordHighlightBorder": "#a898882a",
+    "editor.findMatchForeground": "#eee2d4",
+    "editor.findMatchHighlightBackground": "#c9896233",
+    "editor.findMatchHighlightBorder": "#c9896244",
+    "editor.findMatchHighlightForeground": "#eee2d4cc",
+    "editor.findRangeHighlightBackground": "#6b5e5455",
+    "editor.findRangeHighlightBorder": "#6b5e5444",
+    "editorGhostText.border": "#a8988822",
+    "editorGhostText.foreground": "#eee2d444",
+    "editorGutter.commentGlyphForeground": "#c9b8a4",
+    "editorGutter.commentRangeForeground": "#a8988866",
+    "editorGutter.foldingControlForeground": "#887b6c",
+    "editorInlayHint.background": "#6b5e5466",
+    "editorInlayHint.foreground": "#eee2d499",
+    "editorInlayHint.typeBackground": "#c9896222",
+    "editorInlayHint.typeForeground": "#c98962cc",
+    "editorWhitespace.foreground": "#eee2d418",
+    "merge.border": "#6b5e5455",
+    "merge.commonContentBackground": "#eee2d412",
+    "merge.commonHeaderBackground": "#eee2d422",
+    "merge.currentContentBackground": "#c9896218",
+    "merge.currentHeaderBackground": "#c9896233",
+    "editorGroup.emptyBackground": deep["editor.background"],
+  };
+  Object.assign(colors, warmEditorUi);
 
   const panelBg = colors["panel.background"];
   const editorBg = colors["editor.background"];

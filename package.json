@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
   "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -141,139 +141,139 @@
     ],
     "themes": [
       {
-        "label": "Dusk Office",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk.json"
-      },
-      {
-        "label": "Dusk Office Abyss",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-abime.json"
-      },
-      {
-        "label": "Dusk Office Dawn",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-aube.json"
-      },
-      {
-        "label": "Dusk Office Bay",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-baie.json"
-      },
-      {
-        "label": "Dusk Office Mist",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-brume.json"
-      },
-      {
-        "label": "Dusk Office Ash",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-cendre.json"
-      },
-      {
-        "label": "Dusk Office Midnight",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-minuit.json"
-      },
-      {
-        "label": "Dusk Office Nebula",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-nebuleuse.json"
-      },
-      {
-        "label": "Dusk Office Reef",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-recif.json"
-      },
-      {
-        "label": "Dusk Office High Contrast",
-        "uiTheme": "hc-black",
-        "path": "./themes/dusk-hc.json"
-      },
-      {
-        "label": "Dusk Office Light",
-        "uiTheme": "vs",
-        "path": "./themes/dusk-light.json"
-      },
-      {
-        "label": "Dusk Office Ivory",
-        "uiTheme": "vs",
-        "path": "./themes/dusk-ivoire.json"
-      },
-      {
-        "label": "Dusk Office Dark Ivory",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-ivoire-sombre.json"
-      },
-      {
-        "label": "Dusk Office Nocturne",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-nocturne.json"
-      },
-      {
-        "label": "Dusk Office Finance",
+        "label": "◑ Dusk Office Finance",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-finance.json"
       },
       {
-        "label": "Dusk Office Corporate",
+        "label": "◑ Dusk Office Abyss",
         "uiTheme": "vs-dark",
-        "path": "./themes/dusk-corporate.json"
+        "path": "./themes/dusk-abime.json"
       },
       {
-        "label": "Dusk Office Voltage",
+        "label": "◑ Dusk Office Bay",
         "uiTheme": "vs-dark",
-        "path": "./themes/dusk-voltage.json"
+        "path": "./themes/dusk-baie.json"
       },
       {
-        "label": "Dusk Office Neon",
+        "label": "◑ Dusk Office High Contrast",
+        "uiTheme": "hc-black",
+        "path": "./themes/dusk-hc.json"
+      },
+      {
+        "label": "◑ Dusk Office Midnight",
         "uiTheme": "vs-dark",
-        "path": "./themes/dusk-neon.json"
+        "path": "./themes/dusk-minuit.json"
       },
       {
-        "label": "Dusk Office Luxe",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-luxe.json"
-      },
-      {
-        "label": "Dusk Office Or",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-or.json"
-      },
-      {
-        "label": "Dusk Office Terminal",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-terminal.json"
-      },
-      {
-        "label": "Dusk Office Steward",
-        "uiTheme": "vs-dark",
-        "path": "./themes/dusk-steward.json"
-      },
-      {
-        "label": "Dusk Office Ledger",
-        "uiTheme": "vs",
-        "path": "./themes/dusk-ledger.json"
-      },
-      {
-        "label": "Dusk Office Secure",
+        "label": "◑ Dusk Office Secure",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-secure.json"
       },
       {
-        "label": "Dusk Office Vault",
+        "label": "◑ Dusk Office Sentinel",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-sentinel.json"
+      },
+      {
+        "label": "◑ Dusk Office Steward",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-steward.json"
+      },
+      {
+        "label": "◑ Dusk Office Terminal",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-terminal.json"
+      },
+      {
+        "label": "◑ Dusk Office Vault",
         "uiTheme": "vs-dark",
         "path": "./themes/dusk-vault.json"
       },
       {
-        "label": "Dusk Office Audit",
+        "label": "◑ Dusk Office Voltage",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-voltage.json"
+      },
+      {
+        "label": "◑ Dusk Office Dawn",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-aube.json"
+      },
+      {
+        "label": "◑ Dusk Office Mist",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-brume.json"
+      },
+      {
+        "label": "◑ Dusk Office Ash",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-cendre.json"
+      },
+      {
+        "label": "◑ Dusk Office Nebula",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-nebuleuse.json"
+      },
+      {
+        "label": "◑ Dusk Office Reef",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-recif.json"
+      },
+      {
+        "label": "◑ Dusk Office Dark Ivory",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-ivoire-sombre.json"
+      },
+      {
+        "label": "◑ Dusk Office Nocturne",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-nocturne.json"
+      },
+      {
+        "label": "◑ Dusk Office Corporate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-corporate.json"
+      },
+      {
+        "label": "◑ Dusk Office Neon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-neon.json"
+      },
+      {
+        "label": "◑ Dusk Office Luxe",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-luxe.json"
+      },
+      {
+        "label": "◑ Dusk Office Or",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dusk-or.json"
+      },
+      {
+        "label": "◒ Dusk Office Light",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-light.json"
+      },
+      {
+        "label": "◒ Dusk Office Ivory",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-ivoire.json"
+      },
+      {
+        "label": "◒ Dusk Office Ledger",
+        "uiTheme": "vs",
+        "path": "./themes/dusk-ledger.json"
+      },
+      {
+        "label": "◒ Dusk Office Audit",
         "uiTheme": "vs",
         "path": "./themes/dusk-audit.json"
       },
       {
-        "label": "Dusk Office Sentinel",
+        "label": "◑ Dusk Office · Base",
         "uiTheme": "vs-dark",
-        "path": "./themes/dusk-sentinel.json"
+        "path": "./themes/dusk.json"
       }
     ],
     "productIconThemes": [
@@ -905,7 +905,7 @@
     "push:safe": "npm run push:main:safe",
     "push:main:auto": "node scripts/auto-push-main.mjs --yes",
     "push:main:safe": "node scripts/auto-push-main.mjs",
-    "variants:ui": "node scripts/merge-extended-ui-colors.mjs && npm run build:light && npm run build:ivoire && node scripts/apply-light-terminal-ansi.mjs",
+    "variants:ui": "node scripts/merge-extended-ui-colors.mjs && npm run build:light && npm run build:ivoire && npm run build:audit && node scripts/apply-light-terminal-ansi.mjs",
     "soften:borders": "node scripts/soften-chrome-borders.mjs",
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
@@ -921,6 +921,7 @@
     "build:hc": "node scripts/build-dusk-hc.mjs",
     "build:light": "node scripts/build-dusk-light.mjs",
     "build:ivoire": "node scripts/build-dusk-ivoire.mjs",
+    "build:audit": "node scripts/build-dusk-audit.mjs",
     "build:ivoire-sombre": "node scripts/build-dusk-ivoire-sombre.mjs",
     "package": "npm run package:raw",
     "package:raw": "npx --no-install @vscode/vsce package --no-dependencies",
@@ -930,13 +931,13 @@
     "jetbrains:install": "node scripts/install-jetbrains-plugin.mjs",
     "jetbrains:upgrade": "npm run jetbrains:build && npm run jetbrains:install",
     "jetbrains:full": "npm run make:full && npm run jetbrains:upgrade",
-    "jetbrains:publish": "npm run jetbrains:build && node scripts/run-gradle.mjs publishPlugin --no-daemon",
+    "jetbrains:publish": "node scripts/publish-jetbrains.mjs",
     "install-vsix": "node scripts/install-vsix.mjs",
     "upgrade": "npm run package && node scripts/install-vsix.mjs",
-    "publish:vsce": "npx --no-install @vscode/vsce publish --packagePath dusk-office-$npm_package_version.vsix",
-    "publish:ovsx": "npx --no-install ovsx publish dusk-office-$npm_package_version.vsix",
+    "publish:vsce": "node scripts/publish-vsce.mjs",
+    "publish:ovsx": "node scripts/publish-ovsx.mjs",
     "publish:all": "npm run publish:vsce && npm run publish:ovsx",
-    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js",
     "py:install": "pip install -e \".[dev]\"",
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",

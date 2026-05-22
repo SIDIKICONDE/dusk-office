@@ -1,5 +1,13 @@
 # Changelog — Dusk Office
 
+## 1.3.5 — 23 May 2026
+
+- **Fixed**: **Light-theme workbench chrome inherited `#d1e0e8` from `dusk.json`** — unreadable text on pale surfaces across Settings dropdowns, menubar submenus, command-center / chat header menus, tab hover, and Ivory hover states. New shared overrides in `scripts/light-settings-ui.mjs` (`LIGHT_SETTINGS_UI`, `LIGHT_CHROME_UI`, `LIGHT_TAB_UI` + Ivory / Audit / Ledger palettes); propagated via `build-dusk-light.mjs`, `build-dusk-ivoire.mjs`, and manual light variant JSON. Includes `tab.hoverForeground` / `tab.selectedForeground`, `editorWidget.*`, `menubar.selectionForeground`, `settings.*`, and warm Ivory hover unification (`#c98962` / `#b87650`).
+- **Changed**: **Audit theme palette** — generated via `scripts/build-dusk-audit.mjs` from `dusk-light.json` with compliance slate + gold accents; removes neon Tailwind syntax (`#34d399`, `#a855f7`, `#0ea5e9`) and flat muddy surfaces; `npm run build:audit` wired into `variants:ui`.
+- **Changed**: **Theme picker labels** — light variants prefixed with **◒**, dark with **◑** (`getThemeDisplayLabel` / `stripThemeDisplayLabel` in `lib/theme-common.js`); **◒ sorts after ◑** so VS Code’s alphabetical theme list keeps light variants at the bottom; quick picks show **Light** / **Dark** descriptions; status bar short label uses the same insignia.
+- **Changed**: **Theme list order** — Finance, Abyss, Bay, High Contrast, Midnight, Secure, Sentinel, Steward, Terminal, Vault, Voltage first; other dark variants in the middle; **Light**, **Ivory**, **Ledger**, **Audit** last. Order enforced by `THEME_VARIANTS` and `verify-runtime-constants.mjs`.
+- **Changed**: **Base palette no longer listed as a variant** — `Dusk Office` (`themes/dusk.json`, parent of most variants) excluded from extension quick picks; still installable as **`◑ Dusk Office · Base`** at the bottom of the VS Code theme list (`THEME_BASE` vs `THEME_VARIANTS`).
+
 ## 1.3.4 — 22 May 2026
 
 - **Fixed**: **Status bar / Control Center theme label stuck on `workbench.colorTheme`** when `window.autoDetectColorScheme` is enabled — e.g. label showed **Vault** while Windows light mode displayed **Light** via `workbench.preferredLightColorTheme`. `getCurrentTheme()` now resolves the **effective** theme (`resolveEffectiveColorTheme` in `lib/theme-common.js`); status bar, title-bar sync, and `duskOffice.isActive` listen to `onDidChangeActiveColorTheme` and preferred-theme settings.

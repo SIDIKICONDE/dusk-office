@@ -1,0 +1,2 @@
+Plaintext sample — no syntax highlighting (single editor.foreground color).
+For colored notes preview, open notes.md in this folder.

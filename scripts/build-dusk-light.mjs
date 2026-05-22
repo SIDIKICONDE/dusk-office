@@ -36,6 +36,7 @@ import { fileURLToPath } from "url";
 import { luminanceFromHex } from "./color-utils.mjs";
 import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
 import { applyLightTerminalAnsi } from "./light-terminal-ansi.mjs";
+import { LIGHT_CHROME_UI, LIGHT_SETTINGS_UI, LIGHT_TAB_UI } from "./light-settings-ui.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -170,6 +171,14 @@ const LIGHT_UI_OVERRIDES = {
   "sideBarTitle.foreground": "#334155",
   // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-500 88 → 2.03 ❌, titres de panel invisibles)
   "panelTitle.inactiveForeground": "#475569dd",
+  "panel.border": "#94a3b8b8",
+  "panelSectionHeader.border": "#94a3b8b8",
+  "panelInput.border": "#94a3b8b8",
+  "panelTitle.border": "#64748baa",
+  "panelTitle.activeBorder": "#0ea5e9cc",
+  "terminal.border": "#94a3b8aa",
+  "terminalStickyScroll.border": "#94a3b8aa",
+  "terminal.tab.activeBorder": "#0369a1",
   // WCAG AA: slate-600 dd → ~4.9:1 (anciennement slate-500 55 → 1.53 ❌, numéros de ligne illisibles)
   "editorLineNumber.foreground": "#475569dd",
   // Active line number stays bright cyan to mark the cursor line
@@ -238,6 +247,14 @@ const LIGHT_UI_OVERRIDES = {
   "statusBarItem.profilesForeground": "#1e293b",
   "statusBarItem.offlineBackground": "#e11d4844",
   "statusBarItem.offlineForeground": "#1e293b",
+
+  /** Settings UI — dusk.json `settings.*` is dark-only; without overrides, reopening
+   *  Settings with a focused enum row hides dropdown text (inherited #d1e0e8 on white). */
+  ...LIGHT_SETTINGS_UI,
+  /** Chat panel header menus — commandCenter / editorActionList inherit #d1e0e8 from dusk.json. */
+  ...LIGHT_CHROME_UI,
+  /** Tab hover text — dusk.json tab.hoverForeground is #d1e0e8 (invisible on light hover bg). */
+  ...LIGHT_TAB_UI,
 };
 
 /** @param {Record<string, string>} abyssColors */

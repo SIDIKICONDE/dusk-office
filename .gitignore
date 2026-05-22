@@ -1,5 +1,8 @@
 node_modules/
 *.vsix
+.env
+.env.local
+.env.*.local
 
 # Python tooling (dusk_office package)
 __pycache__/

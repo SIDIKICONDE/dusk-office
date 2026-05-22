@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.intellij.platform") version "2.5.0"
+    id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -16,6 +17,10 @@ dependencies {
     intellijPlatform {
         intellijIdeaCommunity(providers.gradleProperty("platformVersion"))
     }
+}
+
+ktlint {
+    version.set("1.8.0")
 }
 
 intellijPlatform {
@@ -42,6 +47,10 @@ tasks.matching { it.name == "compileJava" || it.name == "compileKotlin" }.config
 }
 
 tasks {
+    check {
+        dependsOn("ktlintCheck")
+    }
+
     patchPluginXml {
         sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
         val until = providers.gradleProperty("pluginUntilBuild")

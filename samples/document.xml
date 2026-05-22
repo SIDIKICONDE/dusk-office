@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Advanced XML: namespaces, attributes, mixed content for theme preview. -->
+<catalog xmlns="https://example.com/dusk-office"
+         xmlns:meta="https://example.com/meta"
+         version="1.0">
+  <meta:info created="2026-05-22" author="Dusk Office"/>
+  <theme id="dusk-ivoire-sombre" uiTheme="vs-dark">
+    <name>Dark Ivory</name>
+    <description>Warm dark variant without blue/cyan tints</description>
+    <token name="editor.background" value="#29241d"/>
+    <token name="editor.foreground" value="#ece4d6"/>
+  </theme>
+  <orders>
+    <order id="o-1" status="paid">
+      <customer>Acme</customer>
+      <total currency="EUR">249.50</total>
+    </order>
+    <order id="o-2" status="pending">
+      <customer>Beta</customer>
+      <total currency="EUR">19.00</total>
+    </order>
+  </orders>
+</catalog>

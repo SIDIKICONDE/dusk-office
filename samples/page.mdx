@@ -1,0 +1,41 @@
+---
+title: Dusk Office MDX Sample
+description: Front matter, JSX, and Markdown mixed for theme preview.
+tags: [themes, mdx, preview]
+---
+
+# MDX preview
+
+Combine **Markdown** with JSX components and `inline code`.
+
+export const Highlight = ({ children }) => (
+  <span style={{ padding: "0.15rem 0.35rem", borderRadius: "4px" }}>
+    {children}
+  </span>
+);
+
+<Highlight>Dark Ivory</Highlight> should stay warm — no cyan selection tint.
+
+## Code fence
+
+```typescript
+export interface ThemePreview {
+  name: string;
+  uiTheme: "vs" | "vs-dark" | "hc-black";
+}
+
+export const flagship: ThemePreview = {
+  name: "Dusk Office",
+  uiTheme: "vs-dark",
+};
+```
+
+## List + quote
+
+- Adaptive Focus rules in `lib/theme-common.js`
+- Python validation via `dusk_office.validate_schemas`
+- Samples excluded from VSIX (`.vscodeignore`)
+
+> MDX helps test heading, emphasis, links, and embedded JSX in one file.
+
+[Repository](https://github.com/SIDIKICONDE/dusk-office)

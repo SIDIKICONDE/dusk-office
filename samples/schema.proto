@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package duskoffice.samples;
+
+option go_package = "github.com/example/dusk-office/samples";
+
+import "google/protobuf/timestamp.proto";
+
+enum OrderStatus {
+  ORDER_STATUS_UNSPECIFIED = 0;
+  ORDER_STATUS_PENDING = 1;
+  ORDER_STATUS_PAID = 2;
+  ORDER_STATUS_SHIPPED = 3;
+  ORDER_STATUS_CANCELLED = 4;
+}
+
+message Order {
+  string id = 1;
+  string customer = 2;
+  double total = 3;
+  OrderStatus status = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message OrderList {
+  repeated Order items = 1;
+}
+
+service OrderService {
+  rpc ListOrders(ListOrdersRequest) returns (OrderList);
+  rpc GetOrder(GetOrderRequest) returns (Order);
+}
+
+message ListOrdersRequest {
+  OrderStatus status = 1;
+  uint32 page_size = 2;
+  string page_token = 3;
+}
+
+message GetOrderRequest {
+  string id = 1;
+}

@@ -8,6 +8,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
 import { applyLightTerminalAnsi } from "./light-terminal-ansi.mjs";
+import { IVOIRE_CHROME_UI, IVOIRE_SETTINGS_UI, IVOIRE_TAB_UI } from "./light-settings-ui.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -41,6 +42,18 @@ const RGB_MAP = {
   "00b2c5": "b45309",
   "00e5ff": "c06030",
   "50d0f0": "ca8a56",
+  /** Light cyan hovers / accents → warm copper-amber (Ivory identity) */
+  "06b6d4": "c98962",
+  "0ea5e9": "b87650",
+  "0369a1": "92400e",
+  "0284c7": "a67c52",
+  "0e7490": "92400e",
+  "5a8fb0": "b87650",
+  "7ab0c8": "c17f59",
+  "7ab8c8": "c17f59",
+  "5a9aaa": "b87650",
+  "6a9ab0": "b87650",
+  "22d3ee": "ca8a56",
   "9566c3": "8b6b9e",
   c084fc: "9d7ab8",
   "816bc2": "766494",
@@ -157,6 +170,23 @@ const IVOIRE_UI_CONTRAST = {
   "tab.hoverBackground": "#c9896222",
   "tab.unfocusedHoverBackground": "#c9896218",
   "menubar.selectionBackground": "#c9896233",
+  /** Remaining hovers still read as Light/cyan after mapColor — unify on amber. */
+  "button.hoverBackground": "#b87650dd",
+  "button.secondaryHoverBackground": "#c9896233",
+  "editor.hoverHighlightBackground": "#c9896218",
+  "editorStickyScrollHover.background": "#c9896218",
+  "extensionButton.prominentHoverBackground": "#b87650dd",
+  "menu.selectionBackground": "#c9896233",
+  "sash.hoverBorder": "#b8765044",
+  "statusBarItem.hoverBackground": "#c9896222",
+  "statusBarItem.prominentHoverBackground": "#c9896233",
+  "terminal.hoverHighlightBackground": "#c9896222",
+  "toolbar.hoverBackground": "#c9896218",
+  "toolbar.activeBackground": "#c9896233",
+  "welcomePage.tileHoverBackground": "#c9896218",
+  "actionBar.toggledBackground": "#c9896233",
+  "inputOption.hoverBackground": "#c9896222",
+  "inputOption.activeBackground": "#c9896233",
   // Active activity-bar icons — amber-700 instead of inherited #22d3ee cyan
   // (which produced 1.57:1 against the cream activity bar = invisible).
   "activityBar.foreground": "#92400e",
@@ -178,9 +208,20 @@ const IVOIRE_UI_CONTRAST = {
   "sideBarTitle.foreground": "#b45309",
   "sideBarSectionHeader.foreground": "#3d362e",
   "panelTitle.activeForeground": "#a84418",
+  "panel.border": "#8a7a6ab8",
+  "panelSectionHeader.border": "#8a7a6ab8",
+  "panelInput.border": "#8a7a6ab8",
+  "panelTitle.border": "#8a7a6a99",
+  "panelTitle.activeBorder": "#92400ecc",
+  "terminal.border": "#8a7a6aaa",
+  "terminalStickyScroll.border": "#8a7a6aaa",
+  "terminal.tab.activeBorder": "#92400e",
   "scrollbarSlider.background": "#7d6a5652",
   "scrollbarSlider.hoverBackground": "#5c4d407a",
   "sideBar.foreground": "#2a2420",
+  ...IVOIRE_SETTINGS_UI,
+  ...IVOIRE_CHROME_UI,
+  ...IVOIRE_TAB_UI,
 };
 
 /** @param {unknown} out */

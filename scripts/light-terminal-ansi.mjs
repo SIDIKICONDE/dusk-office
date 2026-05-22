@@ -23,7 +23,19 @@ export const LIGHT_TERMINAL_ANSI = {
   "terminal.ansiBrightWhite": "#24313a",
 };
 
+/** Panel + terminal header borders — low-alpha dark borders vanish on #f1f5f9. */
+export const LIGHT_PANEL_TERMINAL_CHROME = {
+  "panel.border": "#94a3b8b8",
+  "panelSectionHeader.border": "#94a3b8b8",
+  "panelInput.border": "#94a3b8b8",
+  "panelTitle.border": "#64748baa",
+  "panelTitle.activeBorder": "#0ea5e9cc",
+  "terminal.border": "#94a3b8aa",
+  "terminalStickyScroll.border": "#94a3b8aa",
+  "terminal.tab.activeBorder": "#0369a1",
+};
+
 /** @param {Record<string, string>} colors */
 export function applyLightTerminalAnsi(colors) {
-  Object.assign(colors, LIGHT_TERMINAL_ANSI);
+  Object.assign(colors, LIGHT_TERMINAL_ANSI, LIGHT_PANEL_TERMINAL_CHROME);
 }

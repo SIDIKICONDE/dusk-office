@@ -32,6 +32,53 @@ function read(args) {
   }).trim();
 }
 
+/** Identité pour ce commit uniquement — ne modifie pas git config. */
+function resolveGitIdentity() {
+  const name =
+    process.env.GIT_AUTHOR_NAME?.trim() ||
+    process.env.DUSK_OFFICE_GIT_NAME?.trim() ||
+    "";
+  const email =
+    process.env.GIT_AUTHOR_EMAIL?.trim() ||
+    process.env.DUSK_OFFICE_GIT_EMAIL?.trim() ||
+    "";
+  if (name && email) return { name, email };
+
+  try {
+    const login = execFileSync("gh", ["api", "user", "-q", ".login"], {
+      cwd: root,
+      encoding: "utf8",
+      shell: false,
+    }).trim();
+    if (login) {
+      return { name: login, email: `${login}@users.noreply.github.com` };
+    }
+  } catch {
+    /* gh absent ou non connecté */
+  }
+
+  try {
+    const ident = read(["var", "GIT_AUTHOR_IDENT_STRING"]);
+    if (ident) {
+      const m = ident.match(/^(.*)\s+<([^>]+)>$/);
+      if (m) return { name: m[1].trim(), email: m[2].trim() };
+    }
+  } catch {
+    /* git config user.name/email absent */
+  }
+
+  return null;
+}
+
+function runCommit(message, identity) {
+  const args = ["commit", "-m", message];
+  if (identity) {
+    run(["-c", `user.name=${identity.name}`, "-c", `user.email=${identity.email}`, ...args]);
+    return;
+  }
+  run(args);
+}
+
 const currentBranch = read(["rev-parse", "--abbrev-ref", "HEAD"]);
 if (currentBranch !== "main") {
   console.error(
@@ -84,7 +131,17 @@ if (!confirmed) {
 }
 
 run(["add", "-A"]);
-run(["commit", "-m", message]);
+const identity = resolveGitIdentity();
+if (!identity) {
+  console.error(
+    "Git identity missing. Set once (no global git config required):\n" +
+      "  $env:GIT_AUTHOR_NAME=\"Your Name\"\n" +
+      "  $env:GIT_AUTHOR_EMAIL=\"you@example.com\"\n" +
+      "Or log in with gh auth login (uses GitHub noreply email automatically).",
+  );
+  process.exit(1);
+}
+runCommit(message, identity);
 run(["push", "origin", "main"]);
 
 console.log(`OK pushed to main with message: "${message}"`);

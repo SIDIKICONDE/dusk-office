@@ -1,0 +1,12 @@
+[90m[DEBUG][0m bootstrap complete
+[36m[INFO][0m loading theme: Dusk Office Dark Ivory
+[32m[OK][0m editor.background=#29241d
+[33m[WARN][0m contrast WEAK on button.foreground (expected in audit)
+[31m[ERROR][0m failed to open missing-config.json
+[35m[FATAL][0m unrecoverable state — exiting
+
+ANSI literals in source:
+  \x1B[31mred\x1B[0m  \033[32mgreen\033[0m  \e[33myellow\e[0m
+
+256-color and bright variants:
+  [38;5;208morange 208[0m  [38;5;109msage 109[0m  [48;5;236mon dark bg[0m
