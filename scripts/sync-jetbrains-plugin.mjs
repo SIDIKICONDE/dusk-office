@@ -13,7 +13,7 @@ import {
   rmSync,
   existsSync,
 } from "fs";
-import { execSync } from "child_process";
+import { spawnSync } from "child_process";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { buildJetBrainsLafTheme } from "../lib/jetbrains-laf-theme.mjs";
@@ -46,14 +46,21 @@ function syncPluginIcon() {
   }
   mkdirSync(META, { recursive: true });
   const outSvg = join(META, "pluginIcon.svg");
-  let pngBuf;
-  try {
-    pngBuf = execSync(`magick "${iconSrc}" -resize 128x128 PNG:-`, {
-      maxBuffer: 8 * 1024 * 1024,
-    });
-  } catch {
-    pngBuf = readFileSync(iconSrc);
+  const embedScript = join(ROOT, "python", "dusk_office", "embed_plugin_icon.py");
+  const py = process.env.PYTHON || (process.platform === "win32" ? "python" : "python3");
+  const result = spawnSync(py, [embedScript, iconSrc, "-o", outSvg], {
+    encoding: "utf-8",
+    maxBuffer: 8 * 1024 * 1024,
+  });
+  if (result.status === 0) {
+    const line = (result.stdout || "").trim();
+    console.log(line || `[OK] pluginIcon.svg ← ${iconRel}`);
+    return;
   }
+  console.warn(
+    `[WARN] Pillow embed failed (${result.stderr?.trim() || "unknown"}) — embedding raw PNG`,
+  );
+  const pngBuf = readFileSync(iconSrc);
   const b64 = pngBuf.toString("base64");
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128" width="40" height="40">
@@ -61,7 +68,7 @@ function syncPluginIcon() {
 </svg>
 `;
   writeFileSync(outSvg, svg);
-  console.log(`[OK] pluginIcon.svg ← ${iconRel}`);
+  console.log(`[OK] pluginIcon.svg ← ${iconRel} (fallback, no resize)`);
 }
 
 function resolveGradleJavaHomeLine() {

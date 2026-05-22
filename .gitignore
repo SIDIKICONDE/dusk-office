@@ -1,6 +1,12 @@
 node_modules/
 *.vsix
 
+# Python tooling (dusk_office package)
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
 # Generated IDE exports (see exports/README.md — run npm run export:ide)
 exports/*
 !exports/README.md

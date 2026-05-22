@@ -188,10 +188,12 @@ function buildExtended(p) {
     "editorInlayHint.typeForeground": A(info, "cc"),
     "editorInlayHint.parameterForeground": A(amber, "cc"),
 
+    "editorSuggestWidget.background": panel,
     "editorSuggestWidget.foreground": fg,
     "editorSuggestWidget.border": A(border, "44"),
     "editorSuggestWidget.selectedBackground": A(accent, "33"),
     "editorSuggestWidget.highlightForeground": accentHi,
+    "editorHoverWidget.background": panel,
     "editorHoverWidget.foreground": fg,
     "editorHoverWidget.border": A(border, "44"),
 

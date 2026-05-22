@@ -107,37 +107,23 @@ def read_theme(path: Path) -> ThemeDocument:
         raise ValueError(f"{path}: {exc}") from exc
 
 
-def resolve_include_chain(path: Path, chain: set[str] | None = None) -> None:
+def validate_theme_file(path: Path, root: Path, chain: set[str] | None = None) -> None:
     chain = chain or set()
-    rel = path.as_posix()
+    rel = path.relative_to(root).as_posix()
     if rel in chain:
         raise ValueError(f"Circular include chain: {' → '.join([*chain, rel])}")
     chain.add(rel)
+
     theme = read_theme(path)
     if theme.include:
         parent = (path.parent / theme.include).resolve()
         if not parent.is_file():
             raise ValueError(f"{path}: include not found — {theme.include}")
-        resolve_include_chain(parent, chain)
+        validate_theme_file(parent, root, chain)
 
+    if theme.colors is not None and not isinstance(theme.colors, dict):
+        raise ValueError(f"{path}: colors must be an object")
 
-def merge_effective_colors(path: Path, chain: set[str] | None = None) -> dict[str, str]:
-    chain = chain or set()
-    rel = path.as_posix()
-    if rel in chain:
-        raise ValueError(f"Circular include chain: {' → '.join([*chain, rel])}")
-    chain.add(rel)
-    theme = read_theme(path)
-    base: dict[str, str] = {}
-    if theme.include:
-        parent = (path.parent / theme.include).resolve()
-        base = merge_effective_colors(parent, chain)
-    merged = {**base, **(theme.colors or {})}
-    return merged
-
-
-def validate_root_theme_requirements(path: Path) -> None:
-    theme = read_theme(path)
     if theme.include:
         return
 
@@ -164,8 +150,8 @@ def validate_root_theme_requirements(path: Path) -> None:
         raise ValueError(f"{path}: missing required semantic token keys: {', '.join(missing_semantic)}")
 
 
-def assert_extension_button_legible(path: Path, label: str) -> None:
-    colors = merge_effective_colors(path)
+def assert_extension_button_legible(path: Path, label: str, root: Path) -> None:
+    colors = merge_effective_colors(path, root)
     fg = colors.get("extensionButton.prominentForeground")
     bg = colors.get("extensionButton.prominentBackground")
     if bg == LEGACY_EXTENSION_BUTTON_BG:
@@ -176,6 +162,20 @@ def assert_extension_button_legible(path: Path, label: str) -> None:
         raise ValueError(
             f"{label} ({path}): extensionButton.prominentForeground must not remain {LEGACY_EXTENSION_BUTTON_FG}"
         )
+
+
+def merge_effective_colors(path: Path, root: Path, chain: set[str] | None = None) -> dict[str, str]:
+    chain = chain or set()
+    rel = path.relative_to(root).as_posix()
+    if rel in chain:
+        raise ValueError(f"Circular include chain: {' → '.join([*chain, rel])}")
+    chain.add(rel)
+    theme = read_theme(path)
+    base: dict[str, str] = {}
+    if theme.include:
+        parent = (path.parent / theme.include).resolve()
+        base = merge_effective_colors(parent, root, chain)
+    return {**base, **(theme.colors or {})}
 
 
 def validate_palettes_extended_ui(path: Path) -> None:
@@ -208,9 +208,8 @@ def validate_all(root: Path) -> int:
         if key in seen:
             raise ValueError(f"Duplicate theme path: {key}")
         seen.add(key)
-        resolve_include_chain(full)
-        validate_root_theme_requirements(full)
-        assert_extension_button_legible(full, theme.label)
+        validate_theme_file(full, root)
+        assert_extension_button_legible(full, theme.label, root)
 
     validate_palettes_extended_ui(root / "scripts" / "palettes-extended-ui.json")
 

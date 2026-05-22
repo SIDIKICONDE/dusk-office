@@ -910,7 +910,7 @@
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
-    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/audit-contrast.mjs && node scripts/check-theme-distinctiveness.mjs --strict",
+    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/audit-contrast.mjs && node scripts/check-theme-distinctiveness.mjs --strict && npm run validate:pydantic",
     "distinctiveness:check": "node scripts/check-theme-distinctiveness.mjs",
     "audit:contrast": "node scripts/audit-contrast.mjs",
     "verify:themes-fresh": "node scripts/verify-themes-fresh.mjs",
@@ -937,6 +937,11 @@
     "publish:ovsx": "npx --no-install ovsx publish dusk-office-$npm_package_version.vsix",
     "publish:all": "npm run publish:vsce && npm run publish:ovsx",
     "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js",
+    "py:install": "pip install -e \".[dev]\"",
+    "validate:pydantic": "python -m dusk_office.validate_schemas",
+    "analyze:themes": "python -m dusk_office.analyze_themes",
+    "test:py": "pytest python/tests",
+    "test:all": "npm test && npm run test:py",
     "tag:release": "git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push origin v$npm_package_version"
   },
   "devDependencies": {

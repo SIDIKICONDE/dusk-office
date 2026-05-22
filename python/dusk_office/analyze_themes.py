@@ -115,16 +115,19 @@ def run_analysis(themes_dir: Path) -> list[dict]:
     return results
 
 
+def status_icon(issue_count: int) -> str:
+    if issue_count == 0:
+        return "OK"
+    if issue_count <= 2:
+        return "WARN"
+    return "BAD"
+
+
 def print_report(results: list[dict]) -> None:
-    print(f"DEEP ANALYSIS — {len(results)} THEMES\n")
+    print(f"DEEP ANALYSIS - {len(results)} THEMES\n")
     for item in results:
         issue_count = len(item["issues"])
-        if issue_count == 0:
-            icon = "✅"
-        elif issue_count <= 2:
-            icon = "⚠️"
-        else:
-            icon = "❌"
+        icon = status_icon(issue_count)
         print(
             f"{icon} {item['name']} [{item['type']}] "
             f"CR:{item['contrast']} sem:{item['semantic_count']} tm:{item['token_count']}"
@@ -137,7 +140,7 @@ def print_report(results: list[dict]) -> None:
     perfect = sum(1 for item in results if not item["issues"])
     warning = sum(1 for item in results if 0 < len(item["issues"]) <= 2)
     bad = sum(1 for item in results if len(item["issues"]) > 2)
-    print(f"\nSUMMARY: ✅{perfect} ⚠️{warning} ❌{bad}")
+    print(f"\nSUMMARY: OK={perfect} WARN={warning} BAD={bad}")
 
 
 def main(argv: list[str] | None = None) -> int:
