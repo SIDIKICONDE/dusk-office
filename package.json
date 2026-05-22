@@ -942,7 +942,7 @@
     "analyze:themes": "python -m dusk_office.analyze_themes",
     "test:py": "pytest python/tests",
     "test:all": "npm test && npm run test:py",
-    "tag:release": "git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push origin v$npm_package_version"
+    "tag:release": "node scripts/release-tag.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.5.1",

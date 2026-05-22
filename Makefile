@@ -139,19 +139,7 @@ rpi:
 RELEASE_VERSION := $(shell node -p "require('./package.json').version" 2>/dev/null)
 
 release-tag tag:
-	@if [ -z "$(RELEASE_VERSION)" ]; then \
-		echo "[ERR] Cannot read version from package.json"; exit 1; \
-	fi
-	@cd "$(ROOT)" && \
-	if git rev-parse "v$(RELEASE_VERSION)" >/dev/null 2>&1; then \
-		echo "[ERR] Tag v$(RELEASE_VERSION) already exists locally. Bump package.json version or run: git tag -d v$(RELEASE_VERSION) && git push origin :refs/tags/v$(RELEASE_VERSION)"; \
-		exit 1; \
-	fi; \
-	echo "[INFO] Tagging v$(RELEASE_VERSION) and pushing to origin..."; \
-	git tag -a "v$(RELEASE_VERSION)" -m "Release v$(RELEASE_VERSION)" && \
-	git push origin "v$(RELEASE_VERSION)" && \
-	echo "[OK] Tag pushed. GitHub Actions release workflow triggered."; \
-	echo "     Watch with: make release-watch"
+	@cd "$(ROOT)" && node scripts/release-tag.mjs
 
 release: validate push-main-auto release-tag
 	@echo ""
