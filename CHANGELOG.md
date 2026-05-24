@@ -1,5 +1,17 @@
 # Changelog — Dusk Office
 
+## 1.3.6 — 24 May 2026
+
+- **Fixed**: **Workspace fingerprint always suggested Vault** — `collectWorkspaceSignals` included `pkg.description` and `pkg.keywords` in `npmText`, causing the extension's own marketing copy ("finance, fintech, audit, banking…") to trigger Vault/Audit/Sentinel scores on unrelated projects. VS Code extensions (`engines.vscode`) now use only `pkg.name` for domain scoring; text/keyword signals are now **amplifiers only** (require a hard dep or file signal first). Applies to Vault, Audit, and Sentinel scorers.
+- **Fixed**: **Theme not applied when clicking "Try it" on fingerprint suggestion** — auto-switch timer and adaptive focus `onDidChangeActiveTextEditor` listener could immediately overwrite a manual theme pick. Added a 5-second manual-override grace period (`MANUAL_OVERRIDE_GRACE_MS`); `runAutoSwitch` and `applyAdaptiveFocusTheme` skip their cycle during the grace window. `{ force: true }` bypasses the grace for explicit user commands.
+- **Fixed**: **`syncPreferredThemeIfAutoDetect` ineffective** — when `window.autoDetectColorScheme` was enabled, writing only `colorTheme` had no visible effect. The function now writes the correct `preferredLightColorTheme` or `preferredDarkColorTheme` key immediately after `colorTheme`.
+- **Added**: **Quick Setup command** (`duskOffice.quickSetup`) — one-flow onboarding: pick a variant → choose automation mode (Adaptive Focus / Auto Day-Night / Manual) → save as favorite. Registered in command palette and walkthrough.
+- **Added**: **Walkthrough auto-open on first install** — the Get Started walkthrough now opens automatically the first time the extension activates (global state `walkthroughShown` key), instead of relying on a notification the user might dismiss.
+- **Added**: **Two new walkthrough steps** — "Quick Setup" (step 2) and "ANSI in Editor" (step 7); walkthrough restructured from 6 to 8 steps with tighter, punchier copy.
+- **Added**: **Centralized logging** (`lib/log.js`) — output channel "Dusk Office" with `info`, `warn`, `error`, `dispose` functions. All critical async entry points across 9 modules wrapped with `try/catch` + structured logging: `auto-adaptive.js`, `themes.js`, `startup.js`, `title-bar.js`, `control-center.js`, `editor-ansi.js`, `favorite-migrate.js`, `workspace-fingerprint.js`, `activation-prompt.js`. Output channel disposed in `deactivate()`.
+- **Added**: **Configuration sanitization** (`lib/theme-common.js`) — `coerceBoolean`, `coerceHour`, `coerceDuskTheme`, `coerceOptionalDuskTheme`, `coerceLanguageOverrides`, `sanitizeAutoSwitchConfig`, `sanitizeAdaptiveFocusConfig` validate and clamp all theme-related settings. Applied in `lib/configuration.js` getters.
+- **Added**: unit tests for all sanitizer functions (`tests/theme-common.test.js`).
+
 ## 1.3.5 — 23 May 2026
 
 - **Fixed**: **Light-theme workbench chrome inherited `#d1e0e8` from `dusk.json`** — unreadable text on pale surfaces across Settings dropdowns, menubar submenus, command-center / chat header menus, tab hover, and Ivory hover states. New shared overrides in `scripts/light-settings-ui.mjs` (`LIGHT_SETTINGS_UI`, `LIGHT_CHROME_UI`, `LIGHT_TAB_UI` + Ivory / Audit / Ledger palettes); propagated via `build-dusk-light.mjs`, `build-dusk-ivoire.mjs`, and manual light variant JSON. Includes `tab.hoverForeground` / `tab.selectedForeground`, `editorWidget.*`, `menubar.selectionForeground`, `settings.*`, and warm Ivory hover unification (`#c98962` / `#b87650`).
