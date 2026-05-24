@@ -1,21 +1,16 @@
 # Welcome to Dusk Office 🌒
 
-You didn't just install a theme. You stepped into a **system designed around how you actually work** — across 27 variants, from deep-focus dark sessions to bright daytime readability.
+**27 themes. One system. Zero config needed.**
 
-## Why developers stay
+You just installed the most complete adaptive theme extension on VS Code. This walkthrough takes **90 seconds** — and you'll have a fully personalized setup at the end.
 
-| | |
-| --- | --- |
-| **One visual language** | 27 variants, one unified chrome philosophy — sidebar, tabs, status bar, terminal all feel *connected* |
-| **Built for your domain** | Variants tuned for finance, audit, cybersecurity, ML, frontend, DevOps — not generic palettes |
-| **Accessibility first** | Every theme WCAG-verified: `4.5:1` terminal foreground, `2.9:1` ANSI colors. Your eyes matter |
-| **Full semantic coverage** | Not just TextMate scopes — modern semantic tokens for TypeScript, Python, Rust, Go, SQL and more |
-| **Zero trust issues** | No telemetry. No network calls. No companion extensions. 100% local. GPL v3 |
+## What makes this different
 
-## This takes 2 minutes
+- **27 variants** — dark, light, domain-tuned (finance, security, ML, DevOps…)
+- **Adapts automatically** — by time of day, by language, by project type
+- **WCAG accessibility** — every variant contrast-verified
+- **100% local** — no telemetry, no network calls, no companion extensions
 
-You'll set up your theme, discover automatic project detection, configure day/night switching, and master the Control Center. Each step gives you something immediately useful.
+## Next step
 
-*From the developer behind [NythyCleaner](https://nythycleaner.cloud) — the native macOS utility for desk and dev workflows: Xcode cleanup, full monitoring, security audit, disk treemap, and 20+ ecosystem scans.*
-
-Ready? Click **"Apply the default Dusk Office theme"** below to start.
+Click **"Apply the default Dusk Office theme"** below, then move to **Quick Setup** — it takes 30 seconds to configure everything.

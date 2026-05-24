@@ -95,11 +95,10 @@ describe("Fingerprint: Audit", () => {
     assert.ok(pattern.score(s) >= FINGERPRINT_THRESHOLD);
   });
 
-  it("scores > 0 but below threshold for keywords alone", () => {
+  it("scores 0 for keywords alone (no hard dep/file signal)", () => {
     const s = makeSignals({ npmText: "audit compliance ledger gaap" });
     const score = pattern.score(s);
-    assert.ok(score > 0);
-    assert.ok(score < FINGERPRINT_THRESHOLD, "keywords alone should not cross threshold");
+    assert.strictEqual(score, 0, "text signals without a hard dep or file should not score");
   });
 
   it("scores >= threshold when audit dep + keywords stack", () => {

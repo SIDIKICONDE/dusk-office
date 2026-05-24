@@ -301,11 +301,22 @@
             ]
           },
           {
+            "id": "quickSetup",
+            "title": "Quick Setup — 30 seconds to perfection",
+            "description": "Pick your variant, choose your automation mode, done. One flow, zero config files.\n[Run Quick Setup](command:duskOffice.quickSetup)",
+            "media": {
+              "markdown": "walkthrough/02-quick-setup.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.quickSetup"
+            ]
+          },
+          {
             "id": "pickVariant",
             "title": "Explore 27 variants",
             "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
             "media": {
-              "markdown": "walkthrough/02-variants.md"
+              "markdown": "walkthrough/03-variants.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.switchThemeVariant"
@@ -316,7 +327,7 @@
             "title": "Your project, your palette — automatically",
             "description": "Dusk Office reads your project’s DNA and suggests the perfect variant. Fintech → Vault, security → Sentinel, ML → Steward. 100% local, zero telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
             "media": {
-              "markdown": "walkthrough/03-fingerprint.md"
+              "markdown": "walkthrough/04-fingerprint.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.suggestVariantForWorkspace"
@@ -327,7 +338,7 @@
             "title": "A theme that adapts to your rhythm",
             "description": "Auto Day/Night switches light ↔ dark by the hour. Adaptive Focus goes further — picking variants by language and time. Late-night eye comfort included.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
             "media": {
-              "markdown": "walkthrough/04-adaptive.md"
+              "markdown": "walkthrough/05-adaptive.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.toggleAdaptiveFocus",
@@ -339,10 +350,21 @@
             "title": "One place to control everything",
             "description": "The Control Center gives you every Dusk Office action in a single Quick Pick — themes, favorites, automation, icons, WCAG checks, and reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
             "media": {
-              "markdown": "walkthrough/05-control-center.md"
+              "markdown": "walkthrough/06-control-center.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.openControlCenter"
+            ]
+          },
+          {
+            "id": "ansiEditor",
+            "title": "ANSI colors — logs come alive",
+            "description": "Open any .log file or source containing ANSI escape codes — Dusk Office renders them with your theme's terminal.ansi* palette, live in the editor.\n[Toggle ANSI in Editor](command:duskOffice.toggleEditorAnsi)",
+            "media": {
+              "markdown": "walkthrough/07-ansi-editor.md"
+            },
+            "completionEvents": [
+              "onCommand:duskOffice.toggleEditorAnsi"
             ]
           },
           {
@@ -350,7 +372,7 @@
             "title": "Make it truly yours",
             "description": "Fine-tune every behavior in Settings. And if you ever want a clean slate — one command resets everything with zero residue.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
             "media": {
-              "markdown": "walkthrough/06-make-it-yours.md"
+              "markdown": "walkthrough/08-make-it-yours.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.openSettings"
@@ -817,6 +839,12 @@
         "command": "duskOffice.openEditorAnsiSettings",
         "title": "Dusk Office: ANSI in Editor Settings",
         "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.quickSetup",
+        "title": "Dusk Office: Quick Setup",
+        "category": "Dusk Office",
+        "icon": "$(rocket)"
       }
     ],
     "menus": {

@@ -21,6 +21,8 @@ const {
 } = require("./lib/workspace-fingerprint.js");
 const { verifyTerminalContrast } = require("./lib/terminal-verify.js");
 const { resetAllSettings } = require("./lib/legacy-reset.js");
+const { runQuickSetup } = require("./lib/quick-setup.js");
+const log = require("./lib/log.js");
 
 async function activate(context) {
   const pic = context.extension.packageJSON?.contributes?.productIconThemes;
@@ -102,6 +104,7 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.clearWorkspaceFingerprint", () =>
       clearWorkspaceFingerprint(context),
     ),
+    vscode.commands.registerCommand("duskOffice.quickSetup", () => runQuickSetup(context)),
     createAutoSwitchManager(context),
     createAdaptiveFocusManager(context),
   );
@@ -120,7 +123,9 @@ async function activate(context) {
   }, 1200);
 }
 
-function deactivate() {}
+function deactivate() {
+  log.dispose();
+}
 
 module.exports = {
   activate,
