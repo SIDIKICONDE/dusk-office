@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Ensures terminal.foreground and ANSI colors stay readable on terminal.background.
- * Delegates to lib/terminal-contrast.js (single source of truth with runtime + tests).
+ * Delegates to lib/terminal/terminal-contrast.js (single source of truth with runtime + tests).
  *
  * Usage: node scripts/verify-terminal-contrast.mjs
  * Env: MIN_FG_RATIO (default 4.5), MIN_ANSI_RATIO (default 2.9)
@@ -17,7 +17,7 @@ const {
   MIN_TERMINAL_ANSI_RATIO,
   mergeThemeColors,
   checkTerminalContrast,
-} = require("../lib/terminal-contrast.js");
+} = require("../lib/terminal/terminal-contrast.js");
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");

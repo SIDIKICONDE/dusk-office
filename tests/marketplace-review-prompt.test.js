@@ -13,7 +13,7 @@ const {
   parseMajorVersion,
   buildReviewPromptMessage,
   shouldShowMarketplaceReviewPrompt,
-} = require("../lib/marketplace-review-prompt.js");
+} = require("../lib/prompts/marketplace-review-prompt.js");
 
 describe("marketplace-review-prompt", () => {
   describe("getEngagementIncrement", () => {

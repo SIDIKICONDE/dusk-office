@@ -705,7 +705,7 @@
         "duskOffice.adaptiveFocus.languageOverrides": {
           "type": "object",
           "default": {},
-          "markdownDescription": "Override built-in Adaptive Focus language rules. Keys: language IDs (`python`, `typescript`, …). Values: `{ \"light\": \"Dusk Office Ivory\", \"dark\": \"Dusk Office Abyss\" }`. Merged onto defaults in `lib/theme-common.js`."
+          "markdownDescription": "Override built-in Adaptive Focus language rules. Keys: language IDs (`python`, `typescript`, …). Values: `{ \"light\": \"Dusk Office Ivory\", \"dark\": \"Dusk Office Abyss\" }`. Merged onto defaults in `lib/themes/theme-common.js`."
         },
         "duskOffice.adaptiveFocus.lockTheme": {
           "type": "string",

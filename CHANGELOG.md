@@ -2,6 +2,7 @@
 
 ## 1.3.7 — 27 May 2026
 
+- **Changed**: **`lib/` layout** — runtime modules grouped into `core/`, `themes/`, `ui/`, `terminal/`, `workspace/`, `ansi/`, `export/`, and `prompts/` (no behavior change).
 - **Added**: **Marketplace review** (`lib/marketplace-review-prompt.js`) — after positive theme engagement (favorite, Quick Setup, variant pick, fingerprint accept, Adaptive Focus / Auto Switch), Dusk Office may ask once for a star rating on the **VS Code Marketplace**, **Open VSX**, or **JetBrains Marketplace**. Quick Pick pre-selects the marketplace for the current editor (Cursor/Windsurf → VS Code; VSCodium → Open VSX). Throttled by engagement score (≥ 2), session count (≥ 3), and 7-day minimum usage; **Later** (30 days) and **Don't ask again** supported; re-prompt after a major version bump if the user had rated on a previous major.
 - **Added**: **`duskOffice.marketplaceReview`** setting (default on) — opt out of review reminders; legacy `duskOffice.marketplaceReviewPrompt` still read as fallback.
 - **Added**: **`duskOffice.rateOnMarketplace`** command and Control Center entry **Rate Dusk Office on Marketplace**.

@@ -1,11 +1,11 @@
 /**
  * Shared WCAG color utilities for the Dusk Office build pipeline.
- * Re-exports lib/terminal-contrast.js so CI scripts and runtime share one implementation.
+ * Re-exports lib/terminal/terminal-contrast.js so CI scripts and runtime share one implementation.
  */
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
-const tc = require("../lib/terminal-contrast.js");
+const tc = require("../lib/terminal/terminal-contrast.js");
 
 export const parseHexColor = tc.parseHexColor;
 export const luminance = tc.luminance;

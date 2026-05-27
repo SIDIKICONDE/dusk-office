@@ -8,8 +8,8 @@
 import { mkdirSync, writeFileSync, rmSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { listThemeFiles, resolveTheme } from "../lib/theme-resolve.mjs";
-import { buildExportPalette } from "../lib/theme-export-palette.mjs";
+import { listThemeFiles, resolveTheme } from "../lib/export/theme-resolve.mjs";
+import { buildExportPalette } from "../lib/export/theme-export-palette.mjs";
 import {
   toBase16Yaml,
   toEmacsEl,
@@ -19,7 +19,7 @@ import {
   toPaletteJson,
   toVscodeResolvedJson,
   toZedJson,
-} from "../lib/export-formats.mjs";
+} from "../lib/export/export-formats.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");

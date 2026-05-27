@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Local adaptive theme recommender (privacy-first, no network).
- * Uses the same logic as the extension: lib/theme-common.js
+ * Uses the same logic as the extension: lib/themes/theme-common.js
  *
  * Usage:
  *   node scripts/adaptive-focus-mode.mjs
@@ -16,7 +16,7 @@ const {
   THEME_VARIANTS,
   computeAdaptiveFocusTheme,
   isAdaptiveLightPeriod,
-} = require("../lib/theme-common.js");
+} = require("../lib/themes/theme-common.js");
 
 function parseArgs(argv) {
   const out = {
@@ -121,7 +121,7 @@ function main() {
 
   process.stdout.write(
     [
-      "Adaptive Focus Mode (lib/theme-common.js)",
+      "Adaptive Focus Mode (lib/themes/theme-common.js)",
       `- Hour: ${args.hour} (${period})`,
       `- Language: ${args.language || "none"}`,
       `- Lock: ${args.lock || "none"}`,

@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const {
   FINGERPRINT_PATTERNS,
   FINGERPRINT_THRESHOLD,
-} = require("../lib/workspace-fingerprint-data.js");
+} = require("../lib/workspace/workspace-fingerprint-data.js");
 
 /** Creates a minimal signals object with optional overrides. */
 function makeSignals(overrides = {}) {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Vérifie que lib/theme-common.js reste aligné avec package.json.
+ * Vérifie que lib/themes/theme-common.js reste aligné avec package.json.
  */
 import fs from "fs";
 import path from "path";
@@ -15,7 +15,7 @@ const {
   THEME_VARIANTS,
   ADAPTIVE_LANGUAGE_RULES,
   stripThemeDisplayLabel,
-} = require("../lib/theme-common.js");
+} = require("../lib/themes/theme-common.js");
 
 const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 const labels = (pkg.contributes?.themes || []).map((t) => stripThemeDisplayLabel(t.label));

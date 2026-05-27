@@ -1,29 +1,29 @@
 const vscode = require("vscode");
-const { activateAnsiEditor } = require("./lib/ansi-editor.js");
+const { activateAnsiEditor } = require("./lib/ansi/ansi-editor.js");
 
-const state = require("./lib/extension-state.js");
-const { isDuskTheme } = require("./lib/theme-common.js");
-const cfg = require("./lib/configuration.js");
-const titleBar = require("./lib/title-bar.js");
-const themes = require("./lib/themes.js");
-const keys = require("./lib/extension-keys.js");
-const autoAdaptive = require("./lib/auto-adaptive.js");
-const editorAnsi = require("./lib/editor-ansi.js");
-const productIcons = require("./lib/product-icons.js");
-const { openControlCenter } = require("./lib/control-center.js");
-const { createStatusBarItem } = require("./lib/status-bar.js");
-const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/feature-managers.js");
-const { initializeStartupBehavior } = require("./lib/startup.js");
-const { showActivationPrompt } = require("./lib/activation-prompt.js");
+const state = require("./lib/core/extension-state.js");
+const { isDuskTheme } = require("./lib/themes/theme-common.js");
+const cfg = require("./lib/core/configuration.js");
+const titleBar = require("./lib/themes/title-bar.js");
+const themes = require("./lib/themes/themes.js");
+const keys = require("./lib/core/extension-keys.js");
+const autoAdaptive = require("./lib/themes/auto-adaptive.js");
+const editorAnsi = require("./lib/ansi/editor-ansi.js");
+const productIcons = require("./lib/themes/product-icons.js");
+const { openControlCenter } = require("./lib/ui/control-center.js");
+const { createStatusBarItem } = require("./lib/ui/status-bar.js");
+const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/themes/feature-managers.js");
+const { initializeStartupBehavior } = require("./lib/core/startup.js");
+const { showActivationPrompt } = require("./lib/prompts/activation-prompt.js");
 const {
   detectWorkspaceFingerprint,
   clearWorkspaceFingerprint,
-} = require("./lib/workspace-fingerprint.js");
-const { verifyTerminalContrast } = require("./lib/terminal-verify.js");
-const { resetAllSettings } = require("./lib/legacy-reset.js");
-const { runQuickSetup } = require("./lib/quick-setup.js");
-const { openMarketplaceReviewPage, initializeMarketplaceReviewTracking } = require("./lib/marketplace-review-prompt.js");
-const log = require("./lib/log.js");
+} = require("./lib/workspace/workspace-fingerprint.js");
+const { verifyTerminalContrast } = require("./lib/terminal/terminal-verify.js");
+const { resetAllSettings } = require("./lib/core/legacy-reset.js");
+const { runQuickSetup } = require("./lib/ui/quick-setup.js");
+const { openMarketplaceReviewPage, initializeMarketplaceReviewTracking } = require("./lib/prompts/marketplace-review-prompt.js");
+const log = require("./lib/core/log.js");
 
 async function activate(context) {
   const pic = context.extension.packageJSON?.contributes?.productIconThemes;

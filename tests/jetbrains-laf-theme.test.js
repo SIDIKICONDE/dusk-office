@@ -3,9 +3,9 @@ const assert = require("node:assert/strict");
 const { readFileSync } = require("node:fs");
 const { join } = require("node:path");
 
-const { resolveTheme } = require("../lib/theme-resolve.mjs");
-const { buildExportPalette } = require("../lib/theme-export-palette.mjs");
-const { buildJetBrainsLafTheme } = require("../lib/jetbrains-laf-theme.mjs");
+const { resolveTheme } = require("../lib/export/theme-resolve.mjs");
+const { buildExportPalette } = require("../lib/export/theme-export-palette.mjs");
+const { buildJetBrainsLafTheme } = require("../lib/export/jetbrains-laf-theme.mjs");
 
 const ROOT = join(__dirname, "..");
 

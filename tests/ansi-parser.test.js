@@ -5,7 +5,7 @@ const {
   AnsiLineParser,
   parseLineLiterals,
   textHasAnsiContent,
-} = require("../lib/ansi-editor.js");
+} = require("../lib/ansi/ansi-editor.js");
 
 // ---------------------------------------------------------------------------
 // textHasAnsiContent

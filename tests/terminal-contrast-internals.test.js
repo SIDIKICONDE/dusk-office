@@ -1,7 +1,7 @@
 const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
 
-const { checkTerminalContrast } = require("../lib/terminal-contrast.js");
+const { checkTerminalContrast } = require("../lib/terminal/terminal-contrast.js");
 
 // ---------------------------------------------------------------------------
 // parseColor edge cases (tested indirectly via checkTerminalContrast)

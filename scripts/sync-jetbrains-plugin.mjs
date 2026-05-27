@@ -16,7 +16,7 @@ import {
 import { spawnSync } from "child_process";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { buildJetBrainsLafTheme } from "../lib/jetbrains-laf-theme.mjs";
+import { buildJetBrainsLafTheme } from "../lib/export/jetbrains-laf-theme.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -196,7 +196,7 @@ function main() {
     const iclsDest = join(COLORS_DIR, `${base}.icls`);
     const xmlDest = join(COLORS_DIR, `${base}.xml`);
     copyFileSync(join(EXPORTS_ICLS, file), iclsDest);
-    // theme.json editorScheme → /colors/<base>.xml (voir lib/jetbrains-laf-theme.mjs)
+    // theme.json editorScheme → /colors/<base>.xml (voir lib/export/jetbrains-laf-theme.mjs)
     copyFileSync(iclsDest, xmlDest);
 
     const laf = buildJetBrainsLafTheme(palette);

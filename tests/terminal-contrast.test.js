@@ -8,7 +8,7 @@ const {
   MIN_TERMINAL_ANSI_RATIO,
   mergeThemeColors,
   checkTerminalContrast,
-} = require("../lib/terminal-contrast.js");
+} = require("../lib/terminal/terminal-contrast.js");
 
 // ---------------------------------------------------------------------------
 // checkTerminalContrast — synthetic colors

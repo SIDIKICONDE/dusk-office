@@ -27,7 +27,7 @@ const {
   coerceLanguageOverrides,
   sanitizeAutoSwitchConfig,
   sanitizeAdaptiveFocusConfig,
-} = require("../lib/theme-common.js");
+} = require("../lib/themes/theme-common.js");
 
 // ---------------------------------------------------------------------------
 // isDuskTheme

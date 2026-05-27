@@ -1,4 +1,4 @@
-"""WCAG 2.1 color utilities aligned with lib/terminal-contrast.js."""
+"""WCAG 2.1 color utilities aligned with lib/terminal/terminal-contrast.js."""
 
 from __future__ import annotations
 

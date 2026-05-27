@@ -179,7 +179,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 
 #### Adaptive Focus — language rules (runtime)
 
-Source of truth: [`lib/theme-common.js`](./lib/theme-common.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
+Source of truth: [`lib/themes/theme-common.js`](./lib/themes/theme-common.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
 
 | Language ID | Day | Night |
 |---|---|---|
@@ -217,8 +217,8 @@ CLI preview (same rules): `node scripts/adaptive-focus-mode.mjs --language pytho
 | ------ | -------- |
 | Color theme list & JSON paths | [`package.json`](./package.json) → `contributes.themes` (**27** themes) |
 | Product icon theme | [`package.json`](./package.json) → `contributes.productIconThemes` (`dusk-office-product` → **Dusk Office · Product**) |
-| Theme names & Adaptive Focus rules | [`lib/theme-common.js`](./lib/theme-common.js) → `THEME_VARIANTS`, `ADAPTIVE_LANGUAGE_RULES` (CLI: `scripts/adaptive-focus-mode.mjs`) |
-| Runtime state keys | [`lib/extension-keys.js`](./lib/extension-keys.js) + orchestration in [`extension.js`](./extension.js) |
+| Theme names & Adaptive Focus rules | [`lib/themes/theme-common.js`](./lib/themes/theme-common.js) → `THEME_VARIANTS`, `ADAPTIVE_LANGUAGE_RULES` (CLI: `scripts/adaptive-focus-mode.mjs`) |
+| Runtime state keys | [`lib/core/extension-keys.js`](./lib/core/extension-keys.js) + orchestration in [`extension.js`](./extension.js) |
 | Build & theme pipeline | Internal maintainer documentation only (not published). |
 
 ### Optional: secondary Git gutter (staged)
