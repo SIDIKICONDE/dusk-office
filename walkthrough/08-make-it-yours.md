@@ -39,6 +39,18 @@ Found a bug? Want a new variant? The build pipeline generates a new theme in ~10
 
 **[Open an issue on GitHub](https://github.com/SIDIKICONDE/dusk-office)** — every request is read.
 
+## Enjoying Dusk Office? Leave a review
+
+A quick star rating helps other developers discover these themes:
+
+| Marketplace | Link |
+|---|---|
+| **VS Code** (Cursor, Windsurf) | [Rate on VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office&ssr=false#review-details) |
+| **Open VSX** (VSCodium) | [Rate on Open VSX](https://open-vsx.org/extension/dekidev/dusk-office/reviews) |
+| **JetBrains** | [Rate on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes/reviews) |
+
+Or run **`Dusk Office: Rate on Marketplace`** from the Command Palette anytime.
+
 ## Also from the same developer
 
 **🛠️ [NythyCleaner](https://nythycleaner.cloud)** — Your Mac, clean and fast. Desk and dev workflow in one tool.

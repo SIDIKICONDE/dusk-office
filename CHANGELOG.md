@@ -1,5 +1,15 @@
 # Changelog — Dusk Office
 
+## 1.3.7 — 27 May 2026
+
+- **Added**: **Marketplace review** (`lib/marketplace-review-prompt.js`) — after positive theme engagement (favorite, Quick Setup, variant pick, fingerprint accept, Adaptive Focus / Auto Switch), Dusk Office may ask once for a star rating on the **VS Code Marketplace**, **Open VSX**, or **JetBrains Marketplace**. Quick Pick pre-selects the marketplace for the current editor (Cursor/Windsurf → VS Code; VSCodium → Open VSX). Throttled by engagement score (≥ 2), session count (≥ 3), and 7-day minimum usage; **Later** (30 days) and **Don't ask again** supported; re-prompt after a major version bump if the user had rated on a previous major.
+- **Added**: **`duskOffice.marketplaceReview`** setting (default on) — opt out of review reminders; legacy `duskOffice.marketplaceReviewPrompt` still read as fallback.
+- **Added**: **`duskOffice.rateOnMarketplace`** command and Control Center entry **Rate Dusk Office on Marketplace**.
+- **Added**: walkthrough step 8 — passive review links for all three marketplaces.
+- **Added**: unit tests for marketplace review logic (`tests/marketplace-review-prompt.test.js`).
+- **Fixed**: redundant **`onLanguage:ansi`** activation event removed — VS Code ≥ 1.75 generates it from the `ansi` language contribution; also dropped redundant `workspaceContains:**/*.ansi` / `*.ans`.
+- **Fixed**: **`install-vsix.mjs` on Windows** — prefer `cursor.cmd` (and other `.cmd` wrappers) over extensionless PATH hits; add `C:\Program Files\cursor\…` fallback; quote CLI paths with spaces so `make full` / `make install-vsix` install succeeds on standard Cursor installs.
+
 ## 1.3.6 — 24 May 2026
 
 - **Fixed**: **Workspace fingerprint always suggested Vault** — `collectWorkspaceSignals` included `pkg.description` and `pkg.keywords` in `npmText`, causing the extension's own marketing copy ("finance, fintech, audit, banking…") to trigger Vault/Audit/Sentinel scores on unrelated projects. VS Code extensions (`engines.vscode`) now use only `pkg.name` for domain scoring; text/keyword signals are now **amplifiers only** (require a hard dep or file signal first). Applies to Vault, Audit, and Sentinel scorers.

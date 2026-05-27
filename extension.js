@@ -22,6 +22,7 @@ const {
 const { verifyTerminalContrast } = require("./lib/terminal-verify.js");
 const { resetAllSettings } = require("./lib/legacy-reset.js");
 const { runQuickSetup } = require("./lib/quick-setup.js");
+const { openMarketplaceReviewPage, initializeMarketplaceReviewTracking } = require("./lib/marketplace-review-prompt.js");
 const log = require("./lib/log.js");
 
 async function activate(context) {
@@ -29,6 +30,7 @@ async function activate(context) {
   const picId = Array.isArray(pic) && typeof pic[0]?.id === "string" ? pic[0].id : "";
   state.duskProductIconThemeId = picId;
 
+  await initializeMarketplaceReviewTracking(context);
   await autoAdaptive.reconcileAutomaticModes();
   void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
 
@@ -105,6 +107,7 @@ async function activate(context) {
       clearWorkspaceFingerprint(context),
     ),
     vscode.commands.registerCommand("duskOffice.quickSetup", () => runQuickSetup(context)),
+    vscode.commands.registerCommand("duskOffice.rateOnMarketplace", () => openMarketplaceReviewPage()),
     createAutoSwitchManager(context),
     createAdaptiveFocusManager(context),
   );

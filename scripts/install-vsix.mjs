@@ -28,8 +28,13 @@ const VSCODE_COMPATIBLE_EDITORS = [
     fixed: {
       darwin:
         "/Applications/Cursor.app/Contents/Resources/app/bin/cursor",
-      win32: (local) =>
-        join(local, "Programs", "cursor", "resources", "app", "bin", "cursor.cmd"),
+      win32: (local) => {
+        const candidates = [
+          join(local, "Programs", "cursor", "resources", "app", "bin", "cursor.cmd"),
+          "C:\\Program Files\\cursor\\resources\\app\\bin\\cursor.cmd",
+        ];
+        return candidates.find((p) => existsSync(p)) ?? candidates[0];
+      },
     },
   },
   {
@@ -123,14 +128,32 @@ function findLatestVsix(dir) {
     })[0].m;
 }
 
+function preferWindowsCmdWrapper(cli) {
+  if (process.platform !== "win32" || !cli) return cli;
+  if (/\.(cmd|bat|exe)$/i.test(cli)) return cli;
+  const cmdPath = `${cli}.cmd`;
+  if (existsSync(cmdPath)) return cmdPath;
+  const batPath = `${cli}.bat`;
+  if (existsSync(batPath)) return batPath;
+  return cli;
+}
+
 /** PATH lookup: `which` (Unix) / `where.exe` (Windows). */
 function firstOnPath(cmd) {
   const win = process.platform === "win32";
   const bin = win ? "where.exe" : "which";
   const r = spawnSync(bin, [cmd], { encoding: "utf8", shell: false });
   if (r.status !== 0 || !r.stdout?.trim()) return null;
-  const line = r.stdout.split(/\r?\n/).find((l) => l.trim().length > 0);
-  return line?.trim() ?? null;
+  const lines = r.stdout
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0);
+  if (win) {
+    const cmdWrapper = lines.find((line) => /\.(cmd|bat)$/i.test(line));
+    if (cmdWrapper) return cmdWrapper;
+  }
+  const line = lines[0];
+  return line ? preferWindowsCmdWrapper(line) : null;
 }
 
 function fixedPath(def) {
@@ -139,7 +162,7 @@ function fixedPath(def) {
   if (!entry) return null;
   const local = process.env.LOCALAPPDATA || "";
   const path = typeof entry === "function" ? entry(local) : entry;
-  return path && existsSync(path) ? path : null;
+  return path && existsSync(path) ? preferWindowsCmdWrapper(path) : null;
 }
 
 /** @param {{ id: string, bins: string[] }} def */
@@ -246,10 +269,13 @@ console.log("Installation :", vsix);
 console.log("Éditeur :", id);
 console.log("CLI :", cli);
 
-const shell =
-  process.platform === "win32" && /\.(cmd|bat)$/i.test(cli);
-const r = spawnSync(cli, ["--install-extension", vsix], {
-  stdio: "inherit",
-  shell,
-});
+const r =
+  process.platform === "win32"
+    ? spawnSync(`"${cli}"`, ["--install-extension", vsix], {
+        stdio: "inherit",
+        shell: true,
+      })
+    : spawnSync(cli, ["--install-extension", vsix], {
+        stdio: "inherit",
+      });
 process.exit(r.status ?? 1);
