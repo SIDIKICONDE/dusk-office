@@ -43,7 +43,7 @@ async function activate(context) {
         await autoAdaptive.reconcileAutomaticModes();
       }
       const titleBarStyleChanged = e.affectsConfiguration("window.titleBarStyle");
-      if (titleBarStyleChanged && state.ignoreTitleBarStyleConfigChange) {
+      if (titleBarStyleChanged && state._titleBarIgnoreCount > 0) {
         return;
       }
       if (titleBarStyleChanged && (await titleBar.releaseTitleBarStyleSyncIfOverridden(context))) {
@@ -117,13 +117,16 @@ async function activate(context) {
   await initializeStartupBehavior(context);
   await titleBar.syncTitleBarStyleForDuskTheme(context);
 
-  setTimeout(() => {
+  const activationTimer = setTimeout(() => {
     void showActivationPrompt(context).then((shown) => {
       if (!shown) {
         void detectWorkspaceFingerprint(context);
       }
     });
   }, 1200);
+  context.subscriptions.push({
+    dispose() { clearTimeout(activationTimer); },
+  });
 }
 
 function deactivate() {

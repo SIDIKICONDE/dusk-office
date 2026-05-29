@@ -1,5 +1,14 @@
 # Changelog — Dusk Office
 
+## 1.3.8 — 29 May 2026
+
+- **Fixed**: **Race condition on title-bar style sync** — `ignoreTitleBarStyleConfigChange` was a mutable boolean that could be reset prematurely when overlapping `updateGlobalTitleBarStyle` calls occurred within 200 ms. Replaced with a counter (`_titleBarIgnoreCount`) that decrements per-write, so concurrent writes no longer clobber each other's ignore window.
+- **Fixed**: **Untracked activation `setTimeout`** — the 1200 ms deferred activation prompt timer was not registered in `context.subscriptions`, so it could fire after extension deactivation on an invalid context. Timer is now tracked and cancelled on dispose.
+- **Fixed**: **Blocking filesystem I/O in workspace fingerprint** — `collectWorkspaceSignals` used `fs.statSync` / `fs.readFileSync` / `fs.readdirSync`, blocking the extension host thread on network mounts or slow disks. Migrated to `fs/promises` (`fs.stat`, `fs.readFile`, `fs.readdir`) with `async/await`; independent file reads (Python manifests, YAML K8s checks) now run in parallel via `Promise.all`.
+- **Fixed**: **Unbounded ANSI decoration types** — `AnsiEditorSupport` could create an unlimited number of `TextEditorDecorationType` instances on files with many unique ANSI style combinations. Added `MAX_DECORATION_TYPES = 256` cap; styles beyond the cap are skipped (fallback to default rendering).
+- **Fixed**: **Auto-switch / Adaptive Focus conflicting with live theme preview** — when the theme variant Quick Pick was open, the auto-switch timer or adaptive focus editor listener could change the active theme mid-preview. Added `isQuickPickOpen` flag in extension state; feature managers and editor listeners check this flag before applying a theme change.
+- **Changed**: **`extension-state.js` encapsulation** — bare mutable exports replaced by a single state object with a `reset()` method, safer for hot-reload and unit tests. All existing consumers (`title-bar.js`, `auto-adaptive.js`, `themes.js`, `feature-managers.js`, `product-icons.js`, `configuration.js`, `extension.js`) continue to work unchanged via `state.X` property access.
+
 ## 1.3.7 — 27 May 2026
 
 - **Changed**: **`lib/` layout** — runtime modules grouped into `core/`, `themes/`, `ui/`, `terminal/`, `workspace/`, `ansi/`, `export/`, and `prompts/` (no behavior change).
