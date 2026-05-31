@@ -2,11 +2,9 @@ const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
-  ENGAGEMENT_THRESHOLD,
   MIN_SESSION_COUNT,
   MIN_USAGE_MS,
   DISMISS_COOLDOWN_MS,
-  getEngagementIncrement,
   getPreferredMarketplaceId,
   getEditorMarketplaceHint,
   getMarketplaceReviewById,
@@ -16,21 +14,6 @@ const {
 } = require("../lib/prompts/marketplace-review-prompt.js");
 
 describe("marketplace-review-prompt", () => {
-  describe("getEngagementIncrement", () => {
-    it("weights favorite and quick setup higher than a single theme change", () => {
-      assert.equal(getEngagementIncrement("favorite"), 2);
-      assert.equal(getEngagementIncrement("quickSetup"), 2);
-      assert.equal(getEngagementIncrement("themeConfirmed"), 1);
-      assert.equal(getEngagementIncrement("fingerprintAccept"), 1);
-      assert.equal(getEngagementIncrement("adaptiveFocusEnabled"), 1);
-      assert.equal(getEngagementIncrement("autoSwitchEnabled"), 1);
-    });
-
-    it("returns 0 for unknown triggers", () => {
-      assert.equal(getEngagementIncrement("unknown"), 0);
-    });
-  });
-
   describe("getPreferredMarketplaceId", () => {
     it("suggests Open VSX for VSCodium", () => {
       assert.equal(getPreferredMarketplaceId("VSCodium"), "openvsx");
@@ -86,24 +69,12 @@ describe("marketplace-review-prompt", () => {
     const now = 10_000_000;
     const base = {
       enabled: true,
-      engagementCount: ENGAGEMENT_THRESHOLD,
       sessionCount: MIN_SESSION_COUNT,
       firstActivationAt: now - MIN_USAGE_MS,
       completed: false,
       dismissedAt: undefined,
       now,
     };
-
-    it("requires enough engagement before showing", () => {
-      assert.equal(
-        shouldShowMarketplaceReviewPrompt({ ...base, engagementCount: ENGAGEMENT_THRESHOLD - 1 }),
-        false,
-      );
-      assert.equal(
-        shouldShowMarketplaceReviewPrompt({ ...base, engagementCount: ENGAGEMENT_THRESHOLD }),
-        true,
-      );
-    });
 
     it("requires enough sessions before showing", () => {
       assert.equal(

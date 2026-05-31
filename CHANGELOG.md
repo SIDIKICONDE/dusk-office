@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 1.3.9 — 31 May 2026
+
+- **Changed**: **Marketplace review — engagement points removed** — weighted score (`ENGAGEMENT_WEIGHTS`, favorite +2, Quick Setup +2, etc.) and `recordMarketplaceReviewEngagement` hooks removed from `themes.js`, `auto-adaptive.js`, `quick-setup.js`, and `workspace-fingerprint.js`. Review prompts now rely only on session count (≥ 3), minimum usage (7 days), and dismiss cooldown; evaluated on each activation via `initializeMarketplaceReviewTracking`. Manual **Rate Dusk Office on Marketplace** unchanged; `duskOffice.marketplaceReview` setting copy updated.
+
 ## 1.3.8 — 29 May 2026
 
 - **Fixed**: **Race condition on title-bar style sync** — `ignoreTitleBarStyleConfigChange` was a mutable boolean that could be reset prematurely when overlapping `updateGlobalTitleBarStyle` calls occurred within 200 ms. Replaced with a counter (`_titleBarIgnoreCount`) that decrements per-write, so concurrent writes no longer clobber each other's ignore window.

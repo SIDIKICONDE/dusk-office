@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
   "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./extension.js",
@@ -397,8 +397,8 @@
           "type": "boolean",
           "default": true,
           "order": 1,
-          "description": "Ask for a Marketplace star rating after you engage with Dusk Office themes.",
-          "markdownDescription": "**⭐ Marketplace review**\n\nAfter you pick or favorite a Dusk Office theme — and once you've used Dusk Office for a few sessions — Dusk Office may ask once for a quick star rating on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office), [Open VSX](https://open-vsx.org/extension/dekidev/dusk-office), or [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes). Ratings help others discover these themes and improve recommendations.\n\nDisable this checkbox if you do not want review reminders."
+          "description": "Ask for a Marketplace star rating after you've used Dusk Office for a while.",
+          "markdownDescription": "**⭐ Marketplace review**\n\nAfter a few sessions and at least a week of use, Dusk Office may ask once for a quick star rating on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office), [Open VSX](https://open-vsx.org/extension/dekidev/dusk-office), or [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes). Ratings help others discover these themes and improve recommendations.\n\nDisable this checkbox if you do not want review reminders."
         },
         "duskOffice.favoriteTheme": {
           "type": "string",
