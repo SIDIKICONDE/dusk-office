@@ -29,7 +29,7 @@ Inline paths: `C:\Users\Dev\project`, `/home/dev/project`, `./relative/path`
 
 | Type    | Example        |
 |---------|----------------|
-| Integer | `42`, `-128`    |
+| Integer | `42`, `-128`   |
 | Float   | `3.14159`      |
 | Hex     | `0xFF_A0_20`   |
 
