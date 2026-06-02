@@ -153,7 +153,7 @@ const LIGHT_UI_OVERRIDES = {
   "statusBar.foreground": "#1e293bee",
   // WCAG AA: slate-600 ee → ~5.7:1 (anciennement slate-500 8c → 2.09 ❌)
   "input.placeholderForeground": "#475569ee",
-  "activityBar.inactiveForeground": "#64748b",
+  "activityBar.inactiveForeground": "#475569",
   "tree.indentGuidesStroke": "#64748b22",
   "tree.inactiveIndentGuidesStroke": "#64748b14",
   "editor.lineHighlightBackground": "#e8edf3",
@@ -202,7 +202,7 @@ const LIGHT_UI_OVERRIDES = {
   focusBorder: "#0ea5e9b3",
   "sideBar.foreground": "#1e293b",
   "titleBar.activeForeground": "#0f172a",
-  "titleBar.inactiveForeground": "#64748b",
+  "titleBar.inactiveForeground": "#475569",
   "panelTitle.border": "#0ea5e94d",
   /** Absentes d’Abyss : héritées de `include` dusk.json → fonds #02060b sur UI claire */
   "editorSuggestWidget.background": "#ffffff",

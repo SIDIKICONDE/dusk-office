@@ -5,7 +5,7 @@
   "colors": {
     "activityBar.background": "#1a201d",
     "activityBar.foreground": "#a8c090",
-    "activityBar.inactiveForeground": "#6f8375",
+    "activityBar.inactiveForeground": "#8aa090",
     "activityBar.border": "#4a5f4b59",
     "activityBarTop.background": "#1a201d",
     "badge.background": "#8aa870aa",

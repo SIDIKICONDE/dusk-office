@@ -319,7 +319,7 @@ function buildExtended(p) {
     "breadcrumbPicker.background": widget,
 
     "tab.activeForeground": fg,
-    "tab.inactiveForeground": A(fg, "b0"),
+    "tab.inactiveForeground": A(fg, "cc"),
     "tab.activeBorder": A(accentHi, "44"),
     "tab.unfocusedActiveBorder": A(accent, "44"),
     "tab.lastPinnedBorder": A(border, "44"),
@@ -329,9 +329,9 @@ function buildExtended(p) {
     "statusBarItem.hoverBackground": A(accent, "22"),
     "statusBarItem.prominentForeground": accentHi,
 
-    "button.background": A(accent, "cc"),
+    "button.background": A(accentHi, "ff"),
     "button.foreground": "#0a0a0a",
-    "button.hoverBackground": A(accentHi, "dd"),
+    "button.hoverBackground": A(accentHi, "ff"),
     "button.secondaryBackground": A(border, "44"),
     "button.secondaryForeground": fg,
     "button.secondaryHoverBackground": A(accent, "33"),
@@ -561,7 +561,7 @@ function pinChromeFromPalette(colors, p) {
   colors["terminalStickyScroll.background"] = terminalBg;
   colors["panel.background"] = panel;
   colors["panelTitle.activeForeground"] = fg;
-  colors["panelTitle.inactiveForeground"] = A(fg, "b0");
+  colors["panelTitle.inactiveForeground"] = A(fg, "cc");
   colors["panelTitle.border"] = A(accentHi, "33");
   colors["panelTitle.activeBorder"] = A(accentHi, "55");
   colors["terminal.tab.activeBorder"] = accentHi;
