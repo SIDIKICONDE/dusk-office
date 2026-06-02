@@ -222,8 +222,6 @@ const LIGHT_UI_OVERRIDES = {
   "chat.slashCommandBackground": "#06b6d422",
   "chat.slashCommandForeground": "#0369a1",
   // Diff editor — unchanged region collapsed bar
-  "diffEditor.unchangedRegionBackground": "#f1f5f988",
-  "diffEditor.unchangedRegionForeground": "#475569dd",
   // Action bar toggled (filter / layout buttons in active state)
   "actionBar.toggledBackground": "#06b6d433",
   // Testing UI — saturated WCAG AA colors on white
@@ -242,11 +240,7 @@ const LIGHT_UI_OVERRIDES = {
   // SCM Graph — verts hérités (#6a9a78, #5a9a6a) trop pâles sur fond clair (contrastes ~2.5–3:1)
   "scmGraph.foreground5": "#355e47",
   "scmGraph.historyItemHoverAdditionsForeground": "#166534",
-  // Status bar item — Profile picker badge + offline state
-  "statusBarItem.profilesBackground": "#8b5cf644",
-  "statusBarItem.profilesForeground": "#1e293b",
-  "statusBarItem.offlineBackground": "#e11d4844",
-  "statusBarItem.offlineForeground": "#1e293b",
+  // Status bar item — offline state
 
   /** Settings UI — dusk.json `settings.*` is dark-only; without overrides, reopening
    *  Settings with a focused enum row hides dropdown text (inherited #d1e0e8 on white). */

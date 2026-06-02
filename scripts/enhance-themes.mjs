@@ -30,7 +30,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#7a68a0",
     "bold": true
   },
-  
+
   // const vs let vs var
   "variable.declaration.const": {
     "foreground": "#7a68a0",
@@ -41,7 +41,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#b8d4e4",
     "italic": true
   },
-  
+
   // Function types
   "function": "#5a8fb0",
   "function.declaration": "#5a8fb0",
@@ -56,7 +56,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#5a8fb0",
     "italic": true
   },
-  
+
   // Async functions
   "function.async": {
     "foreground": "#5a8fb0",
@@ -66,7 +66,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#7ab0c8",
     "italic": true
   },
-  
+
   // Types
   "class": {
     "foreground": "#b89040",
@@ -94,7 +94,7 @@ const SEMANTIC_TOKENS = {
   "enum": "#b89040",
   "enum.declaration": "#b89040",
   "enumMember": "#7a68a0",
-  
+
   // Type aliases and parameters
   "type": "#6a9ab8",
   "typeAlias": {
@@ -105,7 +105,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#6a9ab8",
     "italic": true
   },
-  
+
   // Namespaces and modules
   "namespace": "#6a9ab8",
   "namespace.declaration": {
@@ -117,7 +117,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#6a9ab8",
     "bold": true
   },
-  
+
   // Methods
   "method": "#7ab0c8",
   "method.declaration": "#7ab0c8",
@@ -134,7 +134,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#7ab0c8",
     "strikethrough": true
   },
-  
+
   // Properties
   "property": "#6a9ab8",
   "property.readonly": "#6a9ab8",
@@ -150,7 +150,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#6a9ab8",
     "strikethrough": true
   },
-  
+
   // Parameters
   "parameter": "#b87050",
   "parameter.readonly": {
@@ -165,7 +165,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#a86878",
     "italic": true
   },
-  
+
   // Decorators and macros
   "decorator": {
     "foreground": "#c08060",
@@ -180,7 +180,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#c08060",
     "italic": true
   },
-  
+
   // Keywords
   "keyword": "#a86878",
   "keyword.control": "#a86878",
@@ -199,14 +199,14 @@ const SEMANTIC_TOKENS = {
     "italic": true
   },
   "keyword.declaration": "#a86878",
-  
+
   // Operators
   "operator": "#7ab0c8",
   "operator.overloaded": {
     "foreground": "#7ab0c8",
     "bold": true
   },
-  
+
   // Literals
   "number": "#9a8ab0",
   "number.float": "#9a8ab0",
@@ -222,7 +222,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#9a8ab0",
     "italic": true
   },
-  
+
   // Comments
   "comment": {
     "foreground": "#9ccae0",
@@ -248,7 +248,7 @@ const SEMANTIC_TOKENS = {
     "foreground": "#c97565",
     "bold": true
   },
-  
+
   // Special
   "lifetime": {
     "foreground": "#b87050",
@@ -263,7 +263,7 @@ const SEMANTIC_TOKENS = {
   "punctuation.bracket.angle": "#7ab0c8",
   "punctuation.delimiter": "#d1e0e8",
   "punctuation.separator": "#d1e0e8",
-  
+
   // Modifiers (applied with *)
   "*.async": {
     "italic": true
@@ -294,7 +294,7 @@ const SEMANTIC_TOKENS = {
   "*.unsafe": {
     "foreground": "#c97565"
   },
-  
+
   // Library defaults
   "class.defaultLibrary": "#c9a050",
   "function.defaultLibrary": "#6a9ab8",
@@ -312,12 +312,12 @@ const GIT_COLORS = {
   "editorGutter.commentRangeForeground": "#9ccae066",
   "editorGutter.commentGlyphForeground": "#7ab0c8",
   "editorGutter.foldingControlForeground": "#4b6c7a",
-  
+
   // Editor overview ruler
   "editorOverviewRuler.modifiedForeground": "#c9a85cdd",
   "editorOverviewRuler.addedForeground": "#5a9a6add",
   "editorOverviewRuler.deletedForeground": "#c97565dd",
-  
+
   // Git decorations in explorer (aligné sur theme-sources/dusk.json + merge palette)
   "gitDecoration.addedResourceForeground": "#5a9a6a",
   "gitDecoration.modifiedResourceForeground": "#c9a85c",
@@ -345,7 +345,7 @@ const GIT_COLORS = {
   "scmGraph.historyItemBaseRefColor": "#d1e0e888",
   "scmGraph.historyItemHoverDefaultLabelForeground": "#d1e0e8",
   "scmGraph.historyItemHoverDefaultLabelBackground": "#010102ee",
-  
+
   // Merge editor
   "merge.currentHeaderBackground": "#6a9ab833",
   "merge.currentContentBackground": "#6a9ab818",
@@ -354,7 +354,7 @@ const GIT_COLORS = {
   "merge.commonHeaderBackground": "#d1e0e822",
   "merge.commonContentBackground": "#d1e0e812",
   "merge.border": "#304f6055",
-  
+
   // Diff editor
   "diffEditor.border": "#304f6044",
   "diffEditor.insertedTextBackground": "#5a9a6a2a",
@@ -364,7 +364,6 @@ const GIT_COLORS = {
   "diffEditor.insertedLineBackground": "#5a9a6a22",
   "diffEditor.removedLineBackground": "#c9756522",
   "diffEditor.diagonalFill": "#2d5a7844",
-  "diffEditor.unchangedCodeBackground": "#0101022a",
   "diffEditor.unchangedRegionShadow": "#00000088",
   "diffEditor.move.border": "#9a8ab844",
   "diffEditor.moveActive.border": "#7ab0c855",
@@ -378,7 +377,7 @@ const UI_COLORS = {
   "titleBar.inactiveBackground": "#000000",
   "titleBar.inactiveForeground": "#d1e0e888",
   "titleBar.border": "#304f6059",
-  
+
   // Sidebar
   "sideBar.background": "#010202",
   "sideBar.foreground": "#d1e0e8",
@@ -388,7 +387,7 @@ const UI_COLORS = {
   "sideBarSectionHeader.border": "#304f6059",
   "sideBarSectionHeader.foreground": "#d1e0e8",
   "sideBar.dropBackground": "#5a8fb033",
-  
+
   // Panel
   "panel.background": "#010102",
   "panel.border": "#304f6059",
@@ -400,7 +399,7 @@ const UI_COLORS = {
   "panelSectionHeader.border": "#304f6059",
   "panelSectionHeader.foreground": "#d1e0e8",
   "panelSection.dropBackground": "#5a8fb033",
-  
+
   // Notifications
   "notifications.background": "#02060b",
   "notifications.foreground": "#d1e0e8",
@@ -413,7 +412,7 @@ const UI_COLORS = {
   "notificationCenterHeader.foreground": "#d1e0e888",
   "notificationLink.foreground": "#7ab0c8",
   "notificationToast.border": "#304f6044",
-  
+
   // Status bar
   "statusBar.background": "#000000",
   "statusBar.foreground": "#d1e0e8cc",
@@ -437,7 +436,7 @@ const UI_COLORS = {
   "terminalCommandDecoration.successBackground": "#5a9a6a44",
   "testing.iconPassed": "#5a9a6a",
   "notebookStatusSuccessIcon.foreground": "#5a9a6a",
-  
+
   // Activity bar
   "activityBar.background": "#000000",
   "activityBar.foreground": "#7ab0c8",
@@ -453,7 +452,7 @@ const UI_COLORS = {
   "activityBarTop.inactiveForeground": "#4b6c7a",
   "activityBarTop.activeBorder": "#7ab0c8",
   "activityBarTop.dropBorder": "#5a8fb033",
-  
+
   // Editor groups
   "editorGroup.emptyBackground": "#010203",
   "editorGroup.border": "#304f6059",
@@ -463,7 +462,7 @@ const UI_COLORS = {
   "editorGroupHeader.tabsBorder": "#304f6059",
   "editorGroupHeader.noTabsBackground": "#010102",
   "editorGroupHeader.border": "#304f6059",
-  
+
   // Tabs
   "tab.activeBackground": "#010203",
   "tab.activeForeground": "#d1e0e8",
@@ -482,14 +481,14 @@ const UI_COLORS = {
   "tab.selectedBackground": "#010203",
   "tab.selectedForeground": "#d1e0e8",
   "tab.selectedBorderTop": "#7ab0c855",
-  
+
   // Breadcrumbs
   "breadcrumb.background": "#02060b",
   "breadcrumb.foreground": "#d1e0e8bb",
   "breadcrumb.focusForeground": "#d1e0e8",
   "breadcrumb.activeSelectionForeground": "#7ab0c8",
   "breadcrumbPicker.background": "#02060b",
-  
+
   // Lists and trees
   "list.hoverBackground": "#304f600f",
   "list.hoverForeground": "#d1e0e8",
@@ -508,7 +507,7 @@ const UI_COLORS = {
   "tree.indentGuidesStroke": "#304f6024",
   "tree.inactiveIndentGuidesStroke": "#304f600e",
   "tree.tableOddRowsBackground": "#01010222",
-  
+
   // Menus
   "menu.background": "#02060b",
   "menu.foreground": "#d1e0e8",
@@ -520,7 +519,7 @@ const UI_COLORS = {
   "menubar.selectionBackground": "#5a8fb022",
   "menubar.selectionForeground": "#d1e0e8",
   "menubar.selectionBorder": "#5a8fb044",
-  
+
   // Command center
   "commandCenter.background": "#02060b",
   "commandCenter.foreground": "#d1e0e8",
@@ -529,7 +528,7 @@ const UI_COLORS = {
   "commandCenter.activeBorder": "#7ab0c844",
   "commandCenter.activeForeground": "#d1e0e8",
   "commandCenter.inactiveForeground": "#d1e0e888",
-  
+
   // Quick input
   "quickInput.background": "#02060b",
   "quickInput.foreground": "#d1e0e8",
@@ -537,7 +536,7 @@ const UI_COLORS = {
   "quickInputList.focusForeground": "#d1e0e8",
   "quickInputList.focusIconForeground": "#7ab0c8",
   "quickInputTitle.background": "#010102",
-  
+
   // Input
   "input.background": "#02060b",
   "input.foreground": "#d1e0e8",
@@ -556,20 +555,20 @@ const UI_COLORS = {
   "inputValidation.infoBackground": "#6a9ab822",
   "inputValidation.infoBorder": "#6a9ab855",
   "inputValidation.infoForeground": "#6a9ab8",
-  
+
   // Dropdown
   "dropdown.background": "#02060b",
   "dropdown.foreground": "#d1e0e8",
   "dropdown.border": "#304f6059",
   "dropdown.listBackground": "#02060b",
-  
+
   // Checkbox
   "checkbox.background": "#02060b",
   "checkbox.foreground": "#d1e0e8",
   "checkbox.border": "#304f6059",
   "checkbox.selectBackground": "#5a8fb033",
   "checkbox.selectBorder": "#7ab0c844",
-  
+
   // Buttons
   "button.background": "#5a8fb0cc",
   "button.foreground": "#0a0a0a",
@@ -579,26 +578,26 @@ const UI_COLORS = {
   "button.secondaryForeground": "#d1e0e8",
   "button.secondaryHoverBackground": "#5a8fb033",
   "button.separator": "#304f6059",
-  
+
   // Badge
   "badge.background": "#5a8fb0aa",
   "badge.foreground": "#0a0a0a",
-  
+
   // Progress bar
   "progressBar.background": "#7ab0c8",
-  
+
   // Keybinding label
   "keybindingLabel.background": "#304f6044",
   "keybindingLabel.foreground": "#d1e0e8",
   "keybindingLabel.border": "#304f6059",
   "keybindingLabel.bottomBorder": "#304f6059",
-  
+
   // Scrollbar
   "scrollbar.shadow": "#00000044",
   "scrollbarSlider.background": "#304f6020",
   "scrollbarSlider.hoverBackground": "#304f6038",
   "scrollbarSlider.activeBackground": "#7ab0c844",
-  
+
   // Widget
   "widget.border": "#304f6044",
   "widget.shadow": "#00000066",
@@ -611,14 +610,14 @@ const EDITOR_ENHANCEMENTS = {
   "editor.lineHighlightBorder": "#5a8fb00c",
   "editor.rangeHighlightBackground": "#5a8fb018",
   "editor.rangeHighlightBorder": "#5a8fb022",
-  
+
   // Selection
   "editor.selectionBackground": "#5a8fb044",
   "editor.selectionForeground": "#d1e0e8",
   "editor.inactiveSelectionBackground": "#5a8fb022",
   "editor.selectionHighlightBackground": "#7ab0c822",
   "editor.selectionHighlightBorder": "#7ab0c82a",
-  
+
   // Search
   "editor.findMatchBackground": "#c9a85c66",
   "editor.findMatchForeground": "#d1e0e8",
@@ -628,7 +627,7 @@ const EDITOR_ENHANCEMENTS = {
   "editor.findMatchHighlightBorder": "#5a8fb044",
   "editor.findRangeHighlightBackground": "#304f6055",
   "editor.findRangeHighlightBorder": "#304f6044",
-  
+
   // Word highlight
   "editor.wordHighlightBackground": "#5a8fb018",
   "editor.wordHighlightBorder": "#5a8fb02a",
@@ -636,32 +635,32 @@ const EDITOR_ENHANCEMENTS = {
   "editor.wordHighlightStrongBorder": "#b8788833",
   "editor.wordHighlightTextBackground": "#9a8ab818",
   "editor.wordHighlightTextBorder": "#9a8ab82a",
-  
+
   // Symbol highlight
   "editor.symbolHighlightBackground": "#9a8ab822",
   "editor.symbolHighlightBorder": "#9a8ab833",
-  
+
   // Link
   "editor.linkedEditingBackground": "#9a8ab833",
   "editorLink.activeForeground": "#7ab0c8",
-  
+
   // Hover (line highlight); widget uses editorHoverWidget.* in base theme
   "editor.hoverHighlightBackground": "#7ab0c818",
-  
+
   // Ghost text
   "editorGhostText.foreground": "#d1e0e844",
   "editorGhostText.background": "#00000000",
   "editorGhostText.border": "#5a8fb022",
-  
+
   // Sticky scroll
   "editorStickyScroll.background": "#02060b",
   "editorStickyScroll.border": "#304f6044",
   "editorStickyScroll.shadow": "#00000055",
   "editorStickyScrollHover.background": "#5a8fb018",
-  
+
   // Whitespace
   "editorWhitespace.foreground": "#d1e0e818",
-  
+
   // Indent guides
   "editorIndentGuide.background1": "#304f6024",
   "editorIndentGuide.background2": "#304f6018",
@@ -671,13 +670,13 @@ const EDITOR_ENHANCEMENTS = {
   "editorIndentGuide.activeBackground2": "#6a9ab830",
   "editorIndentGuide.activeBackground3": "#9a8ab81e",
   "editorIndentGuide.activeBackground4": "#b878881e",
-  
+
   // Rulers
   "editorRuler.foreground": "#304f6044",
-  
+
   // Code lens
   "editorCodeLens.foreground": "#d1e0e888",
-  
+
   // Inlay hints
   "editorInlayHint.background": "#304f6066",
   "editorInlayHint.foreground": "#d1e0e899",
@@ -685,11 +684,11 @@ const EDITOR_ENHANCEMENTS = {
   "editorInlayHint.parameterForeground": "#c9a85ccc",
   "editorInlayHint.typeBackground": "#6a9ab822",
   "editorInlayHint.parameterBackground": "#c9a85c22",
-  
+
   // Lightbulb
   "editorLightBulb.foreground": "#c9a85c",
   "editorLightBulbAutoFix.foreground": "#5a9a6a",
-  
+
   // Walkthrough
   "walkThrough.embeddedEditorBackground": "#010203",
 };
@@ -700,12 +699,12 @@ const WORKSPACE_TRUST_COLORS = {
   "banner.background": "#c9a85c33",
   "banner.foreground": "#c9a85c",
   "banner.iconForeground": "#c9a85c",
-  
+
   // Status bar trust indicator
   "statusBarItem.prominentHoverBackground": "#5a8fb033",
-  
+
   // Editor trust
-  
+
   // Restricted mode
   "extensionButton.prominentForeground": "#0a0a0a",
   "extensionButton.prominentBackground": "#5a8fb0cc",
@@ -718,7 +717,7 @@ const WORKSPACE_TRUST_COLORS = {
   "extensionIcon.preReleaseForeground": "#9a8ab8",
   "extensionIcon.sponsorForeground": "#b87888",
   "extensionIcon.privateForeground": "#c97565",
-  
+
   // Settings trust
   "settings.modifiedItemIndicator": "#c9a85c44",
   "settings.headerForeground": "#8ab5c8",
@@ -757,7 +756,7 @@ const TERMINAL_COLORS = {
   "terminal.hoverHighlightBackground": "#7ab0c822",
   "terminalStickyScroll.background": "#010203",
   "terminalStickyScroll.border": "#304f6044",
-  
+
   // ANSI colors (standard)
   "terminal.ansiBlack": "#1e1e1e",
   "terminal.ansiRed": "#c97565",
@@ -767,7 +766,7 @@ const TERMINAL_COLORS = {
   "terminal.ansiMagenta": "#9a8ab8",
   "terminal.ansiCyan": "#7ab0c8",
   "terminal.ansiWhite": "#e5e5e5",
-  
+
   // ANSI bright colors
   "terminal.ansiBrightBlack": "#6b7280",
   "terminal.ansiBrightRed": "#c09898",
@@ -777,11 +776,11 @@ const TERMINAL_COLORS = {
   "terminal.ansiBrightMagenta": "#a090a8",
   "terminal.ansiBrightCyan": "#8ab5c8",
   "terminal.ansiBrightWhite": "#fafafa",
-  
+
   // Terminal cursor
   "terminalCursor.foreground": "#7ab0c8",
   "terminalCursor.background": "#010102",
-  
+
   // Terminal tabs
   "terminal.tab.activeBorder": "#7ab0c8",
 };
@@ -813,7 +812,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["constant.other.key", "constant.other.property"],
     "settings": { "foreground": "#6a9ab8" }
   },
-  
+
   // Storage modifiers
   {
     "scope": ["storage.modifier"],
@@ -831,7 +830,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["storage.modifier.private", "storage.modifier.protected"],
     "settings": { "foreground": "#a86878", "fontStyle": "italic" }
   },
-  
+
   // Decorators/Attributes
   {
     "scope": ["meta.decorator", "meta.decorator.python", "punctuation.decorator"],
@@ -845,7 +844,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["meta.attribute", "support.attribute"],
     "settings": { "foreground": "#c08060", "fontStyle": "italic" }
   },
-  
+
   // Async/Await
   {
     "scope": ["keyword.control.await", "keyword.control.async", "keyword.other.async"],
@@ -855,7 +854,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["entity.name.function.async", "entity.name.method.async"],
     "settings": { "foreground": "#5a8fb0", "fontStyle": "italic" }
   },
-  
+
   // Generics
   {
     "scope": ["punctuation.definition.generic", "punctuation.bracket.angle"],
@@ -865,7 +864,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["meta.generic", "meta.type.parameters"],
     "settings": { "foreground": "#6a9ab8" }
   },
-  
+
   // Type annotations
   {
     "scope": ["meta.type.annotation", "meta.return.type"],
@@ -875,7 +874,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["storage.type.function.arrow", "storage.type.function"],
     "settings": { "foreground": "#a86878" }
   },
-  
+
   // Strings
   {
     "scope": ["string.template", "string.quoted.template"],
@@ -893,7 +892,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["string.escape", "constant.character.escape"],
     "settings": { "foreground": "#b87888" }
   },
-  
+
   // Comments
   {
     "scope": ["comment.line.double-dash", "comment.line.double-slash", "comment.line.number-sign"],
@@ -919,7 +918,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["comment.error", "comment.line.error"],
     "settings": { "foreground": "#c97565", "fontStyle": "bold" }
   },
-  
+
   // Function calls
   {
     "scope": ["meta.function-call", "meta.function-call.method"],
@@ -929,7 +928,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["entity.name.function.call", "entity.name.function.member"],
     "settings": { "foreground": "#7ab0c8" }
   },
-  
+
   // Variables
   {
     "scope": ["variable.other.constant", "variable.other.constant.property"],
@@ -943,7 +942,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["variable.other.global", "variable.other.global-property"],
     "settings": { "foreground": "#6a9ab8" }
   },
-  
+
   // Operators
   {
     "scope": ["keyword.operator.arithmetic", "keyword.operator.assignment", "keyword.operator.comparison"],
@@ -954,6 +953,27 @@ const ADDITIONAL_TOKENS = [
     "settings": { "foreground": "#7ab0c8" }
   },
   {
+    "scope": [
+      "keyword.operator.null-coalescing",
+      "keyword.operator.null-coalescing.js",
+      "keyword.operator.null-coalescing.ts",
+      "keyword.operator.logical.js",
+      "keyword.operator.logical.ts",
+    ],
+    "settings": { "foreground": "#c08060", "fontStyle": "bold" }
+  },
+  {
+    "scope": [
+      "punctuation.accessor.optional",
+      "punctuation.accessor.optional.js",
+      "punctuation.accessor.optional.ts",
+      "keyword.operator.optional",
+      "keyword.operator.optional.js",
+      "keyword.operator.optional.ts",
+    ],
+    "settings": { "foreground": "#c08060" }
+  },
+  {
     "scope": ["keyword.operator.new", "keyword.operator.delete", "keyword.operator.typeof"],
     "settings": { "foreground": "#a86878" }
   },
@@ -961,7 +981,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["keyword.operator.spread", "keyword.operator.rest"],
     "settings": { "foreground": "#7ab0c8" }
   },
-  
+
   // Special keywords
   {
     "scope": ["keyword.other.import", "keyword.other.export", "keyword.other.from"],
@@ -975,7 +995,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["keyword.other.declaration", "keyword.declaration"],
     "settings": { "foreground": "#a86878" }
   },
-  
+
   // Punctuation
   {
     "scope": ["punctuation.separator", "punctuation.delimiter"],
@@ -989,7 +1009,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["punctuation.section.block", "punctuation.section.function"],
     "settings": { "foreground": "#d1e0e8" }
   },
-  
+
   // Rust specific
   {
     "scope": ["entity.name.lifetime", "storage.modifier.lifetime"],
@@ -1003,7 +1023,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["keyword.unsafe", "keyword.other.unsafe"],
     "settings": { "foreground": "#c97565" }
   },
-  
+
   // Python specific
   {
     "scope": ["entity.name.function.decorator.python", "meta.function.decorator.python"],
@@ -1017,7 +1037,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["support.type.python", "support.class.python"],
     "settings": { "foreground": "#b89040" }
   },
-  
+
   // TypeScript/JavaScript specific
   {
     "scope": ["entity.name.type.interface", "entity.name.type.enum"],
@@ -1031,11 +1051,30 @@ const ADDITIONAL_TOKENS = [
     "scope": ["meta.type.declaration", "meta.interface.declaration"],
     "settings": { "foreground": "#6a9ab8" }
   },
-  
+
   // JSX/TSX specific
   {
     "scope": ["meta.tag.name", "entity.name.tag.jsx", "entity.name.tag.tsx"],
     "settings": { "foreground": "#a86878" }
+  },
+  {
+    "scope": [
+      "support.class.component",
+      "support.class.component.jsx",
+      "support.class.component.tsx",
+      "entity.name.function.component",
+      "entity.name.function.component.jsx",
+      "entity.name.function.component.tsx",
+    ],
+    "settings": { "foreground": "#9a8ab0", "fontStyle": "bold" }
+  },
+  {
+    "scope": ["punctuation.definition.tag.jsx", "punctuation.definition.tag.tsx"],
+    "settings": { "foreground": "#6b8a98" }
+  },
+  {
+    "scope": ["meta.tag.jsx", "meta.tag.tsx", "meta.jsx", "meta.tsx"],
+    "settings": { "foreground": "#7ab0c8" }
   },
   {
     "scope": ["meta.tag.attributes", "meta.jsx.attributes"],
@@ -1045,7 +1084,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["entity.other.attribute-name.jsx", "entity.other.attribute-name.tsx"],
     "settings": { "foreground": "#5a8fb0" }
   },
-  
+
   // CSS specific
   {
     "scope": ["entity.name.tag.css", "entity.name.tag.scss"],
@@ -1067,7 +1106,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["punctuation.definition.entity.css"],
     "settings": { "foreground": "#5a8fb0" }
   },
-  
+
   // JSON/YAML specific
   {
     "scope": ["string.quoted.double.json", "string.unquoted.yaml"],
@@ -1081,7 +1120,7 @@ const ADDITIONAL_TOKENS = [
     "scope": ["punctuation.definition.key.json", "entity.name.key.yaml"],
     "settings": { "foreground": "#6a9ab8" }
   },
-  
+
   // Markdown specific
   {
     "scope": ["markup.heading", "markup.heading.setext"],
@@ -1128,7 +1167,7 @@ const ADDITIONAL_TOKENS = [
 async function enhanceTheme(filePath) {
   const content = await readFile(filePath, 'utf-8');
   const theme = JSON.parse(content);
-  
+
   // Skip themes that use "include" - they inherit from parent themes
   if (theme.include) {
     // Only add colors for included themes
@@ -1140,18 +1179,18 @@ async function enhanceTheme(filePath) {
       ...EDITOR_ENHANCEMENTS,
       ...WORKSPACE_TRUST_COLORS,
     };
-    
+
     await writeFile(filePath, JSON.stringify(theme, null, 2) + '\n');
     console.log(`✓ Enhanced (include theme): ${filePath}`);
     return;
   }
-  
+
   // 1. Add/merge semantic tokens
   theme.semanticTokenColors = {
     ...theme.semanticTokenColors,
     ...SEMANTIC_TOKENS,
   };
-  
+
   // 2. Add/merge all color groups
   theme.colors = {
     ...theme.colors,
@@ -1161,10 +1200,10 @@ async function enhanceTheme(filePath) {
     ...EDITOR_ENHANCEMENTS,
     ...WORKSPACE_TRUST_COLORS,
   };
-  
+
   // 3. Add additional token colors (avoid duplicates)
   theme.tokenColors = theme.tokenColors || [];
-  
+
   const existingScopes = new Set(
     theme.tokenColors.flatMap((t) => {
       const sc = t?.scope;
@@ -1176,23 +1215,23 @@ async function enhanceTheme(filePath) {
   for (const token of ADDITIONAL_TOKENS) {
     const scopes = Array.isArray(token.scope) ? token.scope : [token.scope];
     const hasAny = scopes.some((s) => s != null && existingScopes.has(s));
-    
+
     if (!hasAny) {
       theme.tokenColors.push(token);
       scopes.forEach(s => existingScopes.add(s));
     }
   }
-  
+
   // Ensure semantic highlighting is enabled
   theme.semanticHighlighting = true;
-  
+
   // Sort token colors by specificity (more specific first)
   theme.tokenColors.sort((a, b) => {
     const aLen = Array.isArray(a.scope) ? a.scope.length : 1;
     const bLen = Array.isArray(b.scope) ? b.scope.length : 1;
     return bLen - aLen;
   });
-  
+
   await writeFile(filePath, JSON.stringify(theme, null, 2) + '\n');
   console.log(`✓ Enhanced: ${filePath}`);
 }
@@ -1200,9 +1239,9 @@ async function enhanceTheme(filePath) {
 async function main() {
   const files = await readdir(THEMES_DIR);
   const jsonFiles = files.filter(f => f.endsWith('.json'));
-  
+
   console.log(`Found ${jsonFiles.length} themes to enhance\n`);
-  
+
   const failures = [];
   for (const file of jsonFiles) {
     const filePath = join(THEMES_DIR, file);

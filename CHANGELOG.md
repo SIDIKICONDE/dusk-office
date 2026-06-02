@@ -1,5 +1,13 @@
 # Changelog — Dusk Office
 
+## 1.4.0 — 1 Jun 2026
+
+- **Added**: **Missing syntax tokens** — `keyword.operator.null-coalescing`, `punctuation.accessor.optional`, `keyword.operator.optional`, `support.class.component`, `entity.name.function.component`, `punctuation.definition.tag.jsx/tsx`, `meta.tag.jsx/tsx` added to `tokenColors` in all 26 themes (HC inherits from Abime). Operators styled bold with accent color per palette; components bold with type color. Source scripts `syntax-variant-palettes.mjs` and `enhance-themes.mjs` updated so `make:full` preserves tokens on rebuild.
+- **Added**: **Neon distinct syntax overrides** — `dusk-neon.json` `tokenColors` and `semanticTokenColors` now use vivid neon-flavored colors (e.g. `#e060a0` operators, `#c080e0` components, `#80d0e0` strings) for stronger variant identity.
+- **Fixed**: **HC accessibility — border contrast** — low-contrast `#304f60xx` borders replaced with high-visibility opaque white/gray variants on black background in `dusk-hc.json`.
+- **Fixed**: **Disallowed theme properties removed** — `diffEditor.unchangedCodeBackground`, `diffEditor.unchangedRegionBackground`, `diffEditor.unchangedRegionForeground`, `statusBarItem.profilesBackground`, `statusBarItem.profilesForeground`, `editorActionList.focusBackground` removed from all 27 theme JSON files, `theme-sources/`, and build scripts (`merge-extended-ui-colors.mjs`, `enhance-themes.mjs`, `build-dusk-light.mjs`, `light-settings-ui.mjs`).
+- **Fixed**: **`python` → `python3`** in `package.json` scripts (`validate:pydantic`, `analyze:themes`, `test:py`) for macOS compatibility.
+
 ## 1.3.9 — 31 May 2026
 
 - **Changed**: **Marketplace review — engagement points removed** — weighted score (`ENGAGEMENT_WEIGHTS`, favorite +2, Quick Setup +2, etc.) and `recordMarketplaceReviewEngagement` hooks removed from `themes.js`, `auto-adaptive.js`, `quick-setup.js`, and `workspace-fingerprint.js`. Review prompts now rely only on session count (≥ 3), minimum usage (7 days), and dismiss cooldown; evaluated on each activation via `initializeMarketplaceReviewTracking`. Manual **Rate Dusk Office on Marketplace** unchanged; `duskOffice.marketplaceReview` setting copy updated.

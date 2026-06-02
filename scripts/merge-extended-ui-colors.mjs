@@ -234,7 +234,6 @@ function buildExtended(p) {
     "diffEditor.removedTextBorder": A(removed, "33"),
     "diffEditor.insertedLineBackground": A(inserted, "22"),
     "diffEditor.removedLineBackground": A(removed, "22"),
-    "diffEditor.unchangedCodeBackground": A(panel, "2a"),
     /**
      * Barre "X unchanged lines" affichée entre sections diff dépliées :
      * doit rester *visible* contre `editor.background` même quand `panel`
@@ -243,8 +242,6 @@ function buildExtended(p) {
      * (gris-bleuté palette) à 0x22 (~13%) pour un lift discret mais
      * jamais nul. Le foreground reste à `fg` 0x88 (~53%) pour rester AA.
      */
-    "diffEditor.unchangedRegionBackground": A(border, "22"),
-    "diffEditor.unchangedRegionForeground": A(fg, "88"),
     "diffEditor.unchangedRegionShadow": "#00000088",
     "diffEditor.move.border": A(purple, "44"),
     "diffEditor.moveActive.border": A(accentHi, "55"),
@@ -511,8 +508,6 @@ function buildExtended(p) {
     "commentsView.unresolvedIcon": warning,
 
     /** Status bar item : badge profile (multi-window / profils) et badge offline. */
-    "statusBarItem.profilesBackground": A(purple, "44"),
-    "statusBarItem.profilesForeground": accentHi,
     "statusBarItem.offlineBackground": A(error, "44"),
     "statusBarItem.offlineForeground": fg,
 

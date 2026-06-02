@@ -97,7 +97,6 @@ export function lightChromeUiOverrides(palette = {}) {
     "commandCenter.inactiveBorder": listBorder,
     "editorActionList.background": menuSurface,
     "editorActionList.foreground": foreground,
-    "editorActionList.focusBackground": `${accentSoft}33`,
     "editorActionList.focusForeground": foreground,
     /** dusk.json → #d1e0e8 : invisible on light menu / submenu popups. */
     "menu.foreground": foreground,

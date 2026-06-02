@@ -335,8 +335,55 @@ function extendedTokenColorRules(p) {
       settings: { foreground: p.keyword, fontStyle: "italic" },
     },
     {
-      scope: "keyword.operator.logical",
-      settings: { foreground: p.keyword },
+      scope: [
+        "keyword.operator.null-coalescing",
+        "keyword.operator.null-coalescing.js",
+        "keyword.operator.null-coalescing.ts",
+        "keyword.operator.logical",
+        "keyword.operator.logical.js",
+        "keyword.operator.logical.ts",
+      ],
+      settings: { foreground: p.decorator, fontStyle: "bold" },
+    },
+    {
+      scope: [
+        "punctuation.accessor.optional",
+        "punctuation.accessor.optional.js",
+        "punctuation.accessor.optional.ts",
+        "keyword.operator.optional",
+        "keyword.operator.optional.js",
+        "keyword.operator.optional.ts",
+      ],
+      settings: { foreground: p.decorator },
+    },
+    {
+      scope: [
+        "entity.name.tag.jsx",
+        "entity.name.tag.tsx",
+        "support.class.component",
+        "support.class.component.jsx",
+        "support.class.component.tsx",
+        "entity.name.function.component",
+        "entity.name.function.component.jsx",
+        "entity.name.function.component.tsx",
+      ],
+      settings: { foreground: p.type, fontStyle: "bold" },
+    },
+    {
+      scope: [
+        "punctuation.definition.tag.jsx",
+        "punctuation.definition.tag.tsx",
+      ],
+      settings: { foreground: p.operator },
+    },
+    {
+      scope: [
+        "meta.tag.jsx",
+        "meta.tag.tsx",
+        "meta.jsx",
+        "meta.tsx",
+      ],
+      settings: { foreground: p.namespace },
     },
     { scope: "storage.modifier", settings: { foreground: p.keyword } },
     {

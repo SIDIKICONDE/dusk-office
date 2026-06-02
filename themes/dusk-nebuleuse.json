@@ -43,9 +43,6 @@
     "diffEditor.removedLineBackground": "#c9756522",
     "diffEditor.removedTextBackground": "#c975652a",
     "diffEditor.removedTextBorder": "#c9756533",
-    "diffEditor.unchangedCodeBackground": "#0c06182a",
-    "diffEditor.unchangedRegionBackground": "#5a487822",
-    "diffEditor.unchangedRegionForeground": "#e0dae888",
     "diffEditor.unchangedRegionShadow": "#00000088",
     "dropdown.background": "#140a26",
     "dropdown.border": "#5a487859",
@@ -327,8 +324,6 @@
     "statusBarItem.hoverBackground": "#8a70a822",
     "statusBarItem.offlineBackground": "#c9787044",
     "statusBarItem.offlineForeground": "#e0dae8",
-    "statusBarItem.profilesBackground": "#9a80b044",
-    "statusBarItem.profilesForeground": "#b0a0c0",
     "statusBarItem.prominentForeground": "#b0a0c0",
     "tab.activeBackground": "#0c0618",
     "tab.activeBorder": "#b0a0c044",
@@ -699,9 +694,66 @@
       }
     },
     {
-      "scope": "keyword.operator.logical",
+      "scope": [
+        "keyword.operator.null-coalescing",
+        "keyword.operator.null-coalescing.js",
+        "keyword.operator.null-coalescing.ts",
+        "keyword.operator.logical",
+        "keyword.operator.logical.js",
+        "keyword.operator.logical.ts"
+      ],
       "settings": {
-        "foreground": "#a87888"
+        "foreground": "#c0a070",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.accessor.optional",
+        "punctuation.accessor.optional.js",
+        "punctuation.accessor.optional.ts",
+        "keyword.operator.optional",
+        "keyword.operator.optional.js",
+        "keyword.operator.optional.ts"
+      ],
+      "settings": {
+        "foreground": "#c0a070"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.tag.jsx",
+        "entity.name.tag.tsx",
+        "support.class.component",
+        "support.class.component.jsx",
+        "support.class.component.tsx",
+        "entity.name.function.component",
+        "entity.name.function.component.jsx",
+        "entity.name.function.component.tsx"
+      ],
+      "settings": {
+        "foreground": "#9a90b0",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.definition.tag.jsx",
+        "punctuation.definition.tag.tsx"
+      ],
+      "settings": {
+        "foreground": "#9a80b0"
+      }
+    },
+    {
+      "scope": [
+        "meta.tag.jsx",
+        "meta.tag.tsx",
+        "meta.jsx",
+        "meta.tsx"
+      ],
+      "settings": {
+        "foreground": "#8a80a8"
       }
     },
     {
