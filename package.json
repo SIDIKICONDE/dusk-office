@@ -998,9 +998,10 @@
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",
     "test:py": "pytest python/tests",
+    "test:unit": "npm test && npm run test:py",
     "test:web": "node scripts/test-web.mjs && node tests/test-web-activation.mjs",
     "test:web:install": "playwright install chromium",
-    "test:all": "npm test && npm run test:py && npm run test:web",
+    "test:all": "npm run test:unit && npm run build:bundle && npm run build:ext && npm run test:web",
     "tag:release": "node scripts/release-tag.mjs"
   },
   "devDependencies": {

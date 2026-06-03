@@ -46,11 +46,14 @@ jobs:
       - name: Regenerate themes and verify committed output
         run: npm run verify:themes-fresh
 
-      - name: Unit tests
-        run: npm run test:all
+      - name: Unit tests (Node + Python)
+        run: npm test && npm run test:py
 
       - name: Build node + web bundles (esbuild)
         run: npm run build:bundle && npm run build:ext
+
+      - name: Web extension tests
+        run: npm run test:web
 
       - name: Package VSIX (smoke test, not uploaded)
         run: npm run package
