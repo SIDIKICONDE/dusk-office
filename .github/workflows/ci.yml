@@ -43,6 +43,9 @@ jobs:
       - name: Unit tests
         run: npm run test:all
 
+      - name: Build node + web bundles (esbuild)
+        run: npm run build:bundle && npm run build:ext
+
       - name: Package VSIX (smoke test, not uploaded)
         run: npm run package
 
