@@ -11,6 +11,8 @@ const autoAdaptive = require("./lib/themes/auto-adaptive.js");
 const editorAnsi = require("./lib/ansi/editor-ansi.js");
 const productIcons = require("./lib/themes/product-icons.js");
 const { openControlCenter } = require("./lib/ui/control-center.js");
+const { openThemeGallery } = require("./lib/ui/theme-gallery.js");
+const { verifyEditorContrast } = require("./lib/contrast/ui-verify.js");
 const { createStatusBarItem } = require("./lib/ui/status-bar.js");
 const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/themes/feature-managers.js");
 const { initializeStartupBehavior } = require("./lib/core/startup.js");
@@ -80,6 +82,8 @@ async function activate(context) {
       void titleBar.syncTitleBarStyleForDuskTheme(context);
     }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
+    vscode.commands.registerCommand("duskOffice.openThemeGallery", () => openThemeGallery(context)),
+    vscode.commands.registerCommand("duskOffice.verifyEditorContrast", () => verifyEditorContrast(context)),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => themes.setThemeVariant(context)),
     vscode.commands.registerCommand("duskOffice.switchToPreviousTheme", () => themes.switchToPreviousTheme(context)),
     vscode.commands.registerCommand("duskOffice.setFavoriteTheme", () => themes.setFavoriteTheme(context)),

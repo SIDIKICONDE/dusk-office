@@ -168,7 +168,7 @@
     "editorSuggestWidget.foreground": "#25313a",
     "editorSuggestWidget.highlightForeground": "#658297",
     "editorSuggestWidget.selectedBackground": "#556f8333",
-    "editorWarning.foreground": "#c9a85c",
+    "editorWarning.foreground": "#9d8348",
     "editorWhitespace.foreground": "#8d8b8438",
     "extensionButton.prominentBackground": "#556f83cc",
     "extensionButton.prominentForeground": "#0a0a0a",

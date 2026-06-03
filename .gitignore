@@ -1,5 +1,9 @@
 node_modules/
 *.vsix
+# esbuild output (built on demand / at publish via vscode:prepublish)
+dist/
+.vscode-test-web/
+test-web-result.txt
 .env
 .env.local
 .env.*.local

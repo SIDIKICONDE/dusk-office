@@ -39,10 +39,10 @@
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",
-    "ratingCount": "3000"
+    "ratingCount": "10000"
   },
   "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office",
-  "softwareVersion": "0.9.30"
+  "softwareVersion": "1.4.1"
 }
 </script>
 </head>
@@ -54,7 +54,13 @@
       <img src="images/icon.png" alt="Dusk Office logo" width="28" height="28" />
       <span>Dusk Office</span>
     </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
     <div class="nav-links">
+      <a href="#whats-new">What's new</a>
       <a href="#features">Features</a>
       <a href="#variants">Variants</a>
       <a href="#fingerprint">Fingerprint</a>
@@ -64,10 +70,10 @@
   </nav>
 
   <div class="hero-inner" id="top">
-    <span class="badge">v0.9.28 · GPL v3 · WCAG AA verified</span>
+    <span class="badge">v1.4.1 · GPL v3 · WCAG AA verified</span>
     <h1>27 themes built for the work you actually do.</h1>
     <p class="lede">
-      A polished theme suite for <strong>VS Code</strong>, <strong>Cursor</strong> and <strong>Windsurf</strong> —
+      A polished theme suite for <strong>VS Code</strong>, <strong>Cursor</strong>, <strong>Windsurf</strong> and <strong>vscode.dev</strong> —
       tuned for finance, audit, banking, fintech, SOC monitoring, DevOps,
       and the kind of long coding sessions where readability is everything.
     </p>
@@ -85,9 +91,9 @@
         View source
       </a>
     </div>
-    <p class="social-proof">★ Trusted by <strong>3,000+ developers</strong> across VS Code, Cursor and Windsurf</p>
+    <p class="social-proof">★ Trusted by <strong>10,000+ developers</strong> across VS Code, Cursor, Windsurf and vscode.dev</p>
     <div class="hero-stats">
-      <div><strong>3,000+</strong><span>downloads</span></div>
+      <div><strong>10,000+</strong><span>downloads</span></div>
       <div><strong>27</strong><span>variants</span></div>
       <div><strong>4.5:1</strong><span>WCAG AA min</span></div>
       <div><strong>0</strong><span>telemetry</span></div>
@@ -95,9 +101,35 @@
   </div>
 
   <div class="hero-shot">
-    <img src="images/screenshot-01.png" alt="Dusk Office theme showcase" loading="lazy" />
+    <img src="images/screenshot-01.png" alt="Dusk Office Finance theme in VS Code — dark navy editor with gold accents, syntax-highlighted Python code" loading="lazy" />
   </div>
 </header>
+
+<section id="whats-new" class="section section-alt">
+  <h2>What's new in v1.4.1</h2>
+  <div class="whats-new-grid">
+    <article>
+      <div class="feature-icon">🎨</div>
+      <h3>Theme Gallery</h3>
+      <p>A built-in webview renders every variant as a live card with real syntax tokens, title bar, activity bar, status bar, and terminal ANSI swatches. Click <strong>Apply</strong> to switch instantly.</p>
+    </article>
+    <article>
+      <div class="feature-icon">✅</div>
+      <h3>Editor &amp; UI Contrast Verification</h3>
+      <p>New <code>Dusk Office: Verify Editor &amp; UI Contrast</code> command scores editor text, syntax tokens, and workbench chrome against WCAG AA — 4.5:1 for body text, 3:1 for UI components, 3:1 readability floor for syntax tokens.</p>
+    </article>
+    <article>
+      <div class="feature-icon">🚀</div>
+      <h3>Quick Setup</h3>
+      <p>Pick your variant, choose your automation mode, done. One flow, 30 seconds, zero config files.</p>
+    </article>
+    <article>
+      <div class="feature-icon">🔧</div>
+      <h3>19 WCAG Contrast Fixes</h3>
+      <p>Translucent badges baked opaque, low-contrast diagnostic glyphs darkened, sub-3:1 syntax tokens raised — all deterministic and idempotent.</p>
+    </article>
+  </div>
+</section>
 
 <section id="features" class="section">
   <h2>Why Dusk Office</h2>
@@ -115,17 +147,12 @@
     <article>
       <div class="feature-icon">✅</div>
       <h3>WCAG AA verified</h3>
-      <p>Every theme passes <code>4.5:1</code> on terminal foreground, <code>2.9:1</code> on ANSI colors, and was audited against 25 critical UI pairs. A CI script fails if anyone regresses contrast.</p>
+      <p>Every theme passes <code>4.5:1</code> on terminal and editor foreground, <code>3:1</code> on UI components and ANSI colors, and <code>3:1</code> readability floor on syntax tokens. Audited against 25+ critical UI pairs. A CI script fails if anyone regresses contrast.</p>
     </article>
     <article>
       <div class="feature-icon">🌗</div>
       <h3>Adaptive focus</h3>
       <p>Switch theme automatically from the active editor language and time of day — e.g. Python → Ivory by day and Abyss by night, TypeScript → Nebula at night, with a late-night Midnight comfort mode.</p>
-    </article>
-    <article>
-      <div class="feature-icon">🎨</div>
-      <h3>Live preview picker</h3>
-      <p>Browsing variants applies them in real time: arrow up/down to preview, Enter to confirm, Escape to revert. No more committing 27 themes one by one.</p>
     </article>
     <article>
       <div class="feature-icon">🛡️</div>
@@ -137,7 +164,7 @@
 
 <section id="variants" class="section section-alt">
   <h2>27 variants — pick the one that fits your work</h2>
-  <p class="muted">Hover for the niche. Click any name to copy the variant identifier.</p>
+  <p class="muted">Hover for the niche. Click any card to copy the variant name and open the Marketplace.</p>
   <div class="variant-grid" id="variant-grid">
     <!-- Cards are rendered by script.js from the VARIANTS data using each
          theme's actual editor.background / editor.foreground / accent. -->
@@ -208,6 +235,14 @@
       </ol>
     </article>
     <article>
+      <h3>vscode.dev / github.dev</h3>
+      <ol>
+        <li>Open any repo on <strong>github.dev</strong> or <strong>vscode.dev</strong></li>
+        <li>Dusk Office activates automatically — full runtime, no Node required</li>
+        <li>Theme Gallery, contrast checks, fingerprint — all work in the browser</li>
+      </ol>
+    </article>
+    <article>
       <h3>JetBrains IDEs</h3>
       <ol>
         <li>Open <strong>Settings</strong> &rarr; <strong>Plugins</strong> &rarr; <strong>Marketplace</strong></li>
@@ -239,6 +274,9 @@
       <span class="muted">— GPL v3 · No telemetry · Made for night work</span>
     </div>
     <div class="footer-links">
+      <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office" target="_blank" rel="noopener">VS Marketplace</a>
+      <a href="https://open-vsx.org/extension/dekidev/dusk-office" target="_blank" rel="noopener">Open VSX</a>
+      <a href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes" target="_blank" rel="noopener">JetBrains</a>
       <a href="https://github.com/SIDIKICONDE/dusk-office" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
       <a href="https://github.com/SIDIKICONDE/dusk-office/issues" target="_blank" rel="noopener">Issues</a>

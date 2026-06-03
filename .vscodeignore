@@ -1,4 +1,8 @@
 # Keep VSIX small — only what the runtime extension needs.
+# The runtime is bundled into dist/ by esbuild (vscode:prepublish); ship that,
+# not the CommonJS source.
+extension.js
+lib/**
 node_modules/**
 scripts/**
 # Dev inputs; themes/ is what the extension loads at runtime

@@ -7,6 +7,7 @@ The Control Center is your **single access point** for every Dusk Office feature
 | Action | What it does |
 |---|---|
 | 🎨 **Switch theme** | Browse and preview all 27 variants |
+| 🖼️ **Theme Gallery** | Visual grid of every variant — click Apply to switch |
 | ↩️ **Previous theme** | Instantly go back to what you had |
 | ⭐ **Favorite** | Set or jump to your go-to variant |
 | 🔄 **Auto Day/Night** | Toggle time-based light ↔ dark switching |
@@ -31,3 +32,7 @@ The Control Center is your **single access point** for every Dusk Office feature
 ---
 
 Click **"Open the Control Center"** below — everything is one keystroke away.
+
+Or jump straight to the **Theme Gallery** — a visual grid of all 27 variants with one-click Apply.
+
+[Open the Theme Gallery](command:duskOffice.openThemeGallery)

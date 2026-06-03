@@ -158,9 +158,11 @@
     card.addEventListener("click", () => {
       const name = card.getAttribute("data-name");
       if (!name) return;
+      // Copy name AND open marketplace — copy for picker, link for web visitors
       copyToClipboard(name)
         .then(() => flashCard(card, "Copied — paste into the picker"))
         .catch(() => flashCard(card, "Copy failed"));
+      window.open("https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office", "_blank");
     });
   }
 
@@ -192,13 +194,33 @@
     });
   }
 
+  // Mobile hamburger toggle
+  function attachNavToggle() {
+    const btn = document.querySelector(".nav-toggle");
+    const links = document.querySelector(".nav-links");
+    if (!btn || !links) return;
+    btn.addEventListener("click", () => {
+      const open = links.classList.toggle("nav-open");
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    // Close nav when a link is clicked (mobile)
+    links.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        links.classList.remove("nav-open");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       renderGrid();
       attachSmoothScroll();
+      attachNavToggle();
     });
   } else {
     renderGrid();
     attachSmoothScroll();
+    attachNavToggle();
   }
 })();

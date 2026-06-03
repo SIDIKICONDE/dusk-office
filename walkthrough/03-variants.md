@@ -40,3 +40,7 @@ This isn't a random palette dump. Every variant was designed for a **specific mo
 ---
 
 Click **"Open the variant picker"** below — hover to preview live, click to apply instantly.
+
+Or try the **Theme Gallery** — a visual grid of all 27 variants rendered from their real palettes, with one-click Apply.
+
+[Open the Theme Gallery](command:duskOffice.openThemeGallery)

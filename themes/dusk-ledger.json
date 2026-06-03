@@ -47,7 +47,7 @@
     "toolbar.activeBackground": "#65829733",
     "titleBar.activeForeground": "#24313a",
     "titleBar.inactiveForeground": "#24313add",
-    "badge.background": "#658297aa",
+    "badge.background": "#658297",
     "badge.foreground": "#ffffff",
     "breadcrumb.activeSelectionForeground": "#658297",
     "breadcrumb.background": "#efeae2",
@@ -153,8 +153,8 @@
     "editorBracketPairGuide.activeBackground6": "#c2a27d44",
     "editorCursor.background": "#ece7de",
     "editorCursor.foreground": "#658297",
-    "editorError.foreground": "#ba7068",
-    "editorWarning.foreground": "#b89660",
+    "editorError.foreground": "#b36c64",
+    "editorWarning.foreground": "#977b4f",
     "editorInfo.foreground": "#658297",
     "editorHint.foreground": "#789683",
     "editorGhostText.background": "#00000000",
@@ -945,7 +945,7 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#818c93",
+        "foreground": "#778187",
         "fontStyle": "italic"
       }
     },
@@ -1436,7 +1436,7 @@
     {
       "scope": "string",
       "settings": {
-        "foreground": "#789683"
+        "foreground": "#6a8473"
       }
     },
     {
@@ -1454,7 +1454,7 @@
     {
       "scope": "constant.numeric",
       "settings": {
-        "foreground": "#9a92b0"
+        "foreground": "#817b94"
       }
     },
     {
@@ -1485,7 +1485,7 @@
     {
       "scope": "entity.name.type",
       "settings": {
-        "foreground": "#789683"
+        "foreground": "#6a8473"
       }
     },
     {

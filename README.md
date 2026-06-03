@@ -2,14 +2,14 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE)
 [![CI](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml/badge.svg)](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml)
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=VS%20Code%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
-[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/d/dekidev.dusk-office?label=installs)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/dekidev.dusk-office?label=Marketplace%20installs)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
 [![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX&color=A60EE5)](https://open-vsx.org/extension/dekidev/dusk-office)
 [![Open VSX Downloads](https://img.shields.io/open-vsx/dt/dekidev/dusk-office?label=Open%20VSX%20downloads)](https://open-vsx.org/extension/dekidev/dusk-office)
 [![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/31875?label=JetBrains%20Marketplace&color=FF318C)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 [![JetBrains Downloads](https://img.shields.io/jetbrains/plugin/d/31875?label=JetBrains%20downloads)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 
-> **27 professional themes for VS Code, Cursor, Windsurf and Open VSX** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **WCAG-verified terminal contrast**, **semantic highlighting**, **ANSI coloring in the editor**, **adaptive day/night focus**, **workspace fingerprint**, **OLED-friendly**, **accessible & colorblind-aware**.
+> **27 professional themes for VS Code, Cursor, Windsurf and Open VSX** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **WCAG-verified terminal + editor/UI contrast**, **visual theme gallery**, **semantic highlighting**, **ANSI coloring in the editor**, **adaptive day/night focus**, **workspace fingerprint**, **web-ready (vscode.dev / github.dev)**, **OLED-friendly**, **accessible & colorblind-aware**.
 
 **Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** (plus **Neovim, Emacs, Zed, Helix, JetBrains** via [exported themes](./exports/README.md)) with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
 
@@ -69,7 +69,12 @@ code --install-extension dusk-office-*.vsix
 
 - `Cmd/Ctrl + Shift + P` → `Dusk Office: Control Center`
 - Or click the status bar entry (enable with `duskOffice.statusBar.enabled`)
-- Quick actions: switch theme, previous, favorite, auto switch, adaptive focus toggle, apply adaptive theme now, adaptive focus settings, product icons, activity bar position, title bar align, status bar button, workspace theme memory, settings
+- Quick actions: switch theme, **theme gallery**, previous, favorite, auto switch, adaptive focus toggle, apply adaptive theme now, adaptive focus settings, product icons, activity bar position, title bar align, status bar button, workspace theme memory, **verify terminal contrast**, **verify editor & UI contrast**, settings
+
+**Theme Gallery:**
+
+- `Cmd/Ctrl + Shift + P` → `Dusk Office: Theme Gallery`
+- A visual grid of all 27 variants, each rendered from its real palette (mini editor + syntax tokens, chrome, and terminal ANSI swatches). Click **Apply** on any card to switch instantly.
 
 ---
 
@@ -137,6 +142,8 @@ This will:
 - Changelog: [CHANGELOG.md](./CHANGELOG.md) · [mirror](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/CHANGELOG.md)
 - **Color harmony & eye comfort** - how variants stay coherent and easy on the eyes (chrome vs editor, terminal blend, contrast checks): [MAINTENANCE.md](./MAINTENANCE.md) (section *Color harmony & eye comfort*)
 - **Terminal contrast verification**: run `Dusk Office: Verify Terminal Contrast` (public command). It now performs real contrast calculations on packaged themes (includes merged), checks `terminal.foreground` and ANSI thresholds, and can open a detailed report. See [Terminal Contrast](./QUICKSTART-LONG.md#check-contrast) for details
+- **Editor & UI contrast verification**: run `Dusk Office: Verify Editor & UI Contrast` to check editor text, syntax tokens, and workbench chrome (status bar, tabs, buttons, badges, lists, diagnostics) against WCAG AA — 4.5:1 for body text, 3:1 for UI components and syntax tokens. The build pipeline enforces it on every variant (`npm run verify:ui`)
+- **Theme Gallery**: run `Dusk Office: Theme Gallery` for a visual grid of all 27 variants, each rendered from its real palette, with one-click Apply
 - **Adaptive focus (local)**: use `Dusk Office: Toggle Adaptive Focus` and `Dusk Office: Apply Adaptive Theme Now` to adapt themes from active editor language + time, with optional late-night eye comfort and theme lock (`duskOffice.adaptiveFocus.*`)
 
 ---
@@ -148,6 +155,9 @@ Both. The pack ships **27 variants** — dark (Midnight, Abyss, Nocturne, Vault,
 
 **Does Dusk Office work in Cursor, Windsurf and Open VSX?**
 Yes. The exact same extension installs in **VS Code**, **Cursor**, **Windsurf** and is published on **Open VSX** for VS Codium and other open builds.
+
+**Does it work on the web (vscode.dev / github.dev)?**
+Yes. Dusk Office ships a **web extension** build, so the full runtime — themes, Theme Gallery, Control Center, auto switch, adaptive focus, contrast verification, and workspace fingerprint — activates in browser-based editors too. Theme data is embedded at build time and workspace reads go through the VS Code filesystem API, so no Node runtime is required.
 
 **Does it work in JetBrains IDEs (IntelliJ, PyCharm, WebStorm, Rider, GoLand, PhpStorm, CLion, RubyMine, DataGrip, RustRover, Android Studio)?**
 Yes — a dedicated **JetBrains plugin** ships the same 27 variants as full IDE themes + editor color schemes. See [jetbrains-plugin/README.md](./jetbrains-plugin/README.md) and `npm run jetbrains:build`.
@@ -165,11 +175,11 @@ Yes — enable `duskOffice.autoSwitch.enabled` and configure your light/dark hou
 No telemetry, no network calls, no companion installs. Workspace fingerprint runs **100% locally** and is opt-out via `duskOffice.workspaceFingerprint.enabled`. Reset everything with `Dusk Office: Reset All Settings`.
 
 **Why use Dusk Office over Dracula, One Dark Pro, Monokai, Solarized, Tokyo Night or Material Theme?**
-Dusk Office is a **domain-tuned theme suite** rather than a single skin: variants designed specifically for **finance / fintech / banking / audit** (Vault, Ledger, Audit, Finance), **cybersecurity / SOC** (Sentinel, Secure), **DevOps** (Voltage, Terminal), **long sessions** (Steward, Midnight), with **verified WCAG terminal contrast**, **semantic highlighting**, **ANSI coloring in the editor**, **workspace fingerprint**, **adaptive day/night focus**, and the same identity across VS Code, Cursor, Windsurf, Open VSX and JetBrains.
+Dusk Office is a **domain-tuned theme suite** rather than a single skin: variants designed specifically for **finance / fintech / banking / audit** (Vault, Ledger, Audit, Finance), **cybersecurity / SOC** (Sentinel, Secure), **DevOps** (Voltage, Terminal), **long sessions** (Steward, Midnight), with **verified WCAG terminal + editor/UI contrast**, a **visual theme gallery**, **semantic highlighting**, **ANSI coloring in the editor**, **workspace fingerprint**, **adaptive day/night focus**, **web support (vscode.dev / github.dev)**, and the same identity across VS Code, Cursor, Windsurf, Open VSX and JetBrains.
 
 ## Keywords / Tags
 
-dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · ansi colors · terminal theme · product icon theme · theme bundle
+dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast
 
 ---
 

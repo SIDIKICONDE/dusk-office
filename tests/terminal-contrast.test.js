@@ -6,9 +6,9 @@ const fs = require("node:fs");
 const {
   MIN_TERMINAL_FG_RATIO,
   MIN_TERMINAL_ANSI_RATIO,
-  mergeThemeColors,
   checkTerminalContrast,
 } = require("../lib/terminal/terminal-contrast.js");
+const { mergeThemeColors } = require("../lib/terminal/theme-merge.js");
 
 // ---------------------------------------------------------------------------
 // checkTerminalContrast — synthetic colors

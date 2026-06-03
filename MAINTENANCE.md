@@ -74,6 +74,8 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 ### Checks already in the repo
 
 - `verify-terminal-contrast.mjs` — body text and ANSI on terminal background.
+- `verify-ui-contrast.mjs` (`npm run verify:ui`) — editor text, syntax tokens, and workbench chrome (status bar, tabs, buttons, badges, lists, diagnostics) vs their backgrounds. Thresholds: 4.5:1 body text, 3:1 UI components, 3:1 syntax-token readability floor. Shared math with the runtime `Dusk Office: Verify Editor & UI Contrast` command (`lib/contrast/`).
+- `fix-ui-contrast.mjs` (`npm run fix:ui-contrast`) — idempotent corrective pass that lifts any failing pair to threshold in the file that *owns* the color (include-chain aware). Runs as the final step of `make:full` before `validate`, so regenerated `themes/` stays contrast-clean and `verify-themes-fresh` stays green.
 - `verify-theme-pipeline.mjs` — editor between panel and title bar; key parity across palette variants.
 - `adaptive-focus-mode.mjs` — local adaptive theme recommendation from hour/language/zen/lock (no network).
 
@@ -177,7 +179,16 @@ Run once after creating or modifying themes. Handles `include`-based themes (dus
 npm run validate
 ```
 
-Checks JSON, `include` paths, `contributes.themes` in `package.json`, pipeline lists, and **terminal vs panel** contrast (`verify-terminal-contrast.mjs` — `terminal.foreground` vs `terminal.background`; ANSI on dark themes only).
+Checks JSON, `include` paths, `contributes.themes` in `package.json`, pipeline lists, **terminal vs panel** contrast (`verify-terminal-contrast.mjs`), and **editor/UI vs background** contrast (`verify-ui-contrast.mjs`).
+
+## Web extension build
+
+The extension activates in the **web** host (vscode.dev / github.dev), not just the desktop Node host:
+
+- Bundled with **esbuild** (`scripts/build-extension.mjs`, `npm run build:ext`) into `dist/node/extension.js` (`main`) and `dist/web/extension.js` (`browser`). `vscode:prepublish` runs `build:bundle && build:ext`, so `vsce package` produces both. `dist/` is gitignored; the VSIX ships `dist/` instead of the CommonJS source (`lib/`, `extension.js` are `.vscodeignore`d).
+- The runtime graph is **filesystem-free**. Theme data is embedded at build time: `scripts/build-themes-bundle.mjs` flattens every variant's `include` chain into `lib/generated/themes-bundle.js` (regenerated inside `make:full`; commit it). The Theme Gallery and both contrast verifiers read this bundle; workspace fingerprint reads manifests through `vscode.workspace.fs`.
+- Node-only include-chain flattening lives in `lib/terminal/theme-merge.js` and `lib/themes/theme-merge-data.js` (scripts, tests, bundle generator only) — never imported by the runtime, so the web bundle has no `fs`/`path`.
+- Local debug: `main` points at `dist/`, so run `npm run watch:ext` (or `build:ext`) before launching the Extension Host.
 
 ## Visual checks
 
@@ -185,6 +196,7 @@ Before a release, spot-check in the editor:
 
 1. **Gutter**: open a tracked file, change lines — modified (amber) and added (green) bars should read clearly on the gutter.
 2. **Diff**: open a file diff from SCM — inserted / removed line backgrounds should be easy to see.
+3. **Theme Gallery**: run `Dusk Office: Theme Gallery` and confirm every card renders and Apply switches the active theme.
 
 ## Marketplace publishing
 
@@ -247,7 +259,9 @@ For another Dusk Office variant as team default, set e.g. `"workbench.colorTheme
 - `Dusk Office: Toggle Auto Switch`
 - `Dusk Office: Toggle Adaptive Focus`
 - `Dusk Office: Apply Adaptive Theme Now`
+- `Dusk Office: Theme Gallery`
 - `Dusk Office: Verify Terminal Contrast`
+- `Dusk Office: Verify Editor & UI Contrast`
 - `Dusk Office: Reset All Settings`
 - `Dusk Office: Toggle Activity Bar Position`
 - `Dusk Office: Settings`

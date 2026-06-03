@@ -39,6 +39,8 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 - Status bar switcher
 - Semantic highlighting and TextMate token styling
 - Variants for dark, light, warm, and high-contrast setups
+- Visual **Theme Gallery** (live preview of every variant) and **editor/UI contrast verification**
+- **Web extension** support — full runtime activates on vscode.dev / github.dev, not just desktop
 - Good editor defaults
 
 ## Included Themes
@@ -111,6 +113,8 @@ Open the Command Palette and run `Dusk Office: Control Center`, or use the statu
 - toggle activity bar position
 - toggle **Dusk Office · Product** icons (same as command below)
 - toggle title bar align with theme
+- open the **Theme Gallery** (live preview of every variant)
+- verify **terminal contrast** and **editor & UI contrast**
 - toggle the status bar button
 - clear the workspace theme memory
 - configure auto switch (themes and hours)
@@ -124,6 +128,8 @@ Registered in `package.json` → `contributes.commands`. Use these IDs in `keybi
 | ------------ | ---------------- |
 | `duskOffice.openControlCenter` | Dusk Office: Control Center |
 | `duskOffice.switchThemeVariant` | Dusk Office: Choose Theme |
+| `duskOffice.openThemeGallery` | Dusk Office: Theme Gallery |
+| `duskOffice.quickSetup` | Dusk Office: Quick Setup |
 | `duskOffice.switchToPreviousTheme` | Dusk Office: Previous Theme |
 | `duskOffice.setFavoriteTheme` | Dusk Office: Set Favorite |
 | `duskOffice.switchToFavoriteTheme` | Dusk Office: Favorite Theme |
@@ -134,9 +140,13 @@ Registered in `package.json` → `contributes.commands`. Use these IDs in `keybi
 | `duskOffice.applyAdaptiveFocusTheme` | Dusk Office: Apply Adaptive Theme Now |
 | `duskOffice.openSettings` | Dusk Office: Settings |
 | `duskOffice.verifyTerminalContrast` | Dusk Office: Verify Terminal Contrast |
+| `duskOffice.verifyEditorContrast` | Dusk Office: Verify Editor & UI Contrast |
 | `duskOffice.resetTheme` | Dusk Office: Reset All Settings |
 | `duskOffice.clearWorkspaceFingerprint` | Dusk Office: Reset Workspace Fingerprint |
 | `duskOffice.toggleEditorAnsi` | Dusk Office: Toggle ANSI in Editor |
+| `duskOffice.enableEditorAnsi` | Dusk Office: Enable ANSI in Editor |
+| `duskOffice.disableEditorAnsi` | Dusk Office: Disable ANSI in Editor |
+| `duskOffice.openEditorAnsiSettings` | Dusk Office: ANSI in Editor Settings |
 | `duskOffice.suggestVariantForWorkspace` | Dusk Office: Suggest Variant for This Workspace |
 
 ### Settings
@@ -147,6 +157,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | ----- | --------- | ------------- |
 | `duskOffice.favoriteTheme` | `""` | Favorite variant (Settings Sync–friendly; synced with **Set Favorite**). |
 | `duskOffice.applyFavoriteOnStartup` | `false` | Apply the favorite theme on startup. |
+| `duskOffice.marketplaceReview` | `true` | Ask for a Marketplace star rating after sufficient use. |
 | `duskOffice.nythyCleanerRecommendation` | `true` | Show NythyCleaner entry in the Control Center. |
 | `duskOffice.workspaceFingerprint.enabled` | `true` | Suggest a variant once per workspace from project signals. |
 | `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |

@@ -2,10 +2,11 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
   "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "publisher": "dekidev",
   "icon": "images/icon.png",
-  "main": "./extension.js",
+  "main": "./dist/node/extension.js",
+  "browser": "./dist/web/extension.js",
   "license": "GPL-3.0-or-later",
   "homepage": "https://sidikiconde.github.io/dusk-office/",
   "sponsor": {
@@ -311,12 +312,13 @@
           {
             "id": "pickVariant",
             "title": "Explore 27 variants",
-            "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)",
+            "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Hover to preview, click to apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)\n[Open the Theme Gallery](command:duskOffice.openThemeGallery)",
             "media": {
               "markdown": "walkthrough/03-variants.md"
             },
             "completionEvents": [
-              "onCommand:duskOffice.switchThemeVariant"
+              "onCommand:duskOffice.switchThemeVariant",
+              "onCommand:duskOffice.openThemeGallery"
             ]
           },
           {
@@ -758,6 +760,12 @@
         "icon": "$(symbol-color)"
       },
       {
+        "command": "duskOffice.openThemeGallery",
+        "title": "Dusk Office: Theme Gallery",
+        "category": "Dusk Office",
+        "icon": "$(layout-panel)"
+      },
+      {
         "command": "duskOffice.switchToPreviousTheme",
         "title": "Dusk Office: Previous Theme",
         "category": "Dusk Office"
@@ -795,6 +803,11 @@
       {
         "command": "duskOffice.verifyTerminalContrast",
         "title": "Dusk Office: Verify Terminal Contrast",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.verifyEditorContrast",
+        "title": "Dusk Office: Verify Editor & UI Contrast",
         "category": "Dusk Office"
       },
       {
@@ -914,7 +927,7 @@
     "sync": "node scripts/sync-from-workspace.mjs",
     "sync:aa": "node scripts/sync-from-workspace.mjs",
     "sync:aaa": "node -e \"process.env.SYNC_MIN_CONTRAST='7'; import('./scripts/sync-from-workspace.mjs')\"",
-    "make:full": "npm run theme:sources:sync && npm run sync:aa && npm run variants:ui && npm run variants:syntax && npm run build:hc && npm run build:ivoire-sombre && npm run validate",
+    "make:full": "npm run theme:sources:sync && npm run sync:aa && npm run variants:ui && npm run variants:syntax && npm run build:hc && npm run build:ivoire-sombre && npm run fix:ui-contrast && npm run build:bundle && npm run validate",
     "make:full:install": "npm run make:full && npm run package && npm run install-vsix",
     "make:release": "npm run bump:patch && npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
     "make:release:no-bump": "npm run make:full && npm run package:raw && node scripts/clean-old-vsix.mjs",
@@ -942,12 +955,19 @@
     "boost:borders": "node scripts/boost-border-contrast.mjs",
     "dim:borders": "node scripts/dim-border-luminosity.mjs",
     "variants:syntax": "node scripts/merge-syntax-into-variants.mjs",
-    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/audit-contrast.mjs && node scripts/check-theme-distinctiveness.mjs --strict && npm run validate:pydantic",
+    "validate": "node scripts/verify-runtime-constants.mjs && node scripts/validate-themes.mjs && node scripts/verify-theme-pipeline.mjs && node scripts/verify-terminal-contrast.mjs && node scripts/verify-ui-contrast.mjs && node scripts/audit-contrast.mjs && node scripts/check-theme-distinctiveness.mjs --strict && npm run validate:pydantic",
     "distinctiveness:check": "node scripts/check-theme-distinctiveness.mjs",
     "audit:contrast": "node scripts/audit-contrast.mjs",
     "verify:themes-fresh": "node scripts/verify-themes-fresh.mjs",
     "verify:constants": "node scripts/verify-runtime-constants.mjs",
     "verify:terminal": "node scripts/verify-terminal-contrast.mjs",
+    "verify:ui": "node scripts/verify-ui-contrast.mjs",
+    "audit:ui-contrast": "node scripts/verify-ui-contrast.mjs",
+    "fix:ui-contrast": "node scripts/fix-ui-contrast.mjs",
+    "build:bundle": "node scripts/build-themes-bundle.mjs",
+    "build:ext": "node scripts/build-extension.mjs",
+    "watch:ext": "node scripts/build-extension.mjs --watch",
+    "vscode:prepublish": "npm run build:bundle && npm run build:ext",
     "adaptive:focus": "node scripts/adaptive-focus-mode.mjs",
     "release-check": "node scripts/verify-release-version.mjs",
     "build:hc": "node scripts/build-dusk-hc.mjs",
@@ -969,18 +989,21 @@
     "publish:vsce": "node scripts/publish-vsce.mjs",
     "publish:ovsx": "node scripts/publish-ovsx.mjs",
     "publish:all": "npm run publish:vsce && npm run publish:ovsx",
-    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js",
     "py:install": "pip install -e \".[dev]\"",
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",
     "test:py": "pytest python/tests",
-    "test:all": "npm test && npm run test:py",
+    "test:web": "node scripts/test-web.mjs && node tests/test-web-activation.mjs",
+    "test:all": "npm test && npm run test:py && npm run test:web",
     "tag:release": "node scripts/release-tag.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.5.1",
     "@types/react": "^19.2.14",
+    "@vscode/test-web": "^0.0.80",
     "@vscode/vsce": "^3.2.2",
+    "esbuild": "^0.28.0",
     "ovsx": "^0.10.0",
     "typescript": "~5.7.3"
   }

@@ -6,7 +6,7 @@
     "actionBar.toggledBackground": "#8b4a5a33",
     "activityBar.background": "#1d1f21",
     "activityBarTop.background": "#1d1f21",
-    "badge.background": "#8b4a5aaa",
+    "badge.background": "#8d4e5d",
     "badge.foreground": "#0a0a0a",
     "breadcrumb.activeSelectionForeground": "#c8c4c0",
     "breadcrumb.background": "#1d1f21",
@@ -475,7 +475,7 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#5a5060",
+        "foreground": "#716976",
         "fontStyle": "italic"
       }
     },
