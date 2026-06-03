@@ -2,10 +2,10 @@
 
 Here's the magic moment: open any workspace and Dusk Office **reads your project's DNA** to suggest the perfect variant. No setup, no config — it just works.
 
-### How it detects your context
+## How it detects your context
 
 | Your project signals… | Suggested variant | Why |
-|---|---|---|
+| --- | --- | --- |
 | Stripe, Plaid, Dwolla, payment SDKs | **Vault** | Financial data deserves a secure-feeling palette |
 | QuickBooks, Xero, SOX/audit keywords | **Audit** | High-contrast for regulatory code review |
 | Helmet, JWT, `*.tf`, Falco, security tools | **Sentinel** | Alert-ready colors for threat monitoring |
@@ -14,7 +14,7 @@ Here's the magic moment: open any workspace and Dusk Office **reads your project
 | React, Vue, Svelte, Tailwind, Storybook | **Nocturne** | Deep indigo that pairs with component previews |
 | Go, Rust+clap, Terraform, Makefile-heavy | **Terminal** | CLI-optimized, terminal-first contrast |
 
-### Built on trust, not tracking
+## Built on trust, not tracking
 
 This is **not** analytics. This is a local heuristic that respects your privacy:
 

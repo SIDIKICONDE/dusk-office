@@ -83,7 +83,7 @@ async function activate(context) {
     }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
     vscode.commands.registerCommand("duskOffice.openThemeGallery", () => openThemeGallery(context)),
-    vscode.commands.registerCommand("duskOffice.verifyEditorContrast", () => verifyEditorContrast(context)),
+    vscode.commands.registerCommand("duskOffice.verifyEditorContrast", () => verifyEditorContrast()),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => themes.setThemeVariant(context)),
     vscode.commands.registerCommand("duskOffice.switchToPreviousTheme", () => themes.switchToPreviousTheme(context)),
     vscode.commands.registerCommand("duskOffice.setFavoriteTheme", () => themes.setFavoriteTheme(context)),
@@ -99,7 +99,7 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.enableEditorAnsi", () => editorAnsi.setEditorAnsiEnabled(true)),
     vscode.commands.registerCommand("duskOffice.disableEditorAnsi", () => editorAnsi.setEditorAnsiEnabled(false)),
     vscode.commands.registerCommand("duskOffice.openEditorAnsiSettings", editorAnsi.openEditorAnsiSettings),
-    vscode.commands.registerCommand("duskOffice.verifyTerminalContrast", () => verifyTerminalContrast(context)),
+    vscode.commands.registerCommand("duskOffice.verifyTerminalContrast", () => verifyTerminalContrast()),
     vscode.commands.registerCommand("duskOffice.resetTheme", () => resetAllSettings(context)),
     vscode.commands.registerCommand("duskOffice.applyAdaptiveFocusTheme", () =>
       autoAdaptive.applyAdaptiveFocusTheme(context, { force: true, showMessage: true }),

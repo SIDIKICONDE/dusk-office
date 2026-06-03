@@ -20,7 +20,6 @@ import { parseHexColor, luminance, contrastRatio, composite } from "./color-util
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
-const themesDir = path.join(root, "themes");
 
 // ---------------------------------------------------------------------------
 // Color math (backed by color-utils.mjs)

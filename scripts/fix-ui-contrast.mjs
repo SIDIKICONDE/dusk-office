@@ -33,7 +33,6 @@ const { scopeMatches } = require("../lib/themes/theme-data.js");
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
-const THEMES_DIR = path.join(root, "themes");
 
 const BADGE_FG_KEYS = new Set(["badge.foreground", "activityBarBadge.foreground"]);
 

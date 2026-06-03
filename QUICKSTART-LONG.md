@@ -193,7 +193,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 Source of truth: [`lib/themes/theme-common.js`](./lib/themes/theme-common.js) → `ADAPTIVE_LANGUAGE_RULES`. Day = hours **7–17**; night = all other hours (unless late-night comfort forces **Midnight**, default **22h–5h**).
 
 | Language ID | Day | Night |
-|---|---|---|
+| --- | --- | --- |
 | `markdown`, `mdx` | Ivory | Nocturne |
 | `dart`, `flutter` | Light | Bay |
 | `typescript`, `javascript` | Ivory | Nebula |

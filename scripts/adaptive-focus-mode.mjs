@@ -97,7 +97,12 @@ function main() {
   }
 
   const result = resolveForCli(args);
-  const period = isAdaptiveLightPeriod(args.hour, cfg) ? "light" : "dark";
+  const period = isAdaptiveLightPeriod(args.hour, {
+    dayStartHour: args.dayStartHour ?? 7,
+    dayEndHour: args.dayEndHour ?? 18,
+  })
+    ? "light"
+    : "dark";
 
   if (args.json) {
     process.stdout.write(

@@ -34,7 +34,7 @@ Picks a variant from the **active editor language** and the **current hour**. Lo
 ### Examples
 
 | You're editing… | Time | Dusk applies |
-|---|---|---|
+| --- | --- | --- |
 | Python | Day (7h–17h) | **Ivory** — warm paper-like light |
 | Python | Night | **Abyss** — deep blue focus |
 | TypeScript / JavaScript | Night | **Nebula** — purple-violet accents |
@@ -49,7 +49,7 @@ Picks a variant from the **active editor language** and the **current hour**. Lo
 ### Full language map
 
 | Language ID | Day (7h–17h) | Night |
-|---|---|---|
+| --- | --- | --- |
 | `markdown`, `mdx` | Ivory | Nocturne |
 | `dart`, `flutter` | Light | Bay |
 | `typescript`, `javascript` | Ivory | Nebula |
@@ -74,7 +74,7 @@ Languages not listed fall back to **Ivory** (day) or **Midnight** (night).
 ### Settings
 
 | Setting | Default | Role |
-|---|---|---|
+| --- | --- | --- |
 | `duskOffice.adaptiveFocus.enabled` | `false` | Turn adaptive focus on |
 | `duskOffice.adaptiveFocus.onlyWhenDuskThemeActive` | `true` | Only apply when a Dusk theme is already active |
 | `duskOffice.adaptiveFocus.lateNightEyeComfort` | `true` | Force Midnight during late hours |

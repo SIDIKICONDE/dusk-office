@@ -203,7 +203,6 @@ const LIGHT_UI_OVERRIDES = {
   "sideBar.foreground": "#1e293b",
   "titleBar.activeForeground": "#0f172a",
   "titleBar.inactiveForeground": "#475569",
-  "panelTitle.border": "#0ea5e94d",
   /** Absentes d’Abyss : héritées de `include` dusk.json → fonds #02060b sur UI claire */
   "editorSuggestWidget.background": "#ffffff",
   "editorHoverWidget.background": "#ffffff",

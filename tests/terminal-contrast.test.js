@@ -3,11 +3,7 @@ const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");
 
-const {
-  MIN_TERMINAL_FG_RATIO,
-  MIN_TERMINAL_ANSI_RATIO,
-  checkTerminalContrast,
-} = require("../lib/terminal/terminal-contrast.js");
+const { checkTerminalContrast } = require("../lib/terminal/terminal-contrast.js");
 const { mergeThemeColors } = require("../lib/terminal/theme-merge.js");
 
 // ---------------------------------------------------------------------------

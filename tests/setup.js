@@ -2,7 +2,7 @@
 const Module = require("node:module");
 const path = require("node:path");
 
-const vscode = require(path.join(__dirname, "__mocks__", "vscode.js"));
+const _vscode = require(path.join(__dirname, "__mocks__", "vscode.js"));
 
 const originalResolveFilename = Module._resolveFilename;
 Module._resolveFilename = function (request, parent, ...rest) {

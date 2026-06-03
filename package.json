@@ -989,22 +989,31 @@
     "publish:vsce": "node scripts/publish-vsce.mjs",
     "publish:ovsx": "node scripts/publish-ovsx.mjs",
     "publish:all": "npm run publish:vsce && npm run publish:ovsx",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc -p tsconfig.json",
+    "check": "npm run lint && npm run typecheck",
     "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js",
     "py:install": "pip install -e \".[dev]\"",
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",
     "test:py": "pytest python/tests",
     "test:web": "node scripts/test-web.mjs && node tests/test-web-activation.mjs",
+    "test:web:install": "playwright install chromium",
     "test:all": "npm test && npm run test:py && npm run test:web",
     "tag:release": "node scripts/release-tag.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.5.1",
     "@types/react": "^19.2.14",
+    "@types/vscode": "~1.85",
     "@vscode/test-web": "^0.0.80",
     "@vscode/vsce": "^3.2.2",
     "esbuild": "^0.28.0",
+    "eslint": "^9.39.4",
+    "globals": "^17.6.0",
     "ovsx": "^0.10.0",
+    "playwright": "^1.60.0",
     "typescript": "~5.7.3"
   }
 }

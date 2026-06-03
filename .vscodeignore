@@ -31,6 +31,13 @@ exports/**
 
 # Tests — not needed at runtime
 tests/**
+test-web-result.txt
+**/.pytest_cache/**
+.pytest_cache/**
+
+# Python dev tooling (validate:pydantic / pytest — not shipped)
+python/**
+pyproject.toml
 
 # Local IDE / dev / log noise
 .idea/**
@@ -47,5 +54,8 @@ firebase-debug.*.log
 **/*.map
 **/tsconfig.json
 **/.eslintrc*
+eslint.config.mjs
+tsconfig.json
+.eslintcache
 .gitignore
 *.vsix

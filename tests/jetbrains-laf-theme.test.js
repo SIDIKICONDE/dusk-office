@@ -1,6 +1,5 @@
 const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
-const { readFileSync } = require("node:fs");
 const { join } = require("node:path");
 
 const { resolveTheme } = require("../lib/export/theme-resolve.mjs");

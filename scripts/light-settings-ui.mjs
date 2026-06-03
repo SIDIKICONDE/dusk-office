@@ -138,7 +138,7 @@ export function lightChromeUiOverrides(palette = {}) {
 export function lightTabUiOverrides(palette = {}) {
   const {
     foreground = "#0f172a",
-    inactiveForeground = "#475569dd",
+    inactiveForeground: _inactiveForeground = "#475569dd",
     unfocusedInactiveForeground = "#64748b55",
     surface = "#f1f5f9",
     border = "#94a3b8b8",
