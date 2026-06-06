@@ -268,6 +268,13 @@ function main() {
 
   <description><![CDATA[
     <h2>Dusk Office Themes — 27 professional themes for JetBrains IDEs</h2>
+    <p>
+      <a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/LICENSE">GPL-3.0</a> ·
+      <a href="https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml">CI</a> ·
+      <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code Marketplace</a> ·
+      <a href="https://open-vsx.org/extension/dekidev/dusk-office">Open VSX</a> ·
+      <a href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes">JetBrains Marketplace</a>
+    </p>
     <p><strong>Dusk Office Themes</strong> is a professional theme suite for
     <strong>IntelliJ IDEA</strong>, <strong>PyCharm</strong>, <strong>WebStorm</strong>,
     <strong>Rider</strong>, <strong>CLion</strong>, <strong>GoLand</strong>,

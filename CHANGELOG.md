@@ -1,5 +1,9 @@
 # Changelog — Dusk Office
 
+## 1.4.2 — 6 June 2026
+
+- **Changed**: **JetBrains Marketplace listing — cross-marketplace links** — `scripts/sync-jetbrains-plugin.mjs` now injects a link row at the top of the generated `plugin.xml` description (GPL-3.0 · CI · VS Code Marketplace · Open VSX · JetBrains Marketplace). Shields.io badge images from `README.md` are not used: JetBrains Marketplace strips or ignores inline `<img>` tags in `plugin.xml`; text links render reliably on the plugin page. Rebuild with `npm run jetbrains:build` and upload the new ZIP to publish. **Getting Started** and **Media** (screenshots) remain configured manually in the JetBrains plugin admin panel — they are not part of `plugin.xml`.
+
 ## 1.4.1 — 3 June 2026
 
 - **Added**: **Linting & type-checking in CI** — ESLint 9 (flat config `eslint.config.mjs`) and TypeScript `tsc --checkJs` (`tsconfig.json`, lenient JSDoc mode) now guard the JS runtime, scripts, and tests. New scripts `npm run lint` / `typecheck` / `check`; CI runs `npm run check` before tests. Caught and fixed three latent bugs in the process: `cfg` used out of scope in `scripts/adaptive-focus-mode.mjs`, a duplicate `panelTitle.border` key in `build-dusk-light.mjs` (light theme output preserved), an invalid `\Z` regex anchor in the Cargo.toml workspace-fingerprint parser (now `$`), and a no-op `activeItems` option on `showQuickPick` in the marketplace-review prompt.
