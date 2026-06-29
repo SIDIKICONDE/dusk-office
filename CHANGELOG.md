@@ -1,5 +1,16 @@
 # Changelog — Dusk Office
 
+## Unreleased
+
+## 1.5.0 — 29 June 2026
+
+- **Added**: **Italic comments / bold keywords toggles** — two new settings `duskOffice.syntax.italicComments` (default `true`) and `duskOffice.syntax.boldKeywords` (default `false`), plus commands `Dusk Office: Toggle Italic Comments` and `Dusk Office: Toggle Bold Keywords`. New module `lib/themes/syntax-style.js` reconciles `editor.tokenColorCustomizations` with the current settings: it only emits override rules when the user deviates from the theme baseline (comments italic OFF → `fontStyle: ""` on comment scopes; keywords bold ON → `fontStyle: "bold"` on `keyword`/`storage` scopes), so the default state writes nothing and existing users are unaffected. Rules are tagged by `name` (`"Dusk Office: comments"` / `"Dusk Office: keywords"`) and merged non-destructively, preserving the user's own `textMateRules`. Applied only while a Dusk Office theme is active (reconciled on activation, `onDidChangeActiveColorTheme`, and `duskOffice.syntax` config changes); leaving a Dusk theme removes the managed rules. Config readers `getSyntaxItalicComments` / `getSyntaxBoldKeywords` added to `lib/core/configuration.js`.
+- **Added**: **Auto Switch timezone** — new setting `duskOffice.autoSwitch.timezone` (IANA id such as `Europe/Paris`, `America/Toronto`; empty or `local` = machine time). Shared by **Auto Switch** and **Adaptive Focus** hour boundaries. New module `lib/themes/schedule-time.js`; Control Center **Configure Auto Switch** now includes a timezone step and shows `TZ:` in the Auto Switch detail line.
+- **Added**: **Theme Gallery hover preview** — hovering a card in `Dusk Office: Theme Gallery` live-previews the variant in the editor (like the variant Quick Pick); **Apply** commits; closing the panel reverts unapplied previews. New `themes.previewTheme()` helper; `isThemeGalleryOpen` pauses auto-switch / adaptive focus during preview.
+- **Changed**: **Auto Switch / Adaptive Focus scheduling** — boundary timers now fire at exact hour marks (`lib/themes/hour-schedule.js`) instead of polling every 60 seconds; timezone-aware when `autoSwitch.timezone` is set.
+- **Changed**: **Makefile** — `make install` / `make full` run `npm run py:install` so `validate:pydantic` works on fresh clones (Windows/macOS/Linux).
+- **Docs**: **Updates & follow** section in README and on [sidikiconde.github.io/dusk-office](https://sidikiconde.github.io/dusk-office/) — changelog links + tracking hashtags `#DuskOffice` `#VSCodeTheme` `#CursorTheme` `#ThemeGallery` `#AutoDarkMode`.
+
 ## 1.4.2 — 6 June 2026
 
 - **Changed**: **JetBrains Marketplace listing — cross-marketplace links** — `scripts/sync-jetbrains-plugin.mjs` now injects a link row at the top of the generated `plugin.xml` description (GPL-3.0 · CI · VS Code Marketplace · Open VSX · JetBrains Marketplace). Shields.io badge images from `README.md` are not used: JetBrains Marketplace strips or ignores inline `<img>` tags in `plugin.xml`; text links render reliably on the plugin page. Rebuild with `npm run jetbrains:build` and upload the new ZIP to publish. **Getting Started** and **Media** (screenshots) remain configured manually in the JetBrains plugin admin panel — they are not part of `plugin.xml`.

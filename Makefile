@@ -13,12 +13,13 @@ IDE    ?= auto
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix export-ide jetbrains-sync jetbrains-build jetbrains-install jetbrains-reinstall jetbrains-full jetbrains-publish push-main-auto push-main-safe pa ps rel rpi all make release release-tag release-status release-watch release-logs tag
+.PHONY: help install py-install validate sync theme-sources-sync variants-ui variants-syntax themes-regen package vsix build install-vsix reinstall upgrade full clean-old-vsix export-ide jetbrains-sync jetbrains-build jetbrains-install jetbrains-reinstall jetbrains-full jetbrains-publish push-main-auto push-main-safe pa ps rel rpi all make release release-tag release-status release-watch release-logs tag
 
 help:
 	@echo "Dusk Office — $(ROOT)"
 	@echo ""
-	@echo "  make install          install npm dependencies"
+	@echo "  make install          install npm + Python dev dependencies"
+	@echo "  make py-install       install Python package only (validate:pydantic / pytest)"
 	@echo "  make validate         validate themes and manifest"
 	@echo "  make sync             sync themes/dusk.json from .vscode/settings.json"
 	@echo "  make theme-sources-sync  copy theme-sources/*.json → themes/ (run before full build)"
@@ -55,6 +56,10 @@ help:
 
 install:
 	cd "$(ROOT)" && $(NPM) install
+	cd "$(ROOT)" && $(NPM) run py:install
+
+py-install:
+	cd "$(ROOT)" && $(NPM) run py:install
 
 validate:
 	cd "$(ROOT)" && $(NPM) run validate
@@ -85,7 +90,7 @@ reinstall upgrade:
 
 # make:full = theme-sources-sync + sync + variants:ui + variants:syntax + build:hc + build:light + build:ivoire* + validate
 full all:
-	cd "$(ROOT)" && $(NPM) run make:full && $(NPM) run package && node scripts/install-vsix.mjs --editor=$(VSCODE_EDITOR)
+	cd "$(ROOT)" && $(NPM) run py:install && $(NPM) run make:full && $(NPM) run package && node scripts/install-vsix.mjs --editor=$(VSCODE_EDITOR)
 
 # Allows `make full make` without failing.
 make:

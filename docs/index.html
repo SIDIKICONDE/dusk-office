@@ -42,7 +42,7 @@
     "ratingCount": "10000"
   },
   "downloadUrl": "https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office",
-  "softwareVersion": "1.4.1"
+  "softwareVersion": "1.5.0"
 }
 </script>
 </head>
@@ -61,6 +61,7 @@
     </button>
     <div class="nav-links">
       <a href="#whats-new">What's new</a>
+      <a href="#updates">Updates</a>
       <a href="#features">Features</a>
       <a href="#variants">Variants</a>
       <a href="#fingerprint">Fingerprint</a>
@@ -70,7 +71,7 @@
   </nav>
 
   <div class="hero-inner" id="top">
-    <span class="badge">v1.4.1 · GPL v3 · WCAG AA verified</span>
+    <span class="badge">v1.5.0 · GPL v3 · WCAG AA verified</span>
     <h1>27 themes built for the work you actually do.</h1>
     <p class="lede">
       A polished theme suite for <strong>VS Code</strong>, <strong>Cursor</strong>, <strong>Windsurf</strong> and <strong>vscode.dev</strong> —
@@ -106,27 +107,46 @@
 </header>
 
 <section id="whats-new" class="section section-alt">
-  <h2>What's new in v1.4.1</h2>
+  <h2>What's new in v1.5.0</h2>
   <div class="whats-new-grid">
     <article>
-      <div class="feature-icon">🎨</div>
-      <h3>Theme Gallery</h3>
-      <p>A built-in webview renders every variant as a live card with real syntax tokens, title bar, activity bar, status bar, and terminal ANSI swatches. Click <strong>Apply</strong> to switch instantly.</p>
+      <div class="feature-icon">🌍</div>
+      <h3>Auto Switch timezone</h3>
+      <p>Set <code>duskOffice.autoSwitch.timezone</code> to an IANA id (<code>Europe/Paris</code>, <code>America/Toronto</code>, …) or configure it from <strong>Control Center → Configure Auto Switch</strong>. Empty = local machine time; shared with Adaptive Focus hour windows.</p>
     </article>
     <article>
-      <div class="feature-icon">✅</div>
-      <h3>Editor &amp; UI Contrast Verification</h3>
-      <p>New <code>Dusk Office: Verify Editor &amp; UI Contrast</code> command scores editor text, syntax tokens, and workbench chrome against WCAG AA — 4.5:1 for body text, 3:1 for UI components, 3:1 readability floor for syntax tokens.</p>
+      <div class="feature-icon">👁️</div>
+      <h3>Theme Gallery hover preview</h3>
+      <p>Hover any card in <strong>Dusk Office: Theme Gallery</strong> to live-preview the variant in your editor. Click <strong>Apply</strong> to keep it; close the panel to revert unapplied previews.</p>
     </article>
     <article>
-      <div class="feature-icon">🚀</div>
-      <h3>Quick Setup</h3>
-      <p>Pick your variant, choose your automation mode, done. One flow, 30 seconds, zero config files.</p>
+      <div class="feature-icon">⏱️</div>
+      <h3>Exact-hour scheduling</h3>
+      <p>Auto Switch and Adaptive Focus now fire at precise hour boundaries instead of polling every 60 seconds — lower idle CPU, timezone-aware when a timezone is set.</p>
     </article>
     <article>
-      <div class="feature-icon">🔧</div>
-      <h3>19 WCAG Contrast Fixes</h3>
-      <p>Translucent badges baked opaque, low-contrast diagnostic glyphs darkened, sub-3:1 syntax tokens raised — all deterministic and idempotent.</p>
+      <div class="feature-icon">✏️</div>
+      <h3>Italic comments &amp; bold keywords</h3>
+      <p>Toggle <code>duskOffice.syntax.italicComments</code> and <code>duskOffice.syntax.boldKeywords</code>, or use the matching commands. Overrides merge non-destructively with your own token rules.</p>
+    </article>
+  </div>
+</section>
+
+<section id="updates" class="section">
+  <h2>Updates &amp; follow</h2>
+  <p class="muted">Changelog, releases, and hashtags for posts, stars, and reviews.</p>
+  <div class="updates-grid">
+    <article>
+      <h3>Changelog</h3>
+      <p><a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a> · <a href="https://github.com/SIDIKICONDE/dusk-office/releases" target="_blank" rel="noopener">GitHub Releases</a></p>
+    </article>
+    <article>
+      <h3>Watch for releases</h3>
+      <p>GitHub → <strong>Watch</strong> → <em>Custom</em> → <strong>Releases</strong> on the <a href="https://github.com/SIDIKICONDE/dusk-office" target="_blank" rel="noopener">repo</a>.</p>
+    </article>
+    <article>
+      <h3>Tracking hashtags</h3>
+      <p class="hashtag-list"><code>#DuskOffice</code> <code>#VSCodeTheme</code> <code>#CursorTheme</code> <code>#WindsurfIDE</code> <code>#OpenVSX</code> <code>#JetBrainsTheme</code> <code>#ThemeGallery</code> <code>#AutoDarkMode</code> <code>#WCAG</code> <code>#DevTools</code> <code>#DarkTheme</code> <code>#LightTheme</code></p>
     </article>
   </div>
 </section>
@@ -282,6 +302,7 @@
       <a href="https://github.com/SIDIKICONDE/dusk-office/issues" target="_blank" rel="noopener">Issues</a>
       <a href="https://nythycleaner.cloud" target="_blank" rel="noopener">Sponsor · NythyCleaner</a>
     </div>
+    <p class="footer-hashtags muted">#DuskOffice #VSCodeTheme #CursorTheme #ThemeGallery #AutoDarkMode</p>
   </div>
 </footer>
 

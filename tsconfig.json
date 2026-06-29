@@ -15,6 +15,6 @@
     "noImplicitAny": false,
     "types": ["node", "vscode"]
   },
-  "include": ["extension.js", "lib/**/*.js"],
+  "include": ["extension.js", "lib/**/*.js", "types/**/*.d.ts"],
   "exclude": ["node_modules", "dist", "lib/generated", "tests", "scripts"]
 }

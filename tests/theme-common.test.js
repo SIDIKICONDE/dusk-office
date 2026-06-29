@@ -507,6 +507,7 @@ describe("sanitizeAutoSwitchConfig", () => {
       lightTheme: "Dusk Office Light",
       darkHour: 18,
       lightHour: 7,
+      timezone: "",
     });
   });
 
@@ -532,6 +533,7 @@ describe("sanitizeAutoSwitchConfig", () => {
       lightTheme: "Dusk Office Ivory",
       darkHour: 20,
       lightHour: 6,
+      timezone: "Europe/Paris",
     };
     assert.deepEqual(sanitizeAutoSwitchConfig(input), input);
   });
@@ -555,7 +557,13 @@ describe("sanitizeAdaptiveFocusConfig", () => {
       defaultLightTheme: "Dusk Office Ivory",
       defaultDarkTheme: "Dusk Office Midnight",
       languageOverrides: {},
+      timezone: "",
     });
+  });
+
+  it("inherits auto-switch timezone when adaptive timezone is unset", () => {
+    const result = sanitizeAdaptiveFocusConfig({ enabled: true }, "Europe/Paris");
+    assert.equal(result.timezone, "Europe/Paris");
   });
 
   it("clamps hours, rejects bad themes, coerces booleans", () => {

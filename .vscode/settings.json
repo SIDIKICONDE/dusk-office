@@ -1,6 +1,8 @@
 {
   "breadcrumbs.enabled": true,
   "window.dialogStyle": "custom",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "json.schemas": [
     {
       "fileMatch": ["ansi-language-configuration.json"],

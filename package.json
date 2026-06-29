@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
   "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
@@ -117,6 +117,11 @@
     "adaptive theme",
     "auto dark mode",
     "day night switch",
+    "timezone theme",
+    "theme gallery",
+    "theme gallery preview",
+    "italic comments",
+    "bold keywords",
     "ansi colors",
     "terminal theme",
     "product icon theme",
@@ -544,6 +549,13 @@
           "maximum": 23,
           "description": "Hour to start the dark theme."
         },
+        "duskOffice.autoSwitch.timezone": {
+          "type": "string",
+          "default": "",
+          "order": 42,
+          "description": "IANA timezone for Auto Switch and Adaptive Focus (e.g. Europe/Paris). Empty = machine local time.",
+          "markdownDescription": "IANA timezone for **Auto Switch** and **Adaptive Focus** hour boundaries (e.g. `Europe/Paris`, `America/Toronto`, `Asia/Tokyo`). Empty or `local` = your machine's local time."
+        },
         "duskOffice.workspaceFingerprint.enabled": {
           "type": "boolean",
           "default": true,
@@ -743,6 +755,20 @@
             "Dusk Office Sentinel"
           ],
           "description": "When set, always apply this theme in adaptive focus mode."
+        },
+        "duskOffice.syntax.italicComments": {
+          "type": "boolean",
+          "default": true,
+          "order": 40,
+          "description": "Show comments in italic. Dusk Office themes use italic comments by default; turn this off for upright comments.",
+          "markdownDescription": "**Italic comments**\n\nDusk Office themes render comments in *italic* by default. Disable this to display comments without italics. Applies live to the active Dusk Office theme via `editor.tokenColorCustomizations`."
+        },
+        "duskOffice.syntax.boldKeywords": {
+          "type": "boolean",
+          "default": false,
+          "order": 41,
+          "description": "Show language keywords in bold.",
+          "markdownDescription": "**Bold keywords**\n\nRender language keywords (`if`, `return`, `const`, …) in **bold**. Off by default. Applies live to the active Dusk Office theme via `editor.tokenColorCustomizations`."
         }
       }
     },
@@ -752,6 +778,16 @@
         "title": "Dusk Office: Control Center",
         "category": "Dusk Office",
         "icon": "$(color-mode)"
+      },
+      {
+        "command": "duskOffice.toggleItalicComments",
+        "title": "Dusk Office: Toggle Italic Comments",
+        "category": "Dusk Office"
+      },
+      {
+        "command": "duskOffice.toggleBoldKeywords",
+        "title": "Dusk Office: Toggle Bold Keywords",
+        "category": "Dusk Office"
       },
       {
         "command": "duskOffice.switchThemeVariant",
@@ -993,7 +1029,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run typecheck",
-    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/hour-schedule.test.js tests/schedule-time.test.js tests/theme-gallery.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js",
     "py:install": "pip install -e \".[dev]\"",
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",

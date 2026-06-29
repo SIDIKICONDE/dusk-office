@@ -145,6 +145,26 @@ This will:
 - **Editor & UI contrast verification**: run `Dusk Office: Verify Editor & UI Contrast` to check editor text, syntax tokens, and workbench chrome (status bar, tabs, buttons, badges, lists, diagnostics) against WCAG AA — 4.5:1 for body text, 3:1 for UI components and syntax tokens. The build pipeline enforces it on every variant (`npm run verify:ui`)
 - **Theme Gallery**: run `Dusk Office: Theme Gallery` for a visual grid of all 27 variants, each rendered from its real palette, with one-click Apply
 - **Adaptive focus (local)**: use `Dusk Office: Toggle Adaptive Focus` and `Dusk Office: Apply Adaptive Theme Now` to adapt themes from active editor language + time, with optional late-night eye comfort and theme lock (`duskOffice.adaptiveFocus.*`)
+- **Auto Switch timezone**: set `duskOffice.autoSwitch.timezone` to an IANA id (`Europe/Paris`, `America/Toronto`, …) or configure it from **Control Center → Configure Auto Switch** — empty = local machine time; shared with Adaptive Focus hour windows
+- **Theme Gallery hover preview**: open `Dusk Office: Theme Gallery`, hover any card to preview in the editor, **Apply** to keep, close the panel to revert
+
+---
+
+## Updates & follow
+
+Stay on top of new variants, automation, and contrast fixes:
+
+| Where | Link |
+| --- | --- |
+| **Changelog** | [CHANGELOG.md](./CHANGELOG.md) · [GitHub Releases](https://github.com/SIDIKICONDE/dusk-office/releases) |
+| **Docs mirror** | [dusk-office-docs](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/CHANGELOG.md) |
+| **Site** | [sidikiconde.github.io/dusk-office](https://sidikiconde.github.io/dusk-office/#whats-new) |
+| **Issues & ideas** | [GitHub Issues](https://github.com/SIDIKICONDE/dusk-office/issues) |
+| **Watch repo** | GitHub → **Watch** → *Custom* → **Releases** |
+
+**Tracking hashtags** (posts, stars, reviews — pick what fits):
+
+`#DuskOffice` · `#VSCodeTheme` · `#CursorTheme` · `#WindsurfIDE` · `#OpenVSX` · `#JetBrainsTheme` · `#ThemeGallery` · `#AutoDarkMode` · `#WCAG` · `#DevTools` · `#DarkTheme` · `#LightTheme` · `#FinanceDev` · `#CyberSec` · `#DevOps`
 
 ---
 
@@ -169,7 +189,7 @@ Yes. The build pipeline runs `audit-contrast.mjs` and `verify-terminal-contrast.
 Critical UI signals (errors, warnings, modified, diff, git status) use hue separation, not just red/green, so they remain readable under deuteranopia / protanopia. See `MAINTENANCE.md` → *Color harmony & eye comfort*.
 
 **Does it auto-switch between light and dark by hour?**
-Yes — enable `duskOffice.autoSwitch.enabled` and configure your light/dark hour windows. Combine with **Adaptive Focus** (`duskOffice.adaptiveFocus.enabled`) to also adapt by language and late-night eye comfort.
+Yes — enable `duskOffice.autoSwitch.enabled` and configure your light/dark hour windows. Optional **IANA timezone** via `duskOffice.autoSwitch.timezone` (e.g. `Europe/Paris`) when your machine clock and work location differ. Combine with **Adaptive Focus** (`duskOffice.adaptiveFocus.enabled`) to also adapt by language and late-night eye comfort.
 
 **Does it track me?**
 No telemetry, no network calls, no companion installs. Workspace fingerprint runs **100% locally** and is opt-out via `duskOffice.workspaceFingerprint.enabled`. Reset everything with `Dusk Office: Reset All Settings`.
@@ -179,7 +199,7 @@ Dusk Office is a **domain-tuned theme suite** rather than a single skin: variant
 
 ## Keywords / Tags
 
-dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast
+dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · timezone theme · iana timezone · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · theme gallery preview · hover preview · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast · italic comments · bold keywords
 
 ---
 

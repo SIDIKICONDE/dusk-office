@@ -10,6 +10,7 @@ const keys = require("./lib/core/extension-keys.js");
 const autoAdaptive = require("./lib/themes/auto-adaptive.js");
 const editorAnsi = require("./lib/ansi/editor-ansi.js");
 const productIcons = require("./lib/themes/product-icons.js");
+const syntaxStyle = require("./lib/themes/syntax-style.js");
 const { openControlCenter } = require("./lib/ui/control-center.js");
 const { openThemeGallery } = require("./lib/ui/theme-gallery.js");
 const { verifyEditorContrast } = require("./lib/contrast/ui-verify.js");
@@ -43,6 +44,9 @@ async function activate(context) {
         e.affectsConfiguration("duskOffice.adaptiveFocus.enabled")
       ) {
         await autoAdaptive.reconcileAutomaticModes();
+      }
+      if (e.affectsConfiguration("duskOffice.syntax")) {
+        void syntaxStyle.applySyntaxStyle();
       }
       const titleBarStyleChanged = e.affectsConfiguration("window.titleBarStyle");
       if (titleBarStyleChanged && state._titleBarIgnoreCount > 0) {
@@ -80,8 +84,11 @@ async function activate(context) {
     vscode.window.onDidChangeActiveColorTheme(() => {
       void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
       void titleBar.syncTitleBarStyleForDuskTheme(context);
+      void syntaxStyle.applySyntaxStyle();
     }),
     vscode.commands.registerCommand("duskOffice.openControlCenter", () => openControlCenter(context)),
+    vscode.commands.registerCommand("duskOffice.toggleItalicComments", () => syntaxStyle.toggleItalicComments()),
+    vscode.commands.registerCommand("duskOffice.toggleBoldKeywords", () => syntaxStyle.toggleBoldKeywords()),
     vscode.commands.registerCommand("duskOffice.openThemeGallery", () => openThemeGallery(context)),
     vscode.commands.registerCommand("duskOffice.verifyEditorContrast", () => verifyEditorContrast()),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => themes.setThemeVariant(context)),
@@ -120,6 +127,7 @@ async function activate(context) {
   createStatusBarItem(context);
   await initializeStartupBehavior(context);
   await titleBar.syncTitleBarStyleForDuskTheme(context);
+  void syntaxStyle.applySyntaxStyle();
 
   const activationTimer = setTimeout(() => {
     void showActivationPrompt(context).then((shown) => {
