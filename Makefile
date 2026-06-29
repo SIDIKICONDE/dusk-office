@@ -149,7 +149,7 @@ release-tag tag:
 release: validate push-main-auto release-tag
 	@echo ""
 	@echo "[OK] Release pipeline triggered for v$(RELEASE_VERSION)."
-	@echo "     VS Marketplace + Open VSX publish runs in GitHub Actions."
+	@echo "     VS Marketplace + JetBrains + Open VSX publish runs in GitHub Actions."
 	@echo "     Track: https://github.com/SIDIKICONDE/dusk-office/actions/workflows/release.yml"
 
 release-status:

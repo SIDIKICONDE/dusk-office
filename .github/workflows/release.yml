@@ -50,6 +50,7 @@ jobs:
       - name: Unit tests
         run: npm run test:all
 
+      # --- Build artifacts (VSIX + JetBrains ZIP) before any marketplace publish ---
       - name: Package VSIX
         run: npm run package
 
@@ -64,6 +65,27 @@ jobs:
           echo "path=$VSIX_FILE" >> "$GITHUB_OUTPUT"
           echo "Resolved VSIX: $VSIX_FILE"
 
+      - name: Setup Java (JetBrains plugin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build JetBrains plugin ZIP
+        run: npm run jetbrains:build
+
+      - name: Resolve JetBrains plugin ZIP
+        id: jetbrains_zip
+        run: |
+          ZIP=$(ls jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip 2>/dev/null | head -n 1)
+          if [ -z "$ZIP" ]; then
+            echo "::error::JetBrains plugin ZIP not found after jetbrains:build."
+            exit 1
+          fi
+          echo "path=$ZIP" >> "$GITHUB_OUTPUT"
+          echo "Resolved JetBrains ZIP: $ZIP"
+
+      # --- Publish to marketplaces (JetBrains no longer blocked by Open VSX) ---
       - name: Publish to Visual Studio Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
@@ -75,30 +97,6 @@ jobs:
           echo "VSCE_PAT length: ${#VSCE_PAT}"
           npx --no-install @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}"
 
-      - name: Publish to Open VSX
-        env:
-          OVSX_PAT: ${{ secrets.OVSX_PAT }}
-        run: |
-          if [ -z "$OVSX_PAT" ]; then
-            echo "::error::OVSX_PAT secret is not set; refusing to publish without Open VSX."
-            exit 1
-          fi
-          npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"
-
-      - name: Setup Java (JetBrains plugin)
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Export IDE themes + sync JetBrains plugin
-        run: |
-          npm run export:ide
-          npm run jetbrains:sync
-
-      - name: Build JetBrains plugin ZIP
-        run: node scripts/run-gradle.mjs buildPlugin --no-daemon
-
       - name: Publish to JetBrains Marketplace
         env:
           JETBRAINS_TOKEN: ${{ secrets.JETBRAINS_TOKEN }}
@@ -109,16 +107,22 @@ jobs:
           fi
           node scripts/run-gradle.mjs publishPlugin --no-daemon
 
-      - name: Resolve JetBrains plugin ZIP
-        id: jetbrains_zip
+      - name: Publish to Open VSX
+        continue-on-error: true
+        id: ovsx
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: |
-          ZIP=$(ls jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip 2>/dev/null | head -n 1)
-          if [ -z "$ZIP" ]; then
-            echo "::error::JetBrains plugin ZIP not found after buildPlugin."
-            exit 1
+          if [ -z "$OVSX_PAT" ]; then
+            echo "::warning::OVSX_PAT secret is not set; skipping Open VSX."
+            exit 0
           fi
-          echo "path=$ZIP" >> "$GITHUB_OUTPUT"
-          echo "Resolved JetBrains ZIP: $ZIP"
+          if npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"; then
+            echo "Open VSX publish succeeded."
+          else
+            echo "::warning::Open VSX publish failed (extension may already exist or await activation). Continuing release."
+            exit 0
+          fi
 
       - name: Extract changelog section for this version
         id: changelog
