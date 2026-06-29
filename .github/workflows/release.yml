@@ -85,82 +85,27 @@ jobs:
           echo "path=$ZIP" >> "$GITHUB_OUTPUT"
           echo "Resolved JetBrains ZIP: $ZIP"
 
-      # --- Publish to marketplaces (JetBrains no longer blocked by Open VSX) ---
+      # --- Publish to marketplaces (skip when version already published) ---
       - name: Publish to Visual Studio Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: |
-          if [ -z "$VSCE_PAT" ]; then
-            echo "::error::VSCE_PAT secret is not set; refusing to publish without VS Marketplace."
-            exit 1
-          fi
-          echo "VSCE_PAT length: ${#VSCE_PAT}"
-          npx --no-install @vscode/vsce publish --packagePath "${{ steps.vsix.outputs.path }}"
+        run: node scripts/publish-release.mjs vsce --package "${{ steps.vsix.outputs.path }}"
 
       - name: Publish to JetBrains Marketplace
         env:
           JETBRAINS_TOKEN: ${{ secrets.JETBRAINS_TOKEN }}
-        run: |
-          if [ -z "$JETBRAINS_TOKEN" ]; then
-            echo "::error::JETBRAINS_TOKEN secret is not set; refusing to publish without JetBrains Marketplace."
-            exit 1
-          fi
-          node scripts/run-gradle.mjs publishPlugin --no-daemon
+        run: node scripts/publish-release.mjs jetbrains
 
       - name: Publish to Open VSX
-        continue-on-error: true
-        id: ovsx
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
-        run: |
-          if [ -z "$OVSX_PAT" ]; then
-            echo "::warning::OVSX_PAT secret is not set; skipping Open VSX."
-            exit 0
-          fi
-          if npx --no-install ovsx publish "${{ steps.vsix.outputs.path }}" -p "$OVSX_PAT"; then
-            echo "Open VSX publish succeeded."
-          else
-            echo "::warning::Open VSX publish failed (extension may already exist or await activation). Continuing release."
-            exit 0
-          fi
+        run: node scripts/publish-release.mjs ovsx --package "${{ steps.vsix.outputs.path }}"
 
-      - name: Extract changelog section for this version
-        id: changelog
-        run: |
-          VERSION="${GITHUB_REF#refs/tags/v}"
-          BODY=$(awk -v v="$VERSION" '
-            $0 ~ "^## "v" " { found=1; next }
-            found && /^## / { exit }
-            found { print }
-          ' CHANGELOG.md)
-          if [ -z "$BODY" ]; then
-            echo "::error::CHANGELOG.md is missing a section for version $VERSION."
-            exit 1
-          fi
-          {
-            echo 'body<<__EOF__'
-            echo "$BODY"
-            echo '__EOF__'
-          } >> "$GITHUB_OUTPUT"
-
-      - name: Prepare GitHub Release assets
-        id: release_assets
-        run: |
-          ASSETS="${{ steps.vsix.outputs.path }}"
-          JB="${{ steps.jetbrains_zip.outputs.path }}"
-          ASSETS="${ASSETS}"$'\n'"${JB}"
-          echo "paths<<__EOF__" >> "$GITHUB_OUTPUT"
-          echo "$ASSETS" >> "$GITHUB_OUTPUT"
-          echo "__EOF__" >> "$GITHUB_OUTPUT"
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: Dusk Office ${{ github.ref_name }}
-          body: ${{ steps.changelog.outputs.body }}
-          files: ${{ steps.release_assets.outputs.paths }}
-          fail_on_unmatched_files: true
-          draft: false
-          prerelease: false
+      - name: Create or update GitHub Release
         env:
+          GITHUB_REF: ${{ github.ref }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node scripts/create-github-release.mjs \
+            --vsix "${{ steps.vsix.outputs.path }}" \
+            --jetbrains "${{ steps.jetbrains_zip.outputs.path }}"
