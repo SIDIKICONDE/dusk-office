@@ -9,7 +9,7 @@
 [![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/31875?label=JetBrains%20Marketplace&color=FF318C)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 [![JetBrains Downloads](https://img.shields.io/jetbrains/plugin/d/31875?label=JetBrains%20downloads)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 
-> **27 professional themes for VS Code, Cursor, Windsurf and Open VSX** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **WCAG-verified terminal + editor/UI contrast**, **visual theme gallery**, **semantic highlighting**, **ANSI coloring in the editor**, **adaptive day/night focus**, **workspace fingerprint**, **web-ready (vscode.dev / github.dev)**, **OLED-friendly**, **accessible & colorblind-aware**.
+> **Professional theme system for VS Code, Cursor, Windsurf and Open VSX** — **27 WCAG-verified variants** in one coherent family, with **Theme Gallery**, **workspace fingerprint**, **adaptive day/night focus**, and **verified editor/UI contrast**. Built for **finance, audit, banking, cybersecurity, SOC & DevOps** — and long sessions where readability matters.
 
 **Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** (plus **Neovim, Emacs, Zed, Helix, JetBrains** via [exported themes](./exports/README.md)) with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
 

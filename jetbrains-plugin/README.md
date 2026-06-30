@@ -9,7 +9,7 @@
 [![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX&color=A60EE5)](https://open-vsx.org/extension/dekidev/dusk-office)
 [![Open VSX Downloads](https://img.shields.io/open-vsx/dt/dekidev/dusk-office?label=Open%20VSX%20downloads)](https://open-vsx.org/extension/dekidev/dusk-office)
 
-> **27 professional themes for IntelliJ IDEA, PyCharm, WebStorm, Rider, CLion, GoLand, PhpStorm, RubyMine, DataGrip, RustRover, Android Studio and the JetBrains platform** — dark, light, and high-contrast variants tuned for **finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps**, and long coding sessions. **Full IDE UI themes + editor color schemes**, **WCAG-conscious terminal contrast**, **semantic token contrast**, **ANSI terminal colors**, **OLED-friendly**, **accessible & colorblind-aware**.
+> **Professional theme system for JetBrains IDEs** — the same **27 WCAG-conscious variants** as [VS Code, Cursor and Windsurf](../README.md): **full IDE UI themes** + **editor color schemes**, live-tested terminal contrast, semantic tokens, ANSI colors. Tuned for **finance, audit, cybersecurity, SOC & DevOps**.
 
 **Dusk Office** for JetBrains is the same polished theme suite as [VS Code, Cursor and Windsurf](../README.md): **27 dark, light, and high-contrast variants**, **full UI coverage** (`.theme.json` — toolbars, tabs, tool windows, menus, lists, dialogs) and matching **editor color schemes** (`.icls` — syntax, gutter, terminal ANSI, diff, VCS, debugger). Generated from the parent repo so every editor stays visually aligned.
 

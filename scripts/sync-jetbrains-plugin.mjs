@@ -267,7 +267,7 @@ function main() {
   <depends>com.intellij.modules.platform</depends>
 
   <description><![CDATA[
-    <h2>Dusk Office Themes — 27 professional themes for JetBrains IDEs</h2>
+    <h2>Dusk Office Themes — professional theme system for JetBrains IDEs</h2>
     <p>
       <a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/LICENSE">GPL-3.0</a> ·
       <a href="https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml">CI</a> ·
@@ -275,15 +275,16 @@ function main() {
       <a href="https://open-vsx.org/extension/dekidev/dusk-office">Open VSX</a> ·
       <a href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes">JetBrains Marketplace</a>
     </p>
-    <p><strong>Dusk Office Themes</strong> is a professional theme suite for
-    <strong>IntelliJ IDEA</strong>, <strong>PyCharm</strong>, <strong>WebStorm</strong>,
+    <p><strong>Dusk Office Themes</strong> brings the same professional theme system as
+    <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code / Cursor / Windsurf</a>
+    to <strong>IntelliJ IDEA</strong>, <strong>PyCharm</strong>, <strong>WebStorm</strong>,
     <strong>Rider</strong>, <strong>CLion</strong>, <strong>GoLand</strong>,
     <strong>PhpStorm</strong>, <strong>RubyMine</strong>, <strong>DataGrip</strong>,
     <strong>RustRover</strong>, <strong>Android Studio</strong> and the wider JetBrains platform.</p>
 
-    <p>27 carefully tuned variants — <strong>dark</strong>, <strong>light</strong> and
-    <strong>high-contrast</strong> — designed for <em>finance, fintech, audit, banking,
-    cybersecurity, SOC monitoring, DevOps</em> and long coding sessions.</p>
+    <p><strong>27 WCAG-conscious variants</strong> — dark, light and high-contrast —
+    tuned for <em>finance, audit, banking, cybersecurity, SOC monitoring and DevOps</em>.
+    Full IDE UI themes plus matching editor color schemes.</p>
 
     <h3>What's inside</h3>
     <ul>

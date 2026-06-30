@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.5.1 — 29 June 2026
+
+- **Changed**: **Marketplace positioning** — shorter `displayName` (*Professional Themes for Finance & Security*), system-first short description (adaptive theme system, gallery, fingerprint, auto switch). README hero, docs site, JetBrains listing (`jetbrains:sync`), and Get Started walkthrough aligned for clearer 3-second hook on VS Marketplace, Open VSX, and Cursor.
+
 ## 1.5.0 — 29 June 2026
 
 - **Added**: **Italic comments / bold keywords toggles** — two new settings `duskOffice.syntax.italicComments` (default `true`) and `duskOffice.syntax.boldKeywords` (default `false`), plus commands `Dusk Office: Toggle Italic Comments` and `Dusk Office: Toggle Bold Keywords`. New module `lib/themes/syntax-style.js` reconciles `editor.tokenColorCustomizations` with the current settings: it only emits override rules when the user deviates from the theme baseline (comments italic OFF → `fontStyle: ""` on comment scopes; keywords bold ON → `fontStyle: "bold"` on `keyword`/`storage` scopes), so the default state writes nothing and existing users are unaffected. Rules are tagged by `name` (`"Dusk Office: comments"` / `"Dusk Office: keywords"`) and merged non-destructively, preserving the user's own `textMateRules`. Applied only while a Dusk Office theme is active (reconciled on activation, `onDidChangeActiveColorTheme`, and `duskOffice.syntax` config changes); leaving a Dusk theme removes the managed rules. Config readers `getSyntaxItalicComments` / `getSyntaxBoldKeywords` added to `lib/core/configuration.js`.

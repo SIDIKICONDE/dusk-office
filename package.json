@@ -1,8 +1,8 @@
 {
   "name": "dusk-office",
-  "displayName": "Dusk Office — 27 Pro Themes · Dark, Light, High Contrast · Finance, Audit, Cybersecurity, DevOps",
-  "description": "27 professional VS Code themes (dark, light, high-contrast) for Cursor, Windsurf & Open VSX. Tuned for finance, fintech, audit, banking, cybersecurity, SOC monitoring, DevOps and long coding sessions. WCAG-verified contrast, semantic highlighting, ANSI in editor, adaptive day/night focus, workspace fingerprint, OLED-friendly, accessible & colorblind-aware.",
-  "version": "1.5.0",
+  "displayName": "Dusk Office — Professional Themes for Finance & Security",
+  "description": "One adaptive theme system — 27 WCAG-verified variants, live gallery, workspace fingerprint & day/night auto switch. VS Code, Cursor, Windsurf & web. Finance, audit, SOC, DevOps.",
+  "version": "1.5.1",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
@@ -290,7 +290,7 @@
       {
         "id": "duskOfficeGetStarted",
         "title": "Get Started with Dusk Office",
-        "description": "Set up 27 professional themes in 2 minutes — automatic project detection, day/night switching, adaptive focus, and the Control Center.",
+        "description": "Set up your theme system in 2 minutes — gallery, workspace fingerprint, day/night switch, adaptive focus, Control Center.",
         "steps": [
           {
             "id": "welcome",
