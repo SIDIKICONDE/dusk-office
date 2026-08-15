@@ -176,8 +176,6 @@ dark theme · light theme · high contrast theme · theme pack · color theme ·
 
 [![NythyCleaner logo](https://raw.githubusercontent.com/SIDIKICONDE/dusk-office/main/images/nythycleaner-logo.png)](https://nythycleaner.cloud)
 
-*Sponsored by our own Mac utility — [NythyCleaner](https://nythycleaner.cloud)*
-
 ---
 
 ## For developers

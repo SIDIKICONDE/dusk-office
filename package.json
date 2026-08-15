@@ -9,9 +9,6 @@
   "browser": "./dist/web/extension.js",
   "license": "GPL-3.0-or-later",
   "homepage": "https://sidikiconde.github.io/dusk-office/",
-  "sponsor": {
-    "url": "https://nythycleaner.cloud"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SIDIKICONDE/dusk-office.git"
