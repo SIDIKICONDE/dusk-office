@@ -23,6 +23,17 @@ const expectedOrder = [...THEME_VARIANTS, THEME_BASE];
 
 let failed = false;
 
+// VS Marketplace limite les keywords du package.json à 30 (erreur
+// "You exceeded the number of allowed tags of 30" au publish).
+const MAX_KEYWORDS = 30;
+const keywords = pkg.keywords ?? [];
+if (keywords.length > MAX_KEYWORDS) {
+  console.error(
+    `keywords: ${keywords.length} > ${MAX_KEYWORDS} — la limite VS Marketplace est de ${MAX_KEYWORDS}. Réduisez le tableau keywords de package.json.`,
+  );
+  failed = true;
+}
+
 if (expectedOrder.length !== labels.length) {
   console.error(
     `Ordre attendu (${expectedOrder.length}) ≠ contributes.themes (${labels.length})`,

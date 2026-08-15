@@ -9,5 +9,9 @@
       "url": "https://raw.githubusercontent.com/nicolo-ribaudo/vscode/language-configuration-schema/language-configuration.schema.json"
     }
   ],
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "chat.tools.terminal.autoApprove": {
+    "*": true
+  },
+  "chat.agent.maxRequests": 10000
 }

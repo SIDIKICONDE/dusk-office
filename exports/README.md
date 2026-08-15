@@ -25,6 +25,7 @@ make export-ide
 | `warp/` | **Warp** | Terminal — YAML avec `terminal_colors` normal/bright |
 | `windows-terminal/` | **Windows Terminal** | Terminal — schéma JSON complet (16 ANSI + curseur + sélection) |
 | `kitty/` | **kitty** | Terminal — fond/texte/cursor + `color0`…`color15` |
+| `konsole/` | **Konsole (KDE)** | Terminal — schéma `.colorscheme` (16 ANSI + Intense + fond/texte) |
 
 > **UI complète** : `exports/vscode/*.json`. Les autres formats poussent le maximum supporté par chaque IDE (pas d’équivalent pixel-perfect pour tout le chrome VS Code).
 
@@ -190,6 +191,27 @@ Dans `kitty.conf` :
 
 ```conf
 include themes/dusk-office-minuit.conf
+```
+
+---
+
+## Konsole (KDE)
+
+```bash
+mkdir -p ~/.local/share/konsole
+cp exports/konsole/dusk-office-finance.colorscheme ~/.local/share/konsole/
+```
+
+Puis dans Konsole : **Réglages → Modifier le profil actuel… → Profil → Apparence des couleurs** → choisir **Dusk Office Finance**.
+
+Ou en ligne de commande (profil dédié) :
+
+```bash
+# Profil par défaut utilisant le thème (ColorScheme = nom du fichier sans extension)
+printf '[Appearance]\nColorScheme=dusk-office-finance\n\n[General]\nName=Dusk-Office-Finance\nParent=FALLBACK/\n' \
+  > ~/.local/share/konsole/Dusk-Office-Finance.profile
+printf '\n[Desktop Entry]\nDefaultProfile=Dusk-Office-Finance.profile\n' >> ~/.config/konsolerc
+konsole   # démarre directement avec Dusk Office Finance
 ```
 
 ---

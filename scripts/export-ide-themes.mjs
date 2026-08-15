@@ -17,6 +17,7 @@ import {
   toHelixToml,
   toJetBrainsIcls,
   toKittyConf,
+  toKonsoleColorScheme,
   toNeovimLua,
   toPaletteJson,
   toVscodeResolvedJson,
@@ -48,6 +49,7 @@ const FORMATS = {
   warp: { dir: "warp", ext: ".yaml", render: toWarpYaml },
   "windows-terminal": { dir: "windows-terminal", ext: ".json", render: toWindowsTerminalJson },
   kitty: { dir: "kitty", ext: ".conf", render: toKittyConf },
+  konsole: { dir: "konsole", ext: ".colorscheme", render: toKonsoleColorScheme },
 };
 
 function parseOnlyArg() {

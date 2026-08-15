@@ -31,7 +31,7 @@ help:
 	@echo "  make reinstall        package + install-vsix (aliases: upgrade)"
 	@echo "  make full             make:full + package + install-vsix (aliases: all)"
 	@echo "  make clean-old-vsix   keep only the newest $(PKG)-*.vsix"
-	@echo "  make export-ide       export themes to Neovim, Emacs, Zed, Helix, JetBrains, Base16, Ghostty, WezTerm, Warp, Windows Terminal, kitty"
+	@echo "  make export-ide       export themes to Neovim, Emacs, Zed, Helix, JetBrains, Base16, Ghostty, WezTerm, Warp, Windows Terminal, kitty, Konsole"
 	@echo "  make jetbrains-build      sync + Gradle buildPlugin (ZIP)"
 	@echo "  make jetbrains-install    install latest ZIP (IDE=$(IDE): auto|flatpak-idea-ce|idea-ce|…)"
 	@echo "  make jetbrains-reinstall  build + install (alias: jetbrains-upgrade)"

@@ -1,5 +1,10 @@
 # Changelog — Dusk Office
 
+## 1.5.4 — 15 August 2026
+
+- **Added**: **Konsole (KDE) terminal theme export** — `npm run export:ide` now also generates `exports/konsole/*.colorscheme` (16 ANSI + Intense + background/foreground) for all 27 variants, with install instructions in `exports/README.md` (copy to `~/.local/share/konsole/` + profile setup).
+- **Changed**: **Marketplace search metadata** — `keywords` trimmed from 35 → 29 (below the VS Marketplace 30-tag limit: removed low-value `theme bundle`, `product icon theme`, `timezone theme`, `theme gallery preview`, `italic comments`, `bold keywords`); `displayName` restored to *Dusk Office — 27 Pro Themes for Finance, Cybersecurity & DevOps*; `description` re-expanded with search terms (fintech, banking, cybersecurity, OLED, accessible, colorblind-friendly). New guard in `scripts/verify-runtime-constants.mjs` fails `validate` if `keywords` ever exceeds 30 again.
+
 ## 1.5.3 — 15 August 2026
 
 - **Added**: **Terminal theme exports** — `npm run export:ide` now also generates `exports/ghostty/*.conf`, `exports/wezterm/*.toml`, `exports/warp/*.yaml`, `exports/windows-terminal/*.json`, and `exports/kitty/*.conf` for all 27 variants (ANSI 16 palette + foreground/background/cursor/selection), in addition to the existing Neovim, Emacs, Zed, Helix, JetBrains, Base16, and resolved-VS Code formats (13 formats, 351 files).

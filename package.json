@@ -1,8 +1,8 @@
 {
   "name": "dusk-office",
-  "displayName": "Dusk Office — Professional Themes for Finance & Security",
-  "description": "One adaptive theme system — 27 WCAG-verified variants, live gallery, workspace fingerprint & day/night auto switch. VS Code, Cursor, Windsurf & web. Finance, audit, SOC, DevOps.",
-  "version": "1.5.3",
+  "displayName": "Dusk Office — 27 Pro Themes for Finance, Cybersecurity & DevOps",
+  "description": "27 WCAG-verified dark, light & OLED high-contrast themes for finance, fintech, banking, audit, cybersecurity, SOC & DevOps. Colorblind-friendly & accessible, semantic highlighting, adaptive day/night auto switch, live gallery. VS Code, Cursor, Windsurf & web.",
+  "version": "1.5.4",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
@@ -114,15 +114,9 @@
     "adaptive theme",
     "auto dark mode",
     "day night switch",
-    "timezone theme",
     "theme gallery",
-    "theme gallery preview",
-    "italic comments",
-    "bold keywords",
     "ansi colors",
-    "terminal theme",
-    "product icon theme",
-    "theme bundle"
+    "terminal theme"
   ],
   "contributes": {
     "languages": [
