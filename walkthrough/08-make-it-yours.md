@@ -54,28 +54,6 @@ A quick star rating helps other developers discover these themes:
 
 Or run **`Dusk Office: Rate on Marketplace`** from the Command Palette anytime.
 
-## Also from the same developer
-
-**🛠️ [NythyCleaner](https://nythycleaner.cloud)** — Your Mac, clean and fast.
-Desk and dev workflow in one tool.
-
-| | |
-| --- | --- |
-| **Xcode cleanup** | DerivedData, simulators, archives, CocoaPods, Carthage |
-| **Full monitoring** | CPU, memory, GPU, network, disk I/O, thermals |
-| **Security audit** | CVE scans: npm, pip, Go, Maven, Composer, Bundler |
-| **Dev dependencies** | 20 ecosystems — outdated packages, bulk updates |
-| **Disk treemap** | Volume map, large-file scans, iCloud evict/download |
-| **Exact duplicates** | SHA-256 byte match — same file, any name or date |
-| **Privacy** | TCC audit, secure delete, DNS, Spotlight, schedules |
-
-The essentials are free. Go Pro to unlock everything.
-
-If Dusk Office makes your editor feel right, NythyCleaner makes your Mac feel
-right.
-
-**[Try NythyCleaner →](https://nythycleaner.cloud)**
-
 ---
 
 Welcome to Dusk Office. Happy coding 🌒

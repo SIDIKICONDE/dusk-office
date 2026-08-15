@@ -9,6 +9,8 @@
 
 ## Unreleased
 
+- **Removed**: **NythyCleaner recommendation feature** — the `duskOffice.nythyCleanerRecommendation` setting (and its `$(heart) NythyCleaner — Dev Disk Cleanup` entry in the Control Center), the "Also by the same developer" / "Also from the same developer" sections in `README.md`, `jetbrains-plugin/README.md`, `walkthrough/08-make-it-yours.md`, and `QUICKSTART-LONG.md`. No more third-party app promotion inside the extension.
+
 ## 1.5.1 — 29 June 2026
 
 - **Changed**: **Marketplace positioning** — shorter `displayName` (*Professional Themes for Finance & Security*), system-first short description (adaptive theme system, gallery, fingerprint, auto switch). README hero, docs site, JetBrains listing (`jetbrains:sync`), and Get Started walkthrough aligned for clearer 3-second hook on VS Marketplace, Open VSX, and Cursor.

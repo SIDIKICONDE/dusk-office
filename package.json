@@ -391,16 +391,10 @@
     "configuration": {
       "title": "Dusk Office",
       "properties": {
-        "duskOffice.nythyCleanerRecommendation": {
-          "type": "boolean",
-          "default": true,
-          "order": 0,
-          "markdownDescription": "**🛠️ NythyCleaner Recommendation — [Try NythyCleaner →](https://nythycleaner.cloud)**\n\nAlso by the same developer. Your Mac, clean and fast: Xcode cleanup (22 categories), full system monitoring (CPU, GPU, Neural Engine), security audit (CVE scanning), 20+ dev ecosystem scans, disk treemap, exact SHA-256 duplicates, privacy tools.\n\nThe essentials are free. Disable this checkbox if you do not want to see NythyCleaner recommendations in Dusk Office surfaces."
-        },
         "duskOffice.marketplaceReview": {
           "type": "boolean",
           "default": true,
-          "order": 1,
+          "order": 0,
           "description": "Ask for a Marketplace star rating after you've used Dusk Office for a while.",
           "markdownDescription": "**⭐ Marketplace review**\n\nAfter a few sessions and at least a week of use, Dusk Office may ask once for a quick star rating on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office), [Open VSX](https://open-vsx.org/extension/dekidev/dusk-office), or [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes). Ratings help others discover these themes and improve recommendations.\n\nDisable this checkbox if you do not want review reminders."
         },

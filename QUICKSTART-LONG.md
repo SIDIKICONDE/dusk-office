@@ -158,7 +158,6 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.favoriteTheme` | `""` | Favorite variant (Settings Sync–friendly; synced with **Set Favorite**). |
 | `duskOffice.applyFavoriteOnStartup` | `false` | Apply the favorite theme on startup. |
 | `duskOffice.marketplaceReview` | `true` | Ask for a Marketplace star rating after sufficient use. |
-| `duskOffice.nythyCleanerRecommendation` | `true` | Show NythyCleaner entry in the Control Center. |
 | `duskOffice.workspaceFingerprint.enabled` | `true` | Suggest a variant once per workspace from project signals. |
 | `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |
 | `duskOffice.statusBar.enabled` | `true` | Show the Dusk Office status bar button. |
@@ -319,9 +318,3 @@ This completely resets all Dusk Office settings and returns to VS Code defaults,
 If you need to reset development settings or clear corrupted state, you can also run the same command - it works identically for both users and developers.
 
 Quick “if you want…” picks and the full theme table: **[README — Pick a Variant](./README.md#pick-a-variant)** · [GitHub](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/README.md#pick-a-variant) and [Included Themes](#included-themes) above.
-
----
-
-## Also by the same developer
-
-See **[README — Also by the same developer](./README.md#also-by-the-same-developer)** · [GitHub](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/README.md#also-by-the-same-developer) (NythyCleaner and links).
