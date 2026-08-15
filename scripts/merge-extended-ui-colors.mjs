@@ -472,6 +472,10 @@ function buildExtended(p) {
     "quickInput.background": widget,
     "quickInputList.focusBackground": A(accent, "33"),
 
+    /** Quick picker — séparateurs de groupes. */
+    "pickerGroup.border": A(border, "44"),
+    "pickerGroup.foreground": A(accentHi, "aa"),
+
     "dropdown.foreground": fg,
     "dropdown.background": widget,
     "dropdown.border": A(border, "59"),
@@ -480,6 +484,13 @@ function buildExtended(p) {
     "checkbox.background": widget,
     "checkbox.border": A(border, "59"),
     "checkbox.foreground": fg,
+
+    /** Boutons radio (design arrondi). */
+    "radio.activeBackground": accent,
+    "radio.activeForeground": fg,
+    "radio.inactiveBackground": A(border, "44"),
+    "radio.inactiveBorder": A(border, "88"),
+    "radio.inactiveHoverBackground": A(accent, "33"),
 
     "listFilterWidget.background": widget,
 
@@ -519,6 +530,107 @@ function buildExtended(p) {
     "textCodeBlock.background": A(widget, "dd"),
     "textPreformat.background": A(accentSoft, "55"),
     "textPreformat.foreground": fg,
+
+    // ============================================================
+    // Nouveau design VS Code (1.93+ → 1.10x)
+    // ============================================================
+
+    /** Nouvelle barre d'activité horizontale (activity bar top). */
+    "activityBarTop.foreground": fg,
+    "activityBarTop.activeBorder": A(accentHi, "aa"),
+    "activityBarTop.activeBackground": A(accent, "22"),
+    "activityBarTop.inactiveForeground": A(fg, "77"),
+    "activityBarTop.dropBorder": A(accentHi, "88"),
+
+    /** Command center — complément des clés background/border déjà présentes. */
+    "commandCenter.foreground": fg,
+    "commandCenter.activeBackground": A(accent, "22"),
+    "commandCenter.activeBorder": A(accentHi, "66"),
+    "commandCenter.inactiveForeground": A(fg, "77"),
+    "commandCenter.debuggingBackground": A(error, "33"),
+
+    /** Onglets — hover, drag & drop, group border. */
+    "tab.border": A(border, "44"),
+    "tab.hoverBackground": A(accent, "14"),
+    "tab.hoverForeground": fg,
+    "tab.hoverBorder": A(accentHi, "44"),
+    "tab.unfocusedHoverBorder": A(accentHi, "2a"),
+    "tab.dragAndDropBorder": A(accentHi, "88"),
+
+    /** Sidebar — drop + titres de section. */
+    "sideBar.dropBackground": A(accent, "22"),
+    "sideBarTitle.foreground": fg,
+    "sideBarSectionHeader.foreground": A(fg, "bb"),
+    "sideBarSectionHeader.border": A(border, "44"),
+
+    /** Editor group — bordures et zone de drop. */
+    "editorGroup.border": A(border, "44"),
+    "editorGroup.dropBackground": A(accent, "22"),
+    "editorGroupHeader.border": A(border, "44"),
+    "editorGroupHeader.tabsBorder": A(border, "33"),
+
+    /** Toolbar — outline au survol. */
+    "toolbar.hoverOutline": A(accentHi, "66"),
+
+    /** Panels — sections et drop. */
+    "panelSection.border": A(border, "59"),
+    "panelSectionHeader.foreground": A(fg, "cc"),
+    "panelSection.dropBackground": A(accent, "22"),
+
+    /** Status bar — remote, prominent, active, focus. */
+    "statusBarItem.remoteBackground": accent,
+    "statusBarItem.remoteForeground": fg,
+    "statusBarItem.activeBackground": A(accent, "22"),
+    "statusBarItem.prominentBackground": accent,
+    "statusBarItem.prominentHoverBackground": A(accent, "aa"),
+    "statusBar.focusBorder": A(accentHi, "88"),
+
+    /** Menu — séparateur. */
+    "menu.separatorBackground": A(border, "44"),
+
+    /** Widgets éditeur — fond, bordure, resize, ombre. */
+    "editorWidget.background": widget,
+    "editorWidget.border": A(border, "44"),
+    "editorWidget.resizeBorder": A(accent, "44"),
+    "editorSuggestWidget.selectedForeground": fg,
+    "editorHoverWidget.statusBarBackground": widget,
+
+    /** Progression + listes. */
+    "progressBar.background": accentHi,
+    "list.hoverBackground": A(accent, "14"),
+
+    /** Scrollbar — ombre + curseur. */
+    "scrollbar.shadow": "#00000066",
+    "scrollbarSlider.background": A(border, "88"),
+    "scrollbarSlider.hoverBackground": A(accentHi, "88"),
+
+    /** Boutons — séparateur et bordure. */
+    "button.separator": A(border, "66"),
+    "button.border": A(accentHi, "55"),
+
+    /** Contraste (mode haute visibilité). */
+    "contrastBorder": A(border, "aa"),
+
+    /** Notifications — bordures. */
+    "notificationCenter.border": A(border, "59"),
+    "notificationToast.border": A(border, "59"),
+
+    /** Raccourcis clavier (keybinding labels). */
+    "keybindingLabel.background": A(accent, "18"),
+    "keybindingLabel.foreground": A(fg, "cc"),
+    "keybindingLabel.border": A(border, "44"),
+    "keybindingLabel.bottomBorder": A(border, "44"),
+
+    /** Barre d'outils debug — bordure. */
+    "debugToolBar.border": A(border, "44"),
+
+    /** Chat IA — fond de requête, avatars, fichiers édités. */
+    "chat.requestBackground": A(widget, "cc"),
+    "chat.avatarBackground": A(accent, "33"),
+    "chat.avatarForeground": fg,
+    "chat.editedFileForeground": accentHi,
+
+    /** Inline edit (Copilot) — les vraies clés VS Code sont en original/modified (déjà listées plus haut). */
   };
 }
 
