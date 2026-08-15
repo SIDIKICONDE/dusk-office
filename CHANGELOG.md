@@ -9,6 +9,7 @@
 
 ## Unreleased
 
+- **Added**: **Terminal theme exports** — `npm run export:ide` now also generates `exports/ghostty/*.conf`, `exports/wezterm/*.toml`, `exports/warp/*.yaml`, `exports/windows-terminal/*.json`, and `exports/kitty/*.conf` for all 27 variants (ANSI 16 palette + foreground/background/cursor/selection), in addition to the existing Neovim, Emacs, Zed, Helix, JetBrains, Base16, and resolved-VS Code formats (13 formats, 351 files).
 - **Removed**: **NythyCleaner recommendation feature** — the `duskOffice.nythyCleanerRecommendation` setting (and its `$(heart) NythyCleaner — Dev Disk Cleanup` entry in the Control Center), the "Also by the same developer" / "Also from the same developer" sections in `README.md`, `jetbrains-plugin/README.md`, `walkthrough/08-make-it-yours.md`, and `QUICKSTART-LONG.md`. No more third-party app promotion inside the extension.
 
 ## 1.5.1 — 29 June 2026

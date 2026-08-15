@@ -20,6 +20,11 @@ make export-ide
 | `helix/` | **Helix** | ~60 clés `ui.*` + syntaxe + palette terminal |
 | `jetbrains/` | **IntelliJ** (fichiers `.icls` bruts) | Éditeur — le plugin embarque aussi `.theme.json` UI complète |
 | `base16/` | **Base16** (Alacritty, etc.) | 16 couleurs dérivées du workbench |
+| `ghostty/` | **Ghostty** | Terminal — palette ANSI 16 + fond/texte/cursor/sélection |
+| `wezterm/` | **WezTerm** | Terminal — schéma `[colors]` avec ANSI + brights |
+| `warp/` | **Warp** | Terminal — YAML avec `terminal_colors` normal/bright |
+| `windows-terminal/` | **Windows Terminal** | Terminal — schéma JSON complet (16 ANSI + curseur + sélection) |
+| `kitty/` | **kitty** | Terminal — fond/texte/cursor + `color0`…`color15` |
 
 > **UI complète** : `exports/vscode/*.json`. Les autres formats poussent le maximum supporté par chaque IDE (pas d’équivalent pixel-perfect pour tout le chrome VS Code).
 
@@ -114,6 +119,78 @@ Voir [jetbrains-plugin/README.md](../jetbrains-plugin/README.md) pour publier su
 ## Base16
 
 Utiliser avec [base16-manager](https://github.com/base16-manager/base16-manager), [tinted-theming](https://github.com/tinted-theming/home), ou tout outil compatible Base16.
+
+---
+
+## Ghostty
+
+```bash
+mkdir -p ~/.config/ghostty/themes
+cp exports/ghostty/dusk-office-minuit.conf ~/.config/ghostty/themes/
+```
+
+Puis dans `~/.config/ghostty/config` :
+
+```conf
+theme = dusk-office-minuit
+```
+
+---
+
+## WezTerm
+
+```bash
+mkdir -p ~/.config/wezterm/colors
+cp exports/wezterm/dusk-office-minuit.toml ~/.config/wezterm/colors/
+```
+
+Dans `wezterm.lua` :
+
+```lua
+config.color_scheme = "dusk-office-minuit"
+```
+
+---
+
+## Warp
+
+```bash
+mkdir -p ~/.warp/themes
+cp exports/warp/dusk-office-minuit.yaml ~/.warp/themes/
+```
+
+Puis choisir **Dusk Office Minuit** dans les réglages de thème de Warp (Apparence → Thème).
+
+---
+
+## Windows Terminal
+
+Ajouter le schéma dans `settings.json` → `schemes` :
+
+```json
+{
+  "schemes": [
+    { "name": "Dusk Office Minuit", "background": "#010102", "foreground": "#d1e0e8" }
+  ]
+}
+```
+
+Ou copier le contenu complet de `exports/windows-terminal/dusk-office-minuit.json` dans la liste `schemes` (toutes les clés ANSI, curseur et sélection y sont).
+
+---
+
+## kitty
+
+```bash
+mkdir -p ~/.config/kitty/themes
+cp exports/kitty/dusk-office-minuit.conf ~/.config/kitty/themes/
+```
+
+Dans `kitty.conf` :
+
+```conf
+include themes/dusk-office-minuit.conf
+```
 
 ---
 

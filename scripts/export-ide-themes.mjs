@@ -13,11 +13,16 @@ import { buildExportPalette } from "../lib/export/theme-export-palette.mjs";
 import {
   toBase16Yaml,
   toEmacsEl,
+  toGhosttyConf,
   toHelixToml,
   toJetBrainsIcls,
+  toKittyConf,
   toNeovimLua,
   toPaletteJson,
   toVscodeResolvedJson,
+  toWarpYaml,
+  toWezTermToml,
+  toWindowsTerminalJson,
   toZedJson,
 } from "../lib/export/export-formats.mjs";
 
@@ -38,6 +43,11 @@ const FORMATS = {
   zed: { dir: "zed", ext: ".json", render: toZedJson },
   helix: { dir: "helix", ext: ".toml", render: toHelixToml },
   jetbrains: { dir: "jetbrains", ext: ".icls", render: toJetBrainsIcls },
+  ghostty: { dir: "ghostty", ext: ".conf", render: toGhosttyConf },
+  wezterm: { dir: "wezterm", ext: ".toml", render: toWezTermToml },
+  warp: { dir: "warp", ext: ".yaml", render: toWarpYaml },
+  "windows-terminal": { dir: "windows-terminal", ext: ".json", render: toWindowsTerminalJson },
+  kitty: { dir: "kitty", ext: ".conf", render: toKittyConf },
 };
 
 function parseOnlyArg() {
