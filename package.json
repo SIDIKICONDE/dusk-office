@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — Professional Themes for Finance & Security",
   "description": "One adaptive theme system — 27 WCAG-verified variants, live gallery, workspace fingerprint & day/night auto switch. VS Code, Cursor, Windsurf & web. Finance, audit, SOC, DevOps.",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
