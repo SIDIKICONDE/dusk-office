@@ -14,6 +14,7 @@ export default [
       "dist/**",
       "lib/generated/**",
       ".vscode-test-web/**",
+      ".venv/**",
       "exports/**",
       "jetbrains-plugin/**",
       "python/**",

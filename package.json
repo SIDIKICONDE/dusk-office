@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — Professional Themes for Finance & Security",
   "description": "One adaptive theme system — 27 WCAG-verified variants, live gallery, workspace fingerprint & day/night auto switch. VS Code, Cursor, Windsurf & web. Finance, audit, SOC, DevOps.",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
@@ -1038,16 +1038,16 @@
     "tag:release": "node scripts/release-tag.mjs"
   },
   "devDependencies": {
-    "@types/node": "^25.5.1",
-    "@types/react": "^19.2.14",
+    "@types/node": "^25.9.5",
+    "@types/react": "^19.2.18",
     "@types/vscode": "~1.85",
-    "@vscode/test-web": "^0.0.80",
-    "@vscode/vsce": "^3.2.2",
-    "esbuild": "^0.28.0",
-    "eslint": "^9.39.4",
-    "globals": "^17.6.0",
+    "@vscode/test-web": "^0.0.81",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.5",
+    "globals": "^17.11.0",
     "ovsx": "^0.10.0",
-    "playwright": "^1.60.0",
+    "playwright": "^1.62.1",
     "typescript": "~5.7.3"
   }
 }

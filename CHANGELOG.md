@@ -1,5 +1,12 @@
 # Changelog — Dusk Office
 
+## 1.5.2 — 15 August 2026
+
+- **Removed**: **Sponsor links and GitHub FUNDING configuration** — the "Sponsored by NythyCleaner" lines in `README.md` and `jetbrains-plugin/README.md`, the "Sponsor · NythyCleaner" footer link on the docs landing page, the `sponsor` field in `package.json`, and `.github/FUNDING.yml` (which activated the repo's GitHub Sponsor button).
+- **Fixed**: **ESLint scanning `.venv/`** — `.venv/**` added to the ESLint ignore list so vendored pip files no longer surface `no-undef` errors in `npm run lint`; removed unused `isValidTimezone` import in `lib/ui/control-center.js`.
+- **Fixed**: **VSIX packaging with a local `.venv/`** — `.venv/**` added to `.vscodeignore` so `vsce package` (and its `@secretlint` secret scan) no longer trips over pip's symlinked directories (`EISDIR`).
+- **Changed**: **Dependency updates** — `@vscode/vsce` 3.7.1 → 3.9.2, `playwright` 1.60.0 → 1.62.1, `globals` 17.6.0 → 17.11.0, `@types/node` 25.5.1 → 25.9.5, `@types/react` 19.2.14 → 19.2.18, `@vscode/test-web` 0.0.80 → 0.0.81, `esbuild` 0.28.0 → 0.28.2, `eslint` 9.39.4 → 9.39.5.
+
 ## Unreleased
 
 ## 1.5.1 — 29 June 2026

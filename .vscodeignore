@@ -41,6 +41,7 @@ pyproject.toml
 
 # Local IDE / dev / log noise
 .idea/**
+.venv/**
 .gradle/**
 .intellijPlatform/**
 *.log
