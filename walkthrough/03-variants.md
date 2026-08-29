@@ -41,8 +41,8 @@ consistency as the dark family.
 
 ---
 
-Click **"Open the variant picker"** below — hover to preview live, click to apply
-instantly.
+Click **"Open the variant picker"** below — browse the list, then Enter or click
+to apply. Esc cancels without changing the workbench.
 
 Or try the **Theme Gallery** — a visual grid of all 27 variants rendered from their
 real palettes, with one-click Apply.

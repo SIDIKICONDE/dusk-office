@@ -20,7 +20,7 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 
 **Note:** Dusk Office does **not** auto-install other extensions. If you want companion tools, you can add **Material Icon Theme** for Explorer icons and [**Markdown All in One**](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) for Markdown shortcuts, snippets, TOC, and list helpers. Theme **colors** for the Markdown preview (`textLink`, `markdownAlert`, etc.) still come from Dusk Office's color themes.
 
-**macOS — title bar:** the **system menu bar** (Apple menu) always follows macOS appearance. The **window** title bar is switched to **custom** when a Dusk Office theme is active so it matches `titleBar.*` in the theme (native title bars often stay dark with a light editor theme). Turn off with setting **`duskOffice.titleBar.alignWithTheme`**: `false`, or set **`window.titleBarStyle`**: `native` yourself if you prefer the native bar.
+**macOS — title bar:** the **system menu bar** (Apple menu) always follows macOS appearance. The **window** title bar can be switched to **custom** so it matches `titleBar.*` in the theme (native title bars often stay dark with a light editor theme). This is **off by default** — enable **`duskOffice.titleBar.alignWithTheme`**, or set **`window.titleBarStyle`**: `native` yourself if you prefer the native bar.
 
 ## Highlights
 
@@ -39,7 +39,7 @@ It includes dark, light, warm, and high-contrast variants for daily use, plus wo
 - Status bar switcher
 - Semantic highlighting and TextMate token styling
 - Variants for dark, light, warm, and high-contrast setups
-- Visual **Theme Gallery** (live preview of every variant) and **editor/UI contrast verification**
+- Visual **Theme Gallery** (in-card preview of every variant; Apply to switch) and **editor/UI contrast verification**
 - **Web extension** support — full runtime activates on vscode.dev / github.dev, not just desktop
 - Good editor defaults
 
@@ -113,7 +113,7 @@ Open the Command Palette and run `Dusk Office: Control Center`, or use the statu
 - toggle activity bar position
 - toggle **Dusk Office · Product** icons (same as command below)
 - toggle title bar align with theme
-- open the **Theme Gallery** (live preview of every variant)
+- open the **Theme Gallery** (visual cards; Apply to switch)
 - verify **terminal contrast** and **editor & UI contrast**
 - toggle the status bar button
 - clear the workspace theme memory
@@ -161,7 +161,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.workspaceFingerprint.enabled` | `true` | Suggest a variant once per workspace from project signals. |
 | `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |
 | `duskOffice.statusBar.enabled` | `true` | Show the Dusk Office status bar button. |
-| `duskOffice.titleBar.alignWithTheme` | `true` | When a Dusk Office color theme is active, set `window.titleBarStyle` to `custom` so the title bar follows the theme (helps a light editor avoid a stuck-dark native bar on macOS). When you leave Dusk themes or disable this, the previous global title bar style is restored. Does not override if you set `window.titleBarStyle` to `native` yourself in User or Workspace settings. |
+| `duskOffice.titleBar.alignWithTheme` | `false` | When enabled and a Dusk Office color theme is active, set `window.titleBarStyle` to `custom` so the title bar follows the theme (helps a light editor avoid a stuck-dark native bar on macOS). When you leave Dusk themes or disable this, the previous global title bar style is restored. Does not override if you set `window.titleBarStyle` to `native` yourself in User or Workspace settings. |
 | `duskOffice.autoSwitch.enabled` | `false` | Switch between light and dark Dusk Office themes by hour. |
 | `duskOffice.autoSwitch.lightTheme` | `Dusk Office Light` | Theme during light hours (enum matches Dusk variants in settings UI). |
 | `duskOffice.autoSwitch.darkTheme` | `Dusk Office Midnight` | Theme during dark hours (same enum). |
@@ -179,7 +179,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.adaptiveFocus.languageOverrides` | `{}` | Per-language `{ light, dark }` overrides merged onto built-in rules. |
 | `duskOffice.adaptiveFocus.lockTheme` | `""` | Force one theme when adaptive focus runs (empty = no lock). |
 | `duskOffice.editorAnsi.enabled` | `true` | ANSI coloring in editor for logs and escape literals. |
-| `duskOffice.editorAnsi.allLanguages` | `true` | Apply ANSI in any language when sequences are detected. |
+| `duskOffice.editorAnsi.allLanguages` | `false` | Apply ANSI in any language when sequences are detected (opt-in; default is `editorAnsi.languageIds` only). |
 | `duskOffice.editorAnsi.dimEscapeSequences` | `true` | Fade raw ESC sequences in log files. |
 | `duskOffice.editorAnsi.languageIds` | `log`, `ansi` | Language IDs when `allLanguages` is false. |
 | `duskOffice.editorAnsi.maxLineCount` | `12000` | Max lines to colorize per file (0 = unlimited). |
@@ -212,14 +212,6 @@ Source of truth: [`lib/themes/theme-common.js`](./lib/themes/theme-common.js) �
 | *(other)* | Ivory | Midnight |
 
 CLI preview (same rules): `node scripts/adaptive-focus-mode.mjs --language python --hour 14`
-
-### Editor defaults bundled with the extension
-
-`package.json` → `contributes.configurationDefaults` applies these when the extension is enabled (user/workspace settings still win):
-
-- `editor.semanticHighlighting.enabled` → `true`
-- `editor.bracketPairColorization.enabled` → `true`; `editor.bracketPairColorization.independentColorPoolPerBracketType` → `true`
-- `editor.guides.bracketPairs` → `active`
 
 ### Source of truth (repo)
 

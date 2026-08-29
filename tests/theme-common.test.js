@@ -50,6 +50,13 @@ describe("isDuskTheme", () => {
     assert.equal(isDuskTheme(undefined), false);
     assert.equal(isDuskTheme(42), false);
   });
+
+  it("accepts badged Marketplace labels", () => {
+    assert.equal(isDuskTheme("◑ Dusk Office Midnight"), true);
+    assert.equal(isDuskTheme("◒ Dusk Office Light"), true);
+    assert.equal(isDuskTheme("◑ Dusk Office · Base"), true);
+    assert.equal(isDuskTheme("$(check) ◑ Dusk Office Vault"), true);
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -97,6 +104,11 @@ describe("theme insignia", () => {
     assert.equal(stripThemeDisplayLabel("$(check) ◒ Dusk Office Ivory"), "Dusk Office Ivory");
     assert.equal(stripThemeDisplayLabel("◑ Dusk Office Midnight"), "Dusk Office Midnight");
     assert.equal(stripThemeDisplayLabel("◑ Dusk Office · Base"), "Dusk Office");
+  });
+
+  it("does not double-badge an already-badged label", () => {
+    assert.equal(getThemeDisplayLabel("◑ Dusk Office Midnight"), "◑ Dusk Office Midnight");
+    assert.equal(getThemeDisplayLabel("◑ Dusk Office · Base"), "◑ Dusk Office · Base");
   });
 
   it("identifies light and dark variants", () => {
@@ -444,6 +456,11 @@ describe("coerceDuskTheme", () => {
     assert.equal(coerceDuskTheme("", "Dusk Office Midnight"), "Dusk Office Midnight");
     assert.equal(coerceDuskTheme(null, "Dusk Office Midnight"), "Dusk Office Midnight");
     assert.equal(coerceDuskTheme(42, "Dusk Office Light"), "Dusk Office Light");
+  });
+
+  it("normalizes badged labels to the plain name", () => {
+    assert.equal(coerceDuskTheme("◑ Dusk Office Midnight", "Dusk Office Light"), "Dusk Office Midnight");
+    assert.equal(coerceOptionalDuskTheme("◒ Dusk Office Ivory"), "Dusk Office Ivory");
   });
 });
 

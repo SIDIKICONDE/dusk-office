@@ -15,21 +15,25 @@ try {
   process.exit(1);
 }
 
-try {
-  execSync("git diff --ignore-cr-at-eol --quiet -- themes/", { cwd: root });
-  console.log("verify-themes-fresh: OK — themes/ matches pipeline output");
-} catch {
-  console.error(
-    "verify-themes-fresh: themes/ is out of sync with theme-sources/ pipeline.",
-  );
-  console.error("Run `npm run make:full` locally, review changes, then commit.");
+function failIfStale(relPath, label) {
   try {
-    execSync("git diff --ignore-cr-at-eol --stat -- themes/", {
-      cwd: root,
-      stdio: "inherit",
-    });
+    execSync(`git diff --ignore-cr-at-eol --quiet -- ${relPath}`, { cwd: root });
   } catch {
-    /* ignore */
+    console.error(`verify-themes-fresh: ${label} is out of sync with the pipeline.`);
+    console.error("Run `npm run make:full` locally, review changes, then commit.");
+    try {
+      execSync(`git diff --ignore-cr-at-eol --stat -- ${relPath}`, {
+        cwd: root,
+        stdio: "inherit",
+      });
+    } catch {
+      /* ignore */
+    }
+    process.exit(1);
   }
-  process.exit(1);
 }
+
+failIfStale("themes/", "themes/");
+failIfStale("lib/generated/themes-bundle.js", "lib/generated/themes-bundle.js");
+failIfStale("docs/landing-themes.js", "docs/landing-themes.js");
+console.log("verify-themes-fresh: OK — themes/, themes-bundle, and landing-themes match pipeline output");

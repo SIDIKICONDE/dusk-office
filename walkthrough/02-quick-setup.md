@@ -4,9 +4,9 @@ No settings files. No documentation reading. Just three choices:
 
 ## How it works
 
-1. **Pick a variant** — live preview with ↑↓ keys, click to confirm
+1. **Pick a variant** — Enter or click to apply; Esc cancels the whole flow
 2. **Choose automation** — Adaptive Focus (smart), Day/Night (simple), or manual
-3. **Done** — your choice becomes your favorite, remembered across restarts
+3. **Done** — the variant you picked in step 1 is saved as your favorite. Automation may then change the *active* theme (by language or hour) without changing that favorite.
 
 ## What gets configured
 

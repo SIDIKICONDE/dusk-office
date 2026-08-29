@@ -8,42 +8,60 @@
   "use strict";
 
   /**
-   * @type {Array<{
-   *   label: string, niche: string, bg: string, fg: string, accent: string
-   * }>}
-   *
-   * Colors mirror the actual editor.background / editor.foreground / accent
-   * shipped in themes/*.json, extracted via scripts and pinned here.
+   * Marketing niches stay here; colors come from generated
+   * `docs/landing-themes.js` (`npm run build:bundle`) so they match themes/*.json.
+   * Labels are assigned with textContent — do not interpolate untrusted HTML.
    */
-  const VARIANTS = [
-    { label: "Dusk Office", niche: "Default · OLED-friendly dark", bg: "#040a10", fg: "#cfe8f0", accent: "#22d3ee" },
-    { label: "Dusk Office Abyss", niche: "Deep night · OLED-friendly", bg: "#020c14", fg: "#cfe8f0", accent: "#5a9aaa" },
-    { label: "Dusk Office Dawn", niche: "Plum sunrise · warm dawn", bg: "#2a2436", fg: "#e8e0de", accent: "#ffb38a" },
-    { label: "Dusk Office Bay", niche: "Deep teal · calm waters", bg: "#081410", fg: "#ecfdf5", accent: "#6a9a78" },
-    { label: "Dusk Office Mist", niche: "Cool slate · misty morning", bg: "#222f3d", fg: "#f4f9fc", accent: "#7dd3fc" },
-    { label: "Dusk Office Ash", niche: "Neutral grey · timeless", bg: "#22262d", fg: "#e5e7eb", accent: "#a3b8cc" },
-    { label: "Dusk Office Midnight", niche: "Pure black · late night", bg: "#020304", fg: "#d1e0e8", accent: "#22d3ee" },
-    { label: "Dusk Office Nebula", niche: "Cosmic violet", bg: "#10081f", fg: "#f3e8ff", accent: "#c084fc" },
-    { label: "Dusk Office Reef", niche: "Aqua reef", bg: "#002830", fg: "#cffafe", accent: "#4ab8c8" },
-    { label: "Dusk Office Nocturne", niche: "Warm night · Monokai-like", bg: "#24201c", fg: "#f8f8f2", accent: "#ff9d40" },
-    { label: "Dusk Office Audit", niche: "Light · audit & compliance", bg: "#e3e8ec", fg: "#25313a", accent: "#556f83" },
-    { label: "Dusk Office Vault", niche: "Fintech · banking", bg: "#1a1814", fg: "#e6ebef", accent: "#dcc894" },
-    { label: "Dusk Office Sentinel", niche: "Cybersecurity · SOC", bg: "#121a22", fg: "#e2eaed", accent: "#8fbfc0" },
-    { label: "Dusk Office Steward", niche: "ML · data · Python backend", bg: "#16141e", fg: "#e7edf1", accent: "#dec692" },
-    { label: "Dusk Office Voltage", niche: "Modern web stacks", bg: "#151a17", fg: "#edf6ee", accent: "#d5ff88" },
-    { label: "Dusk Office Ledger", niche: "Light · accounting", bg: "#ece7de", fg: "#24313a", accent: "#658297" },
-    { label: "Dusk Office Secure", niche: "Security ops", bg: "#0a1e1c", fg: "#e3eaed", accent: "#8fbdbc" },
-    { label: "Dusk Office Finance", niche: "Markets · trading", bg: "#0d1520", fg: "#e8e6e3", accent: "#22d3ee" },
-    { label: "Dusk Office Corporate", niche: "Enterprise · neutral", bg: "#1d1f21", fg: "#c5c8c6", accent: "#8a6f4a" },
-    { label: "Dusk Office Neon", niche: "Vivid pink · violet", bg: "#0a0612", fg: "#f0e6ff", accent: "#ff6eb4" },
-    { label: "Dusk Office Luxe", niche: "Gold · champagne", bg: "#0c0a0e", fg: "#f0ece8", accent: "#e8c4a0" },
-    { label: "Dusk Office Or", niche: "Or · bronze profond", bg: "#0a0800", fg: "#e8d5a3", accent: "#d4a030" },
-    { label: "Dusk Office Terminal", niche: "CRT green · CLI vibes", bg: "#0a0a0a", fg: "#b8ffb0", accent: "#66ff33" },
-    { label: "Dusk Office Light", niche: "Light · daytime default", bg: "#f8fafc", fg: "#0f172a", accent: "#0e7490" },
-    { label: "Dusk Office Ivory", niche: "Light · warm cream", bg: "#f6eede", fg: "#2a2420", accent: "#92400e" },
-    { label: "Dusk Office Dark Ivory", niche: "Warm dark counterpart", bg: "#29241d", fg: "#eee2d4", accent: "#c89c5e" },
-    { label: "Dusk Office High Contrast", niche: "HC · max accessibility", bg: "#000000", fg: "#ffffff", accent: "#22d3ee" },
-  ];
+  const NICHE_BY_NAME = {
+    "Dusk Office": "Default · OLED-friendly dark",
+    "Dusk Office Abyss": "Deep night · OLED-friendly",
+    "Dusk Office Dawn": "Plum sunrise · warm dawn",
+    "Dusk Office Bay": "Deep teal · calm waters",
+    "Dusk Office Mist": "Cool slate · misty morning",
+    "Dusk Office Ash": "Neutral grey · timeless",
+    "Dusk Office Midnight": "Pure black · late night",
+    "Dusk Office Nebula": "Cosmic violet",
+    "Dusk Office Reef": "Aqua reef",
+    "Dusk Office Nocturne": "Warm night · Monokai-like",
+    "Dusk Office Audit": "Light · audit & compliance",
+    "Dusk Office Vault": "Fintech · banking",
+    "Dusk Office Sentinel": "Cybersecurity · SOC",
+    "Dusk Office Steward": "ML · data · Python backend",
+    "Dusk Office Voltage": "Modern web stacks",
+    "Dusk Office Ledger": "Light · accounting",
+    "Dusk Office Secure": "Security ops",
+    "Dusk Office Finance": "Markets · trading",
+    "Dusk Office Corporate": "Enterprise · neutral",
+    "Dusk Office Neon": "Vivid pink · violet",
+    "Dusk Office Luxe": "Gold · champagne",
+    "Dusk Office Or": "Or · bronze profond",
+    "Dusk Office Terminal": "CRT green · CLI vibes",
+    "Dusk Office Light": "Light · daytime default",
+    "Dusk Office Ivory": "Light · warm cream",
+    "Dusk Office Dark Ivory": "Warm dark counterpart",
+    "Dusk Office High Contrast": "HC · max accessibility",
+  };
+
+  function isHexColor(value) {
+    return typeof value === "string" && /^#[0-9a-fA-F]{6}$/.test(value);
+  }
+
+  function loadVariants() {
+    const generated = globalThis.DUSK_OFFICE_LANDING_THEMES;
+    if (!Array.isArray(generated)) return [];
+    return generated
+      .map((entry) => {
+        const name = typeof entry?.name === "string" ? entry.name : "";
+        return {
+          label: name,
+          niche: NICHE_BY_NAME[name] || "",
+          bg: isHexColor(entry?.bg) ? entry.bg : "",
+          fg: isHexColor(entry?.fg) ? entry.fg : "",
+          accent: isHexColor(entry?.accent) ? entry.accent : "",
+        };
+      })
+      .filter((variant) => variant.label && variant.bg && variant.fg && variant.accent);
+  }
 
   // ---------------------------------------------------------------------------
   // Helpers
@@ -124,11 +142,15 @@
 
     const head = document.createElement("div");
     head.className = "vhead";
-    head.innerHTML =
-      '<span class="vdot"></span>' +
-      `<span class="vlabel">${v.label.replace("Dusk Office ", "").replace("Dusk Office", "Default")}</span>`;
-    head.querySelector(".vdot").style.background = v.accent;
-    head.querySelector(".vdot").style.boxShadow = `0 0 12px ${v.accent}`;
+    const dot = document.createElement("span");
+    dot.className = "vdot";
+    dot.style.background = v.accent;
+    dot.style.boxShadow = `0 0 12px ${v.accent}`;
+    const label = document.createElement("span");
+    label.className = "vlabel";
+    label.textContent = v.label.replace("Dusk Office ", "").replace("Dusk Office", "Default");
+    head.appendChild(dot);
+    head.appendChild(label);
 
     const tag = document.createElement("div");
     tag.className = "vtag";
@@ -170,7 +192,7 @@
     const grid = document.getElementById("variant-grid");
     if (!grid) return;
     const frag = document.createDocumentFragment();
-    for (const v of VARIANTS) {
+    for (const v of loadVariants()) {
       const card = renderCard(v);
       attachClickToCopy(card);
       frag.appendChild(card);

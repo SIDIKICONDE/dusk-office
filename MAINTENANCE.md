@@ -186,7 +186,7 @@ Checks JSON, `include` paths, `contributes.themes` in `package.json`, pipeline l
 The extension activates in the **web** host (vscode.dev / github.dev), not just the desktop Node host:
 
 - Bundled with **esbuild** (`scripts/build-extension.mjs`, `npm run build:ext`) into `dist/node/extension.js` (`main`) and `dist/web/extension.js` (`browser`). `vscode:prepublish` runs `build:bundle && build:ext`, so `vsce package` produces both. `dist/` is gitignored; the VSIX ships `dist/` instead of the CommonJS source (`lib/`, `extension.js` are `.vscodeignore`d).
-- The runtime graph is **filesystem-free**. Theme data is embedded at build time: `scripts/build-themes-bundle.mjs` flattens every variant's `include` chain into `lib/generated/themes-bundle.js` (regenerated inside `make:full`; commit it). The Theme Gallery and both contrast verifiers read this bundle; workspace fingerprint reads manifests through `vscode.workspace.fs`.
+- The runtime graph is **filesystem-free**. Theme data is embedded at build time: `scripts/build-themes-bundle.mjs` flattens every variant's `include` chain into `lib/generated/themes-bundle.js` (regenerated inside `make:full`; commit it) and writes `docs/landing-themes.js` for the GitHub Pages gallery. The Theme Gallery and both contrast verifiers read this bundle; workspace fingerprint reads manifests through `vscode.workspace.fs`. `npm run sync:enums` (also in `make:full`) writes the six theme-name configuration enums from `ALL_DUSK_THEMES`.
 - Node-only include-chain flattening lives in `lib/terminal/theme-merge.js` and `lib/themes/theme-merge-data.js` (scripts, tests, bundle generator only) — never imported by the runtime, so the web bundle has no `fs`/`path`.
 - Local debug: `main` points at `dist/`, so run `npm run watch:ext` (or `build:ext`) before launching the Extension Host.
 
@@ -236,9 +236,9 @@ Before a release, spot-check in the editor:
   npx @vscode/vsce publish --no-dependencies
   ```
 
-## Default settings (`configurationDefaults`)
+## Default settings
 
-Declared in `package.json` → `contributes.configurationDefaults`: minimap, semantic highlighting, bracket guides, sticky scroll, highlights, explorer, etc. See the file for the current list. **User / workspace** settings override these. No color theme is forced there.
+Dusk Office does **not** ship `contributes.configurationDefaults` that rewrite editor settings (semantic highlighting, brackets, guides, etc.). Users keep their own editor preferences.
 
 For another Dusk Office variant as team default, set e.g. `"workbench.colorTheme": "Dusk Office Abyss"` in the workspace `settings.json`.
 
@@ -248,7 +248,7 @@ For another Dusk Office variant as team default, set e.g. `"workbench.colorTheme
 
 ## Control Center runtime
 
-`extension.js` provides a small command runtime:
+`extension.js` provides a small command runtime. The Control Center Quick Pick is grouped with separators (Themes, Automation, Workspace, Appearance, ANSI, Contrast, Setup):
 
 - `Dusk Office: Control Center`
 - `Dusk Office: Choose Theme`

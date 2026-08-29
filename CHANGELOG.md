@@ -1,5 +1,22 @@
 # Changelog — Dusk Office
 
+## Unreleased
+
+## 1.5.6 — 29 August 2026
+
+- **Fixed**: **Themes apply only on explicit confirm** — the Theme Gallery no longer writes `workbench.colorTheme` on hover, and `Dusk Office: Choose Theme` no longer live-previews on ↑↓. Cards and the picker list are browse-only; the workbench changes only when you click **Apply** / press Enter.
+- **Fixed**: **Current theme is always the plain name** — `getCurrentTheme()` strips ◑/◒ Marketplace labels so favorites, Auto Switch, Adaptive Focus, the status bar, gallery checkmark, and `duskOffice.isActive` stay in sync when VS Code stores a badged label.
+- **Fixed**: **Quick Setup** — Esc on the variant picker cancels the flow; the favorite saved is the variant you picked in step 1, even if Adaptive Focus or Auto Day/Night then changes the active theme.
+- **Fixed**: **Configure Auto Switch** now asks for an IANA timezone and writes `duskOffice.autoSwitch.timezone`.
+- **Changed**: **Title bar align** (`duskOffice.titleBar.alignWithTheme`) defaults to **off**. **ANSI in all languages** (`duskOffice.editorAnsi.allLanguages`) defaults to **off**. The extension no longer ships `configurationDefaults` that rewrite editor semantic highlighting / brackets / guides.
+- **Changed**: Extension activates on `onStartupFinished` so favorite-on-startup, Auto Switch, and title-bar sync run at launch. Removed redundant `workspaceContains` globs (`**/.git`, `**/package.json`, and the other manifest walks) — startup no longer depends on them; Adaptive still uses `onLanguage` (including kotlin/swift/dart) and commands still activate from the palette.
+- **Changed**: **Control Center** groups actions under Quick Pick separators (Themes, Automation, Workspace, Appearance, ANSI, Contrast, Setup). Every previous action stays reachable.
+- **Changed**: Landing gallery colors are generated from the theme bundle (`docs/landing-themes.js` via `npm run build:bundle`) so they stay aligned with `themes/*.json`.
+- **Changed**: The six `package.json` theme-name enums are generated from `ALL_DUSK_THEMES` (`npm run sync:enums` in `make:full`). `verify-runtime-constants.mjs` still checks they match.
+- **Fixed**: Existing profiles keep the previous title-bar align and ANSI-all-languages defaults (`true` / `true`) when those keys were never set. New installs keep the opt-in defaults. Reset All Settings clears the one-shot migration key.
+- **Docs**: Landing/docs cleanup — no fake ratings; site gallery colors stay generated from the theme bundle.
+- **Changed**: Tests and `verify-runtime-constants` cover Control Center grouping, landing preview, profile-defaults migration, and generated theme enums.
+
 ## 1.5.5 — 15 August 2026
 
 - **Added**: **Modern rounded VS Code design support** — new color keys for the redesigned workbench UI: `activityBarTop.*` (background, foreground, inactiveForeground, activeBorder, dropBorder), `commandCenter.*` (background, border, foreground, activeBackground, activeBorder, activeForeground, inactiveForeground), `tab.border`, `tab.hoverBackground`, `tab.hoverForeground`, `tab.hoverBorder`, `tab.unfocusedHoverBorder`, `tab.dragAndDropBorder`, `tab.selectedBackground`, `tab.selectedForeground`, `tab.selectedBorderTop`, `editorGroup.border`, `editorGroup.dropBackground`, `editorGroupHeader.border`, `editorGroupHeader.tabsBorder`, `panelSection.border`, `panelSection.dropBackground`, `panelSectionHeader.foreground`, `toolbar.hoverOutline`, `statusBarItem.remoteBackground`, `statusBarItem.remoteForeground`, `statusBar.focusBorder`, `menu.separatorBackground`, `keybindingLabel.background`, `keybindingLabel.foreground`, `keybindingLabel.border`, `keybindingLabel.bottomBorder`, `button.separator`, `button.border`, `scrollbar.shadow`, `scrollbarSlider.background`, `scrollbarSlider.hoverBackground`, `debugToolBar.border`, `chat.requestBackground`, `chat.avatarBackground`, `chat.avatarForeground`, `chat.editedFileForeground`, `radio.activeBackground`, `radio.activeForeground`, `radio.inactiveBackground`, `radio.inactiveBorder`, `radio.inactiveHoverBackground`, `pickerGroup.border`, `pickerGroup.foreground`, and the full `inlineEdit.*` set (originalBackground, modifiedBackground, originalBorder, modifiedBorder, originalChangedLineBackground, modifiedChangedLineBackground, originalChangedTextBackground, modifiedChangedTextBackground, tabWillAcceptOriginalBorder, tabWillAcceptModifiedBorder, gutterIndicator.*).

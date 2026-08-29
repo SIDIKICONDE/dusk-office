@@ -17,6 +17,7 @@ const { verifyEditorContrast } = require("./lib/contrast/ui-verify.js");
 const { createStatusBarItem } = require("./lib/ui/status-bar.js");
 const { createAutoSwitchManager, createAdaptiveFocusManager } = require("./lib/themes/feature-managers.js");
 const { initializeStartupBehavior } = require("./lib/core/startup.js");
+const { migrateExistingProfileDefaults } = require("./lib/core/profile-defaults-migrate.js");
 const { showActivationPrompt } = require("./lib/prompts/activation-prompt.js");
 const {
   detectWorkspaceFingerprint,
@@ -33,6 +34,7 @@ async function activate(context) {
   const picId = Array.isArray(pic) && typeof pic[0]?.id === "string" ? pic[0].id : "";
   state.duskProductIconThemeId = picId;
 
+  await migrateExistingProfileDefaults(context);
   await initializeMarketplaceReviewTracking(context);
   await autoAdaptive.reconcileAutomaticModes();
   void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));

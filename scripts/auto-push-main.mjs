@@ -3,7 +3,8 @@
  * Commit + push local changes to `main`.
  *
  * By default, shows git status and asks for confirmation (safe).
- * Pass --yes to skip the prompt (CI / deliberate one-shot automation only).
+ * Pass --yes to skip the prompt (local one-shot automation only).
+ * --yes is refused when CI or GITHUB_ACTIONS is set.
  */
 import { execFileSync } from "child_process";
 import fs from "fs";
@@ -15,6 +16,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const pkg = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 const skipConfirm = process.argv.includes("--yes");
+const inCi = Boolean(process.env.CI || process.env.GITHUB_ACTIONS);
+if (skipConfirm && inCi) {
+  console.error("Refusing --yes in CI (CI or GITHUB_ACTIONS is set).");
+  process.exit(1);
+}
 
 function run(args) {
   execFileSync("git", args, {

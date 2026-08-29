@@ -99,6 +99,8 @@ code --install-extension dusk-office-*.vsix
 | Light / daytime | **Dusk Office Ivory** |
 | High contrast / accessibility | **Dusk Office High Contrast** |
 
+These are the **plain** names (no ◑/◒). Apply via **Dusk Office: Choose Theme** or the Theme Gallery — the workbench changes only when you confirm.
+
 Full list of 27 variants: [Included Themes](./QUICKSTART-LONG.md#included-themes) · [on GitHub](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/QUICKSTART-LONG.md#included-themes).
 
 ---
@@ -143,10 +145,9 @@ This will:
 - **Color harmony & eye comfort** - how variants stay coherent and easy on the eyes (chrome vs editor, terminal blend, contrast checks): [MAINTENANCE.md](./MAINTENANCE.md) (section *Color harmony & eye comfort*)
 - **Terminal contrast verification**: run `Dusk Office: Verify Terminal Contrast` (public command). It now performs real contrast calculations on packaged themes (includes merged), checks `terminal.foreground` and ANSI thresholds, and can open a detailed report. See [Terminal Contrast](./QUICKSTART-LONG.md#check-contrast) for details
 - **Editor & UI contrast verification**: run `Dusk Office: Verify Editor & UI Contrast` to check editor text, syntax tokens, and workbench chrome (status bar, tabs, buttons, badges, lists, diagnostics) against WCAG AA — 4.5:1 for body text, 3:1 for UI components and syntax tokens. The build pipeline enforces it on every variant (`npm run verify:ui`)
-- **Theme Gallery**: run `Dusk Office: Theme Gallery` for a visual grid of all 27 variants, each rendered from its real palette, with one-click Apply
+- **Theme Gallery**: run `Dusk Office: Theme Gallery` for a visual grid of all 27 variants, each rendered from its real palette, with one-click Apply. Hovering a card does not change the workbench.
 - **Adaptive focus (local)**: use `Dusk Office: Toggle Adaptive Focus` and `Dusk Office: Apply Adaptive Theme Now` to adapt themes from active editor language + time, with optional late-night eye comfort and theme lock (`duskOffice.adaptiveFocus.*`)
 - **Auto Switch timezone**: set `duskOffice.autoSwitch.timezone` to an IANA id (`Europe/Paris`, `America/Toronto`, …) or configure it from **Control Center → Configure Auto Switch** — empty = local machine time; shared with Adaptive Focus hour windows
-- **Theme Gallery hover preview**: open `Dusk Office: Theme Gallery`, hover any card to preview in the editor, **Apply** to keep, close the panel to revert
 
 ---
 
@@ -199,4 +200,4 @@ Dusk Office is a **domain-tuned theme suite** rather than a single skin: variant
 
 ## Keywords / Tags
 
-dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · timezone theme · iana timezone · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · theme gallery preview · hover preview · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast · italic comments · bold keywords
+dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · timezone theme · iana timezone · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast · italic comments · bold keywords
