@@ -7,7 +7,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { normalizeLightSyntax } from "./fix-light-syntax.mjs";
-import { applyLightTerminalAnsi } from "./light-terminal-ansi.mjs";
+import { applyLightTerminalAnsi, IVOIRE_PANEL_TERMINAL_CHROME } from "./light-terminal-ansi.mjs";
 import { IVOIRE_CHROME_UI, IVOIRE_SETTINGS_UI, IVOIRE_TAB_UI } from "./light-settings-ui.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -95,7 +95,7 @@ const SYNTAX_LIGHT_TO_IVOIRE = {
   "475569": "3d4f58",
   "166534": "2d6b48",
   "14532d": "24603e",
-  "5b21b6": "5c2d8a",
+  "5b21b6": "5c4030",
   "9f1853": "8b1748",
   "1d4ed8": "2a5f9e",
   "1e40af": "254680",
@@ -111,6 +111,20 @@ const SYNTAX_LIGHT_TO_IVOIRE = {
   cfe8f0: "2a2420",
   "be185d": "9d1748",
   "a16207": "7a5206",
+  /** Candy Tailwind (and Light cool-ink replacements) → terracotta / olive / ink. */
+  db2777: "9a3f28",
+  "34d399": "2d6b48",
+  a855f7: "5c4030",
+  ec4899: "9d1748",
+  f472b6: "a8577a",
+  "0e4a62": "9a3f28",
+  "9333ea": "5c2d8a",
+  "7c3aed": "5c2d8a",
+  "8b5cf6": "6440a0",
+  "94a3b8": "8b7d6a",
+  "0369a1": "8a6248",
+  "0891b2": "6b5340",
+  "0e7490": "8a6248",
 };
 
 /** @param {string} c */
@@ -219,6 +233,14 @@ const IVOIRE_UI_CONTRAST = {
   "scrollbarSlider.background": "#7d6a5652",
   "scrollbarSlider.hoverBackground": "#5c4d407a",
   "sideBar.foreground": "#2a2420",
+  "chat.requestBubbleBackground": "#efe6d8ee",
+  "chat.requestBubbleHoverBackground": "#b8765022",
+  "chat.requestCodeBorder": "#b8765044",
+  "chat.linesAddedForeground": "#2d6b48cc",
+  "chat.linesRemovedForeground": "#9a3f28cc",
+  "chat.checkpointSeparator": "#8a7a6a59",
+  "chat.thinkingShimmer": "#b8765022",
+  "agentStatusIndicator.background": "#b8765033",
   ...IVOIRE_SETTINGS_UI,
   ...IVOIRE_CHROME_UI,
   ...IVOIRE_TAB_UI,
@@ -257,7 +279,7 @@ function main() {
 
   applyIvoireContrast(out);
   normalizeLightSyntax(out);
-  applyLightTerminalAnsi(out.colors);
+  applyLightTerminalAnsi(out.colors, IVOIRE_PANEL_TERMINAL_CHROME);
 
   const dest = path.join(root, "themes/dusk-ivoire.json");
   fs.writeFileSync(dest, JSON.stringify(out, null, 2) + "\n", "utf8");

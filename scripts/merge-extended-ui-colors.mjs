@@ -629,9 +629,81 @@ function buildExtended(p) {
     "chat.avatarBackground": A(accent, "33"),
     "chat.avatarForeground": fg,
     "chat.editedFileForeground": accentHi,
+    ...chatAgentChromeFromRoles({ accent, border, inserted, removed }),
 
     /** Inline edit (Copilot) — les vraies clés VS Code sont en original/modified (déjà listées plus haut). */
   };
+}
+
+/** #RRGGBB from #RRGGBB or #RRGGBBAA. */
+function rgbOf(hex) {
+  if (typeof hex !== "string" || !hex.startsWith("#") || hex.length < 7) return null;
+  return hex.slice(0, 7);
+}
+
+/**
+ * Cursor / Copilot chat + agent chrome (VS Code ColorRegistry).
+ * Accent wash on bubbles (Finance gold, Sentinel teal, Neon magenta…), git insert/delete on line counts.
+ * @param {{ accent: string, border: string, inserted: string, removed: string }} roles
+ */
+function chatAgentChromeFromRoles({ accent, border, inserted, removed }) {
+  return {
+    "chat.requestBubbleBackground": A(accent, "18"),
+    "chat.requestBubbleHoverBackground": A(accent, "22"),
+    "chat.requestCodeBorder": A(accent, "44"),
+    "chat.linesAddedForeground": A(inserted, "cc"),
+    "chat.linesRemovedForeground": A(removed, "cc"),
+    "chat.checkpointSeparator": A(border, "59"),
+    "chat.thinkingShimmer": A(accent, "22"),
+    "agentStatusIndicator.background": A(accent, "33"),
+  };
+}
+
+/**
+ * Workbench accent for identity themes that include dusk.json (not palette-merged).
+ * Neon uses saturated magenta from its syntax identity, not inherited dusk cyan.
+ */
+const CHAT_ACCENT_BY_ID = {
+  "dusk-neon": "#f04aa0",
+};
+
+/** Generated or already hand-tuned — do not inject chat/agent chrome here. */
+const SKIP_CHAT_AGENT_INJECT = new Set([
+  ...PALETTE_VARIANT_IDS,
+  "dusk",
+  "dusk-light",
+  "dusk-ivoire",
+  "dusk-audit",
+  "dusk-ledger",
+  "dusk-hc",
+  "dusk-ivoire-sombre",
+]);
+
+/** @param {Record<string, string>} colors @param {string} id */
+function chatAgentChromeFromThemeColors(colors, id) {
+  const accent =
+    CHAT_ACCENT_BY_ID[id] ||
+    rgbOf(colors["chat.requestBorder"]) ||
+    rgbOf(colors["activityBar.foreground"]) ||
+    rgbOf(colors["focusBorder"]) ||
+    rgbOf(colors["badge.background"]);
+  const border =
+    rgbOf(colors["activityBar.border"]) ||
+    rgbOf(colors["widget.border"]) ||
+    rgbOf(colors["panel.border"]) ||
+    accent;
+  const inserted =
+    rgbOf(colors["gitDecoration.addedResourceForeground"]) ||
+    rgbOf(colors["editorGutter.addedBackground"]) ||
+    rgbOf(colors["inlineChatDiff.inserted"]) ||
+    "#5a9a6a";
+  const removed =
+    rgbOf(colors["gitDecoration.deletedResourceForeground"]) ||
+    rgbOf(colors["editorGutter.deletedBackground"]) ||
+    rgbOf(colors["inlineChatDiff.removed"]) ||
+    "#c97565";
+  if (!accent || !border) return null;
+  return chatAgentChromeFromRoles({ accent, border, inserted, removed });
 }
 
 /** @type {Record<string, Palette>} */
@@ -732,6 +804,25 @@ function main() {
     theme.colors = sortColorKeys(theme.colors);
     fs.writeFileSync(full, JSON.stringify(theme, null, 2) + "\n", "utf8");
     console.log("OK", file, Object.keys(theme.colors).length, "clés colors");
+  }
+
+  const identityFiles = fs
+    .readdirSync(themesDir)
+    .filter((f) => f.startsWith("dusk") && f.endsWith(".json"));
+  for (const file of identityFiles) {
+    const id = file.replace(/\.json$/, "");
+    if (SKIP_CHAT_AGENT_INJECT.has(id)) continue;
+    const full = path.join(themesDir, file);
+    const theme = JSON.parse(fs.readFileSync(full, "utf8"));
+    if (!theme.colors || typeof theme.colors !== "object") continue;
+    const chrome = chatAgentChromeFromThemeColors(theme.colors, id);
+    if (!chrome) {
+      console.warn("Chat/agent chrome: accent introuvable:", file);
+      continue;
+    }
+    Object.assign(theme.colors, chrome);
+    fs.writeFileSync(full, JSON.stringify(theme, null, 2) + "\n", "utf8");
+    console.log("OK chat/agent", file);
   }
 }
 

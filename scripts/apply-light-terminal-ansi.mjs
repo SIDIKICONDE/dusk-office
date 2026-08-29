@@ -5,7 +5,10 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { applyLightTerminalAnsi } from "./light-terminal-ansi.mjs";
+import {
+  applyLightTerminalAnsi,
+  IVOIRE_PANEL_TERMINAL_CHROME,
+} from "./light-terminal-ansi.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -16,7 +19,9 @@ for (const entry of pkg.contributes?.themes ?? []) {
   const file = path.join(root, entry.path);
   const theme = JSON.parse(fs.readFileSync(file, "utf8"));
   theme.colors = theme.colors ?? {};
-  applyLightTerminalAnsi(theme.colors);
+  const chrome =
+    path.basename(file) === "dusk-ivoire.json" ? IVOIRE_PANEL_TERMINAL_CHROME : undefined;
+  applyLightTerminalAnsi(theme.colors, chrome);
   // Ledger / Audit n’embarquent pas editorCodeLens ; Light/Ivory le définissent au build.
   if (!theme.colors["editorCodeLens.foreground"]) {
     theme.colors["editorCodeLens.foreground"] = "#475569cc";

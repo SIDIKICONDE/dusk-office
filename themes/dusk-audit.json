@@ -12,6 +12,7 @@
     "activityBarTop.dropBorder": "#65829788",
     "activityBarTop.foreground": "#25313a",
     "activityBarTop.inactiveForeground": "#6b757d77",
+    "agentStatusIndicator.background": "#556f8333",
     "badge.background": "#556f83aa",
     "badge.foreground": "#0a0a0a",
     "breadcrumb.activeSelectionForeground": "#25313a",
@@ -29,11 +30,18 @@
     "button.separator": "#3d5a6a66",
     "chat.avatarBackground": "#556f8333",
     "chat.avatarForeground": "#25313a",
+    "chat.checkpointSeparator": "#8d8b8459",
     "chat.editedFileForeground": "#658297",
+    "chat.linesAddedForeground": "#4a7a62cc",
+    "chat.linesRemovedForeground": "#8b4a52cc",
     "chat.requestBackground": "#edf1f5cc",
     "chat.requestBorder": "#556f8344",
+    "chat.requestBubbleBackground": "#edf1f5ee",
+    "chat.requestBubbleHoverBackground": "#556f8322",
+    "chat.requestCodeBorder": "#556f8344",
     "chat.slashCommandBackground": "#556f8322",
     "chat.slashCommandForeground": "#3e5565",
+    "chat.thinkingShimmer": "#b59a6a22",
     "checkbox.background": "#edf1f5",
     "checkbox.border": "#3d5a6a59",
     "checkbox.foreground": "#25313a",
@@ -1183,7 +1191,7 @@
     {
       "scope": "constant.numeric",
       "settings": {
-        "foreground": "#6b6080"
+        "foreground": "#5c6b82"
       }
     },
     {
@@ -1304,7 +1312,7 @@
         "markup.fenced_code"
       ],
       "settings": {
-        "foreground": "#6b6080"
+        "foreground": "#5c6b82"
       }
     },
     {

@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 1.5.7 — 29 August 2026
+
+- **Added**: **Chat / agent chrome** on all 27 variants — `chat.requestBubbleBackground` + hover, `chat.requestCodeBorder`, `chat.linesAddedForeground` / `chat.linesRemovedForeground`, `chat.checkpointSeparator`, `chat.thinkingShimmer`, `agentStatusIndicator.background`. Hex comes from each variant’s accent / git insert-delete (Finance gold, Sentinel teal, Neon magenta, light paper for Light / Ivory / Audit / Ledger). Ledger values unchanged.
+- **Fixed**: **Finance** selection, find match, inlay hints, and related editor chrome no longer use leftover Tailwind cyan/pink/violet (`#06b6d4`, `#22d3ee`, `#f472b6`, `#c084fc`); they use Finance gold/navy (`#c9a227`, `#e8d570`, `#2a5d8a`, `#5a8fc0`).
+- **Changed**: **Sentinel** keywords (semantic + TextMate `keyword` / `storage.type` / `storage.modifier` / `variable.language`) move off the steel-cyan family to rust `#c89068`; types and strings stay teal/cyan.
+- **Changed**: **Ivory** syntax leaves Tailwind candy (`keyword` `#db2777`, `string` `#34d399`, `number` `#a855f7`) for terracotta / olive / ink (`#9a3f28`, `#2d6b48`, `#5c4030`); panel and terminal borders leave leftover slate `#94a3b8` for terracotta `#8a7a6a`.
+- **Changed**: **Midnight** is no longer Base-identical — editor `#020304` → cool `#061018`, `keyword` `#a86878` → indigo `#8a78c0`, `number` `#9a8ab0` → ice `#6eb8c8`.
+- **Changed**: **Neon** keywords / strings / types saturate to magenta `#f04aa0` and electric cyan `#3ce8f5` / `#4ad4e8` (no rename).
+- **Docs**: Landing “What’s new” is **v1.5.7**.
+
 ## 1.5.6 — 29 August 2026
 
 - **Changed**: **Get Started is two steps** — Apply Dusk Office (`duskOffice.applyDefaultTheme`, Finance if you are not already on a Dusk variant), then Quick Setup. Extra walkthrough pages stay in the repo but are no longer part of the first-run tour.

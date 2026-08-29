@@ -220,6 +220,14 @@ const LIGHT_UI_OVERRIDES = {
   "chat.requestBorder": "#0ea5e944",
   "chat.slashCommandBackground": "#06b6d422",
   "chat.slashCommandForeground": "#0369a1",
+  "chat.requestBubbleBackground": "#f1f5f9ee",
+  "chat.requestBubbleHoverBackground": "#0ea5e922",
+  "chat.requestCodeBorder": "#0ea5e944",
+  "chat.linesAddedForeground": "#16a34acc",
+  "chat.linesRemovedForeground": "#dc2626cc",
+  "chat.checkpointSeparator": "#94a3b859",
+  "chat.thinkingShimmer": "#0ea5e922",
+  "agentStatusIndicator.background": "#0ea5e933",
   // Diff editor — unchanged region collapsed bar
   // Action bar toggled (filter / layout buttons in active state)
   "actionBar.toggledBackground": "#06b6d433",
@@ -350,6 +358,45 @@ function applyLightUiOverrides(theme) {
 }
 
 /**
+ * Candy Tailwind leftovers on Light — cool ink, not Ivory terracotta.
+ * Ivory remaps these again in build-dusk-ivoire.mjs.
+ */
+const LIGHT_CANDY_TO_INK = {
+  db2777: "0e4a62",
+  "34d399": "166534",
+  a855f7: "5b21b6",
+  ec4899: "9f1853",
+  f472b6: "be185d",
+};
+
+/** @param {string} hex */
+function remapLightCandyHex(hex) {
+  if (typeof hex !== "string" || !hex.startsWith("#")) return hex;
+  const m = hex.match(/^#([0-9a-f]{6})([0-9a-f]{2})?$/i);
+  if (!m) return hex;
+  const rep = LIGHT_CANDY_TO_INK[m[1].toLowerCase()];
+  return rep ? `#${rep}${m[2] || ""}` : hex;
+}
+
+/** @param {{ tokenColors?: unknown; semanticTokenColors?: unknown }} theme */
+function remapLightCandySyntax(theme) {
+  const sem = theme.semanticTokenColors;
+  if (sem && typeof sem === "object") {
+    for (const [key, val] of Object.entries(sem)) {
+      if (typeof val === "string") sem[key] = remapLightCandyHex(val);
+      else if (val && typeof val === "object" && typeof val.foreground === "string") {
+        val.foreground = remapLightCandyHex(val.foreground);
+      }
+    }
+  }
+  if (!Array.isArray(theme.tokenColors)) return;
+  for (const block of theme.tokenColors) {
+    const fg = block?.settings?.foreground;
+    if (typeof fg === "string") block.settings.foreground = remapLightCandyHex(fg);
+  }
+}
+
+/**
  * Garde la coloration syntaxique déjà curée dans dusk-light.json si présente,
  * sinon reprend Abyss (première génération).
  */
@@ -387,6 +434,7 @@ function main() {
   };
 
   applyLightUiOverrides(theme);
+  remapLightCandySyntax(theme);
   normalizeLightSyntax(theme);
   applyLightTerminalAnsi(theme.colors);
 

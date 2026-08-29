@@ -120,6 +120,7 @@ export const palettes = {
     enumMember: "#b1bac4",
     decorator: "#c9a86c",
   },
+  /** OLED night — indigo keywords + ice numbers (not Base rose/violet, not Finance gold). */
   minuit: {
     class: "#c9a050",
     interface: "#d0b060",
@@ -127,9 +128,9 @@ export const palettes = {
     namespace: "#6a9ab8",
     function: "#5a8fa8",
     method: "#7ab0c0",
-    keyword: "#a86878",
+    keyword: "#8a78c0",
     string: "#5a8a70",
-    number: "#9a8ab0",
+    number: "#6eb8c8",
     comment: "#7a8a98",
     parameter: "#c08060",
     variable: "#b8c8d0",

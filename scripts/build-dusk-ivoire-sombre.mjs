@@ -226,6 +226,14 @@ function main() {
     "merge.currentContentBackground": "#c9896218",
     "merge.currentHeaderBackground": "#c9896233",
     "editorGroup.emptyBackground": deep["editor.background"],
+    "chat.requestBubbleBackground": "#a8988818",
+    "chat.requestBubbleHoverBackground": "#c9b8a422",
+    "chat.requestCodeBorder": "#a8988844",
+    "chat.linesAddedForeground": "#6a9a78cc",
+    "chat.linesRemovedForeground": "#c97565cc",
+    "chat.checkpointSeparator": "#887b6c59",
+    "chat.thinkingShimmer": "#c9b8a422",
+    "agentStatusIndicator.background": "#a8988833",
   };
   Object.assign(colors, warmEditorUi);
 

@@ -333,7 +333,15 @@
     "tree.indentGuidesStroke": "#3c4c5518",
     "tree.inactiveIndentGuidesStroke": "#3c4c550a",
     "widget.border": "#3c4c5544",
-    "widget.shadow": "#00000066"
+    "widget.shadow": "#00000066",
+    "chat.requestBubbleBackground": "#8fbfc018",
+    "chat.requestBubbleHoverBackground": "#8fbfc022",
+    "chat.requestCodeBorder": "#8fbfc044",
+    "chat.linesAddedForeground": "#88aa98cc",
+    "chat.linesRemovedForeground": "#c67c74cc",
+    "chat.checkpointSeparator": "#3c4c5559",
+    "chat.thinkingShimmer": "#8fbfc022",
+    "agentStatusIndicator.background": "#8fbfc033"
   },
   "semanticTokenColors": {
     "class": {
@@ -378,10 +386,10 @@
     "property.readonly": "#a8bac8",
     "parameter": "#95bee0",
     "selfParameter": {
-      "foreground": "#5fa5b8",
+      "foreground": "#c89068",
       "italic": true
     },
-    "keyword": "#6c86b2",
+    "keyword": "#c89068",
     "operator": "#8aaac8",
     "number": "#94b2ce",
     "string": "#8bc0d8",
@@ -468,13 +476,13 @@
     {
       "scope": "keyword",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {
       "scope": "keyword.control.flow",
       "settings": {
-        "foreground": "#8fbfc0",
+        "foreground": "#c89068",
         "fontStyle": "italic"
       }
     },
@@ -505,7 +513,7 @@
     {
       "scope": "storage.type",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {
@@ -526,7 +534,7 @@
     {
       "scope": "variable.language",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {
@@ -583,26 +591,26 @@
     {
       "scope": "keyword.control",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {
       "scope": "keyword.operator.new",
       "settings": {
-        "foreground": "#8fbfc0",
+        "foreground": "#c89068",
         "fontStyle": "italic"
       }
     },
     {
       "scope": "keyword.operator.logical",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {
       "scope": "storage.modifier",
       "settings": {
-        "foreground": "#8fbfc0"
+        "foreground": "#c89068"
       }
     },
     {

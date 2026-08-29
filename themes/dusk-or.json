@@ -372,7 +372,15 @@
     "widget.border": "#2a241044",
     "widget.shadow": "#00000066",
     "editorSuggestWidget.background": "#141200",
-    "editorHoverWidget.background": "#141200"
+    "editorHoverWidget.background": "#141200",
+    "chat.requestBubbleBackground": "#d4a03018",
+    "chat.requestBubbleHoverBackground": "#d4a03022",
+    "chat.requestCodeBorder": "#d4a03044",
+    "chat.linesAddedForeground": "#b8a050cc",
+    "chat.linesRemovedForeground": "#d4a030cc",
+    "chat.checkpointSeparator": "#2a241059",
+    "chat.thinkingShimmer": "#d4a03022",
+    "agentStatusIndicator.background": "#d4a03033"
   },
   "semanticTokenColors": {
     "class": {

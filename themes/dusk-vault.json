@@ -349,7 +349,15 @@
     "tree.indentGuidesStroke": "#34425818",
     "tree.inactiveIndentGuidesStroke": "#3442580a",
     "widget.border": "#34425844",
-    "widget.shadow": "#00000066"
+    "widget.shadow": "#00000066",
+    "chat.requestBubbleBackground": "#dcc89418",
+    "chat.requestBubbleHoverBackground": "#dcc89422",
+    "chat.requestCodeBorder": "#dcc89444",
+    "chat.linesAddedForeground": "#8ea994cc",
+    "chat.linesRemovedForeground": "#c97c70cc",
+    "chat.checkpointSeparator": "#34425859",
+    "chat.thinkingShimmer": "#dcc89422",
+    "agentStatusIndicator.background": "#dcc89433"
   },
   "semanticTokenColors": {
     "class": {

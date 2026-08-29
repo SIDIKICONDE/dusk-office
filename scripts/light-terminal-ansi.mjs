@@ -35,7 +35,22 @@ export const LIGHT_PANEL_TERMINAL_CHROME = {
   "terminal.tab.activeBorder": "#0369a1",
 };
 
-/** @param {Record<string, string>} colors */
-export function applyLightTerminalAnsi(colors) {
-  Object.assign(colors, LIGHT_TERMINAL_ANSI, LIGHT_PANEL_TERMINAL_CHROME);
+/** Ivory — terracotta chrome; must win over LIGHT_PANEL_TERMINAL_CHROME. */
+export const IVOIRE_PANEL_TERMINAL_CHROME = {
+  "panel.border": "#8a7a6ab8",
+  "panelSectionHeader.border": "#8a7a6ab8",
+  "panelInput.border": "#8a7a6ab8",
+  "panelTitle.border": "#8a7a6a99",
+  "panelTitle.activeBorder": "#92400ecc",
+  "terminal.border": "#8a7a6aaa",
+  "terminalStickyScroll.border": "#8a7a6aaa",
+  "terminal.tab.activeBorder": "#92400e",
+};
+
+/**
+ * @param {Record<string, string>} colors
+ * @param {Record<string, string>} [panelChrome]
+ */
+export function applyLightTerminalAnsi(colors, panelChrome = LIGHT_PANEL_TERMINAL_CHROME) {
+  Object.assign(colors, LIGHT_TERMINAL_ANSI, panelChrome);
 }
