@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 1.5.8 — 29 August 2026
+
+- **Changed**: **Marketplace listing copy** — `displayName` shortened to *Dusk Office — 27 Dark, Light & OLED Themes*; `description` rewritten so the first 150 characters mention VS Code / Cursor and stay a complete sentence (niche finance / audit / cybersecurity stays in the description). README leads with the hook (3 store badges, no Keywords/Tags dump); screenshots use GitHub Pages HTTPS URLs so Marketplace Details can render them. JetBrains `plugin.xml` preview and `jetbrains-plugin/README.md` put the benefit before store links.
+- **Fixed**: JetBrains export — `keyword` / `string` no longer steal `keyword.operator.*` or `string.regexp` (Sentinel rust, Ivory terracotta, Neon cyan).
+- **Fixed**: JetBrains selection composes translucent VS Code hex onto `editor.background` instead of dropping alpha (Finance gold).
+- **Fixed**: `.icls` `CARET_ROW_COLOR` and `SELECTION_FOREGROUND` live in `<colors>` as IntelliJ expects.
+- **Fixed**: JetBrains change-notes skip an empty `## Unreleased` changelog section.
+
 ## 1.5.7 — 29 August 2026
 
 - **Added**: **Chat / agent chrome** on all 27 variants — `chat.requestBubbleBackground` + hover, `chat.requestCodeBorder`, `chat.linesAddedForeground` / `chat.linesRemovedForeground`, `chat.checkpointSeparator`, `chat.thinkingShimmer`, `agentStatusIndicator.background`. Hex comes from each variant’s accent / git insert-delete (Finance gold, Sentinel teal, Neon magenta, light paper for Light / Ivory / Audit / Ledger). Ledger values unchanged.

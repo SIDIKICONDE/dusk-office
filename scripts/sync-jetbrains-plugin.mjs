@@ -14,8 +14,8 @@ import {
   existsSync,
 } from "fs";
 import { spawnSync } from "child_process";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import { join, dirname, resolve } from "path";
+import { fileURLToPath, pathToFileURL } from "url";
 import { buildJetBrainsLafTheme } from "../lib/export/jetbrains-laf-theme.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -101,36 +101,47 @@ function schemeNameFromIcls(content) {
   return m ? m[1] : null;
 }
 
-function extractLatestChangeNotes() {
+/**
+ * Latest changelog section with list items. An empty `## Unreleased` is skipped
+ * so JetBrains change-notes use the newest versioned release.
+ *
+ * @param {string} [markdown]
+ * @returns {string | null}
+ */
+export function extractLatestChangeNotes(markdown) {
   try {
-    const changelog = readFileSync(join(ROOT, "CHANGELOG.md"), "utf8");
-    const lines = changelog.split(/\r?\n/);
-    const out = [];
-    let inFirst = false;
-    for (const line of lines) {
-      const h = line.match(/^##\s+/);
-      if (h) {
-        if (!inFirst) {
-          inFirst = true;
-          continue;
-        }
-        break;
+    const changelog = markdown ?? readFileSync(join(ROOT, "CHANGELOG.md"), "utf8");
+    /** @type {{ title: string; lines: string[] }[]} */
+    const sections = [];
+    /** @type {{ title: string; lines: string[] } | null} */
+    let current = null;
+    for (const line of changelog.split(/\r?\n/)) {
+      const heading = line.match(/^##\s+(.*)$/);
+      if (heading) {
+        if (current) sections.push(current);
+        current = { title: heading[1].trim(), lines: [] };
+        continue;
       }
-      if (inFirst) out.push(line);
+      if (current) current.lines.push(line);
     }
-    const items = out
-      .filter((l) => /^\s*[-*]\s+/.test(l))
-      .slice(0, 8)
-      .map((l) => l.replace(/^\s*[-*]\s+/, "").trim())
-      .filter(Boolean);
-    if (items.length === 0) return null;
-    return (
-      "<ul>" +
-      items
-        .map((it) => `<li>${escapeXml(it.replace(/<[^>]+>/g, ""))}</li>`)
-        .join("") +
-      "</ul>"
-    );
+    if (current) sections.push(current);
+
+    for (const section of sections) {
+      const items = section.lines
+        .filter((l) => /^\s*[-*]\s+/.test(l))
+        .slice(0, 8)
+        .map((l) => l.replace(/^\s*[-*]\s+/, "").trim())
+        .filter(Boolean);
+      if (items.length === 0) continue;
+      return (
+        "<ul>" +
+        items
+          .map((it) => `<li>${escapeXml(it.replace(/<[^>]+>/g, ""))}</li>`)
+          .join("") +
+        "</ul>"
+      );
+    }
+    return null;
   } catch {
     return null;
   }
@@ -267,14 +278,7 @@ function main() {
   <depends>com.intellij.modules.platform</depends>
 
   <description><![CDATA[
-    <h2>Dusk Office Themes — professional theme system for JetBrains IDEs</h2>
-    <p>
-      <a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/LICENSE">GPL-3.0</a> ·
-      <a href="https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml">CI</a> ·
-      <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code Marketplace</a> ·
-      <a href="https://open-vsx.org/extension/dekidev/dusk-office">Open VSX</a> ·
-      <a href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes">JetBrains Marketplace</a>
-    </p>
+    <h2>Dusk Office Themes — dark, light and OLED themes for JetBrains IDEs</h2>
     <p><strong>Dusk Office Themes</strong> brings the same professional theme system as
     <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code / Cursor / Windsurf</a>
     to <strong>IntelliJ IDEA</strong>, <strong>PyCharm</strong>, <strong>WebStorm</strong>,
@@ -283,8 +287,15 @@ function main() {
     <strong>RustRover</strong>, <strong>Android Studio</strong> and the wider JetBrains platform.</p>
 
     <p><strong>27 WCAG-conscious variants</strong> — dark, light and high-contrast —
-    tuned for <em>finance, audit, banking, cybersecurity, SOC monitoring and DevOps</em>.
+    tuned for <em>finance, audit, cybersecurity and long sessions</em>.
     Full IDE UI themes plus matching editor color schemes.</p>
+    <p>
+      <a href="https://github.com/SIDIKICONDE/dusk-office/blob/main/LICENSE">GPL-3.0</a> ·
+      <a href="https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml">CI</a> ·
+      <a href="https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office">VS Code Marketplace</a> ·
+      <a href="https://open-vsx.org/extension/dekidev/dusk-office">Open VSX</a> ·
+      <a href="https://plugins.jetbrains.com/plugin/31875-dusk-office-themes">JetBrains Marketplace</a>
+    </p>
 
     <h3>What's inside</h3>
     <ul>
@@ -370,4 +381,16 @@ ${javaHomeLine}`;
   }
 }
 
-main();
+function invokedDirectly() {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try {
+    return import.meta.url === pathToFileURL(resolve(entry)).href;
+  } catch {
+    return false;
+  }
+}
+
+if (invokedDirectly()) {
+  main();
+}

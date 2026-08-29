@@ -1,15 +1,10 @@
 # Dusk Office
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE)
-[![CI](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml/badge.svg)](https://github.com/SIDIKICONDE/dusk-office/actions/workflows/ci.yml)
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
-[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/dekidev.dusk-office?label=Marketplace%20installs)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
-[![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX&color=A60EE5)](https://open-vsx.org/extension/dekidev/dusk-office)
-[![Open VSX Downloads](https://img.shields.io/open-vsx/dt/dekidev/dusk-office?label=Open%20VSX%20downloads)](https://open-vsx.org/extension/dekidev/dusk-office)
-[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/31875?label=JetBrains%20Marketplace&color=FF318C)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
-[![JetBrains Downloads](https://img.shields.io/jetbrains/plugin/d/31875?label=JetBrains%20downloads)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
+Professional dark and light themes for VS Code, Cursor and Windsurf — 27 WCAG-verified variants, theme gallery, and local day/night automation. Built for finance, audit, cybersecurity and long sessions.
 
-> **Professional theme system for VS Code, Cursor, Windsurf and Open VSX** — **27 WCAG-verified variants** in one coherent family, with **Theme Gallery**, **workspace fingerprint**, **adaptive day/night focus**, and **verified editor/UI contrast**. Built for **finance, audit, banking, cybersecurity, SOC & DevOps** — and long sessions where readability matters.
+[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/dekidev.dusk-office?label=Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=dekidev.dusk-office)
+[![Open VSX](https://img.shields.io/open-vsx/v/dekidev/dusk-office?label=Open%20VSX&color=A60EE5)](https://open-vsx.org/extension/dekidev/dusk-office)
+[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/31875?label=JetBrains%20Marketplace&color=FF318C)](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes)
 
 **Dusk Office** is a polished theme suite for **VS Code**, **Cursor**, and **Windsurf** (plus **Neovim, Emacs, Zed, Helix, JetBrains** via [exported themes](./exports/README.md)) with **27 dark, light, and high-contrast themes**, **semantic highlighting**, **full UI coverage**, **verified terminal contrast**, and an optional **product icon theme**.
 
@@ -33,11 +28,11 @@ This **README** is the primary documentation (GitHub and Marketplace). **Public 
 
 | Dusk Office Finance | Dusk Office Voltage | Dusk Office Nocturne |
 | :---: | :---: | :---: |
-| ![Finance](images/screenshot-01.png) | ![Voltage](images/screenshot-02.png) | ![Nocturne](images/screenshot-03.png) |
+| ![Dusk Office Finance — dark navy editor with gold accents, Python](https://sidikiconde.github.io/dusk-office/images/screenshot-01.png) | ![Dusk Office Voltage — graphite and neon lime, TypeScript](https://sidikiconde.github.io/dusk-office/images/screenshot-02.png) | ![Dusk Office Nocturne — warm vintage terminal](https://sidikiconde.github.io/dusk-office/images/screenshot-03.png) |
 
 | Dusk Office Finance | Dusk Office Light |
 | :---: | :---: |
-| ![Finance](images/screenshot-04.png) | ![Light](images/screenshot-05.png) |
+| ![Dusk Office Finance — workbench chrome](https://sidikiconde.github.io/dusk-office/images/screenshot-04.png) | ![Dusk Office Light — daytime light theme](https://sidikiconde.github.io/dusk-office/images/screenshot-05.png) |
 
 ---
 
@@ -197,7 +192,3 @@ No telemetry, no network calls, no companion installs. Workspace fingerprint run
 
 **Why use Dusk Office over Dracula, One Dark Pro, Monokai, Solarized, Tokyo Night or Material Theme?**
 Dusk Office is a **domain-tuned theme suite** rather than a single skin: variants designed specifically for **finance / fintech / banking / audit** (Vault, Ledger, Audit, Finance), **cybersecurity / SOC** (Sentinel, Secure), **DevOps** (Voltage, Terminal), **long sessions** (Steward, Midnight), with **verified WCAG terminal + editor/UI contrast**, a **visual theme gallery**, **semantic highlighting**, **ANSI coloring in the editor**, **workspace fingerprint**, **adaptive day/night focus**, **web support (vscode.dev / github.dev)**, and the same identity across VS Code, Cursor, Windsurf, Open VSX and JetBrains.
-
-## Keywords / Tags
-
-dark theme · light theme · high contrast theme · theme pack · color theme · vscode theme · cursor theme · windsurf theme · open vsx theme · jetbrains theme · intellij theme · pycharm theme · webstorm theme · rider theme · clion theme · goland theme · phpstorm theme · rubymine theme · datagrip theme · rustrover theme · android studio theme · accessible theme · colorblind friendly · wcag theme · oled theme · eye comfort · professional theme · finance theme · fintech theme · banking theme · audit theme · cybersecurity theme · soc theme · devops theme · ml theme · data science theme · semantic highlighting · adaptive theme · auto dark mode · day night switch · timezone theme · iana timezone · ansi colors · terminal theme · product icon theme · theme bundle · theme gallery · web extension theme · vscode.dev theme · github.dev theme · editor contrast · ui contrast · italic comments · bold keywords

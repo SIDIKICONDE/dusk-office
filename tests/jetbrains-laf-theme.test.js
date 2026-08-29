@@ -3,7 +3,10 @@ const assert = require("node:assert/strict");
 const { join } = require("node:path");
 
 const { resolveTheme } = require("../lib/export/theme-resolve.mjs");
-const { buildExportPalette } = require("../lib/export/theme-export-palette.mjs");
+const {
+  buildExportPalette,
+  composeHexOnBackground,
+} = require("../lib/export/theme-export-palette.mjs");
 const { buildJetBrainsLafTheme } = require("../lib/export/jetbrains-laf-theme.mjs");
 
 const ROOT = join(__dirname, "..");
@@ -43,4 +46,20 @@ describe("buildJetBrainsLafTheme light chrome parity", () => {
       assert.equal(laf.ui.Settings.foreground, "settingsFg");
     });
   }
+});
+
+describe("buildJetBrainsLafTheme selection (dark + light)", () => {
+  it("Finance LAF selection is composed, not flattened gold", () => {
+    const resolved = resolveTheme(join(ROOT, "themes", "dusk-finance.json"));
+    const palette = buildExportPalette(resolved);
+    const laf = buildJetBrainsLafTheme(palette);
+    const expected = composeHexOnBackground("#c9a22744", palette.editor.background);
+    assert.equal(laf.colors.selection.toLowerCase(), expected.toLowerCase());
+    assert.notEqual(laf.colors.selection.toLowerCase(), "#c9a227");
+    assert.equal(laf.ui["*"].selectionBackground, "selection");
+    assert.ok(
+      contrastRatio(laf.colors.fg, laf.colors.selection) >= 4.5,
+      "Finance editor text on LAF selection",
+    );
+  });
 });
