@@ -2,12 +2,11 @@
 
 ## Unreleased
 
+## 1.5.6 — 29 August 2026
+
 - **Changed**: **Get Started is two steps** — Apply Dusk Office (`duskOffice.applyDefaultTheme`, Finance if you are not already on a Dusk variant), then Quick Setup. Extra walkthrough pages stay in the repo but are no longer part of the first-run tour.
 - **Fixed**: The first-install walkthrough opens even when the active theme is not Dusk yet. Step 1 no longer opens the native VS Code theme picker.
 - **Docs**: Landing “What’s new” is **v1.5.6**; install steps point to Choose Theme / Theme Gallery instead of only `Ctrl+K Ctrl+T`. ANSI walkthrough default for `allLanguages` matches the setting (`false`).
-
-## 1.5.6 — 29 August 2026
-
 - **Fixed**: **Themes apply only on explicit confirm** — the Theme Gallery no longer writes `workbench.colorTheme` on hover, and `Dusk Office: Choose Theme` no longer live-previews on ↑↓. Cards and the picker list are browse-only; the workbench changes only when you click **Apply** / press Enter.
 - **Fixed**: **Current theme is always the plain name** — `getCurrentTheme()` strips ◑/◒ Marketplace labels so favorites, Auto Switch, Adaptive Focus, the status bar, gallery checkmark, and `duskOffice.isActive` stay in sync when VS Code stores a badged label.
 - **Fixed**: **Quick Setup** — Esc on the variant picker cancels the flow; the favorite saved is the variant you picked in step 1, even if Adaptive Focus or Auto Day/Night then changes the active theme.
