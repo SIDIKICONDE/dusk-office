@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Changed**: **Get Started is two steps** — Apply Dusk Office (`duskOffice.applyDefaultTheme`, Finance if you are not already on a Dusk variant), then Quick Setup. Extra walkthrough pages stay in the repo but are no longer part of the first-run tour.
+- **Fixed**: The first-install walkthrough opens even when the active theme is not Dusk yet. Step 1 no longer opens the native VS Code theme picker.
+- **Docs**: Landing “What’s new” is **v1.5.6**; install steps point to Choose Theme / Theme Gallery instead of only `Ctrl+K Ctrl+T`. ANSI walkthrough default for `allLanguages` matches the setting (`false`).
+
 ## 1.5.6 — 29 August 2026
 
 - **Fixed**: **Themes apply only on explicit confirm** — the Theme Gallery no longer writes `workbench.colorTheme` on hover, and `Dusk Office: Choose Theme` no longer live-previews on ↑↓. Cards and the picker list are browse-only; the workbench changes only when you click **Apply** / press Enter.

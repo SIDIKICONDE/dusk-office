@@ -94,6 +94,7 @@ async function activate(context) {
     vscode.commands.registerCommand("duskOffice.openThemeGallery", () => openThemeGallery(context)),
     vscode.commands.registerCommand("duskOffice.verifyEditorContrast", () => verifyEditorContrast()),
     vscode.commands.registerCommand("duskOffice.switchThemeVariant", () => themes.setThemeVariant(context)),
+    vscode.commands.registerCommand("duskOffice.applyDefaultTheme", () => themes.applyDefaultTheme(context)),
     vscode.commands.registerCommand("duskOffice.switchToPreviousTheme", () => themes.switchToPreviousTheme(context)),
     vscode.commands.registerCommand("duskOffice.setFavoriteTheme", () => themes.setFavoriteTheme(context)),
     vscode.commands.registerCommand("duskOffice.switchToFavoriteTheme", () => themes.switchToFavoriteTheme(context)),

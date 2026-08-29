@@ -74,6 +74,20 @@ describe("theme runtime (badged vs plain)", () => {
     assert.equal(context.globalState.get(keys.PREVIOUS_THEME_KEY), "Default Dark+");
   });
 
+  it("applyDefaultTheme applies Finance when the current theme is not Dusk", async () => {
+    vscode.__setMockConfig("workbench.colorTheme", "Default Dark+");
+    const applied = await themes.applyDefaultTheme(createMockContext());
+    assert.equal(applied, "Dusk Office Finance");
+    assert.equal(cfg.getCurrentTheme(), "Dusk Office Finance");
+  });
+
+  it("applyDefaultTheme keeps an already-active Dusk variant", async () => {
+    vscode.__setMockConfig("workbench.colorTheme", "◑ Dusk Office Midnight");
+    const applied = await themes.applyDefaultTheme(createMockContext());
+    assert.equal(applied, "Dusk Office Midnight");
+    assert.equal(cfg.getCurrentTheme(), "Dusk Office Midnight");
+  });
+
   it("setThemeVariant applies the picker's theme field", async () => {
     vscode.__setMockConfig("workbench.colorTheme", "Dusk Office Finance");
     vscode.window.showQuickPick = async (items) => items.find((item) => item.theme === "Dusk Office Vault");

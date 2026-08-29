@@ -1,16 +1,15 @@
-# Welcome to Dusk Office 🌒
+# Welcome to Dusk Office
 
-**One system. 27 variants. Ready in 90 seconds.**
+**Two steps. Then you are set up.**
 
-You installed a professional theme system — not just a color pack. This walkthrough sets up gallery, fingerprint, and automation in under two minutes.
+You installed a theme system — 27 related variants, not a single skin.
 
-## What makes this different
+- **One family** — dark, light, and high-contrast that feel related
+- **WCAG-checked** — editor, UI, and terminal contrast
+- **Local only** — no telemetry, no network calls
 
-- **One coherent family** — 27 dark, light & high-contrast variants that feel related
-- **Adapts to your work** — by project type, time of day, and active language
-- **WCAG-verified** — editor, UI, and terminal contrast checked
-- **100% local** — no telemetry, no network calls, no companion extensions
+## This step
 
-## Next step
+Click **Apply Dusk Office** below. That applies **Finance** if you are not already on a Dusk variant. If you already are, it keeps your current one.
 
-Click **"Apply the default Dusk Office theme"** below, then move to **Quick Setup** — it takes 30 seconds to configure everything.
+Then go to **Quick Setup**.

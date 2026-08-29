@@ -1,6 +1,6 @@
-# Quick Setup — 30 seconds to a perfect editor 🚀
+# Quick Setup
 
-No settings files. No documentation reading. Just three choices:
+Three choices. No settings files.
 
 ## How it works
 
@@ -14,12 +14,10 @@ No settings files. No documentation reading. Just three choices:
 | --- | --- |
 | **Adaptive Focus** | Picks a variant by language + time of day. TypeScript at night → Nebula. Python at noon → Ivory. |
 | **Auto Day/Night** | Light at 8 AM, dark at 6 PM. Simple and effective. |
-| **Manual** | No automation — you're in full control. |
+| **Manual** | No automation — you stay in control. |
 
-## Why this matters
+## After this
 
-Most theme extensions make you dig through settings. Quick Setup gives you a **complete, working configuration in one flow** — and you can always fine-tune later.
+You are done with Get Started. Later, from the Command Palette or **Control Center**: Theme Gallery, workspace fingerprint, ANSI in logs, contrast checks.
 
----
-
-Click **"Run Quick Setup"** below to start.
+Click **Run Quick Setup** below.

@@ -69,7 +69,7 @@ Picks a variant from the **active editor language** and the **current hour**. Lo
 
 Languages not listed fall back to **Ivory** (day) or **Midnight** (night).
 
-> **Workspace Fingerprint** (first open) uses different rules — it suggests a variant from project files (`package.json`, `pyproject.toml`, etc.), not from the active editor language. See the fingerprint walkthrough step.
+> **Workspace Fingerprint** (first open) uses different rules — it suggests a variant from project files (`package.json`, `pyproject.toml`, etc.), not from the active editor language. Run **Dusk Office: Suggest Variant for This Workspace** from the Control Center.
 
 ### Settings
 

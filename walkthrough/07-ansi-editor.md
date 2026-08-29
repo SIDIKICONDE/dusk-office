@@ -23,7 +23,7 @@ With ANSI in Editor **on**: red, yellow, and green text — just like in your te
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `duskOffice.editorAnsi.enabled` | `true` | Master toggle |
-| `duskOffice.editorAnsi.allLanguages` | `true` | Apply to all files (not just .log) |
+| `duskOffice.editorAnsi.allLanguages` | `false` | Opt-in: apply to all files (default is `.log` / `.ansi` only) |
 
 ## Why this is a differentiator
 

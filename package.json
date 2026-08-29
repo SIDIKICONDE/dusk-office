@@ -273,96 +273,28 @@
       {
         "id": "duskOfficeGetStarted",
         "title": "Get Started with Dusk Office",
-        "description": "Set up your theme system in 2 minutes — gallery, workspace fingerprint, day/night switch, adaptive focus, Control Center.",
+        "description": "Two steps: apply Dusk Office, then Quick Setup. Gallery, fingerprint, and automation stay in the Control Center.",
         "steps": [
           {
             "id": "welcome",
             "title": "Welcome to Dusk Office",
-            "description": "Your editor is about to feel different. Apply the flagship theme and see the Dusk Office philosophy in action.\n[Apply the default Dusk Office theme](command:workbench.action.selectTheme)",
+            "description": "Apply Dusk Office Finance (or keep the Dusk variant you already have). Then Quick Setup.\n[Apply Dusk Office](command:duskOffice.applyDefaultTheme)",
             "media": {
               "markdown": "walkthrough/01-welcome.md"
             },
             "completionEvents": [
-              "onCommand:workbench.action.selectTheme"
+              "onCommand:duskOffice.applyDefaultTheme"
             ]
           },
           {
             "id": "quickSetup",
-            "title": "Quick Setup — 30 seconds to perfection",
-            "description": "Pick your variant, choose your automation mode, done. One flow, zero config files.\n[Run Quick Setup](command:duskOffice.quickSetup)",
+            "title": "Quick Setup",
+            "description": "Pick your variant, choose automation (or manual), done. One flow.\n[Run Quick Setup](command:duskOffice.quickSetup)",
             "media": {
               "markdown": "walkthrough/02-quick-setup.md"
             },
             "completionEvents": [
               "onCommand:duskOffice.quickSetup"
-            ]
-          },
-          {
-            "id": "pickVariant",
-            "title": "Explore 27 variants",
-            "description": "Every variant has a purpose — from deep-focus Midnight to domain-tuned Audit, Vault, and Sentinel. Browse the list or the gallery — the workbench changes only when you apply.\n[Open the variant picker](command:duskOffice.switchThemeVariant)\n[Open the Theme Gallery](command:duskOffice.openThemeGallery)",
-            "media": {
-              "markdown": "walkthrough/03-variants.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.switchThemeVariant",
-              "onCommand:duskOffice.openThemeGallery"
-            ]
-          },
-          {
-            "id": "fingerprint",
-            "title": "Your project, your palette — automatically",
-            "description": "Dusk Office reads your project’s DNA and suggests the perfect variant. Fintech → Vault, security → Sentinel, ML → Steward. 100% local, zero telemetry.\n[Try the suggestion for this workspace](command:duskOffice.suggestVariantForWorkspace)",
-            "media": {
-              "markdown": "walkthrough/04-fingerprint.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.suggestVariantForWorkspace"
-            ]
-          },
-          {
-            "id": "adaptive",
-            "title": "A theme that adapts to your rhythm",
-            "description": "Auto Day/Night switches light ↔ dark by the hour. Adaptive Focus goes further — picking variants by language and time. Late-night eye comfort included.\n[Toggle Adaptive Focus](command:duskOffice.toggleAdaptiveFocus)\n[Apply Adaptive Theme Now](command:duskOffice.applyAdaptiveFocusTheme)",
-            "media": {
-              "markdown": "walkthrough/05-adaptive.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.toggleAdaptiveFocus",
-              "onCommand:duskOffice.applyAdaptiveFocusTheme"
-            ]
-          },
-          {
-            "id": "controlCenter",
-            "title": "One place to control everything",
-            "description": "The Control Center gives you every Dusk Office action in a single Quick Pick — themes, favorites, automation, icons, WCAG checks, and reset.\n[Open the Control Center](command:duskOffice.openControlCenter)",
-            "media": {
-              "markdown": "walkthrough/06-control-center.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.openControlCenter"
-            ]
-          },
-          {
-            "id": "ansiEditor",
-            "title": "ANSI colors — logs come alive",
-            "description": "Open any .log file or source containing ANSI escape codes — Dusk Office renders them with your theme's terminal.ansi* palette, live in the editor.\n[Toggle ANSI in Editor](command:duskOffice.toggleEditorAnsi)",
-            "media": {
-              "markdown": "walkthrough/07-ansi-editor.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.toggleEditorAnsi"
-            ]
-          },
-          {
-            "id": "makeItYours",
-            "title": "Make it truly yours",
-            "description": "Fine-tune every behavior in Settings. And if you ever want a clean slate — one command resets everything with zero residue.\n[Open Dusk Office settings](command:duskOffice.openSettings)",
-            "media": {
-              "markdown": "walkthrough/08-make-it-yours.md"
-            },
-            "completionEvents": [
-              "onCommand:duskOffice.openSettings"
             ]
           }
         ]
@@ -767,6 +699,11 @@
         "icon": "$(symbol-color)"
       },
       {
+        "command": "duskOffice.applyDefaultTheme",
+        "title": "Dusk Office: Apply Default Theme",
+        "category": "Dusk Office"
+      },
+      {
         "command": "duskOffice.openThemeGallery",
         "title": "Dusk Office: Theme Gallery",
         "category": "Dusk Office",
@@ -873,6 +810,10 @@
     ],
     "menus": {
       "commandPalette": [
+        {
+          "command": "duskOffice.applyDefaultTheme",
+          "when": "false"
+        },
         {
           "command": "duskOffice.toggleAdaptiveFocus"
         },
@@ -1001,7 +942,7 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run typecheck",
-    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/hour-schedule.test.js tests/schedule-time.test.js tests/theme-gallery.test.js tests/theme-runtime.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js tests/control-center.test.js tests/profile-defaults-migrate.test.js tests/landing-preview.test.js",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/hour-schedule.test.js tests/schedule-time.test.js tests/theme-gallery.test.js tests/theme-runtime.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js tests/control-center.test.js tests/profile-defaults-migrate.test.js tests/landing-preview.test.js tests/activation-prompt.test.js",
     "py:install": "pip install -e \".[dev]\"",
     "validate:pydantic": "python -m dusk_office.validate_schemas",
     "analyze:themes": "python -m dusk_office.analyze_themes",

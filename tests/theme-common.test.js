@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const {
   THEME_BASE,
   THEME_VARIANTS,
+  DEFAULT_ONBOARDING_THEME,
   ALL_DUSK_THEMES,
   isDuskTheme,
   isThemeName,
@@ -41,6 +42,11 @@ describe("isDuskTheme", () => {
 
   it("excludes the base palette from picker variants", () => {
     assert.equal(THEME_VARIANTS.includes(THEME_BASE), false);
+  });
+
+  it("onboarding default is the first picker variant (Finance)", () => {
+    assert.equal(DEFAULT_ONBOARDING_THEME, "Dusk Office Finance");
+    assert.equal(THEME_VARIANTS[0], DEFAULT_ONBOARDING_THEME);
   });
 
   it("returns false for non-Dusk themes", () => {
