@@ -159,7 +159,7 @@ Defined in `package.json` → `contributes.configuration` (`duskOffice.*`).
 | `duskOffice.applyFavoriteOnStartup` | `false` | Apply the favorite theme on startup. |
 | `duskOffice.marketplaceReview` | `true` | Ask for a Marketplace star rating after sufficient use. |
 | `duskOffice.workspaceFingerprint.enabled` | `true` | Suggest a variant once per workspace from project signals. |
-| `duskOffice.rememberWorkspaceTheme` | `true` | Remember the last Dusk Office theme for each workspace. |
+| `duskOffice.rememberWorkspaceTheme` | `false` | Remember the last Dusk Office theme for each workspace, and re-apply it when that workspace opens. Opt-in: while it is on, a remembered theme overrides the one you picked in VS Code until you change the theme again. |
 | `duskOffice.statusBar.enabled` | `true` | Show the Dusk Office status bar button. |
 | `duskOffice.titleBar.alignWithTheme` | `false` | When enabled and a Dusk Office color theme is active, set `window.titleBarStyle` to `custom` so the title bar follows the theme (helps a light editor avoid a stuck-dark native bar on macOS). When you leave Dusk themes or disable this, the previous global title bar style is restored. Does not override if you set `window.titleBarStyle` to `native` yourself in User or Workspace settings. |
 | `duskOffice.autoSwitch.enabled` | `false` | Switch between light and dark Dusk Office themes by hour. |

@@ -15,7 +15,7 @@ Built for developers who want readable code, coherent chrome across the editor a
 - **One family, 27 variants** — dark, light, warm, and high-contrast options that still feel related instead of random skins
 - **Readable by design** — semantic highlighting, workbench polish, and terminal contrast checks tuned for long sessions
 - **Workspace Fingerprint** — on first open, Dusk Office detects your project type (fintech, audit, cybersecurity, ML/data, modern web, frontend, CLI) from `package.json`/`Cargo.toml`/`pyproject.toml`/etc. and suggests the variant tuned for that context (Vault, Audit, Sentinel, Steward, Voltage, Nocturne, Terminal). Local-only, opt-out via `duskOffice.workspaceFingerprint.enabled`.
-- **Useful automation** — favorite theme restore, workspace memory, auto switch, adaptive focus, and a Control Center for quick actions
+- **Useful automation** — favorite theme restore, opt-in workspace memory, auto switch, adaptive focus, and a Control Center for quick actions
 - **Trust-first behavior** — no surprise companion installs, local-only runtime logic, and clean reset options
 
 This **README** is the primary documentation (GitHub and Marketplace). **Public documentation mirror:** [github.com/SIDIKICONDE/dusk-office-docs](https://github.com/SIDIKICONDE/dusk-office-docs). Extended guide — full theme list, terminal palettes, contrast notes — [QUICKSTART-LONG.md](./QUICKSTART-LONG.md) · [same file on the docs repo](https://github.com/SIDIKICONDE/dusk-office-docs/blob/main/QUICKSTART-LONG.md).
@@ -105,7 +105,7 @@ Full list of 27 variants: [Included Themes](./QUICKSTART-LONG.md#included-themes
 Open settings (`Cmd/Ctrl + ,`) and search `Dusk Office`:
 
 - `duskOffice.applyFavoriteOnStartup` — auto-load favorite theme
-- `duskOffice.rememberWorkspaceTheme` — per-workspace memory
+- `duskOffice.rememberWorkspaceTheme` — per-workspace memory (opt-in, off by default)
 - `duskOffice.autoSwitch.enabled` — auto day/night switch
 - `duskOffice.adaptiveFocus.enabled` — auto-adapt by active editor language + time
 

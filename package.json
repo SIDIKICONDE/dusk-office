@@ -2,7 +2,7 @@
   "name": "dusk-office",
   "displayName": "Dusk Office — 27 Dark, Light & OLED Themes",
   "description": "Dark, light and OLED high-contrast themes for VS Code, Cursor and Windsurf. 27 WCAG-checked variants with a theme gallery, day/night auto-switch, and semantic highlighting — built for finance, audit, cybersecurity and long sessions.",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "publisher": "dekidev",
   "icon": "images/icon.png",
   "main": "./dist/node/extension.js",
@@ -352,8 +352,8 @@
         },
         "duskOffice.rememberWorkspaceTheme": {
           "type": "boolean",
-          "default": true,
-          "description": "Remember the last Dusk Office theme for each workspace."
+          "default": false,
+          "description": "Remember the last Dusk Office theme for each workspace, and re-apply it when that workspace opens. Off by default: when enabled it overrides the theme you picked in VS Code until you change the theme again."
         },
         "duskOffice.statusBar.enabled": {
           "type": "boolean",
@@ -942,10 +942,10 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run typecheck",
-    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/hour-schedule.test.js tests/schedule-time.test.js tests/theme-gallery.test.js tests/theme-runtime.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/jetbrains-laf-theme.test.js tests/theme-export.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js tests/control-center.test.js tests/profile-defaults-migrate.test.js tests/landing-preview.test.js tests/activation-prompt.test.js",
+    "test": "node --require ./tests/setup.js --test tests/theme-common.test.js tests/hour-schedule.test.js tests/schedule-time.test.js tests/theme-gallery.test.js tests/theme-runtime.test.js tests/terminal-contrast.test.js tests/terminal-contrast-internals.test.js tests/ansi-parser.test.js tests/workspace-fingerprint.test.js tests/workspace-theme-memory.test.js tests/jetbrains-laf-theme.test.js tests/theme-export.test.js tests/marketplace-review-prompt.test.js tests/theme-data.test.js tests/ui-contrast.test.js tests/contrast-fix.test.js tests/control-center.test.js tests/profile-defaults-migrate.test.js tests/landing-preview.test.js tests/activation-prompt.test.js",
     "py:install": "pip install -e \".[dev]\"",
-    "validate:pydantic": "python -m dusk_office.validate_schemas",
-    "analyze:themes": "python -m dusk_office.analyze_themes",
+    "validate:pydantic": "PYTHONPATH=python python -m dusk_office.validate_schemas",
+    "analyze:themes": "PYTHONPATH=python python -m dusk_office.analyze_themes",
     "test:py": "pytest python/tests",
     "test:unit": "npm test && npm run test:py",
     "test:web": "node scripts/test-web.mjs && node tests/test-web-activation.mjs",

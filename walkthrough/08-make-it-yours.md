@@ -10,7 +10,7 @@ Open settings (`Cmd/Ctrl + ,`) and search **"Dusk Office"**:
 | Setting | What it controls |
 | --- | --- |
 | `applyFavoriteOnStartup` | Auto-load your favorite variant on editor start |
-| `rememberWorkspaceTheme` | Each project remembers its own theme |
+| `rememberWorkspaceTheme` | Each project remembers its own theme (opt-in, off by default) |
 | `autoSwitch.*` | Day/night light ↔ dark switching schedule |
 | `adaptiveFocus.*` | Language + time-aware automatic variant selection |
 | `workspaceFingerprint.enabled` | Auto-suggest a variant for new projects |

@@ -18,7 +18,7 @@ no menus to memorize, no settings to hunt for.
 | 📍 **Activity Bar** | Move it left ↔ top in one click |
 | 🪟 **Title bar** | Sync title bar color with the active theme |
 | 📊 **Status bar** | Show or hide the Dusk Office button |
-| 💾 **Workspace memory** | Per-project theme persistence |
+| 💾 **Workspace memory** | Per-project theme persistence (opt-in) |
 | ✅ **WCAG check** | Verify terminal contrast ratios live |
 | 🎨 **ANSI in Editor** | Toggle ANSI coloring in logs and source files |
 | ⚙️ **Settings** | Jump straight to Dusk Office config |

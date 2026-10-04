@@ -2,8 +2,15 @@
 
 const configValues = new Map();
 
+/** Virtual workspace files, keyed by absolute path. Tests populate via __setMockWorkspaceFs. */
+const workspaceFiles = new Map();
+
 function configKey(section, key) {
   return section ? `${section}.${key}` : key;
+}
+
+function makeUri(fsPath) {
+  return { fsPath, scheme: "file", path: fsPath, toString: () => `file://${fsPath}` };
 }
 
 function getConfiguration(section) {
@@ -30,6 +37,18 @@ function resetMockConfig() {
   configValues.clear();
 }
 
+/** Populate the virtual workspace FS. Keys are absolute file paths, values are byte arrays. */
+function setMockWorkspaceFs(files) {
+  workspaceFiles.clear();
+  for (const [path, content] of Object.entries(files)) {
+    workspaceFiles.set(path, typeof content === "string" ? new TextEncoder().encode(content) : content);
+  }
+}
+
+function resetMockWorkspaceFs() {
+  workspaceFiles.clear();
+}
+
 function setMockConfig(fullKey, value) {
   if (value === undefined) configValues.delete(fullKey);
   else configValues.set(fullKey, value);
@@ -42,6 +61,35 @@ const vscode = {
     onDidChangeTextDocument: () => ({ dispose() {} }),
     onDidOpenTextDocument: () => ({ dispose() {} }),
     workspaceFolders: [],
+    fs: {
+      async stat(uri) {
+        const entry = workspaceFiles.get(uri.fsPath ?? String(uri));
+        if (!entry) throw new Error(`ENOENT: ${uri.fsPath ?? uri}`);
+        return { type: vscode.FileType.File, size: entry.byteLength, ctime: 0, mtime: 0 };
+      },
+      async readFile(uri) {
+        const entry = workspaceFiles.get(uri.fsPath ?? String(uri));
+        if (!entry) throw new Error(`ENOENT: ${uri.fsPath ?? uri}`);
+        return entry;
+      },
+      /** Top-level listing derived from the virtual files, as [name, FileType] pairs. */
+      async readDirectory(uri) {
+        const root = (uri.fsPath ?? String(uri)).replace(/\/+$/, "");
+        const prefix = `${root}/`;
+        const names = new Set();
+        for (const path of workspaceFiles.keys()) {
+          if (!path.startsWith(prefix)) continue;
+          const rest = path.slice(prefix.length);
+          const slash = rest.indexOf("/");
+          if (slash === -1) names.add(rest);
+          else names.add(`${rest.slice(0, slash)}/`);
+        }
+        return [...names].map((name) => [
+          name,
+          name.endsWith("/") ? vscode.FileType.Directory : vscode.FileType.File,
+        ]);
+      },
+    },
   },
   window: {
     createTextEditorDecorationType: (opts) => ({
@@ -74,6 +122,7 @@ const vscode = {
     }),
   },
   ColorThemeKind: { Light: 1, Dark: 2, HighContrast: 3, HighContrastLight: 4 },
+  FileType: { Unknown: 0, File: 1, Directory: 2, SymbolicLink: 64 },
   commands: {
     executeCommand: async () => {},
     registerCommand: () => ({ dispose() {} }),
@@ -85,8 +134,9 @@ const vscode = {
     constructor(id) { this.id = id; }
   },
   Uri: {
-    parse: (s) => ({ toString: () => s }),
-    file: (s) => ({ fsPath: s, scheme: "file", toString: () => s }),
+    parse: (s) => makeUri(s),
+    file: (s) => makeUri(s),
+    joinPath: (base, ...segments) => makeUri(`${base.fsPath ?? base}/${segments.join("/")}`),
   },
   Disposable: class Disposable {
     constructor(fn) { this._fn = fn; }
@@ -103,6 +153,8 @@ const vscode = {
   },
   __resetMockConfig: resetMockConfig,
   __setMockConfig: setMockConfig,
+  __setMockWorkspaceFs: setMockWorkspaceFs,
+  __resetMockWorkspaceFs: resetMockWorkspaceFs,
 };
 
 module.exports = vscode;

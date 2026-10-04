@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 1.5.9 — 4 October 2026
+
+- **Fixed**: **Workspace memory no longer overrides the theme you picked** — `duskOffice.rememberWorkspaceTheme` now defaults to **`false`**. It was the only automatic theme writer enabled by default, so it re-applied a remembered Dusk variant on every launch with no opt-in. It was also the reason *Reset All Settings* appeared not to work: that command writes `undefined` for the key, which fell back to the `true` default and re-armed the behaviour the reset dialog promises to clear.
+- **Fixed**: **Picks made in VS Code now stick** — a theme chosen through VS Code's own *Preferences: Color Theme* picker never went through `applyTheme`, so the extension had no way to know it had been overridden. `onDidChangeActiveColorTheme` now treats any change it did not cause as a manual override: it records the override (so Auto Switch and Adaptive Focus back off for the usual 5s grace window) and clears the stored workspace theme so it cannot come back on the next launch.
+- **Fixed**: Workspace memory echo suppression uses a 1s time window rather than a counter. VS Code resolves the theme event asynchronously and may fire it more than once per write, so a counter could desynchronise and read the second event as a manual pick — clearing the pin that had just been saved.
+- **Fixed**: Accepting the workspace-fingerprint suggestion (**Try it**) no longer pins that variant permanently. The prompt reads as a one-time suggestion, so applying it no longer opts you into workspace memory as a side effect.
+- **Changed**: `duskOffice.rememberWorkspaceTheme` description now states that a remembered theme overrides your VS Code pick until you change the theme again.
+- **Docs**: The QUICKSTART-LONG settings table and the walkthrough mark workspace memory as opt-in; README's Quick Settings list says the same.
+- **Tests**: `tests/workspace-theme-memory.test.js` (13 tests) covers the default, the inert startup path, the manual-override escape hatch, echo suppression, and the fingerprint path. The `vscode` mock gained `workspace.fs` (`stat` / `readFile` / `readDirectory`), `Uri.joinPath`, and `FileType` so the fingerprint path can be driven end to end.
+
 ## 1.5.8 — 29 August 2026
 
 - **Changed**: **Marketplace listing copy** — `displayName` shortened to *Dusk Office — 27 Dark, Light & OLED Themes*; `description` rewritten so the first 150 characters mention VS Code / Cursor and stay a complete sentence (niche finance / audit / cybersecurity stays in the description). README leads with the hook (3 store badges, no Keywords/Tags dump); screenshots use GitHub Pages HTTPS URLs so Marketplace Details can render them. JetBrains `plugin.xml` preview and `jetbrains-plugin/README.md` put the benefit before store links.

@@ -85,6 +85,9 @@ async function activate(context) {
     }),
     vscode.window.onDidChangeActiveColorTheme(() => {
       void vscode.commands.executeCommand("setContext", "duskOffice.isActive", isDuskTheme(cfg.getCurrentTheme()));
+      if (!state.isThemeAutomationEcho()) {
+        void autoAdaptive.noteManualThemeOverride(context);
+      }
       void titleBar.syncTitleBarStyleForDuskTheme(context);
       void syntaxStyle.applySyntaxStyle();
     }),
