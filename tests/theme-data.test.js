@@ -1,6 +1,7 @@
 const { describe, it } = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
+const os = require("node:os");
 const fs = require("node:fs");
 
 const {
@@ -74,12 +75,15 @@ describe("mergeThemeData", () => {
   });
 
   it("throws on a missing include file", () => {
-    const tmp = path.join(THEMES_DIR, "__tmp-bad-include.json");
+    // A fixture in the real themes/ directory is packaged into the VSIX and perturbs
+    // the contrast sweeps if the process dies between write and unlink. Use tmp.
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "dusk-theme-data-"));
+    const tmp = path.join(dir, "bad-include.json");
     fs.writeFileSync(tmp, JSON.stringify({ include: "./does-not-exist.json", colors: {} }));
     try {
       assert.throws(() => mergeThemeData(tmp), /Missing include file/);
     } finally {
-      fs.unlinkSync(tmp);
+      fs.rmSync(dir, { recursive: true, force: true });
     }
   });
 });

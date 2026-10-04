@@ -7,7 +7,7 @@ no menus to memorize, no settings to hunt for.
 
 | Action | What it does |
 | --- | --- |
-| 🎨 **Switch theme** | Browse and preview all 27 variants |
+| 🎨 **Switch theme** | Browse and preview the 26 selectable variants (the 27th theme is the shared base they inherit from) |
 | 🖼️ **Theme Gallery** | Visual grid of every variant — click Apply to switch |
 | ↩️ **Previous theme** | Instantly go back to what you had |
 | ⭐ **Favorite** | Set or jump to your go-to variant |
@@ -18,7 +18,7 @@ no menus to memorize, no settings to hunt for.
 | 📍 **Activity Bar** | Move it left ↔ top in one click |
 | 🪟 **Title bar** | Sync title bar color with the active theme |
 | 📊 **Status bar** | Show or hide the Dusk Office button |
-| 💾 **Workspace memory** | Per-project theme persistence (opt-in) |
+| 💾 **Workspace memory** | Turn per-project theme persistence on or off, and clear the saved theme. Off by default — while on, it re-applies that project's last Dusk variant when you open it |
 | ✅ **WCAG check** | Verify terminal contrast ratios live |
 | 🎨 **ANSI in Editor** | Toggle ANSI coloring in logs and source files |
 | ⚙️ **Settings** | Jump straight to Dusk Office config |

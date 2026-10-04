@@ -93,7 +93,7 @@ Dans `config.toml` :
 theme = "dusk-office-minuit"
 ```
 
-(Adapter le nom au champ `name` du fichier TOML.)
+Helix résout un thème par **nom de fichier**, pas par le champ `name` du TOML : la valeur ci-dessus est donc le nom du fichier copié (`dusk-office-minuit`).
 
 ---
 
@@ -103,8 +103,8 @@ theme = "dusk-office-minuit"
 
 ```bash
 npm run jetbrains:build
-# Installer : build/distributions/dusk-office-jetbrains-*.zip
-# Settings → Plugins → Install from Disk
+# Installer : jetbrains-plugin/build/distributions/dusk-office-jetbrains-*.zip
+# Settings → Plugins → ⚙ → Install Plugin from Disk…
 ```
 
 Voir [jetbrains-plugin/README.md](../jetbrains-plugin/README.md) pour publier sur [JetBrains Marketplace](https://plugins.jetbrains.com).
@@ -120,6 +120,12 @@ Voir [jetbrains-plugin/README.md](../jetbrains-plugin/README.md) pour publier su
 ## Base16
 
 Utiliser avec [base16-manager](https://github.com/base16-manager/base16-manager), [tinted-theming](https://github.com/tinted-theming/home), ou tout outil compatible Base16.
+
+```bash
+# base16-manager attend un schéma par fichier dans son répertoire de thèmes
+mkdir -p ~/.config/base16/themes
+cp exports/base16/dusk-office-minuit.yaml ~/.config/base16/themes/
+```
 
 ---
 
@@ -156,11 +162,16 @@ config.color_scheme = "dusk-office-minuit"
 ## Warp
 
 ```bash
+# Linux
+mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes"
+cp exports/warp/dusk-office-minuit.yaml "${XDG_DATA_HOME:-$HOME/.local/share}/warp-terminal/themes/"
+
+# macOS
 mkdir -p ~/.warp/themes
 cp exports/warp/dusk-office-minuit.yaml ~/.warp/themes/
 ```
 
-Puis choisir **Dusk Office Minuit** dans les réglages de thème de Warp (Apparence → Thème).
+Puis choisir **Dusk Office Minuit** dans les réglages de thème de Warp (Apparence → Thème). Les fichiers générés portent le champ `name`, ce qui est requis pour que le thème apparaisse dans le sélecteur.
 
 ---
 

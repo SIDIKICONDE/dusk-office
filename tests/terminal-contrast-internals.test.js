@@ -7,13 +7,18 @@ const { checkTerminalContrast } = require("../lib/terminal/terminal-contrast.js"
 // parseColor edge cases (tested indirectly via checkTerminalContrast)
 // ---------------------------------------------------------------------------
 describe("parseColor edge cases via checkTerminalContrast", () => {
+  // These use partial fixtures, so the "missing ANSI color" failures the checker now
+  // reports are expected. Assert on the specific pair under test instead of the total.
+  const failuresFor = (colors, label, uiTheme) =>
+    checkTerminalContrast(colors, uiTheme).filter((f) => f.startsWith(label));
+
   it("handles 3-digit hex background (#fff)", () => {
     const colors = {
       "terminal.background": "#fff",
       "terminal.foreground": "#000000",
     };
-    const failures = checkTerminalContrast(colors, "vs");
-    assert.equal(failures.length, 0);
+    assert.deepEqual(failuresFor(colors, "terminal.background", "vs"), []);
+    assert.deepEqual(failuresFor(colors, "terminal.foreground", "vs"), []);
   });
 
   it("handles 8-digit hex (RRGGBBAA) background", () => {
@@ -21,8 +26,8 @@ describe("parseColor edge cases via checkTerminalContrast", () => {
       "terminal.background": "#000000ff",
       "terminal.foreground": "#ffffff",
     };
-    const failures = checkTerminalContrast(colors, "vs-dark");
-    assert.equal(failures.length, 0, `unexpected: ${failures.join(", ")}`);
+    assert.deepEqual(failuresFor(colors, "terminal.background", "vs-dark"), []);
+    assert.deepEqual(failuresFor(colors, "terminal.foreground", "vs-dark"), []);
   });
 
   it("handles semi-transparent background (alpha compositing)", () => {
@@ -30,8 +35,8 @@ describe("parseColor edge cases via checkTerminalContrast", () => {
       "terminal.background": "#00000080",
       "terminal.foreground": "#ffffff",
     };
-    const failures = checkTerminalContrast(colors, "vs-dark");
-    assert.equal(failures.length, 0);
+    assert.deepEqual(failuresFor(colors, "terminal.background", "vs-dark"), []);
+    assert.deepEqual(failuresFor(colors, "terminal.foreground", "vs-dark"), []);
   });
 
   it("handles semi-transparent foreground over dark bg", () => {
@@ -41,8 +46,8 @@ describe("parseColor edge cases via checkTerminalContrast", () => {
     };
     // Semi-transparent white on black: composited color is ~#808080
     // Luminance of #808080 vs #000000 => ratio ~5.3:1, above 4.5
-    const failures = checkTerminalContrast(colors, "vs-dark");
-    assert.equal(failures.length, 0);
+    assert.deepEqual(failuresFor(colors, "terminal.background", "vs-dark"), []);
+    assert.deepEqual(failuresFor(colors, "terminal.foreground", "vs-dark"), []);
   });
 
   it("rejects invalid background format", () => {

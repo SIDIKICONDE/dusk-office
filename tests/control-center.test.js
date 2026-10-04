@@ -63,6 +63,7 @@ describe("control center grouping", () => {
       "Apply Adaptive Theme Now",
       "Adaptive Focus Settings",
       "Configure Auto Switch",
+      "Workspace Theme Memory",
       "Clear Workspace Theme Memory",
       "Reset Workspace Fingerprint",
       "Activity Bar Position",

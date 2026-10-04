@@ -7,7 +7,10 @@ import re
 from dataclasses import dataclass
 from typing import Iterable
 
-HEX_COLOR = re.compile(r"^#[0-9a-fA-F]{3,8}$")
+# Exactly 3, 6 or 8 digits — the shapes `parse_hex_color` can actually read, and the
+# shapes VS Code accepts. A 4/5/7-digit value used to pass pydantic validation here and
+# then be silently skipped by every contrast gate, so an unreadable colour shipped.
+HEX_COLOR = re.compile(r"^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$")
 
 
 @dataclass(frozen=True)
@@ -46,7 +49,11 @@ def solid_hex(value: str | None) -> str:
         return value or "#000000"
     if parsed.alpha is not None:
         return f"#{parsed.r:02x}{parsed.g:02x}{parsed.b:02x}"
-    return value if len(value or "") >= 7 else f"#{parsed.r:02x}{parsed.g:02x}{parsed.b:02x}"
+    return (
+        value
+        if len(value or "") >= 7
+        else f"#{parsed.r:02x}{parsed.g:02x}{parsed.b:02x}"
+    )
 
 
 def _linear(channel: int) -> float:

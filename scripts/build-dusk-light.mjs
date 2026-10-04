@@ -42,6 +42,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const ABYSS_PATH = path.join(root, "themes", "dusk-abime.json");
 const LIGHT_OUT_PATH = path.join(root, "themes", "dusk-light.json");
+/** Hand-curated light syntax layer. Source of truth — see loadSyntaxLayer(). */
+const LIGHT_SYNTAX_PATH = path.join(root, "theme-sources", "dusk-light-syntax.json");
 
 /** Fonds sombres typiques d’Abyss (#RRGGBB) → surfaces claires */
 const DARK_BG_TO_LIGHT_SURFACE = {
@@ -397,31 +399,46 @@ function remapLightCandySyntax(theme) {
 }
 
 /**
- * Garde la coloration syntaxique déjà curée dans dusk-light.json si présente,
- * sinon reprend Abyss (première génération).
+ * Curated light syntax layer.
+ *
+ * Read from `theme-sources/dusk-light-syntax.json`, never from `themes/dusk-light.json`.
+ * That output file used to be its own input: the 101 hand-curated token rules lived
+ * only in the build output, so deleting or `git checkout`-ing it silently destroyed
+ * them and cascaded into Light / Ivory / Audit (make:full failed with thousands of
+ * removed lines). The source file is now a real input, so the output is disposable.
  */
-function loadSyntaxLayerFromExistingLightOrAbyss(abyssTheme) {
+function loadSyntaxLayer(abyssTheme) {
   try {
-    const raw = fs.readFileSync(LIGHT_OUT_PATH, "utf8");
-    const prev = JSON.parse(raw);
-    if (Array.isArray(prev.tokenColors) && prev.tokenColors.length && prev.semanticTokenColors) {
+    const raw = fs.readFileSync(LIGHT_SYNTAX_PATH, "utf8");
+    const src = JSON.parse(raw);
+    if (
+      Array.isArray(src.tokenColors) &&
+      src.tokenColors.length &&
+      src.semanticTokenColors
+    ) {
       return {
-        tokenColors: structuredClone(prev.tokenColors),
-        semanticTokenColors: structuredClone(prev.semanticTokenColors),
+        tokenColors: structuredClone(src.tokenColors),
+        semanticTokenColors: structuredClone(src.semanticTokenColors),
       };
     }
-  } catch {
-    /* fichier absent ou invalide */
+    console.warn(
+      `WARN ${path.relative(root, LIGHT_SYNTAX_PATH)} has no usable syntax layer — falling back to Abyss.`,
+    );
+  } catch (err) {
+    console.warn(
+      `WARN cannot read ${path.relative(root, LIGHT_SYNTAX_PATH)} (${err.message}) — falling back to Abyss. ` +
+        "Without this file the light variants lose their curated syntax colours.",
+    );
   }
   return {
-    tokenColors: structuredClone(abyssTheme.tokenColors),
-    semanticTokenColors: structuredClone(abyssTheme.semanticTokenColors),
+    tokenColors: structuredClone(abyssTheme.tokenColors ?? []),
+    semanticTokenColors: structuredClone(abyssTheme.semanticTokenColors ?? {}),
   };
 }
 
 function main() {
   const abyss = JSON.parse(fs.readFileSync(ABYSS_PATH, "utf8"));
-  const syntax = loadSyntaxLayerFromExistingLightOrAbyss(abyss);
+  const syntax = loadSyntaxLayer(abyss);
 
   const theme = {
     $schema: "vscode://schemas/color-theme",

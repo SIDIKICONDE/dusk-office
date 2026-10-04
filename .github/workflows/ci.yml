@@ -55,6 +55,11 @@ jobs:
       - name: Web extension tests
         run: npm run test:web
 
+      # `npm run test:web:host` (real @vscode/test-web host, tests/web-suite/index.js)
+      # is deliberately NOT wired in here yet: the in-host suite does not currently
+      # report a result, so enabling it would fail CI on a harness bug rather than a
+      # product one. Fix tests/run-web-host.mjs first, then add the step.
+
       - name: Package VSIX (smoke test, not uploaded)
         run: npm run package
 

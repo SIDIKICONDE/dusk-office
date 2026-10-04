@@ -102,7 +102,9 @@ describe("checkUiContrast — packaged themes", () => {
     const offenders = [];
     for (const t of themes) {
       const full = path.resolve(root, t.path);
-      if (!fs.existsSync(full)) continue;
+      // `continue` here used to turn a contributed theme with a broken path into a
+      // vacuous pass. theme-data.test.js asserts existence; assert it here too.
+      assert.ok(fs.existsSync(full), `contributed theme file missing: ${t.path}`);
       const data = mergeThemeData(full);
       const fails = failingUiContrast(data.colors, data.tokenColors, t.uiTheme || "vs-dark").filter((f) =>
         NORMAL_TEXT_KEYS.has(f.fgKey),

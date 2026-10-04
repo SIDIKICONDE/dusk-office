@@ -10,7 +10,7 @@ Open settings (`Cmd/Ctrl + ,`) and search **"Dusk Office"**:
 | Setting | What it controls |
 | --- | --- |
 | `applyFavoriteOnStartup` | Auto-load your favorite variant on editor start |
-| `rememberWorkspaceTheme` | Each project remembers its own theme (opt-in, off by default) |
+| `rememberWorkspaceTheme` | Each project remembers its own theme — **off by default**. Also toggleable from the Control Center. |
 | `autoSwitch.*` | Day/night light ↔ dark switching schedule |
 | `adaptiveFocus.*` | Language + time-aware automatic variant selection |
 | `workspaceFingerprint.enabled` | Auto-suggest a variant for new projects |
@@ -52,7 +52,7 @@ A quick star rating helps other developers discover these themes:
 | **Open VSX** (VSCodium) | [Rate on Open VSX](https://open-vsx.org/extension/dekidev/dusk-office/reviews) |
 | **JetBrains** | [Rate on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/31875-dusk-office-themes/reviews) |
 
-Or run **`Dusk Office: Rate on Marketplace`** from the Command Palette anytime.
+You can also rate at any time from **`Dusk Office: Control Center` → Setup → Rate Dusk Office on Marketplace** (it appears in the list once the reminder is enabled).
 
 ---
 

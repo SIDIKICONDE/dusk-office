@@ -29,7 +29,16 @@ const { runQuickSetup } = require("./lib/ui/quick-setup.js");
 const { openMarketplaceReviewPage, initializeMarketplaceReviewTracking } = require("./lib/prompts/marketplace-review-prompt.js");
 const log = require("./lib/core/log.js");
 
+/**
+ * VS Code calls `deactivate()` with **no arguments**, so the ExtensionContext has to
+ * be captured during activate(). Without this the restore below ran with `undefined`
+ * and silently did nothing, while the snapshots it needed were deleted along with
+ * `globalState` on uninstall.
+ */
+let activeContext;
+
 async function activate(context) {
+  activeContext = context;
   const pic = context.extension.packageJSON?.contributes?.productIconThemes;
   const picId = Array.isArray(pic) && typeof pic[0]?.id === "string" ? pic[0].id : "";
   state.duskProductIconThemeId = picId;
@@ -147,11 +156,45 @@ async function activate(context) {
   });
 }
 
+/**
+ * Best-effort restore on shutdown and uninstall.
+ *
+ * VS Code deletes `globalState` when an extension is uninstalled, destroying the
+ * snapshots that record what we overwrote, so `deactivate()` is the last chance to
+ * put the user's own settings back. Restores the two non-namespaced keys we write:
+ * `window.titleBarStyle` and `workbench.productIconTheme`. `workbench.colorTheme`
+ * is deliberately left alone — VS Code falls back to its default when the theme is
+ * gone, and rewriting a user's theme choice during shutdown would be worse.
+ */
+async function restoreSettingsOnShutdown(context = activeContext) {
+  if (!context) {
+    log.warn("restoreSettingsOnShutdown: no ExtensionContext captured — nothing restored");
+    return false;
+  }
+  try {
+    await titleBar.restoreTitleBarGlobalIfStored(context);
+  } catch (err) {
+    log.error("restoreSettingsOnShutdown:titleBar", err);
+  }
+  try {
+    await productIcons.restorePreviousProductIconIfStored(context);
+  } catch (err) {
+    log.error("restoreSettingsOnShutdown:productIcons", err);
+  }
+  return true;
+}
+
 function deactivate() {
-  log.dispose();
+  // The extension host does await this promise — `Promise.resolve(deactivate())` is
+  // collected and raced against a 5s shutdown timeout — so return it rather than
+  // firing and forgetting, and keep the log channel open until the writes settle.
+  const context = activeContext;
+  activeContext = undefined;
+  return restoreSettingsOnShutdown(context).finally(() => log.dispose());
 }
 
 module.exports = {
   activate,
   deactivate,
+  restoreSettingsOnShutdown,
 };

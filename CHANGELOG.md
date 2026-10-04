@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 1.5.9 — 4 October 2026
+## 1.5.10 — 4 October 2026
 
 - **Fixed**: **Workspace memory no longer overrides the theme you picked** — `duskOffice.rememberWorkspaceTheme` now defaults to **`false`**. It was the only automatic theme writer enabled by default, so it re-applied a remembered Dusk variant on every launch with no opt-in. It was also the reason *Reset All Settings* appeared not to work: that command writes `undefined` for the key, which fell back to the `true` default and re-armed the behaviour the reset dialog promises to clear.
 - **Fixed**: **Picks made in VS Code now stick** — a theme chosen through VS Code's own *Preferences: Color Theme* picker never went through `applyTheme`, so the extension had no way to know it had been overridden. `onDidChangeActiveColorTheme` now treats any change it did not cause as a manual override: it records the override (so Auto Switch and Adaptive Focus back off for the usual 5s grace window) and clears the stored workspace theme so it cannot come back on the next launch.
@@ -11,6 +11,61 @@
 - **Changed**: `duskOffice.rememberWorkspaceTheme` description now states that a remembered theme overrides your VS Code pick until you change the theme again.
 - **Docs**: The QUICKSTART-LONG settings table and the walkthrough mark workspace memory as opt-in; README's Quick Settings list says the same.
 - **Tests**: `tests/workspace-theme-memory.test.js` (13 tests) covers the default, the inert startup path, the manual-override escape hatch, echo suppression, and the fingerprint path. The `vscode` mock gained `workspace.fs` (`stat` / `readFile` / `readDirectory`), `Uri.joinPath`, and `FileType` so the fingerprint path can be driven end to end.
+
+### Trust and consent
+
+- **Fixed**: **Upgrading no longer writes opt-in defaults into your `settings.json`** — `migrateExistingProfileDefaults` used to write `duskOffice.titleBar.alignWithTheme: true` and `duskOffice.editorAnsi.allLanguages: true` at `ConfigurationTarget.Global` for every profile with prior Dusk Office state, silently. The title-bar one then cascaded into a global `window.titleBarStyle: "custom"` write — a setting with no `dusk` prefix, so nothing in your `settings.json` hinted at its author. Legacy values are now kept as a read-time fallback (`state.legacyProfileDefaults`); an explicit value, including `false`, always wins and nothing is written. The verdict is persisted under `duskOffice.legacyProfileDefaults`, because the fallback no longer lives in your settings and would otherwise be lost on the next launch.
+- **Fixed**: **Uninstalling restores what the extension changed** — `deactivate()` only disposed a log channel, and VS Code deletes `globalState` on uninstall, destroying the very snapshots that recorded what to restore. It now best-effort restores `window.titleBarStyle` and `workbench.productIconTheme`. VS Code calls `deactivate()` with **no arguments**, so the ExtensionContext is captured during `activate()`; the earlier version read it from a parameter that was never supplied and restored nothing. `workbench.colorTheme` is deliberately left alone: VS Code falls back to its default when the theme is gone, and rewriting your theme choice during shutdown would be worse. `deactivate()` returns the restore promise, and the extension host awaits it (up to its 5s shutdown budget) before finishing teardown, so the writes land while `globalState` still exists.
+- **Fixed**: **Reset All Settings clears folder-scoped values too** — it swept `Global` and `Workspace` but never `WorkspaceFolder`, so in a multi-root workspace a folder value survived the reset and re-armed the defaults migration on the next launch. Each folder is now cleared through a folder-scoped configuration.
+- **Fixed**: **`editor.tokenColorCustomizations` survives in string form** — VS Code accepts the setting as a JSON string, a common shape in generated configs. The value was coerced to `{}` and the user's entire customisation silently overwritten. It is now parsed and written back in the shape it arrived in; an unparseable value is left untouched.
+- **Fixed**: `duskOffice.marketplaceReviewPrompt` was read but never declared in `package.json`, so it was unreachable from the Settings UI, showed as an unknown setting, and — being absent from the contributed properties — **survived Reset All Settings**. It is now declared as deprecated in favour of `duskOffice.marketplaceReview`.
+- **Changed**: **Workspace Theme Memory is a toggle in the Control Center.** It was a read-only status row (`action: null`) that only existed to display a state you could not change from the UI, while `walkthrough/06-control-center.md` advertised it as a "Workspace memory" action. The row is now actionable and clears the saved theme when switched off.
+- **Changed**: `duskOffice.rememberWorkspaceTheme` description now states that a remembered theme overrides your VS Code pick until you change the theme again.
+
+### Validation gates
+
+- **Fixed**: **An unreadable colour now fails the gates instead of skipping them.** `checkTerminalContrast` and `checkUiContrast` returned early on a missing or unparseable value, so a typo in a hex string passed all seven contrast gates and the full test suite. Missing and unreadable are both reported now.
+- **Fixed**: **`HEX_COLOR` accepts exactly 3, 6 or 8 digits.** The pydantic regex allowed 4, 5 and 7 digits, which `parse_hex_color` then rejected — so a colour could pass schema validation and be skipped by every contrast check. This was the enabler for the class of bug above.
+- **Tests**: `python/tests/test_color.py` rewritten (41 tests) with an explicit agreement test between the validator and the parser, plus luminance/contrast/composite coverage that had none.
+
+### Test infrastructure
+
+- **Fixed**: **The `vscode` mock had no configuration-scope semantics.** `update()` discarded its third argument and `inspect()` returned only `globalValue`, so `getConfigTarget()` always resolved to `Global` and every "the user set this in workspace settings, so back off" branch was unreachable — including the guard that stops the extension overwriting a user's explicit `window.titleBarStyle`. The mock now stores values per scope (`Global` / `Workspace` / `WorkspaceFolder`), resolves folder > workspace > global like VS Code, and reports `workspaceFolderValue`.
+- **Fixed**: **The mock never fired an event.** Zero `onDidChangeConfiguration` / `onDidChangeActiveColorTheme` events fired across the whole suite, so `extension.js`'s whole configuration router and the manual-override detection were untested — the workspace-memory fix above asserted its helper directly rather than through the event that triggers it. Both events, plus `onDidChangeActiveTextEditor` and document events, now dispatch, honour `dispose()`, and expose `affectsConfiguration` parent matching.
+- **Fixed**: **`activate()` is now tested.** `extension.js` was never required by any test: 26 command registrations, both event subscriptions, the status-bar item and the startup sequence were unverified, and a typo in a command id or a throw inside `activate()` would have shipped green. `tests/extension-activation.test.js` (11 tests) calls it for real, checks every contributed command is registered, and drives the theme-change event through to the pin being cleared.
+- **Fixed**: `tests/vscode-mock-fidelity.test.js` (16 tests) pins the mock's scope resolution and event delivery, so a regression there fails loudly instead of silently weakening every other test.
+- **Fixed**: Tests that registered **zero** tests on a missing fixture are gone. `terminal-contrast.test.js` had `if (!fs.existsSync(themesDir)) return;` in a `describe` body, so a renamed directory collapsed 34 tests to nothing and still exited 0; the same pattern hid a theme with a broken `path` in `ui-contrast.test.js`. Both now assert the fixture exists.
+- **Fixed**: A test wrote a temporary file into the real `themes/` directory, which is packaged into the VSIX and perturbs the contrast sweeps if the process dies mid-test. It now uses a tmp dir.
+- **Changed**: `tests/test-web-activation.mjs` no longer claims to test activation. Outside the web extension host there is no `require` shim, so it can only prove the bundle parses and loads without a Node-only error; it now says so, records window errors, and fails on anything beyond the expected host error.
+- **Added**: `tests/run-web-host.mjs` (`npm run test:web:host`) runs `tests/web-suite/index.js` in a real browser extension host via `@vscode/test-web`. That suite existed but **nothing referenced it** — no npm script, Makefile target or CI step — so the only genuine web-host test never ran. Bounded by a timeout so a harness that fails to load reports instead of hanging.
+
+### Build pipeline
+
+- **Fixed**: **`themes/dusk-light.json` is no longer its own input.** `build-dusk-light.mjs` read the curated syntax layer back out of its own output file, so those 101 hand-curated `tokenColors` and 106 `semanticTokenColors` existed only in a build artefact — deleting or `git checkout`-ing it silently destroyed them and cascaded into Light, Ivory and Audit. The layer now lives in `theme-sources/dusk-light-syntax.json` as a real source, and the output is disposable. Verified by deleting `themes/dusk-light.json` and rebuilding.
+- **Fixed**: **`verify-themes-fresh` was blind to staged and untracked changes.** `git diff --quiet` ignores untracked files and returns clean once a generated file is staged, so a `themes/dusk-brandnew.json` and a stale staged theme both passed. It now checks the worktree, the index (`--cached`) and untracked files, with `--no-build` for a fast check.
+- **Changed**: `scripts/run-python.mjs` replaces the inline `PYTHONPATH=python python -m …` form, which was POSIX-only and failed on Windows `cmd.exe`, and resolves the interpreter as `.venv` → `python3` → `python`. This also fixes the long-standing `python` vs `python3` inconsistency noted in 1.4.0.
+- **Removed**: `previewAdaptiveFocusTheme` — exported with zero callers in the repository.
+
+### Exports
+
+- **Fixed**: **Exports were ~3 weeks stale.** `exports/` is gitignored, and `make:full` does not run `export:ide`, so the 378 generated files still carried pre-1.5.7 values — including Sentinel's keyword at the old `#6c86b2` instead of the 1.5.8 rust `#c89068`. All 14 formats × 27 themes regenerated; `exports/README.md` now records that `make:full` does not regenerate them.
+- **Fixed**: **Warp themes were unusable on Linux.** The generated YAML omitted the `name` key Warp requires to list a theme, and both the file header and `exports/README.md` pointed at `~/.warp/themes`, which is macOS-only. `name` is now emitted and the Linux path documented.
+- **Fixed**: The Helix install line in every generated file suggested `theme = "Dusk Office Midnight"`, but Helix resolves a theme by **file stem** — it never loaded. Now emits the stem, and `exports/README.md` explains the distinction instead of telling readers to adapt the name themselves.
+- **Fixed**: `exports/README.md` gave the JetBrains ZIP path without the `jetbrains-plugin/` prefix, and documented no install path at all for Base16.
+- **Docs**: The CHANGELOG's "13 formats, 351 files" line (1.5.3) was never corrected after Konsole made it 14 / 378.
+
+### Documentation
+
+- **Fixed**: **The QUICKSTART-LONG terminal table was 21 of 22 cells wrong**, and its claim that `terminal.background` equals `panel` ignored the 26% blend toward `editor.background` that `merge-extended-ui-colors.mjs` applies. Both tables are regenerated from the built `themes/*.json`, and light variants are listed separately.
+- **Fixed**: **The QUICKSTART-LONG ANSI table listed Tailwind defaults** (`#f87171`, `#22c55e`, `#38bdf8`…) that matched neither `dusk.json` nor `dusk-abime.json` — the exact drift class 1.5.7 fixed for Finance. Replaced with the base theme's real values plus a pointer to `themes/*.json` for per-variant values.
+- **Fixed**: README claimed the terminal gate checks "the 16 ANSI colors against WCAG AA/AAA". It checks **14 non-black slots at 2.9:1** and `terminal.foreground` at 4.5:1; the two black slots are excluded because dark-on-dark is legitimate.
+- **Fixed**: `walkthrough/08-make-it-yours.md` told users to run `Dusk Office: Rate on Marketplace` from the Command Palette. The command is registered but **not contributed** in `package.json`, so it does not appear there — an instruction that could not be followed. The doc now points at the Control Center entry that works.
+- **Fixed**: `walkthrough/06-control-center.md` advertised a "Workspace memory" action that did not exist (see the Control Center toggle above), and claimed *Switch theme* browses "all 27 variants" when it lists the 26 selectable ones — the 27th is the shared base.
+- **Fixed**: `MAINTENANCE.md` described `themes/dusk.json` as an "Empty base". It is the **full base theme** — ~50 KB, ~540 colours — and every dark variant includes it.
+- **Fixed**: `MAINTENANCE.md` listed `scripts/enhance-themes.mjs` as step 3 of the pipeline. **No npm script references it**, `make:full` never runs it, and running it by hand double-applies edits the pipeline has since moved to `syntax-variant-palettes.mjs`. It is now marked orphaned with a warning; the real steps 3–5 (`build:hc`, `build:ivoire-sombre`, `fix:ui-contrast`) are listed instead.
+- **Fixed**: `MAINTENANCE.md` documented 7 of the 14 export formats, and stated `dim:borders` skips Ivory — the script's regex includes it.
+- **Changed**: README's Control Center list was missing 8 reachable actions (set favorite, configure auto switch, clear workspace memory, reset fingerprint, the two ANSI entries, reset all settings, rate on Marketplace). Now grouped as the UI groups them.
+- **Changed**: `docs/index.html` moved to v1.5.9 with What's New cards for the theme-ownership fixes.
 
 ## 1.5.8 — 29 August 2026
 
@@ -108,7 +163,7 @@
 - **Added**: **Neon distinct syntax overrides** — `dusk-neon.json` `tokenColors` and `semanticTokenColors` now use vivid neon-flavored colors (e.g. `#e060a0` operators, `#c080e0` components, `#80d0e0` strings) for stronger variant identity.
 - **Fixed**: **HC accessibility — border contrast** — low-contrast `#304f60xx` borders replaced with high-visibility opaque white/gray variants on black background in `dusk-hc.json`.
 - **Fixed**: **Disallowed theme properties removed** — `diffEditor.unchangedCodeBackground`, `diffEditor.unchangedRegionBackground`, `diffEditor.unchangedRegionForeground`, `statusBarItem.profilesBackground`, `statusBarItem.profilesForeground`, `editorActionList.focusBackground` removed from all 27 theme JSON files, `theme-sources/`, and build scripts (`merge-extended-ui-colors.mjs`, `enhance-themes.mjs`, `build-dusk-light.mjs`, `light-settings-ui.mjs`).
-- **Fixed**: **`python` → `python3`** in `package.json` scripts (`validate:pydantic`, `analyze:themes`, `test:py`) for macOS compatibility.
+- **Fixed**: **`python` → `python3`** in `package.json` scripts (`validate:pydantic`, `analyze:themes`, `test:py`) for macOS compatibility. *(Partially reverted in 1.5.9: the scripts went back to a bare `python`, so the fix did not hold. `scripts/run-python.mjs` now resolves `.venv` → `python3` → `python`, which makes it hold on every platform.)*
 
 ## 1.3.9 — 31 May 2026
 

@@ -8,7 +8,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const SKIP_SYNC = new Set(["dusk-hc.json"]);
+// `dusk-light-syntax.json` holds a syntax layer only, not a full theme — copying it
+// into themes/ would produce a broken theme, so it is excluded from the sync.
+const SKIP_SYNC = new Set(["dusk-hc.json", "dusk-light-syntax.json"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");

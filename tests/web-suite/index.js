@@ -4,6 +4,10 @@
 //
 // IMPORTANT: the web worker has NO Node builtins — only `require("vscode")`.
 // Do not require "assert"/"fs"/"path" here.
+//
+// The host loads this file with `_isESM()` deciding between the ESM and CommonJS
+// loader. This repo's package.json has no `"type": "module"`, so a `.js` file here
+// is treated as CommonJS — it must export `run` via `exports.run`, not `export`.
 const vscode = require("vscode");
 
 function ok(condition, message) {

@@ -27,10 +27,14 @@ The extension targets **VS Code–compatible editors** (VS Code, Cursor, Windsur
 
 ```bash
 make export-ide
-# → exports/neovim, exports/emacs, exports/zed, exports/helix, exports/jetbrains, exports/base16, exports/palettes
+# → 14 formats × 27 themes = 378 files:
+#   vscode, palettes, base16, neovim, emacs, zed, helix, jetbrains,
+#   ghostty, wezterm, warp, windows-terminal, kitty, konsole
 ```
 
 See [exports/README.md](./exports/README.md) for per-IDE install steps. Regenerate after changing `themes/*.json`. Subset: `node scripts/export-ide-themes.mjs --only=neovim,emacs`.
+
+**`exports/` is gitignored** (only `exports/README.md` is tracked), so `verify:themes-fresh` cannot see it drift and there is no CI guard on export freshness. `make:full` does **not** run `export:ide` — after changing a theme, run it explicitly, or the local exports go stale silently. CI regenerates exports only as a build input for the JetBrains job, never to compare against a committed copy.
 
 **Note:** `exports/vscode/*.json` contains the **full resolved workbench** (~500+ color keys + tokens). Other IDE formats map as much UI as each platform supports (Zed/Neovim/Helix/JetBrains). Extension-only features (fingerprint, adaptive focus) remain VS Code–only.
 
@@ -83,15 +87,17 @@ Goals when editing `palettes-extended-ui.json`, `theme-sources/dusk.json`, or `m
 
 1. **`npm run variants:ui`** — merges extended workbench colors (`merge-extended-ui-colors.mjs`) into les variantes palette sombres, puis **régénère Light et Ivory** (`build:light`, `build:ivoire`) pour que le Markdown (preview + `markup.*` en éditeur) reste lisible. Inclut les tokens preview (`textLink.*`, `textBlockQuote.*`, `textCodeBlock.*`, `textPreformat.*`).
 2. **`npm run variants:syntax`** — updates `tokenColors` / `semanticTokenColors` for variants listed in the script.
-3. **`node scripts/enhance-themes.mjs`** — adds advanced semantic tokens, Git colors, and terminal ANSI palette to all themes.
+3. **`npm run build:hc`** then **`npm run build:ivoire-sombre`**, then **`npm run fix:ui-contrast`** — these three *are* part of `make:full` and run after step 2.
 4. **`npm run boost:borders`** *(optional)* — raises alpha on “border” keys. **Do not** chain `soften:borders` on the same files without restoring a known-good theme copy.
-5. **`npm run dim:borders`** *(optional)* — lowers perceived border brightness (alpha −22, RGB ×0.88). Applies to dark variants + **Dusk Office Light**; not `dusk-hc.json`.
+5. **`npm run dim:borders`** *(optional)* — lowers perceived border brightness (alpha −22, RGB ×0.88). Targets exactly `dusk-{minuit,abime,recif,baie,aube,brume,cendre,nebuleuse,light,ivoire,ivoire-sombre}.json` (see the regex in `scripts/dim-border-luminosity.mjs:54`) — so it reaches the **Ivory** light variant too, and skips `dusk-hc.json`.
 
 **Avoid:** stacking border scripts without a reset.
 
-## Theme enhancement script
+## Theme enhancement script (⚠ orphaned — not part of `make:full`)
 
-`scripts/enhance-themes.mjs` adds six feature sets to all themes:
+`scripts/enhance-themes.mjs` adds six feature sets to all themes. **It is not referenced by any npm script or Makefile target, so `make:full` never runs it** and `npm run verify:themes-fresh` never replays it. The syntax work it describes now lives in `scripts/syntax-variant-palettes.mjs` (consumed by `npm run variants:syntax`), which is why the pipeline reproduces without it.
+
+Treat this script as historical: running it by hand on already-enhanced themes double-applies its edits and produces drift that `verify:themes-fresh` will flag. Port anything still needed into `syntax-variant-palettes.mjs` first.
 
 ### 1. Advanced Semantic Tokens
 
@@ -167,7 +173,7 @@ Run once after creating or modifying themes. Handles `include`-based themes (dus
 
 | File | Role |
 | ------ | ------ |
-| `themes/dusk.json` | Empty base (schema, dark type); `include` anchor. |
+| `themes/dusk.json` | **The full base theme** (~50 KB, ~540 colours, 102 `tokenColors`, 106 `semanticTokenColors`) — not an empty scaffold. Every dark variant `include`s it, so a change here propagates everywhere. `theme-sources/dusk.json` → `theme:sources:sync` → `sync:aa`. |
 | `themes/dusk-hc.json` | **`theme-sources/dusk-hc.json`** → **`npm run build:hc`** copies to `themes/`. `include` Abyss + HC overrides: selection (`#264f78` + white text), **minimap** markers, **inline chat** / **inline edit**, **peek** view, **notebook** cell chrome, **editorOverviewRuler** inline-chat markers, **list** focus outline, **text** links. See README *High Contrast — contrast targets* for WCAG-oriented pairs. |
 | `themes/dusk-light.json` | Built by **`npm run build:light`** (`scripts/build-dusk-light.mjs`) — see **Dusk Office Light** below. |
 | `themes/dusk-ivoire.json` | Built by **`npm run build:ivoire`** from **Dusk Office Light** (paper base **#F6EEDE**). |

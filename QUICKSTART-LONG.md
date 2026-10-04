@@ -241,42 +241,63 @@ Use matching accent hexes if you use another variant.
 
 ## Terminal Colors
 
-Integrated terminal uses **`terminal.background`** = **`panel`** and **`terminal.foreground`** = **`fg`** from each entry in `scripts/palettes-extended-ui.json` (applied by `merge-extended-ui-colors.mjs`). ANSI slots map to the same palette (errors, accents, success, etc.), so each **dark variant** keeps a coherent "profile" (fond + texte + couleurs d'échappement).
+The integrated terminal derives its colours from each variant's entry in `scripts/palettes-extended-ui.json`, but `merge-extended-ui-colors.mjs` does **not** write them verbatim: `terminal.background` is `panel` blended 26 % toward `editor.background` (`TERMINAL_BLEND_TOWARD_EDITOR` in that script), and the syntax layer is remapped for light surfaces. `fix:ui-contrast` may then adjust a value that sits below its ratio floor.
 
-### Dark variants — `panel` and default text (`fg`)
+The table below is therefore generated from the **built** `themes/*.json`, not from the palette source.
 
-| Variant | `panel` (terminal bg) | `fg` (default terminal text) |
-| --------- | ------------------------ | ------------------------------ |
-| Midnight | `#010102` | `#d1e0e8` |
-| Abyss | `#030810` | `#cfe8f0` |
-| Reef | `#011018` | `#cffafe` |
-| Bay | `#051c14` | `#ecfdf5` |
-| Dawn | `#243a4e` | `#fafcff` |
-| Mist | `#202c3a` | `#f4f9fc` |
-| Ash | `#1e2228` | `#e5e7eb` |
-| Nebula | `#0c0618` | `#f3e8ff` |
-| Nocturne | `#1e1f29` | `#f8f8f2` |
-| Finance | `#0a1219` | `#e8e6e3` |
-| Corporate | `#181a1c` | `#c5c8c6` |
+### Dark variants — terminal background and foreground
 
-**Light** and **Ivory** themes use a light `terminal.background`; ANSI values still follow the merge pipeline but are tuned for dark shells — contrast on light panels is not the same as on dark `panel` values above.
+| Variant | `terminal.background` | `terminal.foreground` |
+| --------- | ------------------------ | -------------------------- |
+| Midnight | `#050a12` | `#d0dce4` |
+| Abyss | `#020c14` | `#d0dce4` |
+| Reef | `#002129` | `#d0dce8` |
+| Bay | `#081410` | `#e0ebe4` |
+| Dawn | `#2a2436` | `#e8e0de` |
+| Mist | `#212d3b` | `#e4e8ec` |
+| Ash | `#1f2329` | `#e5e7eb` |
+| Nebula | `#0d071a` | `#e0dae8` |
+| Nocturne | `#1e1912` | `#f0e4d0` |
+| Finance | `#0b111a` | `#d4d0c8` |
+| Corporate | `#1d1f21` | `#c8c4c0` |
+| Luxe | `#0a080c` | `#f0ece8` |
+| Secure | `#0c1816` | `#e3eaed` |
+| Sentinel | `#081019` | `#e2eaed` |
+| Steward | `#18161f` | `#e7edf1` |
+| Terminal | `#060606` | `#b8c8b8` |
+| Vault | `#0e141c` | `#e6ebef` |
+| Voltage | `#181d1a` | `#edf6ee` |
+| Or | `#0a0800` | `#e8d5a3` |
+| Neon | `#08040f` | `#e0dae8` |
 
-### Default ANSI mapping (Dusk Office / Abyss family)
+Light surfaces for the light variants:
 
-All themes include a complete ANSI color palette (exact hex depends on variant):
+| Variant | `terminal.background` | `terminal.foreground` |
+| --------- | ------------------------ | ------------------------ |
+| Light | `#f1f5f9` | `#0f172a` |
+| Ivory | `#efe6d8` | `#2a2420` |
+| Ledger | `#e8e2d9` | `#24313a` |
+| Audit | `#edf1f5` | `#25313a` |
+| Dark Ivory | `#25211a` | `#eee2d4` |
+
+ANSI slots follow the same palette. On light variants they stay tuned for dark shells, so `npm run verify:terminal` — not this table — is the authority on contrast.
+
+### ANSI mapping — Dusk Office (base theme)
+
+All 27 variants ship a complete 16-slot ANSI palette. These are the **base theme** (`◑ Dusk Office · Base`) values; each variant remaps them, often only in the cyan/green families. Finance for instance uses a gold `#c9a227` where the base uses `#c9a85c`, and Sentinel moves every slot to its rust/teal identity.
 
 | Color | Standard | Bright |
 | ------- | ---------- | -------- |
 | Black | `#1e1e1e` | `#6b7280` |
-| Red | `#f87171` | `#fca5a5` |
-| Green | `#22c55e` | `#86efac` |
-| Yellow | `#fbbf24` | `#fde047` |
-| Blue | `#38bdf8` | `#93c5fd` |
-| Magenta | `#c084fc` | `#f0abfc` |
-| Cyan | `#22d3ee` | `#67e8f9` |
+| Red | `#c97565` | `#c09898` |
+| Green | `#5a9a6a` | `#8ab898` |
+| Yellow | `#c9a85c` | `#d0b868` |
+| Blue | `#6a9ab8` | `#7a98b0` |
+| Magenta | `#9a8ab8` | `#a090a8` |
+| Cyan | `#7ab0c8` | `#8ab5c8` |
 | White | `#e5e5e5` | `#fafafa` |
 
-Terminal cursor and selection colors match the active theme accent.
+Read the exact values for a specific variant from `themes/<slug>.json` under `colors["terminal.ansi*"]`, or run `Dusk Office: Verify Terminal Contrast`. Terminal cursor and selection colours match the active theme accent.
 
 ### Check contrast
 

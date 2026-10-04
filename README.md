@@ -64,7 +64,7 @@ code --install-extension dusk-office-*.vsix
 
 - `Cmd/Ctrl + Shift + P` → `Dusk Office: Control Center`
 - Or click the status bar entry (enable with `duskOffice.statusBar.enabled`)
-- Quick actions: switch theme, **theme gallery**, previous, favorite, auto switch, adaptive focus toggle, apply adaptive theme now, adaptive focus settings, product icons, activity bar position, title bar align, status bar button, workspace theme memory, **verify terminal contrast**, **verify editor & UI contrast**, settings
+- Grouped under **Themes** (switch theme, gallery, previous, set/switch favorite), **Automation** (auto switch + its schedule, adaptive focus + its settings, apply adaptive theme now), **Workspace** (workspace theme memory on/off, clear saved memory, reset fingerprint), **Appearance** (product icons, activity bar, title bar, status bar), **Setup** (quick setup, ANSI in editor, **verify terminal contrast**, **verify editor & UI contrast**, reset all settings, rate on Marketplace), plus settings
 
 **Theme Gallery:**
 
@@ -179,7 +179,7 @@ Yes. Dusk Office ships a **web extension** build, so the full runtime — themes
 Yes — a dedicated **JetBrains plugin** ships the same 27 variants as full IDE themes + editor color schemes. See [jetbrains-plugin/README.md](./jetbrains-plugin/README.md) and `npm run jetbrains:build`.
 
 **Is the terminal contrast WCAG-compliant?**
-Yes. The build pipeline runs `audit-contrast.mjs` and `verify-terminal-contrast.mjs` on every variant, checking `terminal.foreground` and the 16 ANSI colors against WCAG AA/AAA. Run `Dusk Office: Verify Terminal Contrast` to see the report.
+Yes. The build pipeline runs `audit-contrast.mjs` and `verify-terminal-contrast.mjs` on every variant. `terminal.foreground` is checked at **4.5:1** (WCAG AA for normal text) against `terminal.background`, and the **14 non-black ANSI slots** at **2.9:1** — the two black slots (`ansiBlack`, `ansiBrightBlack`) are excluded because a dark-on-dark terminal palette is legitimate. A color that is missing or unparseable is reported as a failure rather than skipped. Run `Dusk Office: Verify Terminal Contrast` to see the report.
 
 **Is Dusk Office colorblind-friendly?**
 Critical UI signals (errors, warnings, modified, diff, git status) use hue separation, not just red/green, so they remain readable under deuteranopia / protanopia. See `MAINTENANCE.md` → *Color harmony & eye comfort*.
